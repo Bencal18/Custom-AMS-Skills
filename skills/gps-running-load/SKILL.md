@@ -57,7 +57,7 @@ Follow these steps in order:
 19. For a peak period, ask for the window length and whether it is rolling or fixed.
 20. Calculate each athlete and session separately. Do not pool athletes into one value unless the user asks for a group summary.
 21. Before you compare two values, confirm they share the device type, the same unit for that athlete, sampling rate, software version, settings, thresholds, session type, and session duration.
-22. If any of these differ or are unknown, say which, next to the comparison. A change of vendor changes the device type, software, and settings.
+22. If any of these differ or are unknown, say which, next to the comparison. A change of vendor changes the device type, software, and settings. A matching label such as `Practice` does not confirm the same session type. Ask whether the drills matched.
 23. Show the formula, the variant name, the threshold, and the units next to every result.
 24. Run the checks below before you answer.
 
@@ -72,6 +72,7 @@ Run these checks on your own result before you show it:
 - Method check: no trend mixes distance from vendor totals, speed × time, odometer differences, or summed positions. No comparison mixes rolling and fixed peak periods. Each distance result names its method.
 - Range check: compare each value with the athlete's own history on the same device and settings. For distance per minute, and for high-speed running with a matching threshold, also compare with the published figures in the reference file. Do not compare acceleration counts with published figures. Flag values far outside the comparison.
 - Setting check: values compared across devices, units, software versions, or seasons share the same thresholds and settings. If they do not, or a setting is unknown, say which, next to the comparison.
+- Vendor check: if a device reference file says no source supports a cross-vendor comparison of a metric, such as Kinexon `Max. Speed` or Accumulated Acceleration Load, do not show a difference column for it and do not read the direction of the difference. Show each system's values in its own column or table, and quote the reason from the reference file.
 - Change check: judge any change with the rules in the next section.
 - Arithmetic check: recalculate two rows by hand and show them.
 - Count check: the number of athletes, sessions, and rows in the result matches the input. State the three counts in the answer.

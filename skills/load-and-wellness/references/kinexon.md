@@ -72,7 +72,7 @@ Follow these steps to turn Kinexon data into the athlete, session, and measure t
 
 These are the mistakes most often made with Kinexon data:
 
-- Comparing or pooling Accumulated Acceleration Load with Catapult PlayerLoad or acceleration load, or explaining the gap between them. Kinexon says other manufacturers call it Player Load, but formulas, scaling, and sampling may differ. The cause of a gap is unknown. Wearing both systems in the same session shows the size of the gap, not its cause.
+- Comparing or pooling Accumulated Acceleration Load with Catapult PlayerLoad or acceleration load, or explaining the gap between them. Kinexon's formula is proprietary. Kinexon says other manufacturers call it Player Load, but formulas, scaling, and sampling may differ. The cause of a gap is unknown. Wearing both systems in the same session shows the size of the gap, not its cause.
 - Comparing Mechanical Load across accounts or sensor types. The weights and bands are not published.
 - Comparing high-speed running or sprint distance with another system without matching thresholds.
 - Using a jump count without knowing the minimum air time setting.

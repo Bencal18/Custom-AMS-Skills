@@ -39,6 +39,8 @@ Coverage is the number of athletes with a usable value, divided by the number of
 coverage = athletes with at least one value with status ok / athletes expected
 ```
 
+An athlete whose only values are `held` is pending, not covered. Report settled, pending, and missing athletes as separate counts, for example 4 of 6 settled, 1 pending, and 1 with no value.
+
 Report coverage for each measure and each week. Show the numbers, for example `18 of 24 athletes (75%)`. Put the date of each athlete's last value in the report.
 
 In a spreadsheet, make a sheet with one row for each expected athlete, with `athlete_id` in column A and the date in `$D$1`. Count that athlete's `ok` rows in column B, and all rows in column C:

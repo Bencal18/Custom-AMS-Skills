@@ -64,6 +64,7 @@ Apply these rules to every table you design or edit:
 - Use one consistent code for missing values in `value`, such as `NA`. Never use `0` or a blank for missing. This rule is specific to this skill: do not use `-` either.
 - Never write `NA` in a key column. Write `side` as `left`, `right`, or `bilateral`, and write `session_id` as `none` when a value has no session.
 - Never dedupe on a missing `source_record_id`. Two rows with `NA` there are not duplicates for that reason.
+- Never remove a row with no `source_record_id` on your own, even when its full key and value repeat another row. Show the rows to the user and ask. Until the user answers, keep them with `status` set to `held`, leave them out of summaries, and count them as held, not removed. See [references/joining-sources.md](references/joining-sources.md).
 - Keep one unit for each measure. Convert on import, and record the conversion.
 - Keep names out of the data you paste into an AI tool. Use `athlete_id`.
 

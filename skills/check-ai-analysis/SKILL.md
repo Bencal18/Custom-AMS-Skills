@@ -61,7 +61,7 @@ Run these checks on every analysis:
 7. **Plausible ranges.** Compare each value to physical limits, to the user's own history, and to a cited range in a reference file. Flag values that are impossible or far outside.
 8. **Change versus noise.** Confirm every reported change is compared with the noise band, `1.96 x TE x sqrt(1 + 1/n)`, where TE is the typical error and `n` is the number of values in the baseline mean. Adding variances gives this band. Hopkins (2017) uses the same error, `TE x sqrt(1 + 1/n)`, for a change from the mean of several tests. The 95 percent level is this skill's choice. For the method, see [references/change-versus-noise.md](references/change-versus-noise.md). Apply these rules:
    - Confirm the assumptions behind the band are stated.
-   - Confirm TE comes from a short-term retest with no true change expected, on the user's test, device, and population. Do not build a band from a published TE that does not match them.
+   - Confirm TE comes from a short-term retest with no true change expected, on the user's test, device, and population. Do not build a band from a published TE that does not match them, even as an illustration. Say the change cannot be judged until the user supplies a TE.
    - Pass a change as larger than error only when it lies beyond the band.
    - Pass a change as larger than the smallest worthwhile change only when the change minus the band is beyond it.
    - Make any other change read as not larger, or as larger than error that may or may not be worthwhile.
@@ -71,14 +71,14 @@ Run these checks on every analysis:
 
 ## Report the result
 
-Return the results in a table with these columns:
+Return the results in a table with one row for each of the eleven checks, even a check that seems not to apply, with the reason in the Evidence column. Use these columns:
 
 - **Check**: the name from the list above
 - **Result**: `pass`, `fail`, or `could not check`
 - **Evidence**: the numbers or cells you looked at
 - **Fix**: what to change, for each `fail`
 
-After the table, give a one-line verdict: `Safe to use`, `Use with the fixes above`, or `Do not use until fixed`. Put the verdict after the table even if you also state it at the top of the reply. If a check says `could not check`, name the information you need.
+End the reply with a one-line verdict: `Safe to use`, `Use with the fixes above`, or `Do not use until fixed`. Make it the last line, after the table and any notes, even if you also state it at the top of the reply. If a check says `could not check`, name the information you need.
 
 ## Limits
 

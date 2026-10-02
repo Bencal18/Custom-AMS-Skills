@@ -120,7 +120,7 @@ Treat these cases differently:
 
 - The same `source_record_id` appears twice, and it is not `NA`: the file was imported twice. Keep one row.
 - Two rows both have `NA` in `source_record_id`: this alone does not make them duplicates. Compare the full key.
-- The same key appears with two different values: the data conflicts. Do not pick one. Ask the user which is correct. Until the user answers, keep both rows, show that athlete's summary as pending, and list each candidate value.
+- The same key appears with two different values: the data conflicts. Do not pick one. Ask the user which is correct. Until the user answers, keep both rows with `status` set to `held`, show that athlete's summary as pending, and list each candidate value.
 - Two trials of one test have the same value: these are two real trials. Keep both.
 
 Never remove a row because its `source_record_id` matches a missing value. Do not remove duplicates by matching values. Two athletes can have the same value, and one athlete can repeat a value.
