@@ -1671,13 +1671,12 @@ The terms mean the following:
 Follow these steps from repetition-level data:
 
 1. Flag repetitions that did not reach a clear peak followed by a fast drop in force (Bourne et al., 2015).
-2. Set `status` to `pain_reported` for any repetition with noted pain. Keep the row, and tell the user to pass the pain report to the medical team. Painful repetitions can be part of a planned protocol: in one trial after acute hamstring strain injury, one group did its rehabilitation within pain-threshold limits (Hickey et al., 2020).
-3. For each athlete, date, and side, keep the highest `peak_force_n` among the valid repetitions: those with `status` `ok` that you did not flag in step 1. Leave `pain_reported` repetitions out of the best repetition, the mean, relative force, baselines, z-scores, change, and imbalance. If every repetition on a leg has `pain_reported`, report no valid maximum for that leg.
-4. Divide each leg's peak by `body_mass_kg` from the same day.
-5. Average the left and right peaks.
-6. Calculate the imbalance, and record which side is weaker.
-7. For each earlier test the user cites, including a pre-injury baseline, subtract the earlier value from the new value for each leg. Compare each change with the noise band, 1.96 × TE × √(1 + 1/n), where n is the number of tests in the baseline mean.
-8. To judge the imbalance, compare the left-right difference in N with the asymmetry band, 1.96 × √(SE_left² + SE_right²).
+2. For each athlete, date, and side, keep the highest `peak_force_n` among the valid repetitions: those with `status` `ok` that you did not flag in step 1.
+3. Divide each leg's peak by `body_mass_kg` from the same day.
+4. Average the left and right peaks.
+5. Calculate the imbalance, and record which side is weaker.
+6. For each earlier test the user cites, subtract the earlier value from the new value for each leg. Compare each change with the noise band, 1.96 × TE × √(1 + 1/n), where n is the number of tests in the baseline mean.
+7. To judge the imbalance, compare the left-right difference in N with the asymmetry band, 1.96 × √(SE_left² + SE_right²).
 
 **Worked example.** One athlete's Nordic test:
 
@@ -1723,9 +1722,9 @@ Keep these limits:
 
 - Do not use published injury studies to predict injury for one athlete. Those studies report group-level associations in specific cohorts, and their findings on imbalance disagree (Opar et al., 2015; Bourne et al., 2015).
 - Do not quote injury-study cut-offs, such as force or imbalance cut-offs from Opar et al. (2015) or Bourne et al. (2015), as targets or flags for one athlete. The cut-offs did not replicate. Later cohorts found a different force cut-off, 337 N in soccer (Timmins et al., 2016), or no link with Nordic strength (van Dyk et al., 2017). A meta-analysis of six cohorts (1100 players) found no difference in pre-season Nordic strength or imbalance between players who later had a hamstring injury and those who did not (Opar et al., 2021).
-- Do not call low Nordic strength a training target. Programs that include the Nordic hamstring exercise roughly halved hamstring injuries (van Dyk et al., 2019, risk ratio 0.49), but pre-season Nordic strength did not differ between players who later had a hamstring injury and those who did not (Opar et al., 2021). Training choices stay with the coach.
-- Do not treat a repetition with noted pain as a valid maximum, and do not delete it. Keep the row with `status` `pain_reported`, and leave it out of every calculated result.
-- When a difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+- Do not call low Nordic strength a training target. Training choices stay with the coach.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+- When a difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal."
 
 **Vendor equivalents.** The device files map these metrics:
 
@@ -1969,7 +1968,7 @@ These metrics compare one limb's test result with the other limb's result. The n
 
 | Metric | Formula | Units | Reference file |
 |---|---|---|---|
-| LSI (symmetry) | `involved limb / uninvolved limb x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
+| LSI (symmetry) | `nondominant limb / dominant limb x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
 | Percentage difference, signed | `(right - left) / max(right, left) x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
 | Dominant-referenced asymmetry | `(dominant - nondominant) / dominant x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
 | Bilateral asymmetry index (BAI-1) | `(dominant - nondominant) / (dominant + nondominant) x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
@@ -1986,14 +1985,14 @@ These metrics compare one limb's test result with the other limb's result. The n
 
 - One row per limb per trial with `athlete_id`, `test_date`, `test_name`, `side` (left or right), and the measure with its unit, such as `jump_height_m` or `peak_force_n`
 - Whether the test is unilateral (each limb tested on its own) or bilateral (both limbs at once, one value per limb)
-- A reference limb definition for each athlete: involved and uninvolved, dominant and nondominant, or larger value. The user names the involved limb for any LSI.
+- A reference limb definition for each athlete: dominant and nondominant, or larger value (stronger and weaker). The user names the dominant limb for any LSI.
 - About three trials per limb (Bishop et al., 2018), with one trial summary for both limbs
 - A TE or pooled squad coefficient of variation for the test, from a squad reliability study, or from a published reliability study of the same test, device, and population
 
 **Calculation.** These are the formula variants you will meet most often:
 
 ```text
-LSI (symmetry, %)                       = involved limb / uninvolved limb x 100
+LSI (symmetry, %)                       = nondominant limb / dominant limb x 100
 Percentage difference, signed (%)       = (right - left) / max(right, left) x 100
 Dominant-referenced asymmetry (%)       = (dominant - nondominant) / dominant x 100
 Bilateral asymmetry index, BAI-1 (%)    = (dominant - nondominant) / (dominant + nondominant) x 100
@@ -2005,7 +2004,6 @@ Noise band for the left-right difference = 1.96 × √(SE_left² + SE_right²)
 
 The terms mean the following:
 
-- `involved limb`: the injured or operated limb. `uninvolved limb`: the other limb.
 - `dominant limb`: the limb the athlete prefers, often the kicking leg. Define it once per athlete and do not change it.
 - `right`, `left`: the athlete's own right and left
 - `max(right, left)`: the larger of the two values on that day
@@ -2017,8 +2015,8 @@ Follow the reference-limb rule:
 - Name the reference limb in every result, and keep the same definition across every session for that athlete.
 - Report both raw limb values next to the percentage.
 - Only percentage difference against the larger limb, BAI-1, the mean-referenced index, the log ratio, and the symmetry angle keep the same size whichever limb is stronger.
-- Never infer the involved limb from the data. If the user does not name it, do not calculate an LSI.
-- An LSI can look better because the uninvolved limb got weaker. After ACL reconstruction, LSIs often overestimated knee function compared with an index that used the uninvolved limb's values from before surgery (Wellsandt et al., 2017). Track each limb's own value over time.
+- Never infer the dominant limb from the data. If the user does not name it, do not calculate an LSI.
+- An index can change because either limb changed. Track each limb's own value over time.
 
 Follow these steps from raw inputs:
 
@@ -2029,22 +2027,22 @@ Follow these steps from raw inputs:
 5. Get an SE for each limb and state its source. Take TE or the coefficient of variation from a squad reliability study, or from a published reliability study of the same test, device, and population, never from one athlete's own trials or from the same trials you are judging.
 6. For a left-right difference from one session, use a within-session TE when such a study exists. If only a separate-day TE exists, use it, and label the band as likely wider than needed. State the retest interval of the TE.
 7. Compare the difference between the raw limb values, in units, with the noise band. Use this one rule whatever formula you report. When TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study.
-8. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+8. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal."
 9. Report the raw values for both limbs, the formula, the reference limb, the result, the SE and its source, and the band.
 10. For a bilateral test, add the device's own asymmetry formula next to BAI-1 only where the device documents it. Recompute it from the left and right values, never from the vendor column, and label it with the device name and the larger side. See "Vendor equivalents" below.
 
-**Worked example.** One pair of values, right 25 cm and left 20 cm, run through every formula. It reproduces the example in Bishop et al. (2016). In Case A, the right limb is dominant and the left limb is involved:
+**Worked example.** One pair of values, right 25 cm and left 20 cm, run through every formula. It reproduces the example in Bishop et al. (2016). In Case A, the right limb is dominant:
 
 | Formula | Calculation | Result |
 |---|---|---|
-| LSI, involved / uninvolved × 100 | 20 / 25 × 100 | 80.00% symmetry |
+| LSI, nondominant / dominant × 100 | 20 / 25 × 100 | 80.00% symmetry |
 | Percentage difference, (right - left) / max × 100 | 5 / 25 × 100 | 20.00% |
 | Dominant-referenced, (D - ND) / D × 100 | 5 / 25 × 100 | 20.00% |
 | BAI-1, (D - ND) / (D + ND) × 100 | 5 / 45 × 100 | 11.11% |
 | Mean-referenced asymmetry index, (D - ND) / mean × 100 | 5 / 22.5 × 100 | 22.22% |
 | Symmetry angle | (45 - 38.66) / 90 × 100 | 7.04% |
 
-The asymmetry formulas range from 7.04% to 22.22%, a spread of 15.18 percentage points, and the largest is 3.15 times the smallest. In Case B, the left limb is dominant, so the dominant limb is the weaker one. The dominant-referenced value becomes −25.00%, BAI-1 −11.11%, and the mean-referenced index −22.22%. The range becomes 7.04% to 25.00% in size, a spread of 17.96 points, with the largest 3.55 times the smallest. In Case C, the right limb is involved, and LSI becomes 125.00%. The log ratio gives 22.31%, and −22.31% with the limbs swapped.
+The asymmetry formulas range from 7.04% to 22.22%, a spread of 15.18 percentage points, and the largest is 3.15 times the smallest. In Case B, the left limb is dominant, so the dominant limb is the weaker one. The dominant-referenced value becomes −25.00%, BAI-1 −11.11%, and the mean-referenced index −22.22%. The range becomes 7.04% to 25.00% in size, a spread of 17.96 points, with the largest 3.55 times the smallest. The LSI becomes 125.00%, because the nondominant limb is the stronger one. The log ratio gives 22.31%, and −22.31% with the limbs swapped.
 
 The noise band example uses Nordic values of left 325 N and right 360 N, best repetition per leg, a difference of 35 N:
 
@@ -2055,7 +2053,7 @@ Result: one pair of values gave 7.04%, 11.11%, 20.00%, 22.22%, 25.00%, 80.00%, a
 
 **Variants.** Use each variant this way:
 
-- LSI: the most used index in the literature (Parkinson et al., 2021). Use it only in a rehab setting when the user names the involved limb.
+- LSI: the most used index in the literature (Parkinson et al., 2021). Use it only when the user names each athlete's dominant limb. The weaker limb as a percentage of the stronger limb equals 100% minus the size of the percentage difference, and it never exceeds 100%. Name which version you report.
 - Percentage difference: the same size of result whichever limb is stronger. Recommended for unilateral tests (Bishop et al., 2018). The signed version is positive when the right limb is larger (Bishop et al., 2021).
 - Dominant-referenced asymmetry: a larger size of result when the dominant limb is the weaker one. Use it only when the user asks for it.
 - BAI-1: recommended for bilateral tests, because each limb's force is part of the total (Bishop et al., 2018). It gives smaller values than the other formulas (Parkinson et al., 2021). With no dominant limb named, calculate (right - left) / (right + left) × 100 and say so.
@@ -2089,7 +2087,7 @@ Keep these limits:
 
 - Many studies apply a fixed threshold, most often between 10 and 15%, to label asymmetry as abnormal. That threshold was not always supported by appropriate evidence (Parkinson et al., 2021). Prospective evidence that a fixed threshold marks higher injury risk is scarce (Bishop et al., 2018). Do not use any of these figures as a cut-off.
 - Never apply a threshold as a pass or fail, a clearance, or a return-to-sport rule.
-- A 90% LSI or any other return-to-sport criterion belongs to a clinician-run test battery. After ACL reconstruction, 57.1% of patients reached 90% LSIs on all tests, but only 28.6% reached 90% of estimated pre-injury capacity (Wellsandt et al., 2017). The 90% cut-off rests on consensus and expert opinion, not on outcome data. In 233 athletes, LSI cut-offs did not separate those who returned without a second ACL injury from those who did not (Simonsson et al., 2025). In a meta-analysis, only 23% of patients passed a return-to-sport test battery. Passing lowered the risk of graft rupture but raised the risk of an ACL injury in the other knee, and did not lower the risk of any second ACL injury (Webster & Hewett, 2019). Do not say whether the athlete meets the criterion.
+- If the user asks about a 90% LSI or any other clearance or return-to-sport criterion, state that symmetry is not a clearance criterion. Do not say whether the athlete meets it.
 
 **Vendor equivalents.** The device files map these metrics:
 
@@ -2305,7 +2303,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Heishman A, Brown B, Daub B, Miller R, Freitas E, Bemben M. The influence of countermovement jump protocol on reactive strength index modified and flight time: contraction time in collegiate basketball players. Sports. 2019;7(2):37. https://doi.org/10.3390/sports7020037 (cited as Heishman et al., 2019a)
 - Heishman A, Daub B, Miller R, Brown B, Freitas E, Bemben M. Countermovement jump inter-limb asymmetries in collegiate basketball players. Sports. 2019;7(5):103. https://doi.org/10.3390/sports7050103 (cited as Heishman et al., 2019b). The 0.90 ratio and its range were calculated from the typical errors in the paper's within-session and separate-day reliability tables.
 - Herzog W, Nigg BM, Read LJ, Olsson E. Asymmetries in ground reaction force patterns in normal human gait. Med Sci Sports Exerc. 1989;21(1):110-114. https://doi.org/10.1249/00005768-198902000-00020
-- Hickey JT, Timmins RG, Maniar N, Rio E, Hickey PF, Pitcher CA, Williams MD, Opar DA. Pain-free versus pain-threshold rehabilitation following acute hamstring strain injury: a randomized controlled trial. J Orthop Sports Phys Ther. 2020;50(2):91-103. https://doi.org/10.2519/jospt.2020.8895. Read in abstract form only.
 - Hillegass E, Puthoff M, Frese EM, Thigpen M, Sobush DC, Auten B. Role of physical therapists in the management of individuals at risk for or diagnosed with venous thromboembolism: evidence-based clinical practice guideline. Phys Ther. 2016;96(2):143-166. https://doi.org/10.2522/ptj.20150264
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Med. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). No DOI. The skills use only its error formula, not its magnitude-based inference.
@@ -2365,7 +2362,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Saw AE, Main LC, Gastin PB. Monitoring the athlete training response: subjective self-reported measures trump commonly used objective measures: a systematic review. Br J Sports Med. 2016;50(5):281-291. https://doi.org/10.1136/bjsports-2015-094758
 - Scott MTU, Scott TJ, Kelly VG. The validity and reliability of global positioning systems in team sport: a brief review. J Strength Cond Res. 2016;30(5):1470-1490. https://doi.org/10.1519/JSC.0000000000001221
 - Shrier I. Strategic Assessment of Risk and Risk Tolerance (StARRT) framework for return-to-play decision-making. Br J Sports Med. 2015;49(20):1311-1315. https://doi.org/10.1136/bjsports-2014-094569
-- Simonsson R, Sundberg A, Piussi R, Högberg J, Senorski C, Thomeé R, Samuelsson K, Della Villa F, Hamrin Senorski E. Questioning the rules of engagement: a critical analysis of the use of limb symmetry index for safe return to sport after anterior cruciate ligament reconstruction. Br J Sports Med. 2025;59(6):376-384. https://doi.org/10.1136/bjsports-2024-108079
 - Sole CJ, Suchomel TJ, Stone MH. Preliminary scale of reference values for evaluating reactive strength index-modified in male and female NCAA Division I athletes. Sports. 2018;6(4):133. https://doi.org/10.3390/sports6040133
 - Song MK, Lin FC, Ward SE, Fine JP. Composite variables: when and how. Nurs Res. 2013;62(1):45-49. https://doi.org/10.1097/NNR.0b013e3182741948
 - Stone JD, Merrigan JJ, Ramadan J, Brown RS, Cheng GT, Hornsby WG, Smith H, Galster SM, Hagen JA. Simplifying external load data in NCAA Division-I men's basketball competitions: a principal component analysis. Front Sports Act Living. 2022;4:795897. https://doi.org/10.3389/fspor.2022.795897
@@ -2378,7 +2374,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Tomoto T, Tarumi T, Sugawara J. Associations among dynamic cerebral autoregulation, baroreflex sensitivity, and carotid distensibility in young healthy adults: insight from endurance training. Eur J Appl Physiol. 2026;126(6):3201-3220. https://doi.org/10.1007/s00421-026-06155-3
 - VALD. ForceDecks Technical Glossary V2.0. March 2024. https://support.vald.com/hc/en-au/article_attachments/31552911571353 (accessed 2026-10-02). No DOI.
 - van Dyk N, Bahr R, Burnett AF, Whiteley R, Bakken A, Mosler A, Farooq A, Witvrouw E. A comprehensive strength testing protocol offers no clinical value in predicting risk of hamstring injury: a prospective cohort study of 413 professional football players. Br J Sports Med. 2017;51(23):1695-1702. https://doi.org/10.1136/bjsports-2017-097754
-- van Dyk N, Behan FP, Whiteley R. Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes. Br J Sports Med. 2019;53(21):1362-1370. https://doi.org/10.1136/bjsports-2018-100045. Read in abstract form only.
 - Varley MC, Elias GP, Aughey RJ. Current match-analysis techniques' underestimation of intense periods of high-velocity running. Int J Sports Physiol Perform. 2012;7(2):183-185. https://doi.org/10.1123/ijspp.7.2.183 (cited as Varley et al., 2012a)
 - Varley MC, Fairweather IH, Aughey RJ. Validity and reliability of GPS for measuring instantaneous velocity during acceleration, deceleration, and constant motion. J Sports Sci. 2012;30(2):121-127. https://doi.org/10.1080/02640414.2011.627941 (cited as Varley et al., 2012b)
 - Varley MC, Gabbett T, Aughey RJ. Activity profiles of professional soccer, rugby league and Australian football match play. J Sports Sci. 2014;32(20):1858-1866. https://doi.org/10.1080/02640414.2013.823227
@@ -2388,9 +2383,7 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Wasserstein RL, Lazar NA. The ASA statement on p-values: context, process, and purpose. Am Stat. 2016;70(2):129-133. https://doi.org/10.1080/00031305.2016.1154108
 - Weakley J, Mann B, Banyard H, McLaren S, Scott T, Garcia-Ramos A. Velocity-based training: from theory to application. Strength Cond J. 2021;43(2):31-49. https://doi.org/10.1519/SSC.0000000000000560 (cited as Weakley et al., 2021a)
 - Weakley J, Morrison M, García-Ramos A, Johnston R, James L, Cole MH. The validity and reliability of commercially available resistance training monitoring devices: a systematic review. Sports Med. 2021;51(3):443-502. https://doi.org/10.1007/s40279-020-01382-w (cited as Weakley et al., 2021b)
-- Webster KE, Hewett TE. What is the evidence for and validity of return-to-sport testing after anterior cruciate ligament reconstruction surgery? A systematic review and meta-analysis. Sports Med. 2019;49(6):917-929. https://doi.org/10.1007/s40279-019-01093-x
 - Weir JP. Quantifying test-retest reliability using the intraclass correlation coefficient and the SEM. J Strength Cond Res. 2005;19(1):231-240. https://doi.org/10.1519/15184.1
-- Wellsandt E, Failla MJ, Snyder-Mackler L. Limb symmetry indexes can overestimate knee function after anterior cruciate ligament injury. J Orthop Sports Phys Ther. 2017;47(5):334-338. https://doi.org/10.2519/jospt.2017.7285
 - Wiesinger HP, Gressenbauer C, Kösters A, Scharinger M, Müller E. Device and method matter: a critical evaluation of eccentric hamstring muscle strength assessments. Scand J Med Sci Sports. 2020;30(2):217-226. https://doi.org/10.1111/sms.13569
 - Williams S, West S, Cross MJ, Stokes KA. Better way to determine the acute:chronic workload ratio? Br J Sports Med. 2017;51(3):209-210. https://doi.org/10.1136/bjsports-2016-096589. Accepted manuscript: https://purehost.bath.ac.uk/ws/files/147466466/BJSM_correspondence_alternative_to_rolling_averages_r1.pdf (accessed 2026-10-02)
 - Windt J, Gabbett TJ. Is it all for naught? What does mathematical coupling mean for acute:chronic workload ratios? Br J Sports Med. 2019;53(16):988-990. https://doi.org/10.1136/bjsports-2017-098925

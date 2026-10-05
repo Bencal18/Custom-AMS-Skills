@@ -13,7 +13,7 @@ The name covers many different formulas. Studies use the same name for formulas 
 These are the formula variants you will meet most often. Each one answers a slightly different question:
 
 ```text
-LSI (symmetry, %)                       = involved limb / uninvolved limb x 100
+LSI (symmetry, %)                       = nondominant limb / dominant limb x 100
 Percentage difference, signed (%)       = (right - left) / max(right, left) x 100
 Dominant-referenced asymmetry (%)       = (dominant - nondominant) / dominant x 100
 Bilateral asymmetry index, BAI-1 (%)    = (dominant - nondominant) / (dominant + nondominant) x 100
@@ -24,8 +24,6 @@ Symmetry angle (%)                      = (45 - arctan(left / right) in degrees)
 
 Define every term in the formula:
 
-- `involved limb`: the injured or operated limb, in rehab settings
-- `uninvolved limb`: the other limb, in rehab settings
 - `dominant limb`: the limb the athlete prefers, often the kicking leg. Define it once per athlete and do not change it.
 - `right`, `left`: the athlete's own right and left
 - `max(right, left)`: the larger of the two values on that day
@@ -33,7 +31,7 @@ Define every term in the formula:
 
 Use each variant this way:
 
-- LSI expresses the involved limb as a percentage of the uninvolved limb. 100% means equal. It is the most used index in the literature (Parkinson et al., 2021). Use it only when the user works in a rehab setting and names the involved limb.
+- LSI expresses the nondominant limb as a percentage of the dominant limb. 100% means equal. It is the most used index in the literature (Parkinson et al., 2021). Use it only when the user names each athlete's dominant limb. If the user wants the weaker limb as a percentage of the stronger limb instead, that equals 100% minus the size of the percentage difference, and it never exceeds 100%. Name which version you report.
 - Percentage difference divides by the larger value, so it gives the same size of result whichever limb is stronger. Bishop et al. (2018) recommend it for unilateral tests, where each limb is tested on its own, such as single-leg jumps. The signed version is positive when the right limb is larger and negative when the left limb is larger (Bishop et al., 2021).
 - Dominant-referenced asymmetry divides by the dominant limb. It gives a larger size of result when the dominant limb is the weaker one. Use it only when the user asks for it.
 - BAI-1 divides by the sum of both limbs. Bishop et al. (2018) recommend it for bilateral tests, where both limbs push at the same time, such as a two-plate CMJ, because each limb's force is part of the total. It gives smaller values than the other formulas (Parkinson et al., 2021). BAI-1 needs a dominant limb. When the user names none, calculate (right - left) / (right + left) × 100, so the sign matches the signed percentage difference, and say so.
@@ -45,12 +43,12 @@ Use each variant this way:
 
 Choose the reference limb before you calculate, and follow these rules:
 
-- Name the reference limb in every result, for example "LSI, uninvolved limb as reference" or "percentage difference, larger limb as reference".
+- Name the reference limb in every result, for example "LSI, dominant limb as reference" or "percentage difference, larger limb as reference".
 - Keep the same reference limb definition across every session for that athlete.
 - Report both raw limb values next to the percentage.
 - When the reference limb is not the stronger limb, formulas that divide by the reference limb give a different size of result. Only formulas that do not depend on which limb is stronger keep the same size either way: percentage difference against the larger limb, BAI-1, the mean-referenced asymmetry index, the log ratio, and the symmetry angle. Case B below shows this for BAI-1 and the mean-referenced index.
-- Never infer the involved limb from the data, for example by assuming the weaker limb is the injured one. If the user does not name the involved limb, do not calculate an LSI.
-- An LSI can look better because the uninvolved limb got weaker, not because the involved limb got stronger. After ACL reconstruction, LSIs often overestimated knee function compared with an index that used the uninvolved limb's values from before surgery (Wellsandt et al., 2017). Track each limb's own value over time as well as the index.
+- Never infer the dominant limb from the data, for example by assuming the stronger limb is the dominant one. If the user does not name the dominant limb, do not calculate an LSI.
+- An index can change because either limb changed. A smaller difference can mean the stronger limb got weaker, not that the weaker limb got stronger. Track each limb's own value over time as well as the index.
 
 ### Why the denominator changes the number
 
@@ -58,7 +56,7 @@ The same difference divided by a larger number gives a smaller percentage. With 
 
 When both values are close to zero, a tiny difference becomes a huge percentage. Symmetry indexes in normal walking ranged up to more than 13,000% for variables near zero (Herzog et al., 1989).
 
-Use these spreadsheet formulas, with the right value in `B2`, the left value in `C2`, the involved limb value in `D2`, and the uninvolved limb value in `E2`. Each formula returns a blank when a limb value it needs is blank:
+Use these spreadsheet formulas, with the right value in `B2`, the left value in `C2`, the nondominant limb value in `D2`, and the dominant limb value in `E2`. Each formula returns a blank when a limb value it needs is blank:
 
 ```text
 LSI:                        =IF(OR(D2="",E2=""),"",D2/E2*100)
@@ -75,11 +73,10 @@ Use this Python sketch to return every variant for one pair of values:
 ```python
 import math
 
-def symmetry_variants(right, left, dominant="right", involved="left"):
+def symmetry_variants(right, left, dominant="right"):
     d, nd = (right, left) if dominant == "right" else (left, right)
-    inv, uninv = (left, right) if involved == "left" else (right, left)
     return {
-        "lsi_involved_over_uninvolved_pct": inv / uninv * 100,
+        "lsi_nondominant_over_dominant_pct": nd / d * 100,
         "pct_difference_signed_right_positive": (right - left) / max(right, left) * 100,
         "dominant_referenced_pct": (d - nd) / d * 100,
         "bai1_pct": (d - nd) / (d + nd) * 100,
@@ -92,9 +89,9 @@ def symmetry_variants(right, left, dominant="right", involved="left"):
 
 ### Calculate it in Power BI and Tableau
 
-Each returns a blank when a limb value it needs is missing. The log ratio and the symmetry angle return a blank unless both values are above zero. The LSI returns a blank unless the user named the involved limb.
+Each returns a blank when a limb value it needs is missing. The log ratio and the symmetry angle return a blank unless both values are above zero. The LSI returns a blank unless the user named the dominant limb.
 
-Both versions assume one row per athlete, date, test, side, and trial in a `measures` table, with `side` `left` or `right`. They use the best trial for each limb. Use the mean of trials instead if that is the user's summary, and use the same summary for both limbs. The involved limb comes from a column `involved_side` in the `athletes` table, `left` or `right`, entered by the user. Never infer it from the data.
+Both versions assume one row per athlete, date, test, side, and trial in a `measures` table, with `side` `left` or `right`. They use the best trial for each limb. Use the mean of trials instead if that is the user's summary, and use the same summary for both limbs. The dominant limb comes from a column `dominant_side` in the `athletes` table, `left` or `right`, entered by the user. Never infer it from the data.
 
 Show the results with one athlete, one date, and one measure per row. Do not put `side` in the visual.
 
@@ -107,13 +104,13 @@ CALCULATE ( MAX ( measures[value] ), measures[side] = "right", measures[status] 
 Left value =
 CALCULATE ( MAX ( measures[value] ), measures[side] = "left", measures[status] = "ok" )
 
-LSI, involved over uninvolved (%) =
-VAR inv = SELECTEDVALUE ( athletes[involved_side] )
+LSI, nondominant over dominant (%) =
+VAR dom = SELECTEDVALUE ( athletes[dominant_side] )
 VAR r = [Right value]
 VAR l = [Left value]
-VAR i = SWITCH ( inv, "left", l, "right", r )
-VAR u = SWITCH ( inv, "left", r, "right", l )
-RETURN IF ( NOT ISBLANK ( i ) && NOT ISBLANK ( u ) && u > 0, i / u * 100 )
+VAR d = SWITCH ( dom, "left", l, "right", r )
+VAR nd = SWITCH ( dom, "left", r, "right", l )
+RETURN IF ( NOT ISBLANK ( d ) && NOT ISBLANK ( nd ) && d > 0, nd / d * 100 )
 
 Percentage difference, signed (%) =
 VAR r = [Right value]
@@ -152,9 +149,9 @@ MAX(IF [side] = "right" AND [status] = "ok" THEN [value] END)
 Left value:
 MAX(IF [side] = "left" AND [status] = "ok" THEN [value] END)
 
-LSI, involved over uninvolved (%):
-IF ATTR([involved_side]) = "left" AND [Right value] > 0 THEN [Left value] / [Right value] * 100
-ELSEIF ATTR([involved_side]) = "right" AND [Left value] > 0 THEN [Right value] / [Left value] * 100
+LSI, nondominant over dominant (%):
+IF ATTR([dominant_side]) = "right" AND [Right value] > 0 THEN [Left value] / [Right value] * 100
+ELSEIF ATTR([dominant_side]) = "left" AND [Left value] > 0 THEN [Right value] / [Left value] * 100
 END
 
 Percentage difference, signed (%):
@@ -183,7 +180,7 @@ Blanks behave this way in each tool:
 - Power BI: DAX `MAX` and `MIN` with two values treat a blank as 0. The measures above do not use them on the limbs. They test each limb with `ISBLANK` first.
 - Power BI: the reference page for `LN` does not say what happens at 0 or below. The `> 0` tests stop that case before `LN` runs.
 - Tableau: `LN` returns null for 0 or a negative number. A null limb makes each `> 0` test null, and an `IF` with no `ELSE` returns null.
-- Tableau: an athlete with no `involved_side` gets a null LSI, because neither test is true.
+- Tableau: an athlete with no `dominant_side` gets a null LSI, because neither test is true.
 
 ## Calculate the metric
 
@@ -193,7 +190,7 @@ Follow these steps to calculate a limb symmetry value from raw inputs:
 2. Confirm whether the test is unilateral (each limb tested on its own) or bilateral (both limbs at once, one value per limb).
 3. Confirm the side labels against the device file, so left and right are not swapped.
 4. Choose one trial summary, the best trial or the mean of trials, and use it for both limbs.
-5. Record the reference limb definition for each athlete: involved and uninvolved, dominant and nondominant, or larger value.
+5. Record the reference limb definition for each athlete: dominant and nondominant, or larger value (stronger and weaker).
 6. Choose the formula. Use the one the user names.
 7. If the user names none, use percentage difference for unilateral tests and BAI-1 for bilateral tests (Bishop et al., 2018), and say so.
 8. For the Nordic hamstring test, a two-leg task, use percentage difference against the stronger leg, because Nordic studies express imbalance on a one-leg scale (Opar et al., 2015; Bourne et al., 2015).
@@ -208,7 +205,7 @@ Follow these steps to calculate a limb symmetry value from raw inputs:
 17. State the SE, its source, and its retest interval: the same session or separate days.
 18. Calculate the noise band for the left-right difference: 1.96 × √(SE_left² + SE_right²). When the TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study, athletes − 1 for two trials.
 19. Compare the difference between the raw limb values, in units, with the band. Use this one rule whatever formula you report.
-20. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+20. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal."
 21. Report the raw values for both limbs, the formula, the reference limb, the result, the SE and its source, and the band.
 22. For a bilateral test, add the device's own asymmetry formula next to BAI-1 only where the device documents it. VALD ForceDecks documents (left − right) / max(left, right) × 100 in its Technical Glossary V2.0. Recompute it from the left and right values, never from the vendor column. Label it with the device name and the larger side. Hawkin Dynamics and the VALD NordBord app do not publish their formulas, so say so and show no device value.
 
@@ -221,11 +218,11 @@ This example uses one pair of values and runs every formula variant on it. It re
 | Right limb | 25 cm |
 | Left limb | 20 cm |
 
-Case A: the right limb is dominant, and the left limb is involved.
+Case A: the right limb is dominant.
 
 | Formula | Calculation | Result |
 |---|---|---|
-| LSI, involved / uninvolved × 100 | 20 / 25 × 100 | 80.00% symmetry |
+| LSI, nondominant / dominant × 100 | 20 / 25 × 100 | 80.00% symmetry |
 | Percentage difference, (right - left) / max × 100 | 5 / 25 × 100 | 20.00% |
 | Dominant-referenced, (D - ND) / D × 100 | 5 / 25 × 100 | 20.00% |
 | BAI-1, (D - ND) / (D + ND) × 100 | 5 / 45 × 100 | 11.11% |
@@ -238,16 +235,14 @@ Case B: same numbers, but the left limb is dominant, so the dominant limb is the
 
 | Formula | Result |
 |---|---|
-| LSI, involved (left) / uninvolved (right) × 100 | 80.00% symmetry |
+| LSI, nondominant (right) / dominant (left) × 100 | 125.00% symmetry |
 | Percentage difference, signed | 20.00% (right larger) |
 | Dominant-referenced | -25.00% |
 | BAI-1 | -11.11% |
 | Mean-referenced asymmetry index | -22.22% |
 | Symmetry angle | 7.04% |
 
-In this case, the asymmetry formulas range from 7.04% to 25.00% in size, a spread of 17.96 percentage points. The largest is 3.55 times the smallest. Only the reference limb changed.
-
-Case C: same numbers, but the right limb is involved, so the involved limb is the stronger one. LSI becomes 125.00%.
+In this case, the asymmetry formulas range from 7.04% to 25.00% in size, a spread of 17.96 percentage points. The largest is 3.55 times the smallest. The LSI is above 100%, because the nondominant limb is the stronger one. Only the reference limb changed.
 
 Result: one pair of values gave 7.04%, 11.11%, 20.00%, 22.22%, 25.00%, 80.00%, and 125.00%, depending on the formula and reference limb. A percentage without its formula and reference limb cannot be read. The log ratio gives 22.31%, and -22.31% with the limbs swapped.
 
@@ -304,7 +299,7 @@ Optional lenient screen: Bishop et al. (2021) computed group coefficients of var
 
 It flags more differences than the noise band, because it has no allowance for error in both limbs. With single trials and a coefficient of variation of 5%, the noise band on the difference is about 1.96 × √2 × 5% = 13.9% of the limb value, while the screen's line is 5%. Never compute the coefficient of variation from one athlete's own three trials. An estimate from three values is unstable, so a symmetric athlete is often flagged by chance.
 
-If the user asks about a 90% LSI or any other return-to-sport criterion, state that it belongs to a clinician-run test battery. An LSI alone can overestimate function: after ACL reconstruction, 57.1% of patients reached 90% LSIs on all tests, but only 28.6% reached 90% of estimated pre-injury capacity (Wellsandt et al., 2017). The 90% cut-off rests on consensus and expert opinion, not on outcome data. In 233 athletes, LSI cut-offs did not separate those who returned without a second ACL injury from those who did not (Simonsson et al., 2025). Test batteries have not settled it either. In a meta-analysis, only 23% of patients passed a return-to-sport test battery. Passing lowered the risk of graft rupture but raised the risk of an ACL injury in the other knee, and did not lower the risk of any second ACL injury (Webster and Hewett, 2019). Do not say whether the athlete meets the criterion.
+If the user asks about a 90% LSI or any other clearance or return-to-sport criterion, state that symmetry is not a clearance criterion. Do not say whether the athlete meets it. These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
 
 ## Data you need
 
@@ -312,14 +307,14 @@ Collect this data:
 
 - Source: any test that gives one value per limb, such as single-leg jumps, a two-plate bilateral jump, an isometric test per limb, or a Nordic test per leg
 - Sampling: the sampling needs of the underlying test. See the metric file for that test.
-- Minimum data: about three trials per limb (Bishop et al., 2018). You also need a typical error or pooled squad coefficient of variation for the test, from a squad reliability study, or from a published reliability study of the same test, device, and population, and a reference limb definition for each athlete. For any LSI, the user must name the involved limb.
+- Minimum data: about three trials per limb (Bishop et al., 2018). You also need a typical error or pooled squad coefficient of variation for the test, from a squad reliability study, or from a published reliability study of the same test, device, and population, and a reference limb definition for each athlete. For any LSI, the user must name the dominant limb.
 
 ## Common mistakes
 
 These are the mistakes AI tools and spreadsheets make most often with this metric:
 
 - Reporting "asymmetry %" without naming the formula
-- Dividing by the wrong limb, such as the involved limb instead of the uninvolved limb in an LSI
+- Dividing by the wrong limb, such as the nondominant limb instead of the dominant limb in an LSI
 - Letting the reference limb switch between sessions because the stronger limb changed
 - Mixing LSI (symmetry, 100% = equal) with asymmetry formulas (0% = equal) in one column or trend
 - Comparing a value with a threshold or study that used another formula, test, or metric
@@ -331,7 +326,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Judging asymmetry against a coefficient of variation from one athlete's own three trials
 - Writing "symmetric" or "recovered" when a difference is inside the noise band
 - Reading the sign of a vendor asymmetry value instead of recomputing it from left and right
-- Guessing the involved limb from which limb is weaker
+- Guessing the dominant limb from which limb is stronger
 - Calling an athlete "at risk", "cleared", or "ready" based on an index
 
 ## Example request
@@ -344,7 +339,7 @@ Run these checks:
 
 - Recompute one athlete by hand with the named formula. With right 25 cm and left 20 cm, percentage difference is 20.00% and BAI-1 is 11.11%.
 - Check the sign of values you calculated. A positive signed percentage difference means the right limb is larger. This does not apply to vendor values, which you recompute.
-- Check that an LSI above 100% only appears when the involved limb has the larger value.
+- Check that an LSI above 100% only appears when the nondominant limb has the larger value.
 - Check that every row shows both raw limb values, the formula, and the reference limb.
 
 ## Sources
@@ -362,11 +357,7 @@ This file cites these sources:
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Medicine. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Hopkins WG. A new view of statistics: measures of reliability. Sportscience. Last updated 2011-10-04. https://www.sportsci.org/resource/stats/precision.html (accessed 2026-10-05). No DOI.
 - Heishman A, Daub B, Miller R, Brown B, Freitas E, Bemben M. Countermovement jump inter-limb asymmetries in collegiate basketball players. Sports. 2019;7(5):103. https://doi.org/10.3390/sports7050103 (accessed 2026-10-05). Cited as Heishman et al., 2019b, to match the force-plate skill and `docs/calculations.md`. The 0.90 ratio and its range were calculated from the typical errors in the paper's within-session and separate-day reliability tables.
-- Hickey JT, Timmins RG, Maniar N, Rio E, Hickey PF, Pitcher CA, Williams MD, Opar DA. Pain-free versus pain-threshold rehabilitation following acute hamstring strain injury: a randomized controlled trial. Journal of Orthopaedic and Sports Physical Therapy. 2020;50(2):91-103. https://doi.org/10.2519/jospt.2020.8895 (accessed 2026-10-05). Read in abstract form only. Cited in `SKILL.md`: one group did its rehabilitation within pain-threshold limits, so painful reps can be part of a planned protocol.
 - VALD. ForceDecks Technical Glossary V2.0. March 2024. https://support.vald.com/hc/en-au/article_attachments/31552911571353 (accessed 2026-10-02).
 - Exell TA, Irwin G, Gittoes MJR, Kerwin DG. Implications of intra-limb variability on asymmetry analyses. Journal of Sports Sciences. 2012;30(4):403-409. https://doi.org/10.1080/02640414.2011.647047
 - Herzog W, Nigg BM, Read LJ, Olsson E. Asymmetries in ground reaction force patterns in normal human gait. Medicine and Science in Sports and Exercise. 1989;21(1):110-114. https://doi.org/10.1249/00005768-198902000-00020
 - Impellizzeri FM, Rampinini E, Maffiuletti N, Marcora SM. A vertical jump force test for assessing bilateral strength asymmetry in athletes. Medicine and Science in Sports and Exercise. 2007;39(11):2044-2050. https://doi.org/10.1249/mss.0b013e31814fb55c
-- Wellsandt E, Failla MJ, Snyder-Mackler L. Limb symmetry indexes can overestimate knee function after anterior cruciate ligament injury. Journal of Orthopaedic and Sports Physical Therapy. 2017;47(5):334-338. https://doi.org/10.2519/jospt.2017.7285
-- Simonsson R, Sundberg A, Piussi R, Högberg J, Senorski C, Thomeé R, Samuelsson K, Della Villa F, Hamrin Senorski E. Questioning the rules of engagement: a critical analysis of the use of limb symmetry index for safe return to sport after anterior cruciate ligament reconstruction. British Journal of Sports Medicine. 2025;59(6):376-384. https://doi.org/10.1136/bjsports-2024-108079 (accessed 2026-10-02)
-- Webster KE, Hewett TE. What is the evidence for and validity of return-to-sport testing after anterior cruciate ligament reconstruction surgery? A systematic review and meta-analysis. Sports Medicine. 2019;49(6):917-929. https://doi.org/10.1007/s40279-019-01093-x (accessed 2026-10-02)
