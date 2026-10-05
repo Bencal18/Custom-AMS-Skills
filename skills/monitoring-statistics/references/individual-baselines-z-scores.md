@@ -418,7 +418,7 @@ Run these checks on the result:
 - Sands W, Cardinale M, McNeal J, Murray S, Sole C, Reed J, Apostolopoulos N, Stone M. Recommendations for measurement and management of an elite athlete. Sports. 2019;7(5):105. https://doi.org/10.3390/sports7050105
 - Hecksteden A, Pitsch W, Julian R, Pfeiffer M, Kellmann M, Ferrauti A, Meyer T. A new method to individualize monitoring of muscle recovery in athletes. International Journal of Sports Physiology and Performance. 2017;12(9):1137-1142. https://doi.org/10.1123/ijspp.2016-0120
 - Swinton PA, Hemingway BS, Saunders B, Gualano B, Dolan E. A statistical framework to interpret individual response to intervention: paving the way for personalized nutrition and exercise prescription. Frontiers in Nutrition. 2018;5:41. https://doi.org/10.3389/fnut.2018.00041
-- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02)
+- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). The skills use only its error formula, not its magnitude-based inference.
 - Barnett AG, van der Pols JC, Dobson AJ. Regression to the mean: what it is and how to deal with it. International Journal of Epidemiology. 2005;34(1):215-220. https://doi.org/10.1093/ije/dyh299
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Medicine. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Weir JP. Quantifying test-retest reliability using the intraclass correlation coefficient and the SEM. Journal of Strength and Conditioning Research. 2005;19(1):231-240. https://doi.org/10.1519/15184.1

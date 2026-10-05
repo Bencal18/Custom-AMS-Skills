@@ -247,4 +247,4 @@ Run these checks on the result:
 - Furlan L, Sterr A. The applicability of standard error of measurement and minimal detectable change to motor learning research: a behavioral study. Frontiers in Human Neuroscience. 2018;12:95. https://doi.org/10.3389/fnhum.2018.00095
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Medicine. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Swinton PA, Hemingway BS, Saunders B, Gualano B, Dolan E. A statistical framework to interpret individual response to intervention: paving the way for personalized nutrition and exercise prescription. Frontiers in Nutrition. 2018;5:41. https://doi.org/10.3389/fnut.2018.00041
-- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02)
+- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). The skills use only its error formula, not its magnitude-based inference.
