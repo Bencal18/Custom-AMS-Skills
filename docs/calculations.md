@@ -1043,8 +1043,8 @@ Distance per minute has two variants:
 - Distance method: ±0.1 m of position noise adds 7.7%.
 - Sampling rate: 5 Hz units were more valid than 1 Hz units (Jennings et al., 2010), and 10 Hz units were the most valid and reliable (Scott et al., 2016).
 - Device type: total distance differences between systems were trivial to small in youth soccer players (Buchheit et al., 2014b). In small-sided games, errors against a reference system were 2.2% to 4.0% (Linke et al., 2018).
-- Unit to unit: two units of the same model disagree on the same movement (Johnston et al., 2014; Thornton et al., 2019). Give each athlete the same unit every session.
-- Software version and filter settings: processing choices change the output (Malone et al., 2017). Manufacturer software and raw processing also gave substantially different values (Thornton et al., 2019). That study did not test software versions or filter settings. Record the software version and the processing date.
+- Unit to unit: two units of the same model disagree on the same movement (Johnston et al., 2014). Give each athlete the same unit every session.
+- Software version and filter settings: processing choices change the output (Malone et al., 2017). Manufacturer software and raw processing also gave substantially different values (Thornton et al., 2019). The abstract does not report software versions or filter settings. Record the software version and the processing date.
 - Signal quality: satellite count, signal dropouts, and device fit affect GPS output (Malone et al., 2017).
 - Whole-session or peak-period: a peak window is always at least as high as the session average.
 
@@ -2096,11 +2096,14 @@ Read these limits before you build one:
 - Traffic-light monitoring systems lack a standard way of being set up (Robertson et al., 2017). A composite's colors are a local choice.
 - Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). Load is the dose, and wellness and test results are the response. Self-reported well-being worsened with acute rises in load and improved with acute reductions (Saw et al., 2016), so a composite that holds both counts a dose and its response together. Keep load measures out of the composite by default, and show them beside it. Do not include the ACWR as an input (Impellizzeri et al., 2020a).
 - For a healthy athlete, the user may still add a load measure, with its direction and reason, labeled as the user's choice. For a rehab athlete, keep rehab load beside the table or the composite even when the user asks, because a direction on rehab load implies a progression call.
-- For a rehab athlete, do not calculate a single composite by default. Show a table with one row for each input: the raw value, the change since the last test, and the percentage of the pre-injury value. Calculate a composite only when the medical team asks for one.
-- A pre-injury baseline counts only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase, and let the clinician decide whether it is too old. Hop test results were best in preseason and lower later in the season (Montgomery and Carranza, 2023). In a case study, strength and power deficits against the pre-injury mean remained after jump asymmetries had recovered (Jordan et al., 2020).
-- Never put a red-flag sign into a composite. Show each one raw, sorted into three tiers. Call emergency services for chest pain, sudden breathlessness, or coughing up blood, or for new weakness or numbness in both legs with back pain. Stop the session and refer the same day for calf pain, swelling, warmth, or tenderness, for wound redness or discharge, or fever, and for new numbness or weakness in one limb. Pass pain, joint swelling, loss of motion, giving way, and locking to the medical team. The tiers draw on general guidelines for blood clots in the legs and lungs (NICE, 2020; Hillegass et al., 2016). No sports-specific red-flag list was found, and the numbness, wound, and fever items rest on general guidance. A clinician should confirm the tiers.
+- For a rehab athlete, do not calculate a single composite by default. Show a table with one row for each input: the raw value, the change since the last test, and the percentage of the pre-injury value. Calculate a composite only when the medical team asks for one, and show the table beside it.
+- A pre-injury baseline counts only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase, and let the clinician decide whether it is too old. Without a valid pre-injury baseline, leave the percentage column blank and say why. In one study of 23 college soccer players, hop test results were best in preseason (Montgomery and Carranza, 2023). In a case study, strength and power deficits against the pre-injury mean remained after jump asymmetries had recovered (Jordan et al., 2020).
+- Never put a red-flag sign into a composite. The tiers draw on general guidelines for blood clots in the legs and lungs (NICE, 2020; Hillegass et al., 2016). No sports-specific red-flag list was found, and the numbness, wound, and fever items rest on general guidance. A clinician should confirm the tiers. These tiers are safety referrals, not a training recommendation. Show each sign raw, sorted into these three tiers:
+  - Call emergency services: chest pain, shortness of breath, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back pain.
+  - Stop the session and refer the same day: calf or leg pain, swelling, warmth, or tenderness. Also wound redness or discharge, or fever, and new numbness or weakness in one limb.
+  - Pass to the medical team: pain not in the calf, leg, or chest, joint swelling, loss of motion, giving way, and locking.
 - A composite can average a red-flag sign away. A pain z-score of −2 with a CMJ z-score of +1, a sleep z-score of +1, and a fatigue z-score of 0 gives a composite of 0.0.
-- A return of the composite to the pre-injury baseline is not a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), are batteries of tests in which passing meant a score above 90 on all tests. A composite lets a good score on one input hide a failed one.
+- A return of the composite or an input to the pre-injury baseline is not a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), are batteries of tests in which passing meant a score above 90 on all tests. A composite lets a good score on one input hide a failed one.
 
 **Inputs.** The calculation needs these data:
 
@@ -2158,15 +2161,15 @@ Each aligned z-score is (raw − mean) ÷ SD × direction. Day A sleep is (3 −
 
 Result: both days read −0.5. On Day A, one poor night of sleep drives the score. On Day B, more soreness and a lower jump drive it. Only the sub-scores show the difference.
 
-For a rehab athlete, the reference file shows a table for each input instead. The pre-injury baseline is recorded with its date and season phase:
+For a rehab athlete, the reference file shows a table for each input instead. The pre-injury baseline is recorded with its date and season phase, for example 2026-02-10, preseason:
 
 | Input | Pre-injury value | Last test | Today | Change since last test | Percentage of pre-injury value |
 |---|---|---|---|---|---|
 | CMJ jump height | 38.0 cm | 33.9 cm | 34.6 cm | +0.7 cm | 91.1% |
-| IMTP peak force | 2,850 N | 2,480 N | 2,610 N | +130 N | 91.6% |
+| Isometric mid-thigh pull (IMTP) peak force | 2,850 N | 2,480 N | 2,610 N | +130 N | 91.6% |
 | Pain during the test (0 to 10) | | 1 | 3 | +2 | Not calculated. Red-flag sign, shown raw. Tier: pass to the medical team. |
 
-Each percentage is today's value ÷ the pre-injury value × 100, for example 34.6 ÷ 38.0 × 100 = 91.1%.
+Each percentage is today's value ÷ the pre-injury value × 100, for example 34.6 ÷ 38.0 × 100 = 91.1%. The table makes no return-to-sport or progression call. The medical team reads it.
 
 **Variants.** The file describes these choices:
 

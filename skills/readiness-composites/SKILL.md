@@ -32,15 +32,15 @@ Follow these rules for any athlete in rehab:
 - Sort any report of a red-flag sign into a tier, and tell the user what the tier says to do, whatever the other inputs show. The tiers are listed below.
 - Tell the user that no sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them.
 - Keep rehab load, such as rehab session RPE, beside the table or the composite. Never put it into a composite, even when the user asks. A direction on rehab load implies a progression call.
-- Use a pre-injury baseline only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase. The clinician decides whether it is too old.
+- Use a pre-injury baseline only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase. The clinician decides whether it is too old. Without a valid pre-injury baseline, leave the percentage column blank and say why.
 - State that a composite or an input back at the pre-injury baseline is not a return-to-sport criterion.
-- Name the baseline: pre-injury or a fixed post-injury block. Prefer pre-injury when it exists, and tell the user it shows the remaining deficit. Do not use a rolling baseline in rehab. If you mention one, tell the user it follows the athlete upward and hides progress: steady recovery reads as the same small z-score every day. Against a fixed post-injury block, show the change in raw units, because the z-scores grow very large.
+- Name the baseline: pre-injury or a fixed post-injury block. Prefer a valid pre-injury baseline, and tell the user it shows the remaining deficit. Do not use a rolling baseline in rehab. If you mention one, tell the user it follows the athlete upward and hides progress: steady recovery reads as the same small z-score every day. Against a fixed post-injury block, show the change in raw units, because the z-scores grow very large.
 
-Use these red-flag tiers:
+These tiers are safety referrals, not a training recommendation. Use these red-flag tiers:
 
-- Call emergency services: chest pain, sudden breathlessness, or coughing up blood. Also new weakness or numbness in both legs with back pain.
-- Stop the session and refer the same day: calf pain, swelling, warmth, or tenderness. Also wound redness or discharge, or fever, and new numbness or weakness in one limb.
-- Pass to the medical team: pain, joint swelling, loss of motion, giving way, and locking.
+- Call emergency services: chest pain, shortness of breath, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back pain.
+- Stop the session and refer the same day: calf or leg pain, swelling, warmth, or tenderness. Also wound redness or discharge, or fever, and new numbness or weakness in one limb.
+- Pass to the medical team: pain not in the calf, leg, or chest, joint swelling, loss of motion, giving way, and locking.
 
 ## When to use
 

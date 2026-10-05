@@ -130,7 +130,7 @@ In Tableau, follow these steps:
 
 ### Draw squad small multiples
 
-Give every panel the same x-axis and y-axis. Order panels by roster or position group, not by score. Split by position group beyond about 20 panels. Keep that limit for a laptop screen or a printed page. For a report read on a phone, use the squad dot plot below instead of small multiples. The evidence on panel numbers comes from screens of at least 9.4 × 6.6 inches, so it does not cover phones. [squad-views.md](squad-views.md) gives the study.
+Give every panel the same x-axis and y-axis. Order panels by roster or position group, not by score. Split by position group beyond about 20 panels. Keep that limit for a laptop screen or a printed page. For a report read on a phone, do not draw small multiples. Use the sorted change dot plot below for who moved. The evidence on panel numbers comes from screens of at least 9.4 × 6.6 inches, so it does not cover phones. [squad-views.md](squad-views.md) gives the study.
 
 In Power BI, use the line chart from the single-athlete steps and put `athletes[athlete_id]` in the **Small multiples** well. **Shared y-axis** is on by default. Leave it on. Microsoft lists trend lines and forecasting as not available in small multiples. Its page does not mention error bars, so check that the band draws in every panel before you share the report. The same page says **Show items with no data** may not behave as expected in small multiples. Remove one week for one athlete and check that the gap still shows before you rely on it. Small multiples also come only for bar, column, line, and area charts, not for scatter charts.
 
