@@ -4,7 +4,6 @@ description: Build reports and dashboards from athlete data for coaches and athl
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Coach and athlete reports
@@ -49,7 +48,8 @@ Follow these steps in order:
 3. Get the typical error:
    - Ask for the typical error from a short-term retest in which no true change is expected, with the same summary as the values compared.
    - If the user has none, tell them how to get it.
-   - Without it, describe changes, but do not flag them. Tell the user that without a typical error no change can be called beyond noise. This holds when the user gives cut points: show what their cut points do, labeled as the user's choice with their source, or with no source if they gave none, and offer the noise-band rule from step 4.
+   - Without it, describe changes, but do not give the flag states from step 4. Tell the user that without a typical error no change can be called beyond measurement error. This holds when the user gives cut points: show what their cut points do, labeled as the user's choice with their source, or with no source if they gave none, and offer the noise-band rule from step 4.
+   - Without it, offer the usual-variation band from [`references/flagging-change.md`](references/flagging-change.md) when the athlete has at least 10 stable baseline values: `baseline mean ± t(n - 1) x baseline SD x sqrt(1 + 1/n)`. Give two states only, `Within usual variation` or `Outside usual variation`. Never call this band measurement error.
 4. Flag change beyond the noise:
    - Load [`references/flagging-change.md`](references/flagging-change.md).
    - Compare each athlete to that athlete's own baseline.

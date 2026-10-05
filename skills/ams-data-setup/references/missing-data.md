@@ -76,7 +76,7 @@ Take 4 expected athletes. Of these, 2 have 3 trial rows each, and one of those h
 
 ### Count coverage in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They count athletes, not rows, and they keep athletes with no row on the expected list.
+These versions count athletes, not rows, and they keep athletes with no row on the expected list.
 
 Both versions assume the `measures` table and the `athletes` table from the table layout reference. They also assume that `NA` in `value` and in `end_date` became a true blank on import. See the `power-bi.md` and `tableau.md` references.
 
@@ -223,8 +223,6 @@ These are the mistakes AI tools and spreadsheets make most often with missing da
 ## Example request
 
 > Some athletes skipped the wellness form on some days. Work out each athlete's weekly average wellness score and tell me how much data is missing.
-
-Status: not tested.
 
 ## Check the result
 

@@ -4,7 +4,6 @@ description: Set up a home-built athlete management system in a spreadsheet, tab
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Set up data for an athlete management system

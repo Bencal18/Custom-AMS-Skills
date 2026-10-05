@@ -81,7 +81,7 @@ These are the contrast ratios of the Okabe-Ito colors on a white background, com
 | Mid gray | `#999999` | 2.85:1 |
 | Band fill gray | `#E8E8E8` | 1.23:1 |
 
-On a white background, prefer blue, vermillion, bluish green, and reddish purple for lines and markers. Use sky blue, orange, or yellow only for fills with a dark outline, or with labels that carry the meaning. Use `#767676` or darker for gray lines and points that carry information, such as per-athlete lines or a squad median.
+On a white background, prefer blue, vermillion, bluish green, and reddish purple for lines and markers. In a grayscale print, bluish green, vermillion, and reddish purple come out close in lightness (CIE L* 54 to 61), and only blue is clearly darker (L* 46). Do not rely on color alone. Use marker shapes. Use sky blue, orange, or yellow only for fills with a dark outline, or with labels that carry the meaning. Use `#767676` or darker for gray lines and points that carry information, such as per-athlete lines or a squad median.
 
 A light fill such as `#E8E8E8` is fine for a noise band or a smallest worthwhile change zone only when the band's edges are drawn in `#767676` or darker, or the edge values are labeled. These contrast figures are computed with the WCAG formula, not taken from a paper.
 
@@ -180,8 +180,6 @@ Use these notes for other tools:
 ## Example request
 
 > Make this team distance chart readable for our color-blind assistant coach, and add alt text for the PDF report.
-
-Status: not tested.
 
 ## Check the result
 

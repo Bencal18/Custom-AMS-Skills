@@ -29,8 +29,9 @@ Define every term in the formula:
 
 Choose and name the variants:
 
-- Item-level z-score: one z-score per question, such as sleep, soreness, fatigue, stress, and mood. Use this by default. It keeps the reason for a change visible.
-- Total z-score: add the items into a daily total first, then standardize the total against the athlete's baseline of totals. Name it as a total. Show the item z-scores next to it.
+- Total z-score: add the items into a daily total first, then standardize the total against the athlete's baseline of totals. Name it as a total. Use it by default to flag athletes across a squad. Beside each flagged athlete, show each item's raw answer and change in points.
+- Item-level z-score: one z-score per question, such as sleep, soreness, fatigue, stress, and mood. Show it in the athlete detail view, labeled approximate, after the raw answer and the change in points. It keeps the reason for a change visible. Do not use it to build a squad flag list.
+- Raw-answer flag: the practitioner's own rule on the raw answer, such as any soreness of 1 or 2. It can replace or join the total z-score in a squad flag list. Label it as theirs.
 - Rolling baseline: the previous N calendar days, such as 28. It follows slow changes, but it also absorbs a slow decline.
 - Fixed baseline: a set period, such as a stable block of normal training. It does not drift, but it becomes out of date.
 
@@ -42,21 +43,23 @@ Read these limits of scoring against the athlete's own baseline:
 
 Report chance flags when you flag across a squad:
 
+- Flag the squad on the total z-score or on the practitioner's own raw-answer rule. Keep single-item z-scores out of squad flag lists. Beside each flagged athlete, show each item's raw answer and change in points, so the reason for the flag stays visible.
 - Under the assumptions above, a one-direction cut-off of z = −2 flags 2.3% of ordinary days when the baseline mean and SD are known. With a 14-day baseline, the mean and SD are estimates, and the rate rises to 3.8%. These figures come from the normal and t distributions, and the real rate on a 1 to 5 scale can be higher or lower.
-- Across 25 athletes on one item, that is 0.57 flags a day by chance with a known baseline, or 0.94 with a 14-day baseline. The chance of at least one flag is 43.7% or 61.8%.
+- Across 25 athletes flagged on the total, that is 0.57 flags a day by chance with a known baseline, or 0.94 with a 14-day baseline. The chance of at least one flag is 43.7% or 61.8%.
+- Flags on single items add up. With 5 items and a 14-day baseline, about 17% to 20% of athletes get at least one item flagged on an ordinary day by chance, treating the items as independent. That is 4 or 5 of 25 athletes a day, against about 1 when you flag on the total. The 17.5% comes from the t distribution: 1 − (1 − 0.0377)^5. A simulation of 1 to 5 answers run for this skill (stable athletes, usual answers from 3 to 4.25, a day-to-day SD of 0.6 to 0.8 points, and independent items and days) gave about 20% for a squad with mixed usual answers. It rose to about 25% for athletes whose usual answer on every item was 4.25.
 - Report the number of flags expected by chance next to the number found, for the user's own cut-off.
 - Flags on consecutive days against the same baseline are not independent.
 - Recommend a repeat answer or a conversation with the athlete before anyone acts on a single flag. An unusually low answer tends to be followed by one closer to the athlete's mean, which is called regression to the mean (Barnett et al., 2005).
 
 Choose the minimum baseline length with the user:
 
-- We found no peer-reviewed source that sets a minimum number of baseline days for wellness z-scores. Ask the user, apply it, and report the number of baseline days with every z-score. If the user has no number, offer 14 baseline answers inside a 28-day window, and label it as this skill's choice. Do not go below 7 answers covering one full training week.
+- We found no peer-reviewed source that sets a minimum number of baseline days for wellness z-scores. Ask the user, apply it, and report the number of baseline days with every z-score. If the user has no number, offer 14 baseline answers inside a 28-day window, and label it as this skill's choice. Never offer fewer than 10 answers, and cover at least one full training week. Ten is the same floor the `monitoring-statistics` skill offers for a z-score built on an athlete's own SD. If the user chooses fewer than 10, apply it and label it as the user's choice.
 - A baseline should be stable, with low variability and no clear trend (Sands et al., 2019).
 - Sands et al. (2019) describe training load as cyclic, with hard and easy days and weekly patterns, and warn that stopping data collection early shows only part of a cycle. They make that point about trend analysis. From it, we infer that a baseline should cover at least one full training week, so hard and easy days are both in it. That is our inference, not their rule.
-- A small baseline gives an unstable SD. For normally distributed answers, the 95% confidence interval for the true SD runs from about 0.64 to 2.20 times the sample SD with 7 values, 0.72 to 1.61 times with 14, and 0.79 to 1.36 times with 28. These factors come from the chi-square distribution.
+- A small baseline gives an unstable SD. For normally distributed answers, the 95% confidence interval for the true SD runs from about 0.64 to 2.20 times the sample SD with 7 values, 0.69 to 1.83 times with 10, 0.72 to 1.61 times with 14, and 0.79 to 1.36 times with 28. These factors come from the chi-square distribution.
 - The SD factors apply to z. With 14 baseline days, a z-score of −3.13 matches a z-score of about −1.94 to −4.32 against the true SD. That is the z-score multiplied by 0.621 to 1.379.
 - The baseline mean is uncertain too. If baseline days are independent and come from a stable baseline, today's distance from a mean of n days has a spread of baseline SD × √(1 + 1/n). This adds the variance of today's answer to the variance of the baseline mean. It is the standard prediction interval for one new value against a mean of n values (NIST, Dataplot reference manual, after Hahn and Meeker, 1991). With n = 14, √(1 + 1/14) = 1.035, so the sleep z-score of −3.13 becomes −3.03 on that scale.
-- Short baselines raise the chance flag rate. For a one-direction cut-off of z = −2, an ordinary day is flagged 5.5% of the time with 7 baseline answers, 3.8% with 14, and 3.0% with 28, against 2.3% with a known mean and SD. These figures come from the t distribution and assume normal, independent answers. The real rate can be higher or lower.
+- Short baselines raise the chance flag rate. For a one-direction cut-off of z = −2, an ordinary day is flagged 5.5% of the time with 7 baseline answers, 4.4% with 10, 3.8% with 14, and 3.0% with 28, against 2.3% with a known mean and SD. These figures come from the t distribution and assume normal, independent answers. The real rate can be higher or lower.
 - The baseline SD is not a typical error (TE). TE comes from a short-term test-retest study in which no true change is expected, and it measures error only. The baseline SD mixes real day-to-day change with error. A z-score asks whether today is unusual for this athlete, not whether the change exceeds measurement error. Do not use the baseline SD as a TE, and do not borrow a noise band built on TE for wellness answers.
 - These intervals assume independent days. Daily answers are often autocorrelated, which means one day's answer tends to resemble the day before. That makes the true intervals wider. Answers on a short point scale, such as 1 to 5, are not normally distributed either, so treat all of these factors as a rough guide only.
 
@@ -94,7 +97,7 @@ def wellness_z(item, window, min_baseline):
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They keep the rules of the spreadsheet formulas above. Today is left out of its own baseline. A blank answer today gives a blank change and z-score, not a z-score for 0 points. A baseline shorter than the minimum gives a blank. A baseline SD of 0 gives a blank z-score. The status says which rule applied.
+These versions keep the rules of the spreadsheet formulas above. Today is left out of its own baseline. A blank answer today gives a blank change and z-score, not a z-score for 0 points. A baseline shorter than the minimum gives a blank. A baseline SD of 0 gives a blank z-score. The status says which rule applied.
 
 Both versions use the previous 28 calendar days, not the previous 28 rows. A day with no answer counts as a day in the window but not as a baseline value.
 
@@ -244,7 +247,8 @@ Follow these steps to calculate the metric from raw inputs:
 8. If the SD is 0, report "no variation in baseline" and the change in points, and stop for that day.
 9. Calculate z = (today's answer − baseline mean) ÷ baseline SD.
 10. For a total z-score, add the flipped items into a daily total first, then repeat steps 5 to 9 on the totals.
-11. Report each item's raw answer, change in points, z-score, status, baseline window, and baseline day count. Show the total z-score only next to the item z-scores.
+11. For a squad flag list, flag on the total z-score or on the practitioner's raw-answer rule, not on single-item z-scores. Beside each flagged athlete, show each item's raw answer and change in points, with the total z-score, status, baseline window, and baseline day count.
+12. In the athlete detail view, report each item's raw answer, change in points, z-score labeled approximate, status, baseline window, and baseline day count.
 
 ## Worked example
 
@@ -279,20 +283,21 @@ Total z-score:
 
 The item z-scores show that the low total comes from sleep, with a smaller drop in soreness.
 
-The Python snippet run on the sleep answers, dated 2026-09-01 to 2026-09-15, with a 14-day window and a minimum of 7 baseline days, gives these rows:
+The Python snippet run on the sleep answers, dated 2026-09-01 to 2026-09-15, with a 14-day window and a minimum of 10 baseline days, gives these rows:
 
 | Date | Value | `baseline_n` | `baseline_mean` | `change_points` | `z` | `status` |
 |---|---|---|---|---|---|---|
 | 2026-09-01 | 4 | 0 | missing | missing | missing | baseline too short |
-| 2026-09-07 | 3 | 6 | 4.00 | missing | missing | baseline too short |
-| 2026-09-08 | 4 | 7 | 3.86 | 0.14 | 0.21 | ok |
+| 2026-09-10 | 4 | 9 | 4.00 | missing | missing | baseline too short |
+| 2026-09-11 | 4 | 10 | 4.00 | 0.00 | 0.00 | ok |
+| 2026-09-12 | 3 | 11 | 4.00 | −1.00 | −1.58 | ok |
 | 2026-09-15 | 2 | 14 | 3.93 | −1.93 | −3.13 | ok |
 
 ## What changes the number
 
 These choices change the result even when the athlete has not changed:
 
-- Baseline length. With the last 7 days as the baseline, today's sleep z-score is −3.46 (mean 4.00, SD 0.58) instead of −3.13 with 14 days.
+- Baseline length. With the last 10 days as the baseline, today's sleep z-score is −3.35 (mean 3.90, SD 0.57) instead of −3.13 with 14 days.
 - Including today in the baseline. Adding today's answer to the 14-day sleep baseline shrinks the z-score from −3.13 to −2.32.
 - Item versus total. In the worked example, the total z-score is −2.84. The plain mean of the five item z-scores is −0.68. These are different variants. Name the one you report.
 - Size of the baseline SD. An answer of 3 gives z = −2.36 on stress (mean 3.86, SD 0.36) but −0.96 on soreness (mean 3.50, SD 0.52). A small SD turns a small change in points into a large z-score.
@@ -316,7 +321,7 @@ Collect this data:
 
 - Source: a daily wellness form or app, filled in before training.
 - Sampling: one answer per item per athlete per day, at the same time of day.
-- Minimum data: the minimum number of baseline days the user chose. If the user has none, offer 14 answers inside 28 days, and never fewer than 7 covering one full training week. This is the skill's choice, partly inferred from Sands et al. (2019), not their rule.
+- Minimum data: the minimum number of baseline days the user chose. If the user has none, offer 14 answers inside 28 days, and never fewer than 10 answers covering at least one full training week. This is the skill's choice, partly inferred from Sands et al. (2019), not their rule.
 
 ## Common mistakes
 
@@ -326,7 +331,8 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Including today in the baseline. Today's answer then pulls the mean toward itself and shrinks the z-score. Exclude today.
 - Ignoring scale direction. Forms differ. In Gastin et al. (2013), 1 was the positive end. In Govus et al. (2018), a higher soreness score meant less sore. Confirm each item's direction, and flip items so that the sign means the same thing for every item.
 - Adding items that run in opposite directions into one total. Flip them first, or do not total them.
-- Reporting only the total. A good sleep score can cancel a bad soreness score. Show the item z-scores.
+- Reporting only the total. A good sleep score can cancel a bad soreness score. Show each item's raw answer and change in points beside the total.
+- Building a squad flag list from single-item z-scores. With 5 items, about 17% to 20% of athletes get at least one item flagged on an ordinary day by chance, or 4 or 5 of 25. Flag the squad on the total or on the practitioner's raw-answer rule. Keep item z-scores, labeled approximate, in the athlete detail view.
 - Reporting only the z-score. On a 1 to 5 scale, a z-score of −2.36 can be a one-point change. Show the raw answer and the change in points beside it.
 - Relying only on the athlete's own baseline. An athlete who always reports high soreness never looks unusual. Ask whether the practitioner also flags on the raw answer.
 - Treating the total as a validated scale. Most wellness forms use single-item questions. The most common single items in sport have not been validated, and modified versions are common (Jeffries et al., 2020; Duignan et al., 2020).
@@ -334,15 +340,13 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Dividing by zero. An athlete who always answers 4 has an SD of 0, and the z-score is undefined. Report "no variation in baseline" instead of a number.
 - Reporting z-scores before the minimum baseline is met. Show "baseline too short" and the number of days.
 - Using a fixed cut-off, such as −1 or −1.5, as if it were validated. Ask the user which cut-off they use.
-- Reporting squad flags without the chance count. With 25 athletes, a cut-off of −2 gives 0.57 to 0.94 flags a day by chance alone. Show the expected number next to the number found.
+- Reporting squad flags without the chance count. With 25 athletes flagged on the total, a cut-off of −2 gives 0.57 to 0.94 flags a day by chance alone. Show the expected number next to the number found.
 - Filling missing days with the athlete's mean. This shrinks the SD and inflates later z-scores. Leave them missing.
 - Treating a low z-score as a diagnosis. It flags an answer to follow up with the athlete. It does not identify illness, injury, or overtraining.
 
 ## Example request
 
 > Our players fill in a 1 to 5 wellness form every morning: sleep, soreness, fatigue, stress, and mood. Build me a sheet that flags anyone who is well below their own normal today.
-
-Status: not tested.
 
 ## Check the result
 

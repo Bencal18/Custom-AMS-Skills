@@ -88,7 +88,7 @@ Keep `ignore_na=True`. With the pandas default, `ignore_na=False`, `ewm()` gives
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow steps 1 to 7 above. The series starts on the athlete's first day with a load row with status `ok`, at that day's load. Each value needs one athlete and one date in the visual. Rest days must be rows with a load of 0. A day with no load row is missing. As in the spreadsheet version, each EWMA keeps the previous day's value on a missing day, and the ratio is blank on that day and the 27 days after it. The ratio is also blank before day 28 and when the chronic EWMA is 0.
+These versions follow steps 1 to 7 above. The series starts on the athlete's first day with a load row with status `ok`, at that day's load. Each value needs one athlete and one date in the visual. Rest days must be rows with a load of 0. A day with no load row is missing. As in the spreadsheet version, each EWMA keeps the previous day's value on a missing day, and the ratio is blank on that day and the 27 days after it. The ratio is also blank before day 28 and when the chronic EWMA is 0.
 
 Report the acute and chronic loads next to the ratio, and add the limits from the sections below. Do not label the ratio as injury risk.
 
@@ -392,8 +392,6 @@ These are the mistakes AI tools and spreadsheets make most often with these meth
 ## Example request
 
 > Calculate the acute to chronic workload ratio for each player from this daily session RPE log, and tell me who is in the danger zone.
-
-Status: not tested.
 
 The correct answer computes the named variant, shows acute and chronic loads, and explains that no validated danger zone exists.
 

@@ -4,7 +4,6 @@ description: Decide if a change in an athlete's data is real or noise. Covers ty
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Statistics for athlete monitoring
@@ -42,6 +41,7 @@ Use these meanings, and define each term for the user on first use:
 - **Smallest worthwhile change (SWC):** the smallest change that matters in practice. By default, it is 0.2 × the SD between athletes (Hopkins et al., 2009).
 - **Minimal detectable change (MDC):** the smallest change larger than noise, at a stated confidence level. MDC95 = SEM × 1.96 × √2 (Weir, 2005).
 - **Noise band:** error alone gives a change smaller than this about 95 percent of the time. Against a baseline mean of n values, it is 1.96 × TE × √(1 + 1/n). This form adds the variances of the new value and the baseline mean. Hopkins (2017) uses the same error for a change from the mean of several tests. For two single tests, it is 1.96 × √2 × TE, about 2.77 × TE.
+- **Usual-variation band:** the fallback when no TE exists. It is baseline mean ± t(n − 1) × baseline SD × √(1 + 1/n), from at least 10 stable baseline values. It holds real day-to-day change as well as error, so it is never a measurement-error band.
 - **Baseline:** an athlete's own normal, from their prior values
 - **z-score:** how far today's value is from the athlete's baseline mean, in units of the athlete's baseline SD
 
@@ -60,8 +60,9 @@ Follow these steps in order:
 1. Ask which measure, test protocol, and units the data uses, if the user has not said.
 2. Ask for the noise estimate. Follow these rules:
    - Accept the user's own test-retest data, a typical error the user knows, or a published value for the same protocol.
-   - If none exists, say the change cannot be judged against noise without one.
+   - If none exists, say the change cannot be judged against measurement error without one.
    - Show how to collect test-retest data.
+   - Offer the usual-variation band instead when the athlete has at least 10 stable baseline values. Follow the rules in [references/individual-baselines-z-scores.md](references/individual-baselines-z-scores.md).
 3. Load [references/typical-error.md](references/typical-error.md) when you need to compute TE or CV% from test-retest data.
 4. Load [references/smallest-worthwhile-change.md](references/smallest-worthwhile-change.md) to set the SWC and to label each change.
 5. Load [references/minimal-detectable-change.md](references/minimal-detectable-change.md) when the user asks for an MDC or a "real change" threshold.
@@ -123,7 +124,12 @@ Keep to these limits:
 - Do not present an ACWR value as an injury risk, and do not apply a "sweet spot" or "danger zone" range.
 - Do not use a group p-value to judge an individual athlete. Label each athlete against noise and the SWC. If you report a group p-value, put it after the individual results, with the sample size.
 - Do not borrow a typical error from a different test protocol, device, or population without saying so.
-- Do not use the athlete's own baseline SD as a stand-in for TE. It needs a t multiplier with few values, and it mixes biological variation with measurement error.
+- Do not use the athlete's own baseline SD as TE. It mixes biological variation with measurement error.
+- When no TE exists, use the athlete's own baseline SD only for the usual-variation band. Follow these rules:
+  - Use at least 10 values from a stable period, with today left out (Hopkins, 2017).
+  - Use t with n − 1 degrees of freedom, not 1.96. With 10 values, the multiplier is t(9) × √(1 + 1/10) = 2.37.
+  - Give two states only: inside or outside usual variation. Do not add a smallest worthwhile change tier.
+  - Never call the band noise or measurement error.
 - Athlete data is personal health data. Tell the user to check their organization's data policy before they paste it into a cloud AI tool.
 
 ## References

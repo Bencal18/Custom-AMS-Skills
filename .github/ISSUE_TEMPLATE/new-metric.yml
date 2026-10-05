@@ -1,0 +1,32 @@
+name: Add a metric or device
+description: Suggest a metric, test, or device the skills should cover.
+title: "Add: <metric or device>"
+labels: ["new content"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste real athlete data. Use made-up numbers.
+  - type: input
+    id: metric
+    attributes:
+      label: Metric, test, or device
+      placeholder: Dynamic strength index
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: How you use it
+      description: The decision it supports, and who uses it.
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Formula or method
+      description: The formula or method, if you know it.
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Peer-reviewed sources or vendor documents that define it, with a DOI or link.

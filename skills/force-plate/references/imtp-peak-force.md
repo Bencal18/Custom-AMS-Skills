@@ -57,7 +57,7 @@ Without the blank check, a blank body mass makes net force equal gross force.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They return a blank, not gross force, when body mass is missing.
+These versions return a blank, not gross force, when body mass is missing.
 
 Both versions assume one row per athlete, date, session, measure, and trial in a `measures` table. Gross peak force is `measure_name` `imtp_gross_peak_force` in `N`. Body mass from the quiet period is `measure_name` `imtp_body_mass` in `kg`, in the same session, as body weight in N divided by 9.81. Show the results with one athlete and one session per row.
 
@@ -241,6 +241,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Reading one plate of a two-plate setup as the whole force. Sum both plates.
 - Changing knee angle, hip angle, or bar height between sessions and then comparing peak force
 - Keeping trials with a countermovement, a dip before the pull, too much pre-tension on the bar, or leaning on the bar (Comfort et al., 2019). Flag them instead.
+- Analyzing a trial with noted pain. These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
 - Finding onset with a fixed force threshold such as 75 N or 10% of body weight above body weight. These gave unacceptable agreement with the 5 standard deviation threshold (Dos'Santos et al., 2017).
 - Reporting average RFD as if it were a reliable measure
 - Taking the peak from outside the pull, such as a spike when the athlete lets go of the bar. Restrict the search to the pull.
@@ -249,8 +250,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 ## Example request
 
 > I have IMTP peak force for my team from three test days, plus body weight. Can you make a table of relative peak force and tell me who improved?
-
-Status: not tested.
 
 ## Check the result
 

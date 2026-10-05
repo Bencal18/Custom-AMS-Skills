@@ -1,6 +1,6 @@
 # Readiness composites
 
-Last checked: 2026-10-02
+Last checked: 2026-10-05
 
 ## What it measures
 
@@ -12,15 +12,9 @@ A composite measures nothing directly. It is a weighted summary of its inputs, s
 - Combining variables into one loses information and makes the result harder to interpret (Song et al., 2013). A single score hides which input changed.
 - Song et al. (2013) discuss composites built across many people for research analyses, not one athlete's daily score. Their points apply to this setting by reasoning, not by direct evidence.
 - Traffic-light monitoring systems have no standard set-up (Robertson et al., 2017). A composite's colors are a local choice, not a validated scale. About 8% of men of European descent have red-green color deficiency (Birch, 2012), so never let red and green carry the meaning alone.
-- Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). A load input has no agreed "better" direction, and it measures the dose, not the athlete's response. Keep load measures out of the composite by default, and show them beside it. The athlete monitoring cycle also reads load and the athlete's response side by side, as separate steps (Gabbett et al., 2017).
-
-For a rehab athlete, follow these rules:
-
-- Never put pain, swelling or effusion, loss of motion, giving way, locking, wound problems, calf pain or swelling, new numbness or weakness, or systemic symptoms such as fever into a composite. Show each one as a raw value. Tell the user to pass any report of them to the medical team, whatever the composite shows.
-- Clinicians judge each of these signs on its own. One guideline lists full knee extension, knee flexion range, and no effusion as separate criteria for return to running after ACL reconstruction (Kotsifaki et al., 2023). Calf pain or swelling can signal a deep vein thrombosis, and recent surgery or leg immobilization raises that risk (NICE, 2020). New numbness or tingling in a limb can signal a nerve or blood-flow problem that needs prompt medical review (Royal Children's Hospital Melbourne, 2023). With back or leg pain, severe or worsening weakness or numbness in both legs needs emergency referral (GIRFT, 2023).
-- A composite can average these signs away. A pain z-score of −2 with a CMJ z-score of +1, a sleep z-score of +1, and a fatigue z-score of 0 gives a composite of 0.0.
-- A return of the composite to the pre-injury baseline is not a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016) after ACL reconstruction, are batteries of tests. There, passing meant a score above 90 on all tests, and failing any one test meant failing. A composite lets a good score on one input hide a failed one. This skill does not apply any return-to-sport criteria.
-- Rehab measures often trend upward. That breaks the rule that a baseline should be stable, with no clear trend (Sands et al., 2019). A rolling baseline during rehab also follows the athlete upward, so real progress looks like no change. Name the baseline you used: pre-injury or a fixed post-injury block. Do not use a rolling baseline in rehab. In this skill's own simulation of a jump that rises 0.1 cm a day after injury, the z-score against a rolling 28-day baseline stayed near +1.15 from day 29 to day 120, while the athlete went from 5.2 cm below to 3.9 cm above a pre-injury mean of 38.0 cm. Against the pre-injury baseline, it moved from −4.31 to +3.27. Against a fixed block of days 1 to 14, it grew past +10, so show the change in raw units for that baseline. Prefer a pre-injury reference when one exists. After ACL reconstruction, more athletes reached 90% limb symmetry (57.1%) than reached 90% of the uninvolved limb's values from before surgery (28.6%). The pre-surgery reference was also more sensitive to later second ACL injuries: 0.818 against 0.273 (Wellsandt et al., 2017).
+- Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). A load input has no agreed "better" direction, and it measures the dose, not the athlete's response. Practitioners adjust training load based on the athlete's response (Impellizzeri et al., 2020b). Self-reported well-being worsened with acute rises in load and improved with acute reductions (Saw et al., 2016). A composite that holds load and wellness counts a dose and its response together. Keep load measures out of the composite by default, and show them beside it. The athlete monitoring cycle also reads load and the athlete's response side by side, as separate steps (Gabbett et al., 2017).
+- The user may still add a load measure. The user states its direction and the reason, and the output labels it as the user's choice.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 
 ## Formula
 
@@ -83,7 +77,7 @@ This code returns a missing composite on any day with a missing input.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. A day with any missing input gives a blank composite, never a composite of the inputs that remain. A z-score of 0 counts as present. Weights that sum to 0 give a blank. Show every aligned z-score, raw value, and change in raw units next to the composite.
+A day with any missing input gives a blank composite, never a composite of the inputs that remain. A z-score of 0 counts as present. Weights that sum to 0 give a blank. Show every aligned z-score, raw value, and change in raw units next to the composite.
 
 Both versions assume one aligned z-score measure or field per input, where a positive value means better than usual. Build each z-score with the baseline rules in this skill or the `monitoring-statistics` skill. Multiply by -1 for an input where a higher value is worse. Show the results with one athlete and one date per row.
 
@@ -128,19 +122,18 @@ Follow these steps to calculate the metric from raw inputs:
 
 1. Join the inputs into one row per `athlete_id` and `date`, with one column per input in its own unit, such as `sleep` (1 to 5) and `cmj_cm` (cm).
 2. Keep load measures, such as `load_prev_day_au` (AU), in their own columns beside the composite, not in it.
-3. Keep pain, swelling, loss of motion, giving way, locking, calf pain or swelling, new numbness or weakness, and wound or systemic symptoms out of the composite as well, and show them raw.
-4. Write down each input's direction with the user: +1 if a higher value is better, −1 if a higher value is worse.
-5. Ask the user for the baseline window and the minimum number of baseline days for each input.
-6. For each athlete, input, and day, calculate the baseline mean and sample SD from the baseline window before that day. Exclude the day being scored.
-7. Mark an input as missing for that day if its baseline is too short or its SD is 0.
-8. Calculate each input's z-score: (value − baseline mean) ÷ baseline SD.
-9. Multiply each z-score by its direction sign to get the aligned z-score.
-10. Ask the user for weights.
-11. If the user has none, use equal weights and say so.
-12. Say what share each construct gets.
-13. If any input is missing that day, mark the composite as incomplete and do not calculate it, unless the user chose another rule.
-14. Calculate the composite: the sum of weight × aligned z-score, divided by the sum of the weights.
-15. Report the composite in one table with every input's raw value, change in raw units, baseline mean, baseline SD, and aligned z-score, and the load columns beside it.
+3. Write down each input's direction with the user: +1 if a higher value is better, −1 if a higher value is worse.
+4. Ask the user for the baseline window and the minimum number of baseline days for each input. If the user has none, offer at least 10 prior values, labeled as a practice default.
+5. For each athlete, input, and day, calculate the baseline mean and sample SD from the baseline window before that day. Exclude the day being scored.
+6. Mark an input as missing for that day if its baseline is too short or its SD is 0.
+7. Calculate each input's z-score: (value − baseline mean) ÷ baseline SD.
+8. Multiply each z-score by its direction sign to get the aligned z-score.
+9. Ask the user for weights.
+10. If the user has none, use equal weights and say so.
+11. Say what share each construct gets.
+12. If any input is missing that day, mark the composite as incomplete and do not calculate it, unless the user chose another rule.
+13. Calculate the composite: the sum of weight × aligned z-score, divided by the sum of the weights.
+14. Report the composite in one table with every input's raw value, change in raw units, baseline mean, baseline SD, and aligned z-score, and the load columns beside it.
 
 ## Worked example
 
@@ -203,7 +196,7 @@ Collect this data:
 
 - Source: each input's form, app, or device, joined by athlete and date
 - Sampling: one value per input per athlete per day, collected at the same time of day
-- Minimum data: each input needs its own baseline. Use the minimum number of baseline days the user chose for each input, and report the count. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019).
+- Minimum data: each input needs its own baseline. Use the minimum number of baseline days the user chose for each input. If the user has none, offer at least 10 prior values, labeled as a practice default. Report the count. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019).
 
 ## Common mistakes
 
@@ -216,7 +209,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Averaging raw values with different units, such as minutes of sleep and centimeters of jump height. Standardize each input first (Song et al., 2013).
 - Standardizing against the team mean instead of each athlete's own baseline
 - Leaving input directions mixed, so a "good" soreness score lowers the composite. Align every input first.
-- Treating higher load as worse. Putting yesterday's load into the composite with a direction of −1 assumes load is harmful. Load measures cannot tell you that (Impellizzeri et al., 2020b). Show load beside the composite.
+- Treating higher load as worse. Putting yesterday's load into the composite with a direction of −1 assumes load is harmful. Load measures cannot tell you that (Impellizzeri et al., 2020b). Load is the dose, and wellness is the response, so a composite of both counts them together (Saw et al., 2016). Show load beside the composite.
 - Inventing weights. An AI tool may assign weights such as 40% wellness and 60% load with no source. Use the user's weights, or equal weights, and show them.
 - Assuming equal weights mean equal constructs. Three wellness items and one jump test give wellness 75% of the weight.
 - Counting the same data twice. Session load and a ratio built from that load are not two independent inputs.
@@ -226,14 +219,10 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Rescaling to 0 to 100 and calling it "% ready". This looks like a probability. It is not one.
 - Building the composite from unvalidated questions and treating it as validated. The most used single-item wellness questions have not been validated (Jeffries et al., 2020).
 - Assuming subjective and objective inputs move together. They generally did not correlate in a systematic review, and subjective measures tracked training load more consistently (Saw et al., 2016). Disagreement between inputs is information. Show it.
-- Putting pain, swelling, loss of motion, giving way, locking, calf pain or swelling, or new numbness or weakness into a rehab composite. Other inputs can average them away. Show them raw and refer any report to the medical team.
-- Treating a return to the pre-injury baseline as a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), require passing every test in a battery. Name the baseline used.
 
 ## Example request
 
 > I want one readiness number per player each morning from sleep, soreness, mood, yesterday's sRPE load, and CMJ jump height. Weight it however you think is best and tell me who is good to train.
-
-Status: not tested.
 
 The correct answer builds an equal-weight composite of aligned, athlete-specific z-scores from sleep, soreness, mood, and jump height. It shows yesterday's load beside the composite and explains why load is not in it. It shows all four sub-scores with their raw values, asks for the user's weights, labels the output as distance from baseline, and declines to say who is good to train.
 
@@ -243,7 +232,7 @@ Run these checks:
 
 - Recalculate one athlete-day by hand: each z-score from its baseline, the direction sign, then the weighted mean.
 - Confirm every sub-score, raw value, and change in raw units appears next to the composite, and that each input's direction is stated.
-- Confirm no rehab sign listed above is inside the composite. Confirm no load measure is inside it unless the user chose it and stated the direction and reason.
+- Confirm no load measure is inside the composite unless the user chose it and stated the direction and reason.
 - Confirm days with a missing input show as incomplete, not as a composite near zero.
 
 ## Sources
@@ -254,7 +243,6 @@ This file cites these sources:
 - Robertson S, Bartlett JD, Gastin PB. Red, amber, or green? Athlete monitoring in team sport: the need for decision-support systems. Int J Sports Physiol Perform. 2017;12(Suppl 2):S2-73-S2-79. https://doi.org/10.1123/ijspp.2016-0541
 - Ardern CL, Glasgow P, Schneiders A, Witvrouw E, Clarsen B, Cools A, et al. 2016 Consensus statement on return to sport from the First World Congress in Sports Physical Therapy, Bern. Br J Sports Med. 2016;50(14):853-864. https://doi.org/10.1136/bjsports-2016-096278
 - Shrier I. Strategic Assessment of Risk and Risk Tolerance (StARRT) framework for return-to-play decision-making. Br J Sports Med. 2015;49(20):1311-1315. https://doi.org/10.1136/bjsports-2014-094569
-- Grindem H, Snyder-Mackler L, Moksnes H, Engebretsen L, Risberg MA. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. Br J Sports Med. 2016;50(13):804-808. https://doi.org/10.1136/bjsports-2016-096031
 - Impellizzeri FM, Tenan MS, Kempton T, Novak A, Coutts AJ. Acute:chronic workload ratio: conceptual issues and fundamental pitfalls. Int J Sports Physiol Perform. 2020;15(6):907-913. https://doi.org/10.1123/ijspp.2019-0864 (cited as 2020a)
 - Impellizzeri FM, McCall A, Ward P, Bornn L, Coutts AJ. Training load and its role in injury prevention, part 2: conceptual and methodologic pitfalls. J Athl Train. 2020;55(9):893-901. https://doi.org/10.4085/1062-6050-501-19 (cited as 2020b)
 - Saw AE, Main LC, Gastin PB. Monitoring the athlete training response: subjective self-reported measures trump commonly used objective measures: a systematic review. Br J Sports Med. 2016;50(5):281-291. https://doi.org/10.1136/bjsports-2015-094758
@@ -264,8 +252,3 @@ This file cites these sources:
 - Sands WA, Cardinale M, McNeal J, Murray S, Sole C, Reed J, Apostolopoulos N, Stone MH. Recommendations for measurement and management of an elite athlete. Sports. 2019;7(5):105. https://doi.org/10.3390/sports7050105
 - Gabbett TJ, Nassis GP, Oetter E, Pretorius J, Johnston N, Medina D, Rodas G, Myslinski T, Howells D, Beard A, Ryan A. The athlete monitoring cycle: a practical guide to interpreting and applying training monitoring data. Br J Sports Med. 2017;51(20):1451-1452. https://doi.org/10.1136/bjsports-2016-097298 (accessed 2026-10-02)
 - Birch J. Worldwide prevalence of red-green color deficiency. J Opt Soc Am A Opt Image Sci Vis. 2012;29(3):313-320. https://doi.org/10.1364/JOSAA.29.000313 (accessed 2026-10-02)
-- Wellsandt E, Failla MJ, Snyder-Mackler L. Limb symmetry indexes can overestimate knee function after anterior cruciate ligament injury. J Orthop Sports Phys Ther. 2017;47(5):334-338. https://doi.org/10.2519/jospt.2017.7285 (accessed 2026-10-02)
-- Kotsifaki R, Korakakis V, King E, Barbosa O, Maree D, Pantouveris M, Bjerregaard A, Luomajoki J, Wilhelmsen J, Whiteley R. Aspetar clinical practice guideline on rehabilitation after anterior cruciate ligament reconstruction. Br J Sports Med. 2023;57(9):500-514. https://doi.org/10.1136/bjsports-2022-106158 (accessed 2026-10-02)
-- National Institute for Health and Care Excellence (NICE). Venous thromboembolic diseases: diagnosis, management and thrombophilia testing. NICE guideline NG158. Published 2020-03-26, updated 2023-08-02. Recommendation 1.1.1 and the two-level DVT Wells score. https://www.nice.org.uk/guidance/ng158/chapter/recommendations (accessed 2026-10-02)
-- The Royal Children's Hospital Melbourne. Nursing guidelines: neurovascular observations. Updated 2023-02. https://www.rch.org.au/rchcpg/hospital_clinical_guideline_index/neurovascular_observations (accessed 2026-10-02)
-- Getting It Right First Time (GIRFT), NHS England. Spinal surgery: national suspected cauda equina syndrome (CES) pathway. 2023-02. https://spinal.co.uk/wp-content/uploads/2023/08/National-Suspected-Cauda-Equina-Pathway-February-2023-FINAL-V1-1.pdf (accessed 2026-10-02)

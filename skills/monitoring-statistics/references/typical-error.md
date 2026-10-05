@@ -79,7 +79,7 @@ print(f"bias {bias:.2f}, TE {te:.2f}, CV {cv_pct:.2f} %, CV log {cv_log_pct:.2f}
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow steps 2 to 8 above. Every result uses only athletes with both trials. TE and CV% are blank with fewer than 2 such athletes.
+These versions follow steps 2 to 8 above. Every result uses only athletes with both trials. TE and CV% are blank with fewer than 2 such athletes.
 
 Both versions assume one row per athlete, measure, and trial in a `measures` table, with the retest stored as `trial_number` 1 and 2 in one retest session. The session filter keeps trials from other dates out. Replace `S0101` with the retest session. For a measure taken on each side, replace `bilateral` with `left` or `right` and compute each side separately. If the retest uses two sessions, filter trial 1 and trial 2 on their two `session_id` values in place of `trial_number`.
 
@@ -201,7 +201,7 @@ Blanks behave this way in each tool:
 
 ### Calculate the two-way TE in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They compute `TE = √MSE` for three or more trials. They remove each athlete's mean and each trial's mean from every value, then add back the grand mean. They square and sum the remainders, divide by (athletes − 1) × (trials − 1), and take the square root. Report the degrees of freedom, (athletes − 1) × (trials − 1), with the TE.
+These versions compute `TE = √MSE` for three or more trials. They remove each athlete's mean and each trial's mean from every value, then add back the grand mean. They square and sum the remainders, divide by (athletes − 1) × (trials − 1), and take the square root. Report the degrees of freedom, (athletes − 1) × (trials − 1), with the TE.
 
 They treat missing data this way:
 
@@ -405,8 +405,6 @@ These are the mistakes AI tools and spreadsheets make most often with typical er
 ## Example request
 
 > I had my 18 players do a countermovement jump on Monday and again on Wednesday, with no training change between. Column A is jump 1 and column B is jump 2, in centimeters. What is the typical error and the CV for this test?
-
-Status: not tested.
 
 ## Check the result
 

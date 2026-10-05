@@ -67,8 +67,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > <The request, phrased the way a coach asks it.>
 
-Status: <not tested, or tested in Claude, ChatGPT, Gemini, and GitHub Copilot on YYYY-MM-DD>.
-
 ## Check the result
 
 Run these checks:

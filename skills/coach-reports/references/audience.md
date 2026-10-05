@@ -33,11 +33,11 @@ The athlete decides how to act on their own numbers. Include these items:
 
 - Only that athlete's data, with no teammate shown by name or rank
 - Each measure against the athlete's own usual range, in plain words, for example `Your jump height this week is within your usual range`
-- A trend of the athlete's own values over time, with the usual range shaded
+- A trend of the athlete's own values over time, drawn as one neutral line, with the usual range shaded
 - The raw value and the unit
 - A way to see what the measure means and what to do if the athlete has a question or a concern
 
-Do not show a color that means good or bad without a plain label. Do not use words that scare or diagnose. Do not show a score that the athlete cannot trace to the inputs.
+Show athletes no status colors, such as red, amber, and green, by default. Say in plain words where the latest value sits, for example `Your jump height this week is below your usual range. It is worth a conversation with your coach.` Add status colors only if the user asks, and put a plain label on each. No study has tested the effect of status colors shown to athletes. Do not use words that scare or diagnose. Do not show a score that the athlete cannot trace to the inputs.
 
 ### Compare the two views
 
@@ -46,6 +46,7 @@ Do not show a color that means good or bad without a plain label. Do not use wor
 | Scope | The group, with the athletes who changed first | One athlete |
 | Comparison | Each athlete to that athlete's baseline | The athlete to their own usual range |
 | Detail | Raw value, change, noise band, sub-scores | Raw value, trend, plain words |
+| Status colors | Optional, with a label beside each color | None by default. Use a neutral trend line and a shaded usual range |
 | Missing data | Listed by athlete | Shown as no data, with the date of the last value |
 | Language | Short, with numbers | Plain, with no diagnosis or ranking |
 
@@ -76,8 +77,6 @@ These are the mistakes AI tools make most often when they build a report:
 ## Example request
 
 > Make me a one-page weekly report for the head coach from the jump tests and the wellness forms, and a separate version I can send to each athlete.
-
-Status: not tested.
 
 ## Check the result
 

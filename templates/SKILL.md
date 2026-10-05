@@ -4,7 +4,6 @@ description: <What the skill does and when to use it, in the words a coach would
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "<YYYY-MM-DD>"
 ---
 
 # <Skill title>
@@ -57,4 +56,4 @@ Follow these limits:
 Load these files when needed:
 
 - [references/<metric>.md](references/<metric>.md): <metric>.
-- [references/<device>-export.md](references/<device>-export.md): how to read <device> exports.
+- [references/<device>.md](references/<device>.md): how to read <device> exports.

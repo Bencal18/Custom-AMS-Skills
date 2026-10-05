@@ -4,7 +4,6 @@ description: Check an analysis of athlete data before you trust it, whether the 
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Check an AI analysis of athlete data

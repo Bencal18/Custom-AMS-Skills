@@ -79,7 +79,7 @@ On a missing day, each EWMA keeps the previous day's value and keeps reporting, 
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the `acwr` function and steps 10 to 17 in the next section. They give the 7-day mean, the 28-day mean, and the days 8 to 28 mean, with three ratios: rolling coupled, rolling uncoupled, and EWMA with λ = 2 ÷ (N + 1). They keep these rules from the Python function:
+These versions follow the `acwr` function and steps 10 to 17 in the next section. They give the 7-day mean, the 28-day mean, and the days 8 to 28 mean, with three ratios: rolling coupled, rolling uncoupled, and EWMA with λ = 2 ÷ (N + 1). They keep these rules from the Python function:
 
 - A rolling ratio is blank until the 28 days ending that day all have a recorded load. It is also blank on a missing day and the 27 days after it.
 - Each EWMA starts at the day 1 load. On a missing day, it keeps the previous day's value.
@@ -367,7 +367,7 @@ Follow these steps to calculate the metric from raw inputs:
 4. Put `0` on rest days.
 5. Leave days with training but no recorded load as missing.
 6. Check that every calendar day has exactly one row. Stop and fix the data if it does not.
-7. Mark days when the athlete was injured, ill, or on modified training in a separate column, such as `availability`.
+7. Mark days when the athlete was ill, unavailable, or on modified training in a separate column, such as `availability`.
 8. Ask the user for the variant and the windows.
 9. Use 7 and 28 days if they have no preference. Say the windows are a convention, even when the user chose them.
 10. For rolling coupled ACWR, divide the mean daily load of the last 7 days by the mean daily load of the last 28 days.
@@ -470,7 +470,7 @@ ACWR has no unit. A value of 1.0 means acute and chronic load are equal. No ACWR
 Collect this data:
 
 - Source: a daily load log, such as session RPE load, or external load from a GPS or local positioning export.
-- Sampling: one total per athlete per calendar day, with `0` on rest days and a note on injured, ill, or modified-training days.
+- Sampling: one total per athlete per calendar day, with `0` on rest days and a note on ill, unavailable, or modified-training days.
 - Minimum data: 28 days with no gaps before the first rolling value, and 56 days before the first EWMA value.
 
 ## Common mistakes
@@ -493,8 +493,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 ## Example request
 
 > My GM wants ACWR for every player each week from our daily sRPE totals. Write me the Excel formulas and tell me which players are in the red zone.
-
-Status: not tested.
 
 The correct answer calculates the named variant, shows acute and chronic loads beside it, adds the sentence that ACWR does not predict injury, and declines to sort players into risk zones.
 

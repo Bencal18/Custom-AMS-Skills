@@ -2,8 +2,6 @@
 
 Last checked: 2026-10-02
 
-Not tested in Power BI or Tableau. No step or DAX formula in this file was run in Power BI.
-
 ## What it covers
 
 This file shows how to load the athlete, session, and measure tables from the table layout reference into Power BI. It covers import, missing values, the athlete and date tables, relationships, units, refresh, and the traps that silently give a wrong number.
@@ -151,8 +149,6 @@ These are the mistakes AI tools and Power BI users make most often with athlete 
 ## Example request
 
 > I have my measures table as a CSV with athlete_id, measure_date, measure_name, value, unit, and status. Set it up in Power BI so I can see each athlete's weekly jump height and how many athletes tested.
-
-Status: not tested.
 
 ## Check the result
 

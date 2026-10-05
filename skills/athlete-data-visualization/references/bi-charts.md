@@ -2,8 +2,6 @@
 
 Last checked: 2026-10-02
 
-Not tested in Power BI or Tableau. No chart in this file was built.
-
 ## What the problem is
 
 Power BI and Tableau draw a chart from whatever the data model gives them. Their defaults can break the rules of this skill without a warning: a line joins across a missing week, a sum stands in for a mean, a band has no edge, or a palette carries meaning in color alone.
@@ -23,7 +21,9 @@ Both tools assume the model in the `ams-data-setup` skill's `power-bi.md` and `t
 
 ### Build the noise band measures
 
-Every band in this file uses `baseline mean ± 1.96 × TE × √(1 + 1/n)`. Take TE from a test-retest study, never from the athlete's own values. The 95 percent level is a choice. Hopkins (2017) uses the same TE × √(1 + 1/n) error for a change from the mean of several tests.
+Every TE band in this file uses `baseline mean ± 1.96 × TE × √(1 + 1/n)`. Take TE from a test-retest study. Never use the athlete's own values as TE. The 95 percent level is a choice. Hopkins (2017) uses the same TE × √(1 + 1/n) error for a change from the mean of several tests.
+
+When no TE exists, you may draw a usual-variation band instead: `baseline mean ± t(n − 1) × baseline SD × √(1 + 1/n)`, from at least 10 stable values. Get t from `T.INV.2T(0.05, n − 1)` in DAX. Follow the rules in the time series reference: label it usual variation, never noise or measurement error, and show only two states, inside or outside.
 
 In Power BI, use these DAX measures. `Baseline mean (cm)` and `Baseline n` come from the baseline measures in the `monitoring-statistics` skill, or from a fixed baseline period:
 
@@ -130,7 +130,7 @@ In Tableau, follow these steps:
 
 ### Draw squad small multiples
 
-Give every panel the same x-axis and y-axis. Order panels by roster or position group, not by score. Split by position group beyond about 20 panels.
+Give every panel the same x-axis and y-axis. Order panels by roster or position group, not by score. Split by position group beyond about 20 panels. Keep that limit for a laptop screen or a printed page. For a report read on a phone, do not draw small multiples. Use the sorted change dot plot below for who moved. The evidence on panel numbers comes from screens of at least 9.4 × 6.6 inches, so it does not cover phones. [squad-views.md](squad-views.md) gives the study.
 
 In Power BI, use the line chart from the single-athlete steps and put `athletes[athlete_id]` in the **Small multiples** well. **Shared y-axis** is on by default. Leave it on. Microsoft lists trend lines and forecasting as not available in small multiples. Its page does not mention error bars, so check that the band draws in every panel before you share the report. The same page says **Show items with no data** may not behave as expected in small multiples. Remove one week for one athlete and check that the gap still shows before you rely on it. Small multiples also come only for bar, column, line, and area charts, not for scatter charts.
 
@@ -317,8 +317,6 @@ These are the mistakes AI tools and BI users make most often with these charts:
 ## Example request
 
 > Build me a Power BI page that shows each athlete's weekly jump height against their own baseline, with a noise band, and a squad view of who changed this week.
-
-Status: not tested.
 
 ## Check the result
 

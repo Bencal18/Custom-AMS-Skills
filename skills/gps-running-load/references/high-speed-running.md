@@ -78,7 +78,7 @@ efforts = (run_s >= min_s - 1e-9).groupby(level=g).sum().reindex(hsr.index, fill
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the boundary rule in this file: a sample counts when it is at or above the threshold. They round speed and threshold to 6 decimals in m/s before comparing, as the Python code does. They return a blank when an individualized threshold is missing. A what-if parameter in Power BI and a parameter in Tableau always hold a value, so set it on purpose and print it with the result.
+These versions follow the boundary rule in this file: a sample counts when it is at or above the threshold. They round speed and threshold to 6 decimals in m/s before comparing, as the Python code does. They return a blank when an individualized threshold is missing. A what-if parameter in Power BI and a parameter in Tableau always hold a value, so set it on purpose and print it with the result.
 
 Both versions assume a `gps_samples` table with one row per sample: `athlete_id`, `session_id`, `time_s`, and `speed_kmh`. Ask the user for the sampling rate. The code below uses 10 Hz. Show the result with one athlete and one session per row.
 
@@ -243,8 +243,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 ## Example request
 
 > I have 10 Hz GPS files for 22 players from Saturday's match. Speed is in km/h. Give me each player's distance above 19.8 km/h and above 25.2 km/h, and the number of efforts above 25.2 km/h that last at least 1 second.
-
-Status: not tested.
 
 ## Check the result
 

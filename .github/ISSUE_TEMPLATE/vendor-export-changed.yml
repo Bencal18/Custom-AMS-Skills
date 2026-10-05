@@ -1,0 +1,34 @@
+name: Vendor export or API changed
+description: Report a vendor export, API, or metric definition that no longer matches a reference file.
+title: "Vendor change: <vendor and product>"
+labels: ["vendor change"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach real exports. Share column names, units, and made-up example rows only.
+  - type: input
+    id: vendor
+    attributes:
+      label: Vendor and product
+      placeholder: Catapult Vector, OpenField export
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Software or API version
+      description: The version you use, and the date you saw the change.
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: Reference file affected
+      placeholder: skills/gps-running-load/references/catapult.md
+  - type: textarea
+    id: change
+    attributes:
+      label: What changed
+      description: New, renamed, or removed columns, new units, or a changed definition. Link the vendor's release notes if they exist.
+    validations:
+      required: true

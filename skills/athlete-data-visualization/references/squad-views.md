@@ -22,9 +22,9 @@ Draw one small panel per athlete, each with the athlete's own baseline and noise
 
 One shared chart was faster for comparisons over a small visual span. The main experiment tested 2, 4, and 8 series (Javed et al., 2010).
 
-Order panels by roster or position group, not by score. Beyond about 20 panels, or when panels are too small to read the band at viewing size, split by position group. The number 20 is practice advice.
+Order panels by roster or position group, not by score. Beyond about 20 panels, or when panels are too small to read the band at viewing size, split by position group. The number 20 is practice advice. Keep it for a laptop screen or a printed page. On a phone, do not draw small multiples. Use the sorted change dot plot below for who moved.
 
-With small multiples of line charts from 2 to 70 panels, accuracy fell steadily as panels were added, with no single point where it collapsed (Hosseinpour et al., 2025). Highlighting the panels of interest reduced the loss but did not remove it. So highlight the athletes the coach asked about.
+With small multiples of line charts from 2 to 70 panels, accuracy fell steadily as panels were added, with no single point where it collapsed (Hosseinpour et al., 2025). Highlighting the panels of interest reduced the loss but did not remove it. So highlight the athletes the coach asked about. Participants in that study used screens of at least 9.4 × 6.6 inches, so the evidence does not cover phones.
 
 ### Use a sorted dot plot for "who moved"
 
@@ -170,8 +170,6 @@ Use these notes for other tools:
 
 > Give me one view of the whole squad's jump testing this week so I can see who has moved away from their normal. Don't make it a ranking.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:
@@ -189,11 +187,11 @@ Run these checks on the chart:
 This file draws on these sources:
 
 - Javed W, McDonnel B, Elmqvist N. Graphical perception of multiple time series. *IEEE Transactions on Visualization and Computer Graphics*. 2010;16(6):927-934. doi:10.1109/TVCG.2010.162. Finds separate charts per series, such as small multiples, more efficient for comparisons across a large visual span, and one shared chart faster over a small visual span. Tested 2, 4, and 8 series in the main experiment.
-- Hosseinpour H, Matzen LE, Divis KM, Castro SC, Padilla L. Examining limits of small multiples: frame quantity impacts judgments with line graphs. *IEEE Transactions on Visualization and Computer Graphics*. 2025;31(3):1875-1887. doi:10.1109/TVCG.2024.3372620. https://par.nsf.gov/servlets/purl/10503942. Accessed 2026-10-02. Finds a linear decline in accuracy as small multiples of line charts grow from 2 to 70 frames, with no threshold, and finds that highlighting frames reduces but does not remove the decline.
+- Hosseinpour H, Matzen LE, Divis KM, Castro SC, Padilla L. Examining limits of small multiples: frame quantity impacts judgments with line graphs. *IEEE Transactions on Visualization and Computer Graphics*. 2025;31(3):1875-1887. doi:10.1109/TVCG.2024.3372620. https://par.nsf.gov/servlets/purl/10503942. Accessed 2026-10-02. Finds a linear decline in accuracy as small multiples of line charts grow from 2 to 70 frames, with no threshold, and finds that highlighting frames reduces but does not remove the decline. Participants used screens of at least 9.4 × 6.6 inches.
 - Cleveland WS, McGill R. Graphical perception: theory, experimentation, and application to the development of graphical methods. *Journal of the American Statistical Association*. 1984;79(387):531-554. doi:10.1080/01621459.1984.10478080. Recommends dot charts, which use position along a common scale.
 - Cleveland WS, McGill R. An experiment in graphical perception. *International Journal of Man-Machine Studies*. 1986;25(5):491-500. doi:10.1016/S0020-7373(86)80019-0. Finds position judgments the most accurate.
 - Harrower M, Brewer CA. ColorBrewer.org: an online tool for selecting colour schemes for maps. *The Cartographic Journal*. 2003;40(1):27-37. doi:10.1179/000870403235002042. Matches sequential and diverging schemes to the nature of the data.
 - Goldstein H, Spiegelhalter DJ. League tables and their limitations: statistical issues in comparisons of institutional performance. *Journal of the Royal Statistical Society Series A*. 1996;159(3):385-409. doi:10.2307/2983325. Shows ranks are particularly sensitive to sampling variability (section 3.2), calls for interval estimates that display the uncertainty around estimates and ranks, and concludes that rankings can serve as screening instruments but not as definitive judgments on individual institutions.
 - Boys RJ, Philipson PM. On the ranking of Test match batsmen. *Journal of the Royal Statistical Society Series C*. 2019;68(1):161-179. doi:10.1111/rssc.12298. Preprint: https://arxiv.org/abs/1806.05496. Accessed 2026-10-02. Finds wide rank intervals for most batsmen because of innings-to-innings variation, and links this to Goldstein and Spiegelhalter's point on ranking individuals with similar performance.
 - Barnett AG, van der Pols JC, Dobson AJ. Regression to the mean: what it is and how to deal with it. *International Journal of Epidemiology*. 2005;34(1):215-220. doi:10.1093/ije/dyh299. Explains how unusually large or small values tend to be followed by values closer to the mean.
-- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. *Sportscience*. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm. Accessed 2026-10-02. Its monitoring spreadsheet computes the error of a change from the mean of several reference tests as `TE × √(1 + 1/n)`, with t at the typical error's degrees of freedom.
+- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. *Sportscience*. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm. Accessed 2026-10-02. Its monitoring spreadsheet computes the error of a change from the mean of several reference tests as `TE × √(1 + 1/n)`, with t at the typical error's degrees of freedom. The skills use only its error formula, not its magnitude-based inference.

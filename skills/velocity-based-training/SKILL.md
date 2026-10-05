@@ -4,7 +4,6 @@ description: Calculate mean concentric velocity, velocity loss in a set, and loa
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Velocity-based training
@@ -80,7 +79,7 @@ Follow these rules before you call a change in bar speed real. If the `monitorin
 
 - Typical error (TE) is the measure's noise: the within-athlete error SD from a short-term test-retest in which no true change is expected. Use a retest with the same exercise, equipment, device, velocity measure, and load. Compute it on the same summary (single rep, fastest rep, or mean of reps) as the values you compare.
 - Retesting on separate days is an option. It counts normal day-to-day variation as noise, so it gives a larger TE. Label it as this skill's choice, not a published rule.
-- Noise band for two single values: 1.96 × √2 × TE, about 2.77 × TE. For a new value against a baseline mean of n values: 1.96 × TE × √(1 + 1/n). The second form adds the variance of the new value to the variance of the baseline mean. The same error appears in Hopkins's monitoring spreadsheet (Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm, accessed 2026-10-02). The 95% level is a choice.
+- Noise band for two single values: 1.96 × √2 × TE, about 2.77 × TE. For a new value against a baseline mean of n values: 1.96 × TE × √(1 + 1/n). The second form adds the variance of the new value to the variance of the baseline mean. The same error appears in Hopkins's monitoring spreadsheet (Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm, accessed 2026-10-02). The skills use only its error formula, not its magnitude-based inference. The 95% level is a choice.
 - The band assumes the true value did not change, errors are independent, TE is the same across athletes and values, and TE is known. Error alone gives a change smaller than the band about 95 percent of the time. When the assumptions fail, the real false-flag rate can be higher or lower than 5%. Never call 5% a lower bound.
 - When TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study: athletes − 1 for two trials. For 6 athletes, t(5) = 2.57. For 10, t(9) = 2.26. Never use the SD of the athlete's own baseline values as TE.
 - Use 95% by default. Say it is a choice that matches common MDC95 reporting. Offer Hopkins's practical 1.5 to 2.0 × TE only with its cost: for two single values, 1.5 × TE flags 28.9% of pure-noise changes (14.4% in one direction), and 2.0 × TE flags 15.7% (7.9%).

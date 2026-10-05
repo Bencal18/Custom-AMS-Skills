@@ -4,7 +4,6 @@ description: Make clear, honest charts of athlete data, such as trends against b
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Athlete data visualization
@@ -80,7 +79,7 @@ Run these checks on your own chart before you show it:
 - **Text size:** every text element in the image, including any note, is at least 12 pt at the size the chart is viewed.
 - **Counts:** the number of athletes shown matches the data, and missing athletes are listed, not dropped.
 - **Gaps:** no missing value is drawn as zero or bridged by a line.
-- **Noise bands:** each band uses `1.96 × TE × √(1 + 1/n)`, or a stated t value (a wider multiplier for a TE from few athletes). TE comes from a test-retest study, not from the athlete's own values. The band matches any flag rule in the same report.
+- **Noise bands:** each band uses `1.96 × TE × √(1 + 1/n)`, or a stated t value (a wider multiplier for a TE from few athletes). TE comes from a test-retest study, not from the athlete's own values. When no TE exists, a usual-variation band from at least 10 stable baseline values may stand in, labeled "usual variation", never measurement error. The band matches any flag rule in the same report.
 - **Band note:** the note says the 95 percent level is a choice, says the √(1 + 1/n) term adds the variance of the baseline mean, as in Hopkins (2017), and lists the band's assumptions.
 - **Band edges:** bands and zones have edges at 3:1 contrast or labeled edge values. A light fill alone is not enough.
 - **Chance flags:** a squad chart with flags states how many flags to expect by chance next to the number found.

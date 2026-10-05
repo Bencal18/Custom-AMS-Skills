@@ -6,6 +6,41 @@ The skill reference files are the source of truth. This page condenses them and 
 
 Every metric on this page is decision support only. No number here clears an athlete for training, competition, or return to sport. No number here predicts injury or makes a training decision. Each breakdown keeps the limits its reference file states.
 
+## Contents
+
+This page has these sections:
+
+- [Monitoring statistics](#monitoring-statistics)
+  - [Shared rules for judging change](#shared-rules-for-judging-change)
+  - [Typical error](#typical-error)
+  - [Smallest worthwhile change](#smallest-worthwhile-change)
+  - [Minimal detectable change](#minimal-detectable-change)
+  - [Individual baselines and z-scores](#individual-baselines-and-z-scores)
+  - [Group p-values for individual athletes](#group-p-values-for-individual-athletes)
+- [Load and wellness](#load-and-wellness)
+  - [Session RPE load](#session-rpe-load)
+  - [Heart rate load](#heart-rate-load)
+  - [Acute to chronic workload ratio](#acute-to-chronic-workload-ratio)
+  - [Wellness z-score](#wellness-z-score)
+- [Running load](#running-load)
+  - [Total distance and distance per minute](#total-distance-and-distance-per-minute)
+  - [High-speed running distance](#high-speed-running-distance)
+  - [Accelerations and decelerations](#accelerations-and-decelerations)
+- [Force plate](#force-plate)
+  - [Countermovement jump height](#countermovement-jump-height)
+  - [Reactive strength index-modified](#reactive-strength-index-modified)
+  - [Isometric mid-thigh pull peak force](#isometric-mid-thigh-pull-peak-force)
+  - [Eccentric hamstring force](#eccentric-hamstring-force)
+- [Velocity-based training](#velocity-based-training)
+  - [Mean concentric velocity](#mean-concentric-velocity)
+  - [Velocity loss](#velocity-loss)
+- [Limb symmetry](#limb-symmetry)
+  - [Limb symmetry index](#limb-symmetry-index)
+- [Composites](#composites)
+  - [Readiness composite](#readiness-composite)
+- [Vendor metric pages](#vendor-metric-pages)
+- [Sources](#sources)
+
 ## How to read this page
 
 Each analysis type starts with a summary table of its metrics, formulas, units, and reference files. One breakdown per metric follows the table. Each breakdown has these parts:
@@ -38,6 +73,7 @@ These metrics judge whether a change in one athlete is real, and whether it is b
 | Smallest worthwhile change (SWC) | `SWC = 0.2 × SD_between` | Units of the measure | [smallest-worthwhile-change.md](../skills/monitoring-statistics/references/smallest-worthwhile-change.md) |
 | Minimal detectable change (MDC) | `MDC95 = SEM × 1.96 × √2`, `MDC90 = SEM × 1.645 × √2` | Units of the measure | [minimal-detectable-change.md](../skills/monitoring-statistics/references/minimal-detectable-change.md) |
 | Noise band against a baseline mean (derived) | `1.96 × TE × √(1 + 1/n)` | Units of the measure | [individual-baselines-z-scores.md](../skills/monitoring-statistics/references/individual-baselines-z-scores.md) |
+| Usual-variation band, when no TE exists | `baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)` | Units of the measure | [individual-baselines-z-scores.md](../skills/monitoring-statistics/references/individual-baselines-z-scores.md) |
 | Individual z-score | `z = (today − baseline_mean) / baseline_SD` | No unit | [individual-baselines-z-scores.md](../skills/monitoring-statistics/references/individual-baselines-z-scores.md) |
 | Group p-value | A paired t-test on change scores. The file gives no formula. | Probability from 0 to 1 | [misleading-methods.md](../skills/monitoring-statistics/references/misleading-methods.md) |
 
@@ -53,6 +89,20 @@ Take typical error from the right study:
 - Retesting on separate days is an optional practice choice, not a published rule. It counts normal day-to-day variation as noise and gives a larger TE than a same-day retest. Name the choice with the result.
 - Compute TE on the same summary you compare: a single trial, the best of 3, or the mean of 3. The error of a mean of n independent trials is TE / √n (Hopkins, 2000).
 - An SD from the athlete's own baseline values is not TE. It mixes biological variation with measurement error. Do not use it as TE.
+
+When no TE exists, use the usual-variation band from `individual-baselines-z-scores.md` instead:
+
+```text
+Usual-variation band:   baseline mean ± t(n − 1) × baseline SD × √(1 + 1/n)
+```
+
+Apply these rules to it:
+
+- Use at least 10 values from a stable period, with today left out. Hopkins (2017) says at least 10 tests are needed for even modest precision. His monitoring spreadsheet uses the athlete's own scatter about the trend line when no short-term TE is entered.
+- Take t from n − 1 degrees of freedom. The band is the standard prediction interval for one new value (NIST, Dataplot reference manual, after Hahn and Meeker, 1991, pp. 61-62). With 10 values, the multiplier is t(9) × √(1 + 1/10) = 2.2622 × 1.0488 = 2.37.
+- With 10 stable values, independent days, and normal data, 5.0% of values fall outside the band by chance with t(9), and 8.2% with 1.96. In a simulation run for the skill, a correlation of 0.3 or 0.5 between consecutive days raised the t(9) rate to 5.7% or 6.6%.
+- Give two states only: within usual variation or outside usual variation. Add no smallest worthwhile change tier.
+- Never call the band noise or measurement error. It holds real day-to-day change as well as error.
 
 Use these noise band formulas:
 
@@ -92,7 +142,7 @@ Know the false-flag rates:
 - With all assumptions met, about 5% of pure-noise changes cross the band in either direction, or 2.5% when only one direction matters, such as a drop.
 - When the assumptions fail, the real rate can be higher or lower than 5%. It is higher when TE is too small, comes from few athletes, or varies between athletes. It can be lower when TE is overestimated or errors are positively correlated over time. Never call 5% a lower bound.
 - With TE from 6 athletes and 1.96, about 10.7% of pure-noise changes cross the band. With t(5), the rate is 5.0%.
-- A TE overestimated by 20% gives 1.87% for two single tests. Error correlation of 0.5 between consecutive tests gives 0.56% for two single tests, or 4.38% against a baseline of 8.
+- A TE overestimated by 20% gives 1.87% for two single tests. Error correlation of 0.5 between consecutive tests gives 0.56% for two single tests, or 4.59% against a baseline of 10.
 
 Report flags expected across a squad:
 
@@ -345,7 +395,7 @@ The MDC and the SWC answer different questions. The MDC asks whether the change 
 
 - Confidence level: MDC95 is 1.7418 cm and MDC90 is 1.4619 cm. The same 1.6 cm change fails MDC95 and passes MDC90.
 - Small TE study: the SEM of 0.6284 cm came from 6 athletes. With t(5) = 2.5706, the band is 2.5706 × 0.6284 × 1.4142 = 2.2845 cm, and the 1.6 cm change is still inside it.
-- Baseline mean of n values: against a mean of 8 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/8) = 1.3064 cm.
+- Baseline mean of n values: against a mean of 10 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/10) = 1.2918 cm.
 - Practical threshold: 1.5 × TE and 2.0 × TE give 0.9426 cm and 1.2568 cm (Hopkins, 2000).
 - Leaving out √2: `1.96 × SEM` gives 1.2317 cm, which is 29% too small and makes noise look like change.
 - Which SEM: an SEM from a different protocol, from tests weeks apart, or from an ICC formula on a different group changes the MDC (Weir, 2005).
@@ -364,7 +414,7 @@ The MDC and the SWC answer different questions. The MDC asks whether the change 
 **Inputs.** The calculation needs these data:
 
 - A long table with one row per `athlete_id`, `date`, and value, such as `cmj_cm`, from one protocol
-- A baseline window k and a minimum count of values, chosen by the user
+- A baseline window k and a minimum count of values, chosen by the user. If the user has none, the file offers at least 10 prior values, labeled as its own practice default.
 - The test's TE, from test-retest data, for the noise band
 
 **Calculation.** Use a rolling baseline of prior values only, by default:
@@ -398,38 +448,38 @@ Follow these steps from raw inputs:
 8. Compute the noise band from the test's TE, and compare the change from the baseline mean with it.
 9. Report the z-score with the window k, the count n, the baseline mean, the baseline SD, and the units.
 
-**Worked example.** One athlete did a CMJ every 3 days, from 2026-09-04 to 2026-09-25: 41.0, 39.8, 40.6, 40.9, 39.5, 40.3, 41.2, and 40.0 cm. Today, 2026-09-28, the athlete jumped 37.6 cm. Judge today against the 8 prior tests:
+**Worked example.** One athlete did a CMJ every 3 days, from 2026-08-29 to 2026-09-25: 40.2, 40.7, 41.0, 39.8, 40.6, 40.9, 39.5, 40.3, 41.2, and 40.0 cm. Today, 2026-09-28, the athlete jumped 37.6 cm. Judge today against the 10 prior tests:
 
-1. Sum of the 8 prior values = 323.30 cm, so the baseline mean = 40.4125 cm.
-2. Sum of squared deviations = 2.6288 cm². Divide by 7 to get 0.3755 cm².
-3. Baseline SD = √0.3755 = 0.6128 cm.
-4. z = (37.6 − 40.4125) / 0.6128 = −4.59.
-5. Change from the baseline mean = −2.8125 cm.
-6. Noise band with TE = 0.6284 cm: 1.96 × 0.6284 × 1.0607 = 1.3064 cm.
-7. The drop is beyond the band by 2.8125 − 1.3064 = 1.5061 cm. That is still beyond the SWC of 0.6185 cm.
-8. The TE came from 6 athletes, so t(5) = 2.57 applies. The band becomes 2.5706 × 0.6284 × 1.0607 = 1.7133 cm. The drop is still beyond it by 1.0992 cm.
+1. Sum of the 10 prior values = 404.20 cm, so the baseline mean = 40.4200 cm.
+2. Sum of squared deviations = 2.7560 cm². Divide by 9 to get 0.3062 cm².
+3. Baseline SD = √0.3062 = 0.5534 cm.
+4. z = (37.6 − 40.4200) / 0.5534 = −5.10.
+5. Change from the baseline mean = −2.8200 cm.
+6. Noise band with TE = 0.6284 cm: 1.96 × 0.6284 × 1.0488 = 1.2918 cm.
+7. The drop is beyond the band by 2.8200 − 1.2918 = 1.5282 cm. That is still beyond the SWC of 0.6185 cm.
+8. The TE came from 6 athletes, so t(5) = 2.57 applies. The band becomes 2.5706 × 0.6284 × 1.0488 = 1.6942 cm. The drop is still beyond it by 1.1258 cm.
 
-Result: today is 4.59 of the athlete's usual SDs below baseline (window 8 prior tests, n = 8, sample SD). The drop is larger than measurement error, and clearly larger than the SWC. Report it as a flag for the practitioner to review, not as a diagnosis.
+Result: today is 5.10 of the athlete's usual SDs below baseline (window 10 prior tests, n = 10, sample SD). The drop is larger than measurement error, and clearly larger than the SWC. Report it as a flag for the practitioner to review, not as a diagnosis.
 
 **Variants.** Use these variants when they fit:
 
 - Rolling window of tests: the previous k tests. Use it when tests are irregular, such as weekly jumps. This is the default.
 - Rolling window of days: the previous k calendar days. Use it only for daily measures. Missing days shrink the real number of values, so report n.
 - Fixed baseline: the mean and SD of a set period, such as the first weeks of preseason. It does not drift. State the dates.
-- Control limits: Sands et al. (2019) show limits at 1.5 and 2.0 × the baseline SD around the baseline mean, equal to z = ±1.5 and z = ±2.0. They are examples from a published case, not validated thresholds. With an 8-value baseline and pure noise, |z| > 2 flags about 10.1% of tests and |z| > 1.5 flags about 20.0%.
+- Control limits: Sands et al. (2019) show limits at 1.5 and 2.0 × the baseline SD around the baseline mean, equal to z = ±1.5 and z = ±2.0. They are examples from a published case, not validated thresholds. With a 10-value baseline and pure noise, |z| > 2 flags about 8.9% of tests and |z| > 1.5 flags about 18.6%.
 
 **What changes the number.** These choices change the z-score for the same athlete on the same day:
 
-- Including today in the baseline: the last 8 values with today included give a mean of 39.9875 cm, an SD of 1.1180 cm, and z = −2.14 instead of −4.59.
+- Including today in the baseline: the last 10 values with today included give a mean of 40.1600 cm, an SD of 1.0532 cm, and z = −2.43 instead of −5.10.
 - Window length: with the 4 prior tests, z = −3.71. With 3 prior tests, z = −4.64. Short windows give unstable SDs.
-- Population SD: `STDEV.P` gives an SD of 0.5732 cm and z = −4.91.
+- Population SD: `STDEV.P` gives an SD of 0.5250 cm and z = −5.37.
 - Team SD instead of the athlete's SD: dividing by the between-athlete SD of 3.0927 cm gives z = −0.91. That answers a different question.
 - Small n: Swinton et al. (2018) show that a 95% interval based on a TE from 5 individuals needs a multiplier of 2.78 instead of 1.96.
-- Own SD as TE: using the baseline SD of 0.6128 cm in place of TE gives a band of 1.2739 cm with 1.96, or 1.5369 cm with t(7) = 2.3646. Neither is a measurement-error band.
-- Trend in the baseline: a baseline should be stable, with low variability and no clear trend (Sands et al., 2019). In a 28-test example that falls 0.1 cm per test from test 9, the rolling z never reaches −2; its lowest value is −1.91. Before test 28, the rolling mean has drifted to 38.4500 cm, with an SD of 0.4440 cm. Against the fixed baseline of tests 1 to 8 (mean 40.0000 cm), test 28 is 2.4000 cm lower, beyond the noise band of 1.3064 cm. Pair a rolling baseline with a fixed reference period or a trend line.
+- Own SD in place of TE: the baseline SD also holds biological variation, so a band built on it is never a measurement-error band. With at least 10 stable values, it gives the usual-variation band, `baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)`, with two states only. Today is outside that band when |z| > t(n − 1) × √(1 + 1/n), which is 2.37 for 10 values. With fewer than 10 values, do not build that band. See [Shared rules for judging change](#shared-rules-for-judging-change).
+- Trend in the baseline: a baseline should be stable, with low variability and no clear trend (Sands et al., 2019). In a 30-test example that falls 0.1 cm per test from test 11, the rolling z against the prior 10 tests never reaches −2; its lowest value is −1.87. Before test 30, the rolling mean has drifted to 38.5500 cm, with an SD of 0.5603 cm. Against the fixed baseline of tests 1 to 10 (mean 40.0000 cm), test 30 is 2.5000 cm lower, beyond the noise band of 1.2918 cm. Pair a rolling baseline with a fixed reference period or a trend line.
 - Mixed conditions: a baseline that spans preseason and in-season, or an illness period, changes both the mean and the SD.
 
-**Units and typical range.** The z-score has no units. The baseline mean and SD have the units of the measure. The file gives no typical z-score range or flag threshold. Thresholds are choices, not facts. Name the threshold and its source. No source used in the file sets a minimum number of values or a best window for an individual baseline. Weir (2005) states there is no consensus on the sample size needed for a stable SEM. Report n with every z-score.
+**Units and typical range.** The z-score has no units. The baseline mean and SD have the units of the measure. The file gives no typical z-score range or flag threshold. Thresholds are choices, not facts. Name the threshold and its source. No source used in the file sets a best window for an individual baseline. Weir (2005) states there is no consensus on the sample size needed for a stable SEM. Hopkins (2017) asks for at least 10 values for modest precision, and Swinton et al. (2018) say more than 10 to 20 tests may be needed. So the file offers at least 10 prior values as its practice default, and its code templates use a window of 10 and a minimum of 10. Report n with every z-score.
 
 **Vendor equivalents.** One device file maps a z-score status:
 
@@ -499,7 +549,7 @@ These metrics describe internal load, how recent load compares with longer-term 
 | Daily and weekly session RPE load | Sum of session loads in a day; sum of daily loads in a week | AU | [session-rpe-load.md](../skills/load-and-wellness/references/session-rpe-load.md) |
 | %HRmax and %HRR | `%HRmax = HR ÷ HRmax × 100`, `%HRR = (HR − HRrest) ÷ (HRmax − HRrest) × 100` | % | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
 | Edwards TRIMP | `(min in zone 1 × 1) + (min in zone 2 × 2) + (min in zone 3 × 3) + (min in zone 4 × 4) + (min in zone 5 × 5)` | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
-| Banister TRIMP | `duration_min × x × 0.64 × e^(1.92 × x)` (male weighting) or `duration_min × x × 0.86 × e^(1.67 × x)` (female weighting) | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
+| Banister TRIMP | `Σ (t_i × x_i × 0.64 × e^(1.92 × x_i))` (male weighting) or `Σ (t_i × x_i × 0.86 × e^(1.67 × x_i))` (female weighting), summed over samples. Session mean fallback: `duration_min × x × 0.64 × e^(1.92 × x)` (male weighting) or `duration_min × x × 0.86 × e^(1.67 × x)` (female weighting) | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
 | Lucia TRIMP | `(min below VT × 1) + (min from VT to RCP × 2) + (min above RCP × 3)` | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
 | ACWR, rolling coupled | Mean daily load, last 7 days ÷ mean daily load, last 28 days | No unit | [acwr.md](../skills/load-and-wellness/references/acwr.md) |
 | ACWR, rolling uncoupled | Mean daily load, last 7 days ÷ mean daily load, days 8 to 28 back | No unit | [acwr.md](../skills/load-and-wellness/references/acwr.md) |
@@ -535,7 +585,7 @@ Follow these steps from raw inputs:
 2. Convert any duration in hours or `hh:mm` text to minutes.
 3. Multiply `rpe_cr10` by `duration_min` for each session, and store it in `srpe_load_au`. Keep the result missing if either input is missing.
 4. Add `srpe_load_au` across sessions for each `athlete_id` and `date` to get daily load. If any session that day has a missing rating, mark the day as missing.
-5. Add daily loads across each calendar week, Monday to Sunday unless the user names another start day, to get weekly load. Do this even when the user asked only for daily load. Report how many days had complete data and how many were marked injured, ill, or modified. Mark a week with any missing day as incomplete, and give its total with the number of days it covers, such as 6 of 7 days.
+5. Add daily loads across each calendar week, Monday to Sunday unless the user names another start day, to get weekly load. Do this even when the user asked only for daily load. Report how many days had complete data and how many were marked ill, unavailable, or modified. Mark a week with any missing day as incomplete, and give its total with the number of days it covers, such as 6 of 7 days.
 
 **Worked example.** One athlete trains three days. Monday, 2026-08-03, has a practice and a lift:
 
@@ -559,7 +609,7 @@ For more than one session in a day, calculate each session's load, then add them
 
 **What changes the number.** These choices change the result when the athlete's effort does not change:
 
-- Duration definition: adding a 15-minute warm-up to Monday's practice changes it from 450 AU to 6 × 90 = 540 AU. No consensus says whether duration includes the warm-up or the cool-down. Use one rule for every session, and record it. If the user has no rule, the file offers this default, labeled as its own choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) used that rule for training. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played matched GPS distance more closely than loads from the whole match period: r = 0.81 against 0.57 (Pustina et al., 2017). The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
+- Duration definition: adding a 15-minute warm-up to Monday's practice changes it from 450 AU to 6 × 90 = 540 AU. No consensus says whether duration includes the warm-up or the cool-down. Use one rule for each session type, such as training and matches, and record it. If the user has no rule, the file offers this default, labeled as its own choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) defined training duration the same way: it includes the warm-up and recovery periods and excludes the cool-down. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played correlated with GPS distance more closely than loads from total match duration: r = 0.808 against 0.566 (Pustina et al., 2017). Under minutes played, an unused substitute's warm-up scores 0 AU. The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
 - Duration unit: entering Monday's practice as 1.25 hours gives 6 × 1.25 = 7.5 AU instead of 450 AU.
 - Rating timing: if an immediate rating changed Monday's 6 to a 7, the practice would read 7 × 75 = 525 AU (Foster et al., 2001).
 - Rating scale: a 6 to 20 rating or a CR100 rating is on a different range from a CR-10 rating. Name the scale with every load.
@@ -582,7 +632,7 @@ For more than one session in a day, calculate each session's load, then add them
 - Each athlete's maximal heart rate (HRmax), with how it was set: a maximal test, a peak from a maximal field test, or an age formula
 - Each athlete's resting heart rate (HRrest), with how it was measured
 - For Lucia TRIMP, the heart rate at the ventilatory threshold (VT) and the respiratory compensation point (RCP) from a lab ramp test
-- For Banister TRIMP, the weighting the user names for each athlete. Never infer it from a name or roster data.
+- For Banister TRIMP, the weighting (curve) the user chooses for each athlete. Never ask for the athlete's gender, and never infer the weighting from a name or roster data.
 
 **Calculation.** Express intensity as %HRmax or %HRR, then apply a TRIMP (training impulse) method. Name the method, the HRmax source, and the HRrest value with every result:
 
@@ -593,9 +643,14 @@ For more than one session in a day, calculate each session's load, then add them
 TRIMP_Edwards  = (min in zone 1 × 1) + (min in zone 2 × 2) + (min in zone 3 × 3)
                + (min in zone 4 × 4) + (min in zone 5 × 5)
 
-x = (HR_mean − HRrest) ÷ (HRmax − HRrest)
-Male weighting:    TRIMP_Banister = duration_min × x × 0.64 × e^(1.92 × x)
-Female weighting:  TRIMP_Banister = duration_min × x × 0.86 × e^(1.67 × x)
+x_i = (HR_i − HRrest) ÷ (HRmax − HRrest)
+Male weighting:    TRIMP_Banister = Σ ( t_i × x_i × 0.64 × e^(1.92 × x_i) )
+Female weighting:  TRIMP_Banister = Σ ( t_i × x_i × 0.86 × e^(1.67 × x_i) )
+
+Session mean fallback, only when nothing finer than the session mean and duration exists:
+x_mean = (HR_mean − HRrest) ÷ (HRmax − HRrest)
+Male weighting:    TRIMP_Banister_mean = duration_min × x_mean × 0.64 × e^(1.92 × x_mean)
+Female weighting:  TRIMP_Banister_mean = duration_min × x_mean × 0.86 × e^(1.67 × x_mean)
 
 TRIMP_Lucia = (min below VT × 1) + (min from VT to RCP × 2) + (min above RCP × 3)
 ```
@@ -615,10 +670,15 @@ The terms mean the following:
 
 - `HRmax`, `HRrest`: maximal and resting heart rate, in bpm. Heart rate reserve (HRR) is HRmax − HRrest.
 - Zone boundary rule: include the lower bound and exclude the upper bound, on the unrounded %HRmax. A value of exactly 60.0 % counts in zone 2. Values at or above 100 % HRmax count in zone 5. Use the same rule for Lucia zones. Neither Edwards nor Lucia et al. (2003) say which zone gets a value on a boundary. The rule matches the Polar Team Pro API. It is a practice convention, not a published part of either method.
-- `x`: the delta heart rate ratio, %HRR as a fraction, from 0 at rest to 1 at HRmax (Banister et al., 1992)
-- `HR_mean`: the mean heart rate of the session (Paulson et al., 2015; Hourcade et al., 2018)
+- `i`: one heart rate sample, or one phase of the session. `Σ` adds the terms for every sample or phase.
+- `HR_i`: the heart rate of sample `i`, or the mean heart rate of phase `i`, in bpm
+- `t_i`: the length of sample or phase `i`, in minutes. For 1 Hz data, each sample lasts 1 ÷ 60 min.
+- `x_i`, `x_mean`: the delta heart rate ratio, %HRR as a fraction, from 0 at rest to 1 at HRmax (Banister et al., 1992)
+- `HR_mean`: the mean heart rate of the whole session (Paulson et al., 2015; Hourcade et al., 2018)
 - `duration_min`: session length in minutes
 - `0.64 × e^(1.92 × x)` and `0.86 × e^(1.67 × x)`: weighting factors that give more credit to high-intensity time, based on the exponential rise of blood lactate with intensity (Banister et al., 1992). Banister (1991) prints both multiplier forms. The female form appears earlier, in Banister and Hamilton (1985). Use this multiplier form by default, and name it with every result.
+- Banister default: add one term for each sample whenever second-by-second heart rate exists, or one term for each phase when only phase means exist. Banister scored each phase from its length and heart rate, recorded periods at different intensities separately, and added the phase scores to give the session total (Banister, 1991, pp. 406-409). Polar also computes its Banister TRIMP each second and adds the results (Polar, 2025). Use the session mean only as a fallback, and label it "session mean". Paulson et al. (2015), Hourcade et al. (2018), and Tomoto et al. (2026) used the session mean. It cannot see intervals: Hourcade et al. (2018) found it did not separate two sessions with almost equal mean heart rate (p = 0.420). The weighting curves upward, so the per-sample sum is larger than the session mean whenever heart rate varies. Never mix the two in one athlete's history.
+- Spreadsheet guard: a plain `SUMPRODUCT` reads a blank sample as 0 bpm, which adds a negative term. The reference file's formula multiplies each term by `(B2:B1201<>"")`, so a blank sample adds nothing.
 - `e`: the base of natural logarithms, about 2.718
 - `VT`, `RCP`: the heart rates at the first and second breathing thresholds in a lab ramp test (Lucia et al., 2003). The multipliers 1, 2, and 3 are reported by Paulson et al. (2015).
 
@@ -627,9 +687,9 @@ Follow these steps from raw inputs:
 1. Find the sampling interval from the timestamps, in seconds.
 2. Find gaps, where timestamps jump or `hr_bpm` is 0 or blank. Remove those samples. Do not count them as 0 bpm.
 3. Find artifacts the user or device flags. Remove them only with the user's agreement, and report how many there were.
-4. Keep plausible values above HRmax. If HRmax is age-predicted, tell the user the setting is probably too low.
+4. Keep plausible values above HRmax. If HRmax is age-predicted, tell the user the setting is probably too low. If HRmax is a Yo-Yo intermittent recovery level 2 peak, label it "may be about 2 % below HRmax on average (Krustrup et al., 2006)", and apply no correction factor.
 5. Calculate time in each zone in minutes: count samples in the zone, multiply by the sampling interval, and divide by 60.
-6. Calculate the TRIMP the user asked for, in AU.
+6. Calculate the TRIMP the user asked for, in AU. For Banister TRIMP, use the per-sample sum, and use the session mean only when nothing finer exists.
 7. Report recorded minutes next to planned session minutes.
 8. Report the method, the zone boundaries and boundary rule, HRmax and its source, HRrest, and the weighting with each result.
 
@@ -660,35 +720,45 @@ The TRIMP methods give these results:
 - Edwards, measured HRmax: 5 × 1 + 3 × 2 + 6 × 3 + 6 × 4 = 53.0 AU.
 - Edwards, predicted HRmax 194 bpm: 3 × 1 + 2 × 2 + 9 × 3 + 0 × 4 + 6 × 5 = 64.0 AU.
 - Edwards, predicted HRmax 200 bpm: 120, 140, and 180 bpm sit exactly on boundaries. The result is 64.0 AU with boundaries in the higher zone and 53.0 AU with boundaries in the lower zone.
-- Banister, measured HRmax: x = (148.5 − 55) ÷ (205 − 55) = 0.6233. Male weighting 0.64 × e^(1.92 × 0.6233) = 2.1181, so TRIMP = 20 × 0.6233 × 2.1181 = 26.4 AU. Female weighting 2.4355, so TRIMP = 30.4 AU.
-- Banister, predicted HRmax 194 bpm: x = 0.6727, giving 31.3 AU male and 35.6 AU female. At 200 bpm, x = 0.6448, giving 28.5 AU and 32.6 AU.
+- Banister per-sample sum, measured HRmax: each block adds minutes × x × weighting. With the male weighting, the blocks at 110, 140, 180, 150, and 120 bpm add 1.42, 3.23, 15.85, 8.20, and 1.27 AU, so TRIMP = 30.0 AU from the unrounded terms. The female weighting gives 33.8 AU.
+- Banister per-sample sum, predicted HRmax: 36.1 AU male and 40.0 AU female at 194 bpm, and 32.5 AU and 36.4 AU at 200 bpm.
+- Banister session mean fallback, measured HRmax: x = (148.5 − 55) ÷ (205 − 55) = 0.6233. Male weighting 0.64 × e^(1.92 × 0.6233) = 2.1181, so TRIMP = 20 × 0.6233 × 2.1181 = 26.4 AU. Female weighting 2.4355, so TRIMP = 30.4 AU.
+- Banister session mean fallback, predicted HRmax 194 bpm: x = 0.6727, giving 31.3 AU male and 35.6 AU female. At 200 bpm, x = 0.6448, giving 28.5 AU and 32.6 AU.
 - Lucia: 14 min below VT and 6 min above RCP, so 14 × 1 + 0 × 2 + 6 × 3 = 32.0 AU. HRmax does not change it.
 
-Mean %HRmax is 72.4 % with the measured HRmax and 76.5 % with 194 bpm. An HRmax 11 bpm too low raises every HRmax-based result. A steady 20-minute session at the same mean of 148.5 bpm gives the same Banister TRIMP, 26.4 AU male and 30.4 AU female, but 60.0 AU Edwards and 20.0 AU Lucia. Banister TRIMP from the mean cannot tell the two sessions apart. Time in zone can.
+The per-sample sum is 13.5 % higher than the session mean with the male weighting and 11.2 % higher with the female weighting. Mean %HRmax is 72.4 % with the measured HRmax and 76.5 % with 194 bpm. An HRmax 11 bpm too low raises every HRmax-based result: the per-sample Banister sum rose from 30.0 to 36.1 AU male and from 33.8 to 40.0 AU female.
+
+A steady 20-minute session at the same mean of 148.5 bpm gives 26.4 AU male and 30.4 AU female by either Banister form, because heart rate is constant. It gives 60.0 AU Edwards and 20.0 AU Lucia. The session mean gives the interval session the same 26.4 AU, so it cannot tell the two sessions apart. The per-sample sum and time in zone can. These methods do not agree on which session was harder: the per-sample sum and Lucia TRIMP score the interval session higher, and Edwards TRIMP scores the steady session higher.
 
 **Variants.** Know these variants before you compare numbers:
 
 - %HRR, the Karvonen method (Karvonen et al., 1957): %HRR tracks the percentage of oxygen uptake reserve more closely than the percentage of maximal oxygen uptake (Swain et al., 1998). The same heart rate gives a different percentage under each method, so never mix them in one report. Edwards defined his zones on %HRmax.
-- HRmax source: use a measured HRmax when one exists. Without a maximal test, label the highest artifact-checked value from a maximal intermittent field test as HRpeak, with the test name and date. In the Yo-Yo intermittent recovery level 1 test, peak heart rate in 17 men was 187 ± 2 bpm, against 189 ± 2 bpm on a treadmill to exhaustion (Krustrup et al., 2003). In the level 2 test, heart rate at exhaustion was 98 ± 1 % of HRmax in 13 men (Krustrup et al., 2006). In 20 team sport players, heart rate at exhaustion did not differ between the 30-15 Intermittent Fitness Test and a continuous incremental test (Buchheit et al., 2009). Take HRpeak as the highest 5-second rolling average of artifact-checked samples, as Paulson et al. (2015) did in a lab test. This window is a practice default of the file, not a published rule. State it with the result.
+- HRmax source: use a measured HRmax when one exists. Without a maximal test, label the highest artifact-checked value from a maximal intermittent field test as HRpeak, with the test name and date. In the Yo-Yo intermittent recovery level 1 test, peak heart rate in 17 men was 187 ± 2 bpm, against 189 ± 2 bpm on a treadmill to exhaustion (Krustrup et al., 2003). In the level 2 test, heart rate at exhaustion was 98 ± 1 % of HRmax in 13 men (Krustrup et al., 2006). Accept a level 2 peak as HRpeak, labeled "may be about 2 % below HRmax on average (Krustrup et al., 2006)", with no correction factor. In 20 team sport players, heart rate at exhaustion did not differ between the 30-15 Intermittent Fitness Test and a continuous incremental test (Buchheit et al., 2009). Take HRpeak as the highest 5-second rolling average of artifact-checked samples, as Paulson et al. (2015) did in a lab test. This window is a practice default of the file, not a published rule. State it with the result. When a later session gives a higher artifact-checked 5-second average, raise HRpeak to that value.
 - Age-predicted HRmax: 220 − age underestimates HRmax in older adults (Tanaka et al., 2001). 208 − 0.7 × age comes from Tanaka et al. (2001). 211 − 0.64 × age had a standard error of the estimate (SEE) of 10.8 bpm in 3,320 healthy adults (Nes et al., 2013).
-- Banister exponent-only form: the appendix of Banister et al. (1992) prints e^(1.92 × x) and e^(1.67 × x) without the 0.64 and 0.86 multipliers. Banister's 1985 and 1991 texts include the multipliers. The exponent-only form gives larger numbers and reverses which sex scores higher. Ask which form a tool uses.
-- Banister phase-sum or per-sample form: Banister scored each phase of a session from its duration and mean heart rate, then added the phases (Banister & Hamilton, 1985; Banister, 1991). Applying the formula to each sample and adding the results is the same rule with one-sample phases. Polar computes its Banister TRIMP each second and adds the results (Polar, 2025). It gives a larger number than the mean form whenever heart rate varies. Use the session mean by default. It is the form used in the validation papers checked for the file (Paulson et al., 2015; Hourcade et al., 2018; Tomoto et al., 2026). The whole-session mean comes from these later papers, not from Banister. It treats the whole session as one phase, so it cannot see intervals. Offer the phase-sum or per-sample form as a labeled option. Never mix the two in one athlete's history.
+- Banister exponent-only form: the appendix of Banister et al. (1992) prints e^(1.92 × x) and e^(1.67 × x) without the 0.64 and 0.86 multipliers. Banister's 1985 and 1991 texts include the multipliers. The exponent-only form gives larger numbers and reverses which sex scores higher. Ask which form a tool uses, and whether it sums samples or uses the session mean.
+- Banister session mean: the fallback form, for files with only the session mean heart rate and duration. It is the form used in the validation papers checked for the file (Paulson et al., 2015; Hourcade et al., 2018; Tomoto et al., 2026). The whole-session mean comes from these later papers, not from Banister. It treats the whole session as one phase, so it cannot see intervals. Label it "session mean", and keep it as a separate series. Never mix it with the per-sample sum in one athlete's history.
 - Individualized TRIMP (iTRIMP): a weighting built from each athlete's own heart rate and blood lactate profile (Manzi et al., 2009). Use it only when each athlete has a lactate test.
-- Mean heart rate and mean %HRmax: simple summaries that hide how intensity was spread. Hourcade et al. (2018) found the summated zone load differed between two sessions with almost equal mean heart rate (p = 0.007), while Banister TRIMP did not (p = 0.420). Report time in zone next to any mean.
+- Mean heart rate and mean %HRmax: simple summaries that hide how intensity was spread. Hourcade et al. (2018) found the summated zone load differed between two sessions with almost equal mean heart rate (p = 0.007), while Banister TRIMP from the session mean did not (p = 0.420). Report time in zone next to any mean.
 
-The published Banister weightings are male and female only. They come from blood lactate curves in trained male and female subjects (Banister, 1991). No published guidance was found for athletes outside those categories. For those athletes, prefer Edwards, Lucia, or iTRIMP. At a delta heart rate ratio from 0.3 to 1.0, the female weighting gives 5 to 25 % more load than the male weighting.
+The published Banister weightings are labeled male and female. They come from blood lactate curves in trained men and women (Banister, 1991). They say nothing about an athlete's gender. No published guidance was found for athletes outside those categories. At a delta heart rate ratio from 0.3 to 1.0, the female weighting gives 5 to 25 % more load than the male weighting. Follow these steps to choose a weighting:
 
-**What changes the number.** These choices change the result when the athlete's effort does not change. Figures use the measured HRmax and the male weighting unless stated:
+1. Offer Edwards, Lucia, or iTRIMP first. Edwards TRIMP has no sex term.
+2. If the user wants Banister TRIMP, ask which curve to use for each athlete. Never ask for the athlete's gender, and never infer the weighting from a name or roster data. Use this wording: "Banister TRIMP has two published curves, labeled male and female, built from blood lactate in trained men and women. Which curve should I use for this athlete? If you are unsure, I can show both, or use Edwards TRIMP, which has no sex term."
+3. If the user does not choose, show both results, each labeled with its weighting.
+4. Store both results for every session.
+5. Record the chosen weighting, and never switch weightings within one athlete's history.
 
-- HRmax source: an age formula 11 bpm low raised Edwards TRIMP from 53.0 to 64.0 AU and Banister TRIMP from 26.4 to 31.3 AU.
-- HRrest: Banister TRIMP was 28.7 AU at 45 bpm, 26.4 AU at 55 bpm, and 24.0 AU at 65 bpm.
+**What changes the number.** These choices change the result when the athlete's effort does not change. Figures use the measured HRmax, the male weighting, and the per-sample Banister sum unless stated:
+
+- HRmax source: an age formula 11 bpm low raised Edwards TRIMP from 53.0 to 64.0 AU and Banister TRIMP from 30.0 to 36.1 AU.
+- HRrest: Banister TRIMP was 32.0 AU at 45 bpm, 30.0 AU at 55 bpm, and 27.8 AU at 65 bpm.
 - Boundary rule: at HRmax 200 bpm, the rule alone moved Edwards TRIMP from 53.0 to 64.0 AU, a 20.8 % swing.
-- Banister form: the exponent-only form scored 41.3 AU male and 35.3 AU female, so the sex ordering reverses.
-- Mean or per-sample: the per-sample form gave 30.0 AU male and 33.8 AU female.
-- Dropouts: a 60-second dropout at 180 bpm recorded as 0 bpm cut mean heart rate from 148.50 to 139.50 bpm and Banister TRIMP from 26.4 to 21.3 AU. Removing it instead gave 19 min, 146.84 bpm, and 24.1 AU. Edwards TRIMP fell to 49.0 AU either way. Lucia TRIMP fell to 30.0 AU with zeros and 29.0 AU with removal. A chest strap agreed best with an electrocardiogram (Gillinov et al., 2017).
-- Artifact spikes: a false 15-second spike to 230 bpm raised Edwards TRIMP from 53.0 to 53.5 AU and per-sample Banister TRIMP from 30.0 to 31.4 AU.
+- Banister form: the exponent-only form scored 46.8 AU male and 39.2 AU female, against 30.0 AU and 33.8 AU with the multipliers, so the sex ordering reverses.
+- Per-sample sum or session mean: the session mean fallback gave 26.4 AU male and 30.4 AU female, against 30.0 AU and 33.8 AU from the per-sample sum.
+- Dropouts: a 60-second dropout at 180 bpm recorded as 0 bpm cut mean heart rate from 148.50 to 139.50 bpm and Banister TRIMP from 30.0 to 27.2 AU. Each zero adds a small negative term. Removing it instead gave 19 min, 146.84 bpm, and 27.3 AU. With the session mean fallback, zeros gave 21.3 AU and removal gave 24.1 AU, against 26.4 AU. Edwards TRIMP fell to 49.0 AU either way. Lucia TRIMP fell to 30.0 AU with zeros and 29.0 AU with removal. A chest strap agreed best with an electrocardiogram (Gillinov et al., 2017).
+- Artifact spikes: a false 15-second spike to 230 bpm raised Edwards TRIMP from 53.0 to 53.5 AU and Banister TRIMP from 30.0 to 31.4 AU.
 - Sampling and averaging: with 30-second transitions, Edwards TRIMP was 53.4 AU at 1 s, 53.3 AU from 5 s averages, and 54.0 AU from 60 s averages. Lucia TRIMP was 31.2, 31.1, and 29.0 AU.
-- Cardiovascular drift: heart rate rises during prolonged exercise (Coyle & González-Alonso, 2001; Achten & Jeukendrup, 2003). An illustrative drift of 0.5 bpm per minute raised Edwards TRIMP from 53.0 to 59.0 AU and Banister TRIMP from 26.4 to 29.7 AU.
+- Cardiovascular drift: heart rate rises during prolonged exercise (Coyle & González-Alonso, 2001; Achten & Jeukendrup, 2003). An illustrative drift of 0.5 bpm per minute raised Edwards TRIMP from 53.0 to 59.0 AU and Banister TRIMP from 30.0 to 33.8 AU.
 - Heat and hydration: dehydration and air temperature can change the relationship between heart rate and oxygen uptake a great deal (Achten & Jeukendrup, 2003).
 - Caffeine: 3 to 6 mg per kg body mass did not change heart rate during submaximal exercise but lowered RPE (Glaister & Gissane, 2018).
 - Illness and fever: 24-hour heart rate rose by about 8.5 bpm for each 1 °C in 27 young men with an acute febrile infection (Karjalainen & Viitasalo, 1986). Do not infer illness from heart rate. Refer health questions to medical staff.
@@ -709,7 +779,7 @@ The file gives no typical error for session TRIMP. Do not call a change between 
 
 - Polar `heart_rate_zones` and Time in HR zone: five bands of the player's own HRmax, with defaults of 50 to 60, 60 to 70, 70 to 80, 80 to 90, and 90 to 100 percent. A band includes its lower limit and excludes its upper limit, as in the reference file. The coach can edit the bands. Polar does not state how it treats a value at or above 100 percent of HRmax.
 - Polar `heart_rate_avg_percent`, with max and min versions: heart rate relative to the player's HRmax, which defaults to 220 minus age. The API does not return HRmax, so name the HRmax source yourself.
-- Polar `cardio_load`: Banister TRIMP summed from per-second heart rate, using resting heart rate, maximum heart rate, and gender. A 60-minute session typically scores 70 to 130. The reference file's default Banister form uses the session mean heart rate. Polar sums per-second terms, which matches the reference file's labeled per-sample option. Polar does not publish the scaling of the sum.
+- Polar `cardio_load`: Banister TRIMP summed from per-second heart rate, using resting heart rate, maximum heart rate, and gender. A 60-minute session typically scores 70 to 130. Polar sums per-second terms, which matches the reference file's default per-sample sum. Polar does not publish the scaling of the sum.
 - Polar `training_load`: an older load score with unpublished method. Do not compare it with `cardio_load` or with any TRIMP.
 - Firstbeat `TRIMP`: Banister TRIMP, T x HRratio x 0.64 x e^(1.92 x HRratio), where HRratio = (HRex − HRrest) / (HRmax − HRrest). Firstbeat uses beat-to-beat heart rate and a lower intensity limit that is not published. A mean-heart-rate TRIMP from another system gives different numbers. The Firstbeat file maps it to no reference file.
 - Firstbeat `TRIMP/min`: TRIMP divided by session duration. The period used for laps and sessions is not published. The Firstbeat file maps it to no reference file.
@@ -735,7 +805,7 @@ Read these limits before you use it:
 
 - One daily load total per athlete per calendar day in one load measure, such as `srpe_load_au` (AU) or `distance_m` (m)
 - `0` on rest days, and missing for days with training but no recorded load
-- An `availability` column that marks injured, ill, or modified-training days
+- An `availability` column that marks ill, unavailable, or modified-training days
 
 **Calculation.** Three variants are in use. They give different numbers from the same data, so name the variant every time:
 
@@ -826,7 +896,7 @@ Result: on day 35 the same athlete has a coupled ACWR of 1.40, an uncoupled ACWR
 
 - One row per athlete per day with `athlete_id`, `date`, and one column per item, such as `sleep`, `soreness`, `fatigue`, `stress`, and `mood`, in form points such as 1 to 5
 - Each item's direction, confirmed with the user
-- The baseline window and the minimum number of baseline days, chosen by the user. If the user has none, the file offers 14 answers inside a 28-day window, labeled as its own choice, and never fewer than 7 answers covering one full training week.
+- The baseline window and the minimum number of baseline days, chosen by the user. If the user has none, the file offers 14 answers inside a 28-day window, labeled as its own choice, and never fewer than 10 answers covering at least one full training week.
 - Whether the practitioner also flags on the raw answer, and at what level
 
 **Calculation.** Calculate each athlete and each item separately:
@@ -853,7 +923,8 @@ Follow these steps from raw inputs:
 5. If the SD is 0, report "no variation in baseline" and the change in points.
 6. Calculate z = (today's answer − baseline mean) ÷ baseline SD.
 7. For a total z-score, add the flipped items into a daily total first, then repeat steps 2 to 6 on the totals.
-8. Report each item's raw answer, change in points, z-score, status, baseline window, and baseline day count. Show the total z-score only next to the item z-scores.
+8. For a squad flag list, flag on the total z-score or on the practitioner's raw-answer rule, not on single-item z-scores. Beside each flagged athlete, show each item's raw answer and change in points, with the total z-score, status, baseline window, and baseline day count.
+9. In the athlete detail view, report each item's raw answer, change in points, z-score labeled approximate, status, baseline window, and baseline day count.
 
 **Worked example.** One athlete answers a 1 to 5 form each morning, where 5 is best for every item. The baseline is the 14 mornings before today:
 
@@ -869,26 +940,27 @@ Sleep z = (2 − 3.9286) ÷ 0.6157 = −3.13, from the unrounded mean and SD. Th
 
 **Variants.** Choose and name the variant:
 
-- Item-level z-score: one z-score per question. Use this by default. It keeps the reason for a change visible.
-- Total z-score: add the items into a daily total, then standardize the total against the athlete's baseline of totals. Show the item z-scores next to it.
+- Total z-score: add the items into a daily total, then standardize the total against the athlete's baseline of totals. Use it by default to flag athletes across a squad. Beside each flagged athlete, show each item's raw answer and change in points.
+- Item-level z-score: one z-score per question. Show it in the athlete detail view, labeled approximate, after the raw answer and the change in points. It keeps the reason for a change visible. Do not use it to build a squad flag list.
 - Rolling baseline: the previous N calendar days, such as 28. It follows slow changes, but it also absorbs a slow decline.
 - Fixed baseline: a set period, such as a stable block of normal training. It does not drift, but it ages.
-- Raw-answer flag: a practitioner may also flag on the raw answer, such as any soreness of 1 or 2. That is their choice. Label it as theirs.
+- Raw-answer flag: a practitioner may also flag on the raw answer, such as any soreness of 1 or 2. That is their choice. It can replace or join the total z-score in a squad flag list. Label it as theirs.
 
 Treat the numbers with these limits in mind:
 
-- A one-direction cut-off of z = −2 flags 2.3% of ordinary days when the baseline mean and SD are known, and 3.8% with a 14-day baseline. Across 25 athletes on one item, that is 0.57 or 0.94 flags a day by chance, and a 43.7% or 61.8% chance of at least one. With 7 baseline answers the rate for one athlete is 5.5%, and with 28 it is 3.0%. These figures come from the normal and t distributions. The real rate on a 1 to 5 scale can be higher or lower.
-- A small baseline gives an unstable SD. The 95% confidence interval for the true SD runs from about 0.64 to 2.20 times the sample SD with 7 values, 0.72 to 1.61 times with 14, and 0.79 to 1.36 times with 28. With 14 baseline days, a z-score of −3.13 matches about −1.94 to −4.32 against the true SD, which is the z-score multiplied by 0.621 to 1.379.
+- A one-direction cut-off of z = −2 flags 2.3% of ordinary days when the baseline mean and SD are known, and 3.8% with a 14-day baseline. Across 25 athletes flagged on the total, that is 0.57 or 0.94 flags a day by chance, and a 43.7% or 61.8% chance of at least one. With 7 baseline answers the rate for one athlete is 5.5%, with 10 it is 4.4%, and with 28 it is 3.0%. These figures come from the normal and t distributions. The real rate on a 1 to 5 scale can be higher or lower.
+- A small baseline gives an unstable SD. The 95% confidence interval for the true SD runs from about 0.64 to 2.20 times the sample SD with 7 values, 0.69 to 1.83 times with 10, 0.72 to 1.61 times with 14, and 0.79 to 1.36 times with 28. With 14 baseline days, a z-score of −3.13 matches about −1.94 to −4.32 against the true SD, which is the z-score multiplied by 0.621 to 1.379.
 - Today's distance from a mean of n days has a spread of baseline SD × √(1 + 1/n). This is the standard prediction interval for one new value against a mean of n values (NIST, Dataplot reference manual, after Hahn and Meeker, 1991). With n = 14, √(1 + 1/14) = 1.035, so the sleep z-score of −3.13 becomes −3.03 on that scale.
 - The baseline SD is not a typical error. It mixes real day-to-day change with error. Do not use it as TE, and do not borrow a noise band built on TE for wellness answers.
 - Daily answers are often autocorrelated, and answers on a short point scale are not normally distributed, so treat these factors as a rough guide only.
 - On a short point scale, z-scores jump in steps. For a single item, report the raw answer and the change in points first, and the z-score second as approximate. In a simulation run for the file (stable athletes, 14-day baselines, independent days), the chance rate of z ≤ −2 on one item ranged from 3.3% to 5.6% depending on the usual answer, against 3.8% expected, and most flags were a one-point drop.
-- We found no peer-reviewed source that sets a minimum number of baseline days. Ask the user, and report the number of baseline days with every z-score. If the user has no number, the file offers 14 baseline answers inside a 28-day window, labeled as its own choice, and never fewer than 7 answers covering one full training week. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019). The file infers, as its own suggestion, that a baseline should cover at least one full training week.
+- Keep single-item z-scores out of squad flag lists. With 5 items and a 14-day baseline, about 17% to 20% of athletes get at least one item flagged on an ordinary day by chance, treating the items as independent. That is 4 or 5 of 25 athletes a day, against about 1 when you flag on the total. The 17.5% comes from the t distribution, 1 − (1 − 0.0377)^5, and a simulation of 1 to 5 answers run for the skill gave about 20% for a squad with mixed usual answers, and about 25% when every usual answer was 4.25. Flag the squad on the total or on the practitioner's raw-answer rule, and show each item's raw answer and change in points beside each flagged athlete. Keep item z-scores, labeled approximate, in the athlete detail view.
+- We found no peer-reviewed source that sets a minimum number of baseline days. Ask the user, and report the number of baseline days with every z-score. If the user has no number, the file offers 14 baseline answers inside a 28-day window, labeled as its own choice, and never fewer than 10 answers covering at least one full training week. Ten matches the floor the monitoring-statistics skill offers for an individual baseline. A user's choice below 10 is applied and labeled as the user's choice. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019). The file infers, as its own suggestion, that a baseline should cover at least one full training week.
 - Report the number of flags expected by chance next to the number found. Recommend a repeat answer or a conversation with the athlete before anyone acts on a single flag (Barnett et al., 2005).
 
 **What changes the number.** These choices change the result when the athlete has not changed:
 
-- Baseline length: with the last 7 days as the baseline, today's sleep z-score is −3.46 (mean 4.00, SD 0.58) instead of −3.13 with 14 days.
+- Baseline length: with the last 10 days as the baseline, today's sleep z-score is −3.35 (mean 3.90, SD 0.57) instead of −3.13 with 14 days.
 - Including today in the baseline: the sleep z-score shrinks from −3.13 to −2.32.
 - Item versus total: the total z-score is −2.84. The plain mean of the five item z-scores is −0.68.
 - Size of the baseline SD: an answer of 3 gives z = −2.36 on stress (mean 3.86, SD 0.36) but −0.96 on soreness (mean 3.50, SD 0.52).
@@ -991,8 +1063,8 @@ Distance per minute has two variants:
 - Distance method: ±0.1 m of position noise adds 7.7%.
 - Sampling rate: 5 Hz units were more valid than 1 Hz units (Jennings et al., 2010), and 10 Hz units were the most valid and reliable (Scott et al., 2016).
 - Device type: total distance differences between systems were trivial to small in youth soccer players (Buchheit et al., 2014b). In small-sided games, errors against a reference system were 2.2% to 4.0% (Linke et al., 2018).
-- Unit to unit: two units of the same model disagree on the same movement (Johnston et al., 2014; Thornton et al., 2019). Give each athlete the same unit every session.
-- Software version and filter settings: processing choices change the output (Malone et al., 2017; Thornton et al., 2019). Record the software version and the processing date.
+- Unit to unit: two units of the same model disagree on the same movement (Johnston et al., 2014). Give each athlete the same unit every session.
+- Software version and filter settings: processing choices change the output (Malone et al., 2017). Manufacturer software and raw processing also gave substantially different values (Thornton et al., 2019). The abstract does not report software versions or filter settings. Record the software version and the processing date.
 - Signal quality: satellite count, signal dropouts, and device fit affect GPS output (Malone et al., 2017).
 - Whole-session or peak-period: a peak window is always at least as high as the session average.
 
@@ -1218,7 +1290,7 @@ Two output variants exist. The count is the number of efforts. Distance or time 
 - Software version: one software update produced large decreases in acceleration counts with the same units (Buchheit et al., 2014a).
 - Unit to unit: between-unit variation reached 56% for decelerations above 4 m/s², and some units recorded 2 to 6 times more efforts than others of the same brand (Buchheit et al., 2014a).
 - Model to model: two models of the same brand differed by a standardized difference of 2.1 for accelerations above 4 m/s² (Buchheit et al., 2014a).
-- Manufacturer and processing: threshold-based acceleration and deceleration variables differed most between manufacturers (Thornton et al., 2019).
+- Manufacturer and processing: manufacturers differed substantially, particularly for threshold-based acceleration and deceleration variables (Thornton et al., 2019).
 - Device type: acceleration values were small to very largely greater with local positioning than with camera or GPS tracking in youth soccer players (Buchheit et al., 2014b).
 - Sampling rate: 10 Hz GPS measured instantaneous speed two to three times more accurately than 5 Hz (Varley et al., 2012b).
 - Boundary rule: counting −2.5 m/s² as a deceleration sample gives 1.075 m of deceleration distance. A strictly-above rule gives 0.755 m.
@@ -1233,7 +1305,7 @@ Two output variants exist. The count is the number of efforts. Distance or time 
 | High-intensity deceleration distance per full match | Soccer 162 m, Australian football 149 m, rugby union 54 m | Harper et al., 2019 |
 | Accelerations versus decelerations in match play | More high and very high intensity decelerations than accelerations in every sport studied except American football | Harper et al., 2019 |
 | Between-unit variation, 50 units of one brand, two 15 Hz models | Up to 56% for decelerations above 4 m/s² | Buchheit et al., 2014a |
-| Between-unit variation, range across movement variables | Coefficient of variation 0.2% to 78.2% | Thornton et al., 2019 |
+| Between-unit variation, 27 units, three 10 Hz brands, on a sled, range across movement variables | Coefficient of variation 0.2% to 78.2% | Thornton et al., 2019 |
 
 A between-unit figure applies only when the athlete changed to another unit of the same model. No figure in the reference files can serve as one athlete's noise when the athlete changes device type or vendor. For an athlete on one unit, use a typical error from a short-term retest on that unit and the shared noise band rules.
 
@@ -1357,8 +1429,8 @@ Result: the takeoff velocity method gives 0.2866 m. The flight time method gives
 
 | Population | Typical range | Source |
 |---|---|---|
-| NCAA Division I men (n = 76), no arm swing (light bar across the shoulders), flight time method, mean of 2 trials | 0.36 ± 0.07 m (mean ± SD) | Sole et al., 2018 |
-| NCAA Division I women (n = 75), no arm swing (light bar across the shoulders), flight time method, mean of 2 trials | 0.27 ± 0.06 m (mean ± SD) | Sole et al., 2018 |
+| NCAA Division I men (n = 76), no arm swing (light bar across the shoulders), flight time method, 10 Hz low-pass filter, mean of 2 trials | 0.36 ± 0.07 m (mean ± SD) | Sole et al., 2018 |
+| NCAA Division I women (n = 75), no arm swing (light bar across the shoulders), flight time method, 10 Hz low-pass filter, mean of 2 trials | 0.27 ± 0.06 m (mean ± SD) | Sole et al., 2018 |
 | Professional male rugby league (n = 53), no arm swing (hands on hips), takeoff velocity method, mean of 3 trials | 0.35 ± 0.04 m (mean ± SD); lowest and highest RSI-modified groups (n = 20 each) 0.318 ± 0.032 m and 0.377 ± 0.039 m | McMahon et al., 2018b |
 
 No takeoff velocity range is given, because jump height = takeoff velocity² / (2 × 9.81) carries the same information. If an export gives only takeoff velocity, convert it to height. Do not use peak velocity in its place. Velocity peaks about 0.03 s before takeoff and is 6 to 7% lower at takeoff (Harman et al., 1990), so peak velocity overstates height by about 13 to 16%.
@@ -1440,18 +1512,18 @@ Healy et al. (2018) call flight time divided by contact time the reactive streng
 - Onset of movement: finding onset 30 ms earlier gives 0.680 s and 0.4215 m/s. Finding it 30 ms later gives 0.620 s and 0.4622 m/s. Onset errors affect time-based measures more than jump height (McMahon et al., 2018a).
 - Onset threshold: some protocols step back 30 ms from the 5 standard deviation threshold (Owen et al., 2014). Use the same rule at every test.
 - Takeoff threshold: it changes both jump height and time to takeoff (McMahon et al., 2018a).
-- Arm swing and jump type: RSImod differs between jump types (Ebben & Petushek, 2010). The ranges below come from jumps without arm swing: a light bar across the shoulders (Sole et al., 2018) or hands on hips (McMahon et al., 2018b). In basketball players, arm swing raised RSImod by 20 to 24% (Heishman et al., 2019).
+- Arm swing and jump type: RSImod differs between jump types (Ebben & Petushek, 2010). The ranges below come from jumps without arm swing: a light bar across the shoulders (Sole et al., 2018) or hands on hips (McMahon et al., 2018b). In basketball players, arm swing raised RSImod by 20 to 24% (Heishman et al., 2019a).
 - Trial summary: the mean of trial RSImod values differs from mean jump height divided by mean time to takeoff.
 
 **Units and typical range.** Report RSImod in m/s and name the jump height method. Use these ranges to check that data are plausible, not to rate athletes:
 
 | Population | Typical range | Source |
 |---|---|---|
-| NCAA Division I men, CMJ without arm swing (light bar across the shoulders), flight time jump height, 10 N threshold | 0.424 ± 0.102 m/s (mean ± SD); observed range 0.208 to 0.704 m/s | Sole et al., 2018 |
-| NCAA Division I women, CMJ without arm swing (light bar across the shoulders), flight time jump height, 10 N threshold | 0.314 ± 0.089 m/s (mean ± SD); observed range 0.135 to 0.553 m/s | Sole et al., 2018 |
+| NCAA Division I men, CMJ without arm swing (light bar across the shoulders), flight time jump height, 10 N threshold, 10 Hz low-pass filter | 0.424 ± 0.102 m/s (mean ± SD); observed range 0.208 to 0.704 m/s | Sole et al., 2018 |
+| NCAA Division I women, CMJ without arm swing (light bar across the shoulders), flight time jump height, 10 N threshold, 10 Hz low-pass filter | 0.314 ± 0.089 m/s (mean ± SD); observed range 0.135 to 0.553 m/s | Sole et al., 2018 |
 | Professional male rugby league, CMJ without arm swing (hands on hips), takeoff velocity jump height, lowest and highest groups | 0.36 ± 0.03 and 0.53 ± 0.05 m/s (mean ± SD) | McMahon et al., 2018b |
 
-Sole et al. (2018) used a 10 N threshold for both onset and takeoff, not the 5 standard deviation rule. Time to takeoff averaged 0.868 ± 0.105 s for men and 0.870 ± 0.114 s for women (Sole et al., 2018), and 0.707 to 0.881 s across the rugby league groups (McMahon et al., 2018b). In a separate-day retest of adolescent cricket and netball athletes (n = 17, mean of 3 trials, 1 week apart), the coefficient of variation of RSImod was 6.11% and the standard error of measurement was 0.03 m/s (Thomas et al., 2017).
+Sole et al. (2018) used a 10 N threshold for both onset and takeoff, not the 5 standard deviation rule, and a 10 Hz low-pass Butterworth filter. Values from another threshold, filter, or jump height method are not directly comparable with these ranges. Time to takeoff averaged 0.868 ± 0.105 s for men and 0.870 ± 0.114 s for women (Sole et al., 2018), and 0.707 to 0.881 s across the rugby league groups (McMahon et al., 2018b). In a separate-day retest of adolescent cricket and netball athletes (n = 17, mean of 3 trials, 1 week apart), the coefficient of variation of RSImod was 6.11% and the standard error of measurement was 0.03 m/s (Thomas et al., 2017).
 
 **Vendor equivalents.** The device files map these metrics:
 
@@ -1599,11 +1671,11 @@ The terms mean the following:
 Follow these steps from repetition-level data:
 
 1. Flag repetitions that did not reach a clear peak followed by a fast drop in force (Bourne et al., 2015).
-2. For each athlete, date, and side, keep the highest `peak_force_n` among the valid repetitions.
+2. For each athlete, date, and side, keep the highest `peak_force_n` among the valid repetitions: those with `status` `ok` that you did not flag in step 1.
 3. Divide each leg's peak by `body_mass_kg` from the same day.
 4. Average the left and right peaks.
 5. Calculate the imbalance, and record which side is weaker.
-6. For each earlier test the user cites, including a pre-injury baseline, subtract the earlier value from the new value for each leg. Compare each change with the noise band, 1.96 × TE × √(1 + 1/n), where n is the number of tests in the baseline mean.
+6. For each earlier test the user cites, subtract the earlier value from the new value for each leg. Compare each change with the noise band, 1.96 × TE × √(1 + 1/n), where n is the number of tests in the baseline mean.
 7. To judge the imbalance, compare the left-right difference in N with the asymmetry band, 1.96 × √(SE_left² + SE_right²).
 
 **Worked example.** One athlete's Nordic test:
@@ -1622,15 +1694,16 @@ The calculation runs this way:
 3. Two-limb average = (325 + 360) / 2 = 342.5 N, which is 4.18 N/kg.
 4. Imbalance = (360 - 325) / 360 × 100 = 9.72%, with the left leg weaker.
 5. Change in the left leg = 325 - 300 = 25 N. With TE = 21.7 N, the lowest value Opar et al. (2013) reported, and one earlier test, the band is 1.96 × 21.7 × √2 = 60.1 N. With TE = 27.5 N, it is 76.2 N. These equal the minimal detectable change values Opar et al. (2013) reported. The 25 N change is inside both bands.
-6. Left-right difference = 35 N. With SE = TE = 21.7 N for each leg, the band is 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the stronger leg. The 35 N difference is inside the band.
+6. Left-right difference = 35 N. With SE = TE = 21.7 N for each leg, the band is 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the stronger leg. The 35 N difference is inside the band. This TE comes from a separate-day retest, so label the band as likely wider than needed for a same-session difference.
 
 Result: neither the 25 N change nor the 35 N difference can be told apart from measurement noise with these data. This does not show that the legs are equal or that nothing changed.
 
 **Variants.** The imbalance formula above is one of several:
 
-- Log ratio: 100 × ln(right / left). Injury studies on this test did not use the imbalance formula above. They used a left-to-right ratio, log-transformed and back-transformed to a percentage (Opar et al., 2015; Bourne et al., 2015). Neither paper prints the equation for one athlete. The log ratio keeps the same size whichever leg is stronger. Offer it as an option.
+- Log ratio: 100 × ln(right / left). Injury studies on this test did not use the imbalance formula above. They used a left-to-right ratio (Opar et al., 2015; Bourne et al., 2015). Opar et al. (2015) log-transformed the ratio only to calculate group means. Neither paper prints an equation for one athlete. Offer the log ratio as an option, because it gives the same size whichever leg is stronger. Do not say it matches the injury studies.
 - Other asymmetry formulas give different numbers from the same legs (Bishop et al., 2018). Never compare an imbalance value with a published value calculated another way.
 - For the SE in the asymmetry band, use SE = TE for single or best repetitions. For a mean of k repetitions, use a pooled squad coefficient of variation × the leg's value / √k. Take TE or the coefficient of variation from a squad reliability study, or from a published reliability study of the same test, device, and population, never from one athlete's own repetitions or from the same repetitions you are judging.
+- For a left-right difference from one session, use a within-session TE when such a study exists. If only a separate-day TE exists, such as Opar et al. (2013), use it, and label the band as likely wider than needed. Day-to-day changes that affect both legs alike cancel out of a same-session difference. In 22 collegiate basketball players, across 16 force measures from a two-plate CMJ with and without arm swing, within-session TE was a median 0.90 times the separate-day TE, with a range of 0.77 to 0.99 (Heishman et al., 2019b).
 
 **What changes the number.** These choices change the result when the athlete's performance does not change:
 
@@ -1649,7 +1722,9 @@ Keep these limits:
 
 - Do not use published injury studies to predict injury for one athlete. Those studies report group-level associations in specific cohorts, and their findings on imbalance disagree (Opar et al., 2015; Bourne et al., 2015).
 - Do not quote injury-study cut-offs, such as force or imbalance cut-offs from Opar et al. (2015) or Bourne et al. (2015), as targets or flags for one athlete. The cut-offs did not replicate. Later cohorts found a different force cut-off, 337 N in soccer (Timmins et al., 2016), or no link with Nordic strength (van Dyk et al., 2017). A meta-analysis of six cohorts (1100 players) found no difference in pre-season Nordic strength or imbalance between players who later had a hamstring injury and those who did not (Opar et al., 2021).
-- When a difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+- Do not call low Nordic strength a training target. Training choices stay with the coach.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+- When a difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal."
 
 **Vendor equivalents.** The device files map these metrics:
 
@@ -1893,7 +1968,7 @@ These metrics compare one limb's test result with the other limb's result. The n
 
 | Metric | Formula | Units | Reference file |
 |---|---|---|---|
-| LSI (symmetry) | `involved limb / uninvolved limb x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
+| LSI (symmetry) | `nondominant limb / dominant limb x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
 | Percentage difference, signed | `(right - left) / max(right, left) x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
 | Dominant-referenced asymmetry | `(dominant - nondominant) / dominant x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
 | Bilateral asymmetry index (BAI-1) | `(dominant - nondominant) / (dominant + nondominant) x 100` | % | [limb-symmetry-index.md](../skills/limb-symmetry/references/limb-symmetry-index.md) |
@@ -1910,14 +1985,14 @@ These metrics compare one limb's test result with the other limb's result. The n
 
 - One row per limb per trial with `athlete_id`, `test_date`, `test_name`, `side` (left or right), and the measure with its unit, such as `jump_height_m` or `peak_force_n`
 - Whether the test is unilateral (each limb tested on its own) or bilateral (both limbs at once, one value per limb)
-- A reference limb definition for each athlete: involved and uninvolved, dominant and nondominant, or larger value. The user names the involved limb for any LSI.
+- A reference limb definition for each athlete: dominant and nondominant, or larger value (stronger and weaker). The user names the dominant limb for any LSI.
 - About three trials per limb (Bishop et al., 2018), with one trial summary for both limbs
 - A TE or pooled squad coefficient of variation for the test, from a squad reliability study, or from a published reliability study of the same test, device, and population
 
 **Calculation.** These are the formula variants you will meet most often:
 
 ```text
-LSI (symmetry, %)                       = involved limb / uninvolved limb x 100
+LSI (symmetry, %)                       = nondominant limb / dominant limb x 100
 Percentage difference, signed (%)       = (right - left) / max(right, left) x 100
 Dominant-referenced asymmetry (%)       = (dominant - nondominant) / dominant x 100
 Bilateral asymmetry index, BAI-1 (%)    = (dominant - nondominant) / (dominant + nondominant) x 100
@@ -1929,60 +2004,61 @@ Noise band for the left-right difference = 1.96 × √(SE_left² + SE_right²)
 
 The terms mean the following:
 
-- `involved limb`: the injured or operated limb. `uninvolved limb`: the other limb.
 - `dominant limb`: the limb the athlete prefers, often the kicking leg. Define it once per athlete and do not change it.
 - `right`, `left`: the athlete's own right and left
 - `max(right, left)`: the larger of the two values on that day
 - Reference limb: the limb in the denominator of a formula
-- `SE_left`, `SE_right`: the standard error of each limb's value, in the units of the measure. Use TE for single or best trials. For a mean of k trials, use a pooled squad coefficient of variation × the limb's value / √k.
+- `SE_left`, `SE_right`: the standard error of each limb's value, in the units of the measure. Use TE for single or best trials. For a mean of k trials, use a pooled squad coefficient of variation × the limb's value / √k. For a same-session difference, prefer a within-session TE.
 
 Follow the reference-limb rule:
 
 - Name the reference limb in every result, and keep the same definition across every session for that athlete.
 - Report both raw limb values next to the percentage.
 - Only percentage difference against the larger limb, BAI-1, the mean-referenced index, the log ratio, and the symmetry angle keep the same size whichever limb is stronger.
-- Never infer the involved limb from the data. If the user does not name it, do not calculate an LSI.
-- An LSI can look better because the uninvolved limb got weaker. After ACL reconstruction, LSIs often overestimated knee function compared with an index that used the uninvolved limb's values from before surgery (Wellsandt et al., 2017). Track each limb's own value over time.
+- Never infer the dominant limb from the data. If the user does not name it, do not calculate an LSI.
+- An index can change because either limb changed. Track each limb's own value over time.
 
 Follow these steps from raw inputs:
 
 1. Confirm the side labels against the device file, so left and right are not swapped.
 2. Choose one trial summary, the best trial or the mean of trials, and use it for both limbs.
-3. Choose the formula. Use the one the user names. If the user names none, use percentage difference for unilateral tests and BAI-1 for bilateral tests (Bishop et al., 2018), and say so. For the Nordic hamstring test, a two-leg task, use percentage difference, because Nordic studies express imbalance on a one-leg scale: a left-to-right ratio, log-transformed and back-transformed to a percentage (Opar et al., 2015; Bourne et al., 2015). Offer the log ratio.
+3. Choose the formula. Use the one the user names. If the user names none, use percentage difference for unilateral tests and BAI-1 for bilateral tests (Bishop et al., 2018), and say so. For the Nordic hamstring test, a two-leg task, use percentage difference against the stronger leg, because Nordic studies express imbalance on a one-leg scale (Opar et al., 2015; Bourne et al., 2015). Offer the log ratio, because it gives the same size whichever leg is stronger. Do not say it matches the Nordic studies.
 4. Calculate the value and its sign. State which side is larger.
 5. Get an SE for each limb and state its source. Take TE or the coefficient of variation from a squad reliability study, or from a published reliability study of the same test, device, and population, never from one athlete's own trials or from the same trials you are judging.
-6. Compare the difference between the raw limb values, in units, with the noise band. Use this one rule whatever formula you report. When TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study.
-7. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
-8. Report the raw values for both limbs, the formula, the reference limb, the result, the SE and its source, and the band.
+6. For a left-right difference from one session, use a within-session TE when such a study exists. If only a separate-day TE exists, use it, and label the band as likely wider than needed. State the retest interval of the TE.
+7. Compare the difference between the raw limb values, in units, with the noise band. Use this one rule whatever formula you report. When TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study.
+8. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal."
+9. Report the raw values for both limbs, the formula, the reference limb, the result, the SE and its source, and the band.
+10. For a bilateral test, add the device's own asymmetry formula next to BAI-1 only where the device documents it. Recompute it from the left and right values, never from the vendor column, and label it with the device name and the larger side. See "Vendor equivalents" below.
 
-**Worked example.** One pair of values, right 25 cm and left 20 cm, run through every formula. It reproduces the example in Bishop et al. (2016). In Case A, the right limb is dominant and the left limb is involved:
+**Worked example.** One pair of values, right 25 cm and left 20 cm, run through every formula. It reproduces the example in Bishop et al. (2016). In Case A, the right limb is dominant:
 
 | Formula | Calculation | Result |
 |---|---|---|
-| LSI, involved / uninvolved × 100 | 20 / 25 × 100 | 80.00% symmetry |
+| LSI, nondominant / dominant × 100 | 20 / 25 × 100 | 80.00% symmetry |
 | Percentage difference, (right - left) / max × 100 | 5 / 25 × 100 | 20.00% |
 | Dominant-referenced, (D - ND) / D × 100 | 5 / 25 × 100 | 20.00% |
 | BAI-1, (D - ND) / (D + ND) × 100 | 5 / 45 × 100 | 11.11% |
 | Mean-referenced asymmetry index, (D - ND) / mean × 100 | 5 / 22.5 × 100 | 22.22% |
 | Symmetry angle | (45 - 38.66) / 90 × 100 | 7.04% |
 
-The asymmetry formulas range from 7.04% to 22.22%, a spread of 15.18 percentage points, and the largest is 3.15 times the smallest. In Case B, the left limb is dominant, so the dominant limb is the weaker one. The dominant-referenced value becomes −25.00%, BAI-1 −11.11%, and the mean-referenced index −22.22%. The range becomes 7.04% to 25.00% in size, a spread of 17.96 points, with the largest 3.55 times the smallest. In Case C, the right limb is involved, and LSI becomes 125.00%. The log ratio gives 22.31%, and −22.31% with the limbs swapped.
+The asymmetry formulas range from 7.04% to 22.22%, a spread of 15.18 percentage points, and the largest is 3.15 times the smallest. In Case B, the left limb is dominant, so the dominant limb is the weaker one. The dominant-referenced value becomes −25.00%, BAI-1 −11.11%, and the mean-referenced index −22.22%. The range becomes 7.04% to 25.00% in size, a spread of 17.96 points, with the largest 3.55 times the smallest. The LSI becomes 125.00%, because the nondominant limb is the stronger one. The log ratio gives 22.31%, and −22.31% with the limbs swapped.
 
 The noise band example uses Nordic values of left 325 N and right 360 N, best repetition per leg, a difference of 35 N:
 
-1. Option A, SE = 21.7 N per leg, the lowest typical error Opar et al. (2013) reported: band = 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the larger leg. The 35 N difference is inside the band.
+1. Option A, SE = 21.7 N per leg, the lowest typical error Opar et al. (2013) reported: band = 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the larger leg. The 35 N difference is inside the band. This TE comes from a separate-day retest, so label the band as likely wider than needed for a same-session difference.
 2. Option B, mean of 3 repetitions (317.7 N and 353.0 N) with an assumed pooled squad coefficient of variation of 5%: SE = 5% × 317.7 / √3 = 9.17 N and 5% × 353.0 / √3 = 10.19 N. Band = 1.96 × √(9.17² + 10.19²) = 26.9 N. The mean-of-3 difference, 35.3 N, is outside the band.
 
 Result: one pair of values gave 7.04%, 11.11%, 20.00%, 22.22%, 25.00%, 80.00%, and 125.00%, depending on the formula and reference limb. For the Nordic legs, the percentage difference is 9.72%, the log ratio is 10.23%, and BAI-1 is 5.11%. The SE decides whether the difference is larger than noise.
 
 **Variants.** Use each variant this way:
 
-- LSI: the most used index in the literature (Parkinson et al., 2021). Use it only in a rehab setting when the user names the involved limb.
+- LSI: the most used index in the literature (Parkinson et al., 2021). Use it only when the user names each athlete's dominant limb. The weaker limb as a percentage of the stronger limb equals 100% minus the size of the percentage difference, and it never exceeds 100%. Name which version you report.
 - Percentage difference: the same size of result whichever limb is stronger. Recommended for unilateral tests (Bishop et al., 2018). The signed version is positive when the right limb is larger (Bishop et al., 2021).
 - Dominant-referenced asymmetry: a larger size of result when the dominant limb is the weaker one. Use it only when the user asks for it.
 - BAI-1: recommended for bilateral tests, because each limb's force is part of the total (Bishop et al., 2018). It gives smaller values than the other formulas (Parkinson et al., 2021). With no dominant limb named, calculate (right - left) / (right + left) × 100 and say so.
 - Mean-referenced asymmetry index: Bishop et al. (2018) list the same calculation as LSI-3, the asymmetry index, and the bilateral asymmetry index 2 (BAI-2).
-- Log ratio: changes sign, but not size, when you swap the limbs. Nordic studies have used a log-transformed left-to-right ratio, back-transformed to a percentage (Bourne et al., 2015).
+- Log ratio: changes sign, but not size, when you swap the limbs, so it gives the same size whichever limb is stronger. That is the reason to offer it. It does not match the published Nordic studies. Opar et al. (2015) used a left-to-right ratio and log-transformed it only to calculate group means, not a value for each athlete.
 - Symmetry angle: needs no reference limb and gives small values (Zifchock et al., 2008; Bishop et al., 2016). Use it only when both values are above zero. The result then stays between −50% and 50%.
 
 Bishop et al. (2021) describe an optional lenient screen. They computed group coefficients of variation for each test, metric, and limb from three trials within a session, and drew one line per metric at the largest of those values. Use it only if the user asks, cite it, and call it a lenient screen. It flags more differences than the noise band. Never compute the coefficient of variation from one athlete's own three trials. An estimate from three values is unstable, so a symmetric athlete is often flagged by chance. With single trials and a coefficient of variation of 5%, the noise band on the difference is about 1.96 × √2 × 5% = 13.9% of the limb value, while the screen's line is 5%.
@@ -1997,7 +2073,8 @@ Bishop et al. (2021) describe an optional lenient screen. They computed group co
 - Test and metric: asymmetry rarely favored the same limb across tests (Bishop et al., 2021).
 - Trial selection: the best trial and the mean of trials give different values.
 - Intra-limb variability: a between-limb difference can come from trial-to-trial noise within each limb (Exell et al., 2012).
-- Vendor formula and sign: at least one device glossary uses (left - right) / max(left, right) × 100, where a positive value means the left limb is larger. Never read the sign of a vendor value. Recompute from the left and right values.
+- Retest interval of the TE: a separate-day TE includes day-to-day changes. Changes that affect both limbs alike cancel out of a same-session left-right difference, so a separate-day TE gives a wider band than needed. In 22 collegiate basketball players, across 16 force measures from a two-plate CMJ with and without arm swing, within-session TE was a median 0.90 times the separate-day TE, with a range of 0.77 to 0.99 (Heishman et al., 2019b).
+- Vendor formula and sign: the VALD ForceDecks Technical Glossary V2.0 uses (left - right) / max(left, right) × 100, where a positive value means the left limb is larger. Never read the sign of a vendor value. Recompute from the left and right values.
 
 **Units and typical range.** Report every value in % with the formula name, the reference limb, and the larger side. Use these ranges to check that data are plausible. They are not cut-offs:
 
@@ -2010,13 +2087,13 @@ Keep these limits:
 
 - Many studies apply a fixed threshold, most often between 10 and 15%, to label asymmetry as abnormal. That threshold was not always supported by appropriate evidence (Parkinson et al., 2021). Prospective evidence that a fixed threshold marks higher injury risk is scarce (Bishop et al., 2018). Do not use any of these figures as a cut-off.
 - Never apply a threshold as a pass or fail, a clearance, or a return-to-sport rule.
-- A 90% LSI or any other return-to-sport criterion belongs to a clinician-run test battery. After ACL reconstruction, 57.1% of patients reached 90% LSIs on all tests, but only 28.6% reached 90% of estimated pre-injury capacity (Wellsandt et al., 2017). The 90% cut-off rests on consensus and expert opinion, not on outcome data. In 233 athletes, LSI cut-offs did not separate those who returned without a second ACL injury from those who did not (Simonsson et al., 2025). In a meta-analysis, only 23% of patients passed a return-to-sport test battery. Passing lowered the risk of graft rupture but raised the risk of an ACL injury in the other knee, and did not lower the risk of any second ACL injury (Webster & Hewett, 2019). Do not say whether the athlete meets the criterion.
+- If the user asks about a 90% LSI or any other clearance or return-to-sport criterion, state that symmetry is not a clearance criterion. Do not say whether the athlete meets it.
 
 **Vendor equivalents.** The device files map these metrics:
 
-- VALD ForceDecks asymmetry (any metric with the `Asym` limb): the Technical Glossary gives (Left − Right) ÷ max(Left, Right) × 100. VALD sources disagree on the sign. VALD does not publish the Hub CSV column list. A public parser for Hub exports shows asymmetry as text, such as `12.3 L` or `8.1 R`, where the letter names the side with the larger value. The `valdr` function `export_forcedecks_csv()` drops the limb columns. Recompute from the left and right values with one stated formula.
-- VALD NordBord imbalance (in the app only): described as the percentage difference between left and right maximums, with a second imbalance from left and right averages. VALD does not publish the formula. A VALD research summary used `|L − R| / (L + R)` for hamstring asymmetry, and VALD does not say which formula the app uses. The API has no imbalance field.
-- Hawkin `L|R ...(%)` metrics, such as `L|R Avg. Braking Force(%)` and `L|R Peak Force(%)`: Hawkin does not publish the formula. The asymmetry report shows left-dominant values as positive. Recompute from the `Left ...` and `Right ...` columns. Hawkin `Force at Peak` columns give each plate's force at the instant of combined peak force, not each plate's own peak.
+- VALD ForceDecks asymmetry (any metric with the `Asym` limb): the Technical Glossary gives (Left − Right) ÷ max(Left, Right) × 100. VALD sources disagree on the sign. VALD does not publish the Hub CSV column list. A public parser for Hub exports shows asymmetry as text, such as `12.3 L` or `8.1 R`, where the letter names the side with the larger value. The `valdr` function `export_forcedecks_csv()` drops the limb columns. Recompute from the left and right values with one stated formula. Because VALD documents this formula, you may show it next to BAI-1 for a bilateral test. Recompute it from the left and right values, never from the vendor column. Label it with the device name and the larger side. For example, left 920 N and right 1000 N give "BAI-1: 4.17%, right larger" and "VALD ForceDecks formula: −8.00%, right larger".
+- VALD NordBord imbalance (in the app only): described as the percentage difference between left and right maximums, with a second imbalance from left and right averages. VALD does not publish the formula. A VALD research summary used `|L − R| / (L + R)` for hamstring asymmetry, and VALD does not say which formula the app uses. The API has no imbalance field. Say the app formula is unpublished, and show no device value.
+- Hawkin `L|R ...(%)` metrics, such as `L|R Avg. Braking Force(%)` and `L|R Peak Force(%)`: Hawkin does not publish the formula. The asymmetry report shows left-dominant values as positive. Recompute from the `Left ...` and `Right ...` columns. Say the Hawkin formula is unpublished, and show no device value. Hawkin `Force at Peak` columns give each plate's force at the instant of combined peak force, not each plate's own peak.
 - GymAware: no endpoint has a side field. Side appears only in exercise names, such as `Landmine Press - Left`. No GymAware asymmetry formula is published.
 - Perch: rep-level Train Sets exports show left-right asymmetry for lower-body unilateral exercises. The field names and the formula are not published.
 
@@ -2042,15 +2119,15 @@ Read these limits before you build one:
 - A composite is decision support. It is never clearance for training, competition, or return to sport. Return to sport is a shared decision across a continuum, made by clinicians, athletes, and coaches (Ardern et al., 2016). Frameworks for that decision combine many kinds of information and the decision-maker's risk tolerance (Shrier, 2015).
 - Combining variables into one loses information and makes the result harder to interpret (Song et al., 2013). A single score hides which input changed. Song et al. (2013) discuss composites for research analyses, so their points carry over to one athlete's daily score by reasoning, not by direct evidence.
 - Traffic-light monitoring systems lack a standard way of being set up (Robertson et al., 2017). A composite's colors are a local choice.
-- Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). Keep load measures out of the composite by default, and show them beside it. Do not include the ACWR as an input (Impellizzeri et al., 2020a).
-- For a rehab athlete, never put pain, swelling or effusion, loss of motion, giving way, locking, wound problems, calf pain or swelling, new numbness or weakness, or systemic symptoms such as fever into a composite. Show each one raw, and tell the user to pass any report to the medical team. A pain z-score of −2 with a CMJ z-score of +1, a sleep z-score of +1, and a fatigue z-score of 0 gives a composite of 0.0.
-- A return of the composite to the pre-injury baseline is not a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), are batteries of tests in which passing meant a score above 90 on all tests. A composite lets a good score on one input hide a failed one.
+- Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). Load is the dose, and wellness and test results are the response. Self-reported well-being worsened with acute rises in load and improved with acute reductions (Saw et al., 2016), so a composite that holds both counts a dose and its response together. Keep load measures out of the composite by default, and show them beside it. Do not include the ACWR as an input (Impellizzeri et al., 2020a).
+- The user may still add a load measure, with its direction and reason, labeled as the user's choice.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 
 **Inputs.** The calculation needs these data:
 
 - One row per `athlete_id` and `date`, with one column per input in its own unit, such as `sleep` (1 to 5) and `cmj_cm` (cm)
 - Each input's direction, written down with the user
-- The baseline window and the minimum number of baseline days for each input
+- The baseline window and the minimum number of baseline days for each input. If the user has none, offer at least 10 prior values, labeled as a practice default.
 - The weights, with their source, or equal weights
 - Load measures, such as `load_prev_day_au`, in their own columns beside the composite
 
@@ -2076,7 +2153,7 @@ The terms mean the following:
 
 Follow these steps from raw inputs:
 
-1. Join the inputs by athlete and date. Keep load measures and rehab warning signs out of the composite, and show them raw.
+1. Join the inputs by athlete and date. Keep load measures out of the composite, and show them beside it.
 2. For each athlete, input, and day, calculate the baseline mean and sample SD from the window before that day.
 3. Mark an input as missing for that day if its baseline is too short or its SD is 0.
 4. Calculate each input's z-score, then multiply it by its direction sign.
@@ -2133,21 +2210,21 @@ The composite is not a z-score. A mean of k unrelated z-scores has an SD of 1 ÷
 
 ## Vendor metric pages
 
-Every exportable metric each vendor publishes is broken down on its page. The pages paraphrase vendor definitions and link to the vendor sources:
+Every exportable metric each vendor publishes is broken down on its page. The pages paraphrase vendor definitions and link to the vendor sources. The [vendor metrics index](vendor-metrics/README.md) lists every page:
 
 | Vendor | Products | Page |
 |---|---|---|
-| VALD | ForceDecks and NordBord | [vald-forcedecks-nordbord.md](vendor-metrics/vald-forcedecks-nordbord.md) |
-| VALD | ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware | [vald-other-products.md](vendor-metrics/vald-other-products.md) |
-| Hawkin Dynamics | Force plates | [hawkin-dynamics.md](vendor-metrics/hawkin-dynamics.md) |
-| Catapult | Catapult and Perch | [catapult.md](vendor-metrics/catapult.md) |
-| Kinexon | Kinexon | [kinexon.md](vendor-metrics/kinexon.md) |
-| Polar | Polar Team Pro | [polar-team-pro.md](vendor-metrics/polar-team-pro.md) |
-| Firstbeat | Firstbeat Sports | [firstbeat-sports.md](vendor-metrics/firstbeat-sports.md) |
+| VALD | ForceDecks and NordBord | [VALD ForceDecks and NordBord metrics](vendor-metrics/vald-forcedecks-nordbord/README.md) |
+| VALD | ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware | [VALD other products](vendor-metrics/vald-other-products/README.md) |
+| Hawkin Dynamics | Force plates and TruStrength | [Hawkin Dynamics metrics](vendor-metrics/hawkin-dynamics/README.md) |
+| Catapult | Vector, Catapult One, and Perch | [Catapult metrics](vendor-metrics/catapult.md) |
+| Kinexon | Kinexon | [Kinexon metrics](vendor-metrics/kinexon.md) |
+| Polar | Polar Team Pro | [Polar Team Pro metrics](vendor-metrics/polar-team-pro.md) |
+| Firstbeat | Firstbeat Sports | [Firstbeat Sports metrics](vendor-metrics/firstbeat-sports.md) |
 
 ## Sources
 
-This page cites these sources, as the reference files list them. Seven sources have no DOI, and the entry says so:
+This page cites these sources, as the reference files list them. Eight sources have no DOI, and the entry says so:
 
 - Abt G, Lovell R. The use of individualized speed and intensity thresholds for determining the distance run at high-intensity in professional soccer. J Sports Sci. 2009;27(9):893-898. https://doi.org/10.1080/02640410902998239
 - Achten J, Jeukendrup AE. Heart rate monitoring: applications and limitations. Sports Med. 2003;33(7):517-538. https://doi.org/10.2165/00007256-200333070-00004
@@ -2178,7 +2255,7 @@ This page cites these sources, as the reference files list them. Seven sources h
 - de Vet HC, Terwee CB, Ostelo RW, Beckerman H, Knol DL, Bouter LM. Minimal changes in health status questionnaires: distinction between minimally detectable change and minimally important change. Health Qual Life Outcomes. 2006;4:54. https://doi.org/10.1186/1477-7525-4-54
 - Dos'Santos T, Jones PA, Comfort P, Thomas C. Effect of different onset thresholds on isometric midthigh pull force-time variables. J Strength Cond Res. 2017;31(12):3463-3473. https://doi.org/10.1519/JSC.0000000000001765
 - Ebben WP, Petushek EJ. Using the reactive strength index modified to evaluate plyometric performance. J Strength Cond Res. 2010;24(8):1983-1987. https://doi.org/10.1519/JSC.0b013e3181e72466
-- Edwards S. High performance training and racing. In: The Heart Rate Monitor Book. Sacramento (CA): Fleet Feet Press; Port Washington (NY): Polar CIC; 1993:113-123. Third printing, October 1993. The Library of Congress catalogs the book (ISBN 0963463306, LCCN 92062064) as c1992. Book, not peer reviewed, no DOI. Zone weights are taken from Paulson et al. (2015) and Hourcade et al. (2018).
+- Edwards S. The Heart Rate Monitor Book. Sacramento (CA): Fleet Feet Press; Port Washington (NY): Polar CIC; 1993. Third printing, October 1993. The Library of Congress catalogs the book (ISBN 0963463306, LCCN 92062064) as c1992. Book, not peer reviewed, no DOI. The five zones are listed on p. 56 of the third printing. A text search of that printing found Chapter 12 on pp. 113-123, but no zone weights on those pages. The search covered text only, so a figure could still hold them. The zone weights come from Paulson et al. (2015) and Hourcade et al. (2018).
 - Exell TA, Irwin G, Gittoes MJR, Kerwin DG. Implications of intra-limb variability on asymmetry analyses. J Sports Sci. 2012;30(4):403-409. https://doi.org/10.1080/02640414.2011.647047
 - Fanchini M, Ferraresi I, Modena R, Schena F, Coutts AJ, Impellizzeri FM. Use of the CR100 scale for session rating of perceived exertion in soccer and its interchangeability with the CR10. Int J Sports Physiol Perform. 2016;11(3):388-392. https://doi.org/10.1123/ijspp.2015-0273
 - Fereday K, Hills SP, Russell M, Smith J, Cunningham DJ, Shearer D, McNarry M, Kilduff LP. A comparison of rolling averages versus discrete time epochs for assessing the worst-case scenario locomotor demands of professional soccer match-play. J Sci Med Sport. 2020;23(8):764-769. https://doi.org/10.1016/j.jsams.2020.01.002
@@ -2194,16 +2271,16 @@ This page cites these sources, as the reference files list them. Seven sources h
 - González-Badillo JJ, Sánchez-Medina L. Movement velocity as a measure of loading intensity in resistance training. Int J Sports Med. 2010;31(5):347-352. https://doi.org/10.1055/s-0030-1248333
 - González-Badillo JJ, Yañez-García JM, Mora-Custodio R, Rodríguez-Rosell D. Velocity loss as a variable for monitoring resistance exercise. Int J Sports Med. 2017;38(3):217-225. https://doi.org/10.1055/s-0042-120324
 - Gregson W, Drust B, Atkinson G, Di Salvo V. Match-to-match variability of high-speed activities in premier league soccer. Int J Sports Med. 2010;31(4):237-242. https://doi.org/10.1055/s-0030-1247546
-- Grindem H, Snyder-Mackler L, Moksnes H, Engebretsen L, Risberg MA. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. Br J Sports Med. 2016;50(13):804-808. https://doi.org/10.1136/bjsports-2016-096031
 - Haddad M, Stylianides G, Djaoui L, Dellal A, Chamari K. Session-RPE method for training load monitoring: validity, ecological usefulness, and influencing factors. Front Neurosci. 2017;11:612. https://doi.org/10.3389/fnins.2017.00612
 - Haff GG, Ruben RP, Lider J, Twine C, Cormie P. A comparison of methods for determining the rate of force development during isometric midthigh clean pulls. J Strength Cond Res. 2015;29(2):386-395. https://doi.org/10.1519/JSC.0000000000000705
 - Harman EA, Rosenstein MT, Frykman PN, Rosenstein RM. The effects of arms and countermovement on vertical jumping. Med Sci Sports Exerc. 1990;22(6):825-833. https://doi.org/10.1249/00005768-199012000-00015
 - Harper DJ, Carling C, Kiely J. High-intensity acceleration and deceleration demands in elite team sports competitive match play: a systematic review and meta-analysis of observational studies. Sports Med. 2019;49(12):1923-1947. https://doi.org/10.1007/s40279-019-01170-1
 - Healy R, Kenny IC, Harrison AJ. Reactive strength index: a poor indicator of reactive strength? Int J Sports Physiol Perform. 2018;13(6):802-809. https://doi.org/10.1123/ijspp.2017-0511
-- Heishman A, Brown B, Daub B, Miller R, Freitas E, Bemben M. The influence of countermovement jump protocol on reactive strength index modified and flight time: contraction time in collegiate basketball players. Sports. 2019;7(2):37. https://doi.org/10.3390/sports7020037
+- Heishman A, Brown B, Daub B, Miller R, Freitas E, Bemben M. The influence of countermovement jump protocol on reactive strength index modified and flight time: contraction time in collegiate basketball players. Sports. 2019;7(2):37. https://doi.org/10.3390/sports7020037 (cited as Heishman et al., 2019a)
+- Heishman A, Daub B, Miller R, Brown B, Freitas E, Bemben M. Countermovement jump inter-limb asymmetries in collegiate basketball players. Sports. 2019;7(5):103. https://doi.org/10.3390/sports7050103 (cited as Heishman et al., 2019b). The 0.90 ratio and its range were calculated from the typical errors in the paper's within-session and separate-day reliability tables.
 - Herzog W, Nigg BM, Read LJ, Olsson E. Asymmetries in ground reaction force patterns in normal human gait. Med Sci Sports Exerc. 1989;21(1):110-114. https://doi.org/10.1249/00005768-198902000-00020
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Med. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
-- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). No DOI.
+- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). No DOI. The skills use only its error formula, not its magnitude-based inference.
 - Hopkins WG, Marshall SW, Batterham AM, Hanin J. Progressive statistics for studies in sports medicine and exercise science. Med Sci Sports Exerc. 2009;41(1):3-13. https://doi.org/10.1249/MSS.0b013e31818cb278
 - Hourcade JC, Noirez P, Sidney M, Toussaint JF, Desgorces F. Effects of intensity distribution changes on performance and on training loads quantification. Biol Sport. 2018;35(1):67-74. https://doi.org/10.5114/biolsport.2018.70753
 - Hulin BT, Gabbett TJ, Blanch P, Chapman P, Bailey D, Orchard JW. Spikes in acute workload are associated with increased injury risk in elite cricket fast bowlers. Br J Sports Med. 2014;48(8):708-712. https://doi.org/10.1136/bjsports-2013-092524
@@ -2237,7 +2314,7 @@ This page cites these sources, as the reference files list them. Seven sources h
 - National Institute of Standards and Technology. Dataplot reference manual: prediction limits. https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm (accessed 2026-10-02). No DOI.
 - Opar DA, Piatkowski T, Williams MD, Shield AJ. A novel device using the Nordic hamstring exercise to assess eccentric knee flexor strength: a reliability and retrospective injury study. J Orthop Sports Phys Ther. 2013;43(9):636-640. https://doi.org/10.2519/jospt.2013.4837
 - Opar DA, Williams MD, Timmins RG, Hickey J, Duhig SJ, Shield AJ. Eccentric hamstring strength and hamstring injury risk in Australian footballers. Med Sci Sports Exerc. 2015;47(4):857-865. https://doi.org/10.1249/MSS.0000000000000465
-- Opar DA, Timmins RG, Behan FP, Hickey JT, van Dyk N, Price K, Maniar N. Is pre-season eccentric strength testing during the Nordic hamstring exercise associated with future hamstring strain injury? A systematic review and meta-analysis. Sports Med. 2021;51(9):1935-1945. https://doi.org/10.1007/s40279-021-01474-1
+- Opar DA, Timmins RG, Behan FP, Hickey JT, van Dyk N, Price K, Maniar N. Is pre-season eccentric strength testing during the Nordic hamstring exercise associated with future hamstring strain injury? A systematic review and meta-analysis. Sports Med. 2021;51(9):1935-1945. https://doi.org/10.1007/s40279-021-01474-1. Read in abstract form only.
 - Owen NJ, Watkins J, Kilduff LP, Bevan HR, Bennett MA. Development of a criterion method to determine peak mechanical power output in a countermovement jump. J Strength Cond Res. 2014;28(6):1552-1558. https://doi.org/10.1519/JSC.0000000000000311
 - Pareja-Blanco F, Rodríguez-Rosell D, Sánchez-Medina L, Sanchis-Moysi J, Dorado C, Mora-Custodio R, Yáñez-García JM, Morales-Alamo D, Pérez-Suárez I, Calbet JAL, González-Badillo JJ. Effects of velocity loss during resistance training on athletic performance, strength gains and muscle adaptations. Scand J Med Sci Sports. 2017;27(7):724-735. https://doi.org/10.1111/sms.12678
 - Parkinson AO, Apps CL, Morris JG, Barnett CT, Lewis MGC. The calculation, thresholds and reporting of inter-limb strength asymmetry: a systematic review. J Sports Sci Med. 2021;20(4):594-617. https://doi.org/10.52082/jssm.2021.594
@@ -2255,7 +2332,6 @@ This page cites these sources, as the reference files list them. Seven sources h
 - Saw AE, Main LC, Gastin PB. Monitoring the athlete training response: subjective self-reported measures trump commonly used objective measures: a systematic review. Br J Sports Med. 2016;50(5):281-291. https://doi.org/10.1136/bjsports-2015-094758
 - Scott MTU, Scott TJ, Kelly VG. The validity and reliability of global positioning systems in team sport: a brief review. J Strength Cond Res. 2016;30(5):1470-1490. https://doi.org/10.1519/JSC.0000000000001221
 - Shrier I. Strategic Assessment of Risk and Risk Tolerance (StARRT) framework for return-to-play decision-making. Br J Sports Med. 2015;49(20):1311-1315. https://doi.org/10.1136/bjsports-2014-094569
-- Simonsson R, Sundberg A, Piussi R, Högberg J, Senorski C, Thomeé R, Samuelsson K, Della Villa F, Hamrin Senorski E. Questioning the rules of engagement: a critical analysis of the use of limb symmetry index for safe return to sport after anterior cruciate ligament reconstruction. Br J Sports Med. 2025;59(6):376-384. https://doi.org/10.1136/bjsports-2024-108079
 - Sole CJ, Suchomel TJ, Stone MH. Preliminary scale of reference values for evaluating reactive strength index-modified in male and female NCAA Division I athletes. Sports. 2018;6(4):133. https://doi.org/10.3390/sports6040133
 - Song MK, Lin FC, Ward SE, Fine JP. Composite variables: when and how. Nurs Res. 2013;62(1):45-49. https://doi.org/10.1097/NNR.0b013e3182741948
 - Stone JD, Merrigan JJ, Ramadan J, Brown RS, Cheng GT, Hornsby WG, Smith H, Galster SM, Hagen JA. Simplifying external load data in NCAA Division-I men's basketball competitions: a principal component analysis. Front Sports Act Living. 2022;4:795897. https://doi.org/10.3389/fspor.2022.795897
@@ -2263,9 +2339,10 @@ This page cites these sources, as the reference files list them. Seven sources h
 - Swinton PA, Hemingway BS, Saunders B, Gualano B, Dolan E. A statistical framework to interpret individual response to intervention: paving the way for personalized nutrition and exercise prescription. Front Nutr. 2018;5:41. https://doi.org/10.3389/fnut.2018.00041
 - Tanaka H, Monahan KD, Seals DR. Age-predicted maximal heart rate revisited. J Am Coll Cardiol. 2001;37(1):153-156. https://doi.org/10.1016/S0735-1097(00)01054-8
 - Thomas C, Dos'Santos T, Comfort P, Jones PA. Between-session reliability of common strength- and power-related measures in adolescent athletes. Sports. 2017;5(1):15. https://doi.org/10.3390/sports5010015
-- Thornton HR, Nelson AR, Delaney JA, Serpiello FR, Duthie GM. Interunit reliability and effect of data-processing methods of global positioning systems. Int J Sports Physiol Perform. 2019;14(4):432-438. https://doi.org/10.1123/ijspp.2018-0273
+- Thornton HR, Nelson AR, Delaney JA, Serpiello FR, Duthie GM. Interunit reliability and effect of data-processing methods of global positioning systems. Int J Sports Physiol Perform. 2019;14(4):432-438. https://doi.org/10.1123/ijspp.2018-0273 Read as an abstract only, 2026-10-05. The full text is paywalled.
 - Timmins RG, Bourne MN, Shield AJ, Williams MD, Lorenzen C, Opar DA. Short biceps femoris fascicles and eccentric knee flexor weakness increase the risk of hamstring injury in elite football (soccer): a prospective cohort study. Br J Sports Med. 2016;50(24):1524-1535. https://doi.org/10.1136/bjsports-2015-095362
 - Tomoto T, Tarumi T, Sugawara J. Associations among dynamic cerebral autoregulation, baroreflex sensitivity, and carotid distensibility in young healthy adults: insight from endurance training. Eur J Appl Physiol. 2026;126(6):3201-3220. https://doi.org/10.1007/s00421-026-06155-3
+- VALD. ForceDecks Technical Glossary V2.0. March 2024. https://support.vald.com/hc/en-au/article_attachments/31552911571353 (accessed 2026-10-02). No DOI.
 - van Dyk N, Bahr R, Burnett AF, Whiteley R, Bakken A, Mosler A, Farooq A, Witvrouw E. A comprehensive strength testing protocol offers no clinical value in predicting risk of hamstring injury: a prospective cohort study of 413 professional football players. Br J Sports Med. 2017;51(23):1695-1702. https://doi.org/10.1136/bjsports-2017-097754
 - Varley MC, Elias GP, Aughey RJ. Current match-analysis techniques' underestimation of intense periods of high-velocity running. Int J Sports Physiol Perform. 2012;7(2):183-185. https://doi.org/10.1123/ijspp.7.2.183 (cited as Varley et al., 2012a)
 - Varley MC, Fairweather IH, Aughey RJ. Validity and reliability of GPS for measuring instantaneous velocity during acceleration, deceleration, and constant motion. J Sports Sci. 2012;30(2):121-127. https://doi.org/10.1080/02640414.2011.627941 (cited as Varley et al., 2012b)
@@ -2276,9 +2353,7 @@ This page cites these sources, as the reference files list them. Seven sources h
 - Wasserstein RL, Lazar NA. The ASA statement on p-values: context, process, and purpose. Am Stat. 2016;70(2):129-133. https://doi.org/10.1080/00031305.2016.1154108
 - Weakley J, Mann B, Banyard H, McLaren S, Scott T, Garcia-Ramos A. Velocity-based training: from theory to application. Strength Cond J. 2021;43(2):31-49. https://doi.org/10.1519/SSC.0000000000000560 (cited as Weakley et al., 2021a)
 - Weakley J, Morrison M, García-Ramos A, Johnston R, James L, Cole MH. The validity and reliability of commercially available resistance training monitoring devices: a systematic review. Sports Med. 2021;51(3):443-502. https://doi.org/10.1007/s40279-020-01382-w (cited as Weakley et al., 2021b)
-- Webster KE, Hewett TE. What is the evidence for and validity of return-to-sport testing after anterior cruciate ligament reconstruction surgery? A systematic review and meta-analysis. Sports Med. 2019;49(6):917-929. https://doi.org/10.1007/s40279-019-01093-x
 - Weir JP. Quantifying test-retest reliability using the intraclass correlation coefficient and the SEM. J Strength Cond Res. 2005;19(1):231-240. https://doi.org/10.1519/15184.1
-- Wellsandt E, Failla MJ, Snyder-Mackler L. Limb symmetry indexes can overestimate knee function after anterior cruciate ligament injury. J Orthop Sports Phys Ther. 2017;47(5):334-338. https://doi.org/10.2519/jospt.2017.7285
 - Wiesinger HP, Gressenbauer C, Kösters A, Scharinger M, Müller E. Device and method matter: a critical evaluation of eccentric hamstring muscle strength assessments. Scand J Med Sci Sports. 2020;30(2):217-226. https://doi.org/10.1111/sms.13569
 - Williams S, West S, Cross MJ, Stokes KA. Better way to determine the acute:chronic workload ratio? Br J Sports Med. 2017;51(3):209-210. https://doi.org/10.1136/bjsports-2016-096589. Accepted manuscript: https://purehost.bath.ac.uk/ws/files/147466466/BJSM_correspondence_alternative_to_rolling_averages_r1.pdf (accessed 2026-10-02)
 - Windt J, Gabbett TJ. Is it all for naught? What does mathematical coupling mean for acute:chronic workload ratios? Br J Sports Med. 2019;53(16):988-990. https://doi.org/10.1136/bjsports-2017-098925

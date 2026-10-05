@@ -85,7 +85,7 @@ The values below come from the t distribution. Take the degrees of freedom from 
 
 ### Calculate TE and the t multiplier in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They use only athletes with both tests, and they return a blank, not 0 or an error, when fewer than 2 athletes qualify.
+These versions use only athletes with both tests, and they return a blank, not 0 or an error, when fewer than 2 athletes qualify.
 
 Both versions assume one row per athlete, test, and trial in a `measures` table, with the retest stored as `trial_number` 1 and 2 in one retest session. The session filter keeps trials from other dates out. Replace `S0101` with the retest session. For a measure taken on each side, replace `bilateral` with `left` or `right` and compute each side separately. If your retest uses two sessions instead, filter test 1 and test 2 on their two `session_id` values in place of `trial_number`.
 
@@ -195,7 +195,7 @@ This prints `[0.62, -0.15]` and `0.54`.
 
 ### Calculate TE from three or more trials in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the Python above. They give the mean change between consecutive trials, the TE, and its degrees of freedom, (athletes minus 1) x (trials minus 1).
+These versions follow the Python above. They give the mean change between consecutive trials, the TE, and its degrees of freedom, (athletes minus 1) x (trials minus 1).
 
 They treat missing data as the Python does:
 
@@ -494,6 +494,7 @@ These are the mistakes AI tools and spreadsheets make most often when they judge
 - Reporting a change with no comparison to TE, so the reader cannot tell a real change from noise
 - Calling a change larger than the SWC because the observed change passes the SWC. The change minus the noise band must pass the SWC.
 - Using the standard deviation of one athlete's own baseline values as TE. It is not TE: it mixes real change with error. It is also imprecise when it comes from few values. By the t distribution, a 1.96 band built on an SD from 5 stable values flags about 12 percent of unchanged values, not 5 percent. Get TE from a test-retest study instead.
+- Using an athlete's own baseline SD without the usual-variation rules. When no TE exists, that SD may give a usual-variation band: `baseline mean ± t(n - 1) x baseline SD x sqrt(1 + 1/n)`, from at least 10 stable values (Hopkins, 2017). This is the standard prediction interval for one new value (NIST, Dataplot reference manual). Check that it uses t with n - 1 degrees of freedom, not 1.96: with 10 values, 1.96 lets 8.2 percent of unchanged values fall outside, against 5.0 percent with t(9). Check that it gives two states only, within or outside usual variation, with no smallest worthwhile change tier, and that it never calls the band measurement error.
 - Using the between-athlete SD as TE. It is much larger, because athletes differ from each other.
 - Using the standard error of the mean as the SWC or the noise
 - Taking TE from a paper for a different test, device, or population
@@ -509,8 +510,6 @@ These are the mistakes AI tools and spreadsheets make most often when they judge
 ## Example request
 
 > Here are two rounds of jump tests, a week apart, for the squad. Which athletes changed by more than noise?
-
-Status: not tested.
 
 ## Check the result
 
@@ -528,7 +527,7 @@ These sources support the formulas and rules in this file:
 - Hopkins WG. Measures of reliability in sports medicine and science. *Sports Medicine*. 2000;30(1):1-15. doi:10.2165/00007256-200030010-00001. Defines the typical error as the standard deviation of an individual's repeated measurements, states that systematic changes in the mean between consecutive trials, such as learning or fatigue, must be removed from it, and states that reasonable precision needs about 50 participants and at least 3 trials.
 - Swinton PA, Hemingway BS, Saunders B, Gualano B, Dolan E. A statistical framework to interpret individual response to intervention: paving the way for personalized nutrition and exercise prescription. *Frontiers in Nutrition*. 2018;5:41. doi:10.3389/fnut.2018.00041. Source of the rule to estimate TE from test-retest data over periods where true scores are not expected to change, the 95 percent range for a change (1.96 x TE x sqrt(2)), the statement that the SD of change scores is TE x sqrt(2), larger multiples when TE comes from a small sample, the 0.2 x between-athlete SD smallest worthwhile change, and the rule to classify a change by whether the confidence interval for the true change lies in a pre-defined region.
 - Jeffries AC, Wallace L, Coutts AJ, McLaren SJ, McCall A, Impellizzeri FM. Athlete-reported outcome measures for monitoring training responses: a systematic review of risk of bias and measurement property quality according to the COSMIN guidelines. *International Journal of Sports Physiology and Performance*. 2020;15(9):1203-1215. doi:10.1123/ijspp.2020-0386. Accessed 2026-10-02. Found measurement error inadequate for multiple-item measures. Apart from 2 studies of reliability and responsiveness, it found no validation studies of the single items most used in sport.
-- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. *Sportscience*. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm. Accessed 2026-10-02. Its monitoring spreadsheet computes the error of a change from the mean of several reference tests as TE x sqrt(1 + 1/n), with t at the typical error's degrees of freedom.
+- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. *Sportscience*. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm. Accessed 2026-10-02. Its monitoring spreadsheet computes the error of a change from the mean of several reference tests as TE x sqrt(1 + 1/n), with t at the typical error's degrees of freedom. The skills use only its error formula, not its magnitude-based inference.
 - National Institute of Standards and Technology. Dataplot reference manual: prediction limits. https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm. Accessed 2026-10-02. Gives the prediction interval for the mean of m new values as mean ± t x s x sqrt(1/n + 1/m), after Hahn and Meeker (1991), *Statistical Intervals*, pages 61-62. With m = 1, the factor is sqrt(1 + 1/n).
 - Hopkins WG, Marshall SW, Batterham AM, Hanin J. Progressive statistics for studies in sports medicine and exercise science. *Medicine and Science in Sports and Exercise*. 2009;41(1):3-13. doi:10.1249/MSS.0b013e31818cb278. Lists 0.2 as the small standardized difference, gives thresholds of 0.3, 0.9, 1.6, 2.5, and 4.0 of the within-athlete variation between competitions for a top athlete's competition time or distance, and advises judging magnitude by precision and not by null-hypothesis tests.
 - Batterham AM, Hopkins WG. Making meaningful inferences about magnitudes. *International Journal of Sports Physiology and Performance*. 2006;1(1):50-57. doi:10.1123/ijspp.1.1.50. Describes a related, probability-based method of inference from confidence limits compared with beneficial and harmful values.

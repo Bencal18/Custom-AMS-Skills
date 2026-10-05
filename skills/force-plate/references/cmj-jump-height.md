@@ -72,7 +72,7 @@ def cmj_height_takeoff_velocity(force_n, fs_hz, takeoff_index, quiet_s=1.0, g=9.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They use the flight time method only. They return a blank, not 0 m, when flight time is missing, and they read only flight times stored in seconds.
+These versions use the flight time method only. They return a blank, not 0 m, when flight time is missing, and they read only flight times stored in seconds.
 
 Both versions assume one row per athlete, date, session, measure, and trial in a `measures` table, with flight time stored as `measure_name` `cmj_flight_time` and `unit` `s`. Convert milliseconds to seconds on import. A value in ms inside this formula gives a height about a million times too large.
 
@@ -193,8 +193,8 @@ Report jump height in meters or centimeters. Name the method and whether arm swi
 
 | Population | Typical range | Source |
 |---|---|---|
-| NCAA Division I men (n = 76), no arm swing (light bar across the shoulders), flight time method, mean of 2 trials | 0.36 ± 0.07 m (mean ± SD) | Sole et al., 2018 |
-| NCAA Division I women (n = 75), no arm swing (light bar across the shoulders), flight time method, mean of 2 trials | 0.27 ± 0.06 m (mean ± SD) | Sole et al., 2018 |
+| NCAA Division I men (n = 76), no arm swing (light bar across the shoulders), flight time method, 10 Hz low-pass filter, mean of 2 trials | 0.36 ± 0.07 m (mean ± SD) | Sole et al., 2018 |
+| NCAA Division I women (n = 75), no arm swing (light bar across the shoulders), flight time method, 10 Hz low-pass filter, mean of 2 trials | 0.27 ± 0.06 m (mean ± SD) | Sole et al., 2018 |
 | Professional male rugby league (n = 53), no arm swing (hands on hips), takeoff velocity method, mean of 3 trials | 0.35 ± 0.04 m (mean ± SD); lowest and highest RSI-modified groups (n = 20 each) 0.318 ± 0.032 m and 0.377 ± 0.039 m | McMahon et al., 2018b |
 
 Use these ranges to check that data are plausible, not to rate athletes.
@@ -239,8 +239,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 ## Example request
 
 > I exported raw force data from our CMJ testing at 1000 Hz. Can you write me a Python function that gives jump height for each trial, and tell me why it's lower than the number on the old jump mat?
-
-Status: not tested.
 
 ## Check the result
 

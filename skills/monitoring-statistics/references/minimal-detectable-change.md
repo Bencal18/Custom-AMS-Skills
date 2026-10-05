@@ -73,7 +73,7 @@ print(f"MDC95 = {mdc(sem):.4f} cm, MDC90 = {mdc(sem, 1.645):.4f} cm")
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They return a blank MDC when the SEM is missing, so the band never collapses to 0. They compare a change with the MDC only when both tests and the SEM exist. Otherwise they say `not enough data`.
+These versions return a blank MDC when the SEM is missing, so the band never collapses to 0. They compare a change with the MDC only when both tests and the SEM exist. Otherwise they say `not enough data`.
 
 Both versions assume one row per athlete, date, measure, and trial in a `measures` table, and a `reliability` table with one row per measure: `measure_name`, `te` (the SEM, in the unit of the measure), `te_df`, and `te_source`. The user picks the old and the new test dates. Show the results with one athlete per row.
 
@@ -181,7 +181,7 @@ These choices change the MDC even when the athlete does not change:
 
 - **Confidence level.** In the worked example, MDC95 is 1.7418 cm and MDC90 is 1.4619 cm. The same 1.6 cm change fails MDC95 and passes MDC90.
 - **Small TE study.** The SEM of 0.6284 cm came from 6 athletes. With t(5) = 2.5706, the band is 2.5706 × 0.6284 × 1.4142 = 2.2845 cm, and the 1.6 cm change is inside it.
-- **Baseline mean of n values.** Against a mean of 8 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/8) = 1.3064 cm, smaller than MDC95.
+- **Baseline mean of n values.** Against a mean of 10 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/10) = 1.2918 cm, smaller than MDC95.
 - **Practical threshold.** Hopkins's 1.5 × TE and 2.0 × TE give 0.9426 cm and 1.2568 cm (Hopkins, 2000).
 - **Leaving out √2.** `1.96 × SEM` gives 1.2317 cm, which is 29% too small. It makes noise look like change.
 - **Which SEM.** An SEM from a different protocol, from tests weeks apart, or from an ICC formula on a different group changes the MDC (Weir, 2005).
@@ -232,8 +232,6 @@ These are the mistakes AI tools and spreadsheets make most often with the MDC:
 
 > Our isometric mid-thigh pull has an SEM of 85 N from last month's reliability session. One athlete went from 2,410 N to 2,560 N. Is that a real change?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:
@@ -249,4 +247,4 @@ Run these checks on the result:
 - Furlan L, Sterr A. The applicability of standard error of measurement and minimal detectable change to motor learning research: a behavioral study. Frontiers in Human Neuroscience. 2018;12:95. https://doi.org/10.3389/fnhum.2018.00095
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Medicine. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Swinton PA, Hemingway BS, Saunders B, Gualano B, Dolan E. A statistical framework to interpret individual response to intervention: paving the way for personalized nutrition and exercise prescription. Frontiers in Nutrition. 2018;5:41. https://doi.org/10.3389/fnut.2018.00041
-- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02)
+- Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). The skills use only its error formula, not its magnitude-based inference.
