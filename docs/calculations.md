@@ -380,7 +380,7 @@ The MDC and the SWC answer different questions. The MDC asks whether the change 
 
 - Confidence level: MDC95 is 1.7418 cm and MDC90 is 1.4619 cm. The same 1.6 cm change fails MDC95 and passes MDC90.
 - Small TE study: the SEM of 0.6284 cm came from 6 athletes. With t(5) = 2.5706, the band is 2.5706 × 0.6284 × 1.4142 = 2.2845 cm, and the 1.6 cm change is still inside it.
-- Baseline mean of n values: against a mean of 8 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/8) = 1.3064 cm.
+- Baseline mean of n values: against a mean of 10 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/10) = 1.2918 cm.
 - Practical threshold: 1.5 × TE and 2.0 × TE give 0.9426 cm and 1.2568 cm (Hopkins, 2000).
 - Leaving out √2: `1.96 × SEM` gives 1.2317 cm, which is 29% too small and makes noise look like change.
 - Which SEM: an SEM from a different protocol, from tests weeks apart, or from an ICC formula on a different group changes the MDC (Weir, 2005).
@@ -399,7 +399,7 @@ The MDC and the SWC answer different questions. The MDC asks whether the change 
 **Inputs.** The calculation needs these data:
 
 - A long table with one row per `athlete_id`, `date`, and value, such as `cmj_cm`, from one protocol
-- A baseline window k and a minimum count of values, chosen by the user
+- A baseline window k and a minimum count of values, chosen by the user. If the user has none, the file offers at least 10 prior values, labeled as its own practice default.
 - The test's TE, from test-retest data, for the noise band
 
 **Calculation.** Use a rolling baseline of prior values only, by default:
@@ -433,38 +433,38 @@ Follow these steps from raw inputs:
 8. Compute the noise band from the test's TE, and compare the change from the baseline mean with it.
 9. Report the z-score with the window k, the count n, the baseline mean, the baseline SD, and the units.
 
-**Worked example.** One athlete did a CMJ every 3 days, from 2026-09-04 to 2026-09-25: 41.0, 39.8, 40.6, 40.9, 39.5, 40.3, 41.2, and 40.0 cm. Today, 2026-09-28, the athlete jumped 37.6 cm. Judge today against the 8 prior tests:
+**Worked example.** One athlete did a CMJ every 3 days, from 2026-08-29 to 2026-09-25: 40.2, 40.7, 41.0, 39.8, 40.6, 40.9, 39.5, 40.3, 41.2, and 40.0 cm. Today, 2026-09-28, the athlete jumped 37.6 cm. Judge today against the 10 prior tests:
 
-1. Sum of the 8 prior values = 323.30 cm, so the baseline mean = 40.4125 cm.
-2. Sum of squared deviations = 2.6288 cm². Divide by 7 to get 0.3755 cm².
-3. Baseline SD = √0.3755 = 0.6128 cm.
-4. z = (37.6 − 40.4125) / 0.6128 = −4.59.
-5. Change from the baseline mean = −2.8125 cm.
-6. Noise band with TE = 0.6284 cm: 1.96 × 0.6284 × 1.0607 = 1.3064 cm.
-7. The drop is beyond the band by 2.8125 − 1.3064 = 1.5061 cm. That is still beyond the SWC of 0.6185 cm.
-8. The TE came from 6 athletes, so t(5) = 2.57 applies. The band becomes 2.5706 × 0.6284 × 1.0607 = 1.7133 cm. The drop is still beyond it by 1.0992 cm.
+1. Sum of the 10 prior values = 404.20 cm, so the baseline mean = 40.4200 cm.
+2. Sum of squared deviations = 2.7560 cm². Divide by 9 to get 0.3062 cm².
+3. Baseline SD = √0.3062 = 0.5534 cm.
+4. z = (37.6 − 40.4200) / 0.5534 = −5.10.
+5. Change from the baseline mean = −2.8200 cm.
+6. Noise band with TE = 0.6284 cm: 1.96 × 0.6284 × 1.0488 = 1.2918 cm.
+7. The drop is beyond the band by 2.8200 − 1.2918 = 1.5282 cm. That is still beyond the SWC of 0.6185 cm.
+8. The TE came from 6 athletes, so t(5) = 2.57 applies. The band becomes 2.5706 × 0.6284 × 1.0488 = 1.6942 cm. The drop is still beyond it by 1.1258 cm.
 
-Result: today is 4.59 of the athlete's usual SDs below baseline (window 8 prior tests, n = 8, sample SD). The drop is larger than measurement error, and clearly larger than the SWC. Report it as a flag for the practitioner to review, not as a diagnosis.
+Result: today is 5.10 of the athlete's usual SDs below baseline (window 10 prior tests, n = 10, sample SD). The drop is larger than measurement error, and clearly larger than the SWC. Report it as a flag for the practitioner to review, not as a diagnosis.
 
 **Variants.** Use these variants when they fit:
 
 - Rolling window of tests: the previous k tests. Use it when tests are irregular, such as weekly jumps. This is the default.
 - Rolling window of days: the previous k calendar days. Use it only for daily measures. Missing days shrink the real number of values, so report n.
 - Fixed baseline: the mean and SD of a set period, such as the first weeks of preseason. It does not drift. State the dates.
-- Control limits: Sands et al. (2019) show limits at 1.5 and 2.0 × the baseline SD around the baseline mean, equal to z = ±1.5 and z = ±2.0. They are examples from a published case, not validated thresholds. With an 8-value baseline and pure noise, |z| > 2 flags about 10.1% of tests and |z| > 1.5 flags about 20.0%.
+- Control limits: Sands et al. (2019) show limits at 1.5 and 2.0 × the baseline SD around the baseline mean, equal to z = ±1.5 and z = ±2.0. They are examples from a published case, not validated thresholds. With a 10-value baseline and pure noise, |z| > 2 flags about 8.9% of tests and |z| > 1.5 flags about 18.6%.
 
 **What changes the number.** These choices change the z-score for the same athlete on the same day:
 
-- Including today in the baseline: the last 8 values with today included give a mean of 39.9875 cm, an SD of 1.1180 cm, and z = −2.14 instead of −4.59.
+- Including today in the baseline: the last 10 values with today included give a mean of 40.1600 cm, an SD of 1.0532 cm, and z = −2.43 instead of −5.10.
 - Window length: with the 4 prior tests, z = −3.71. With 3 prior tests, z = −4.64. Short windows give unstable SDs.
-- Population SD: `STDEV.P` gives an SD of 0.5732 cm and z = −4.91.
+- Population SD: `STDEV.P` gives an SD of 0.5250 cm and z = −5.37.
 - Team SD instead of the athlete's SD: dividing by the between-athlete SD of 3.0927 cm gives z = −0.91. That answers a different question.
 - Small n: Swinton et al. (2018) show that a 95% interval based on a TE from 5 individuals needs a multiplier of 2.78 instead of 1.96.
 - Own SD as TE: using the baseline SD of 0.6128 cm in place of TE gives a band of 1.2739 cm with 1.96, or 1.5369 cm with t(7) = 2.3646. Neither is a measurement-error band.
-- Trend in the baseline: a baseline should be stable, with low variability and no clear trend (Sands et al., 2019). In a 28-test example that falls 0.1 cm per test from test 9, the rolling z never reaches −2; its lowest value is −1.91. Before test 28, the rolling mean has drifted to 38.4500 cm, with an SD of 0.4440 cm. Against the fixed baseline of tests 1 to 8 (mean 40.0000 cm), test 28 is 2.4000 cm lower, beyond the noise band of 1.3064 cm. Pair a rolling baseline with a fixed reference period or a trend line.
+- Trend in the baseline: a baseline should be stable, with low variability and no clear trend (Sands et al., 2019). In a 30-test example that falls 0.1 cm per test from test 11, the rolling z against the prior 10 tests never reaches −2; its lowest value is −1.87. Before test 30, the rolling mean has drifted to 38.5500 cm, with an SD of 0.5603 cm. Against the fixed baseline of tests 1 to 10 (mean 40.0000 cm), test 30 is 2.5000 cm lower, beyond the noise band of 1.2918 cm. Pair a rolling baseline with a fixed reference period or a trend line.
 - Mixed conditions: a baseline that spans preseason and in-season, or an illness period, changes both the mean and the SD.
 
-**Units and typical range.** The z-score has no units. The baseline mean and SD have the units of the measure. The file gives no typical z-score range or flag threshold. Thresholds are choices, not facts. Name the threshold and its source. No source used in the file sets a minimum number of values or a best window for an individual baseline. Weir (2005) states there is no consensus on the sample size needed for a stable SEM. Report n with every z-score.
+**Units and typical range.** The z-score has no units. The baseline mean and SD have the units of the measure. The file gives no typical z-score range or flag threshold. Thresholds are choices, not facts. Name the threshold and its source. No source used in the file sets a best window for an individual baseline. Weir (2005) states there is no consensus on the sample size needed for a stable SEM. Hopkins (2017) asks for at least 10 values for modest precision, and Swinton et al. (2018) say more than 10 to 20 tests may be needed. So the file offers at least 10 prior values as its practice default, and its code templates use a window of 10 and a minimum of 10. Report n with every z-score.
 
 **Vendor equivalents.** One device file maps a z-score status:
 
@@ -861,7 +861,7 @@ Result: on day 35 the same athlete has a coupled ACWR of 1.40, an uncoupled ACWR
 
 - One row per athlete per day with `athlete_id`, `date`, and one column per item, such as `sleep`, `soreness`, `fatigue`, `stress`, and `mood`, in form points such as 1 to 5
 - Each item's direction, confirmed with the user
-- The baseline window and the minimum number of baseline days, chosen by the user. If the user has none, the file offers 14 answers inside a 28-day window, labeled as its own choice, and never fewer than 7 answers covering one full training week.
+- The baseline window and the minimum number of baseline days, chosen by the user. If the user has none, the file offers 14 answers inside a 28-day window, labeled as its own choice, and never fewer than 10 answers covering at least one full training week.
 - Whether the practitioner also flags on the raw answer, and at what level
 
 **Calculation.** Calculate each athlete and each item separately:
@@ -888,7 +888,8 @@ Follow these steps from raw inputs:
 5. If the SD is 0, report "no variation in baseline" and the change in points.
 6. Calculate z = (today's answer − baseline mean) ÷ baseline SD.
 7. For a total z-score, add the flipped items into a daily total first, then repeat steps 2 to 6 on the totals.
-8. Report each item's raw answer, change in points, z-score, status, baseline window, and baseline day count. Show the total z-score only next to the item z-scores.
+8. For a squad flag list, flag on the total z-score or on the practitioner's raw-answer rule, not on single-item z-scores. Beside each flagged athlete, show each item's raw answer and change in points, with the total z-score, status, baseline window, and baseline day count.
+9. In the athlete detail view, report each item's raw answer, change in points, z-score labeled approximate, status, baseline window, and baseline day count.
 
 **Worked example.** One athlete answers a 1 to 5 form each morning, where 5 is best for every item. The baseline is the 14 mornings before today:
 
@@ -904,26 +905,27 @@ Sleep z = (2 − 3.9286) ÷ 0.6157 = −3.13, from the unrounded mean and SD. Th
 
 **Variants.** Choose and name the variant:
 
-- Item-level z-score: one z-score per question. Use this by default. It keeps the reason for a change visible.
-- Total z-score: add the items into a daily total, then standardize the total against the athlete's baseline of totals. Show the item z-scores next to it.
+- Total z-score: add the items into a daily total, then standardize the total against the athlete's baseline of totals. Use it by default to flag athletes across a squad. Beside each flagged athlete, show each item's raw answer and change in points.
+- Item-level z-score: one z-score per question. Show it in the athlete detail view, labeled approximate, after the raw answer and the change in points. It keeps the reason for a change visible. Do not use it to build a squad flag list.
 - Rolling baseline: the previous N calendar days, such as 28. It follows slow changes, but it also absorbs a slow decline.
 - Fixed baseline: a set period, such as a stable block of normal training. It does not drift, but it ages.
-- Raw-answer flag: a practitioner may also flag on the raw answer, such as any soreness of 1 or 2. That is their choice. Label it as theirs.
+- Raw-answer flag: a practitioner may also flag on the raw answer, such as any soreness of 1 or 2. That is their choice. It can replace or join the total z-score in a squad flag list. Label it as theirs.
 
 Treat the numbers with these limits in mind:
 
-- A one-direction cut-off of z = −2 flags 2.3% of ordinary days when the baseline mean and SD are known, and 3.8% with a 14-day baseline. Across 25 athletes on one item, that is 0.57 or 0.94 flags a day by chance, and a 43.7% or 61.8% chance of at least one. With 7 baseline answers the rate for one athlete is 5.5%, and with 28 it is 3.0%. These figures come from the normal and t distributions. The real rate on a 1 to 5 scale can be higher or lower.
-- A small baseline gives an unstable SD. The 95% confidence interval for the true SD runs from about 0.64 to 2.20 times the sample SD with 7 values, 0.72 to 1.61 times with 14, and 0.79 to 1.36 times with 28. With 14 baseline days, a z-score of −3.13 matches about −1.94 to −4.32 against the true SD, which is the z-score multiplied by 0.621 to 1.379.
+- A one-direction cut-off of z = −2 flags 2.3% of ordinary days when the baseline mean and SD are known, and 3.8% with a 14-day baseline. Across 25 athletes flagged on the total, that is 0.57 or 0.94 flags a day by chance, and a 43.7% or 61.8% chance of at least one. With 7 baseline answers the rate for one athlete is 5.5%, with 10 it is 4.4%, and with 28 it is 3.0%. These figures come from the normal and t distributions. The real rate on a 1 to 5 scale can be higher or lower.
+- A small baseline gives an unstable SD. The 95% confidence interval for the true SD runs from about 0.64 to 2.20 times the sample SD with 7 values, 0.69 to 1.83 times with 10, 0.72 to 1.61 times with 14, and 0.79 to 1.36 times with 28. With 14 baseline days, a z-score of −3.13 matches about −1.94 to −4.32 against the true SD, which is the z-score multiplied by 0.621 to 1.379.
 - Today's distance from a mean of n days has a spread of baseline SD × √(1 + 1/n). This is the standard prediction interval for one new value against a mean of n values (NIST, Dataplot reference manual, after Hahn and Meeker, 1991). With n = 14, √(1 + 1/14) = 1.035, so the sleep z-score of −3.13 becomes −3.03 on that scale.
 - The baseline SD is not a typical error. It mixes real day-to-day change with error. Do not use it as TE, and do not borrow a noise band built on TE for wellness answers.
 - Daily answers are often autocorrelated, and answers on a short point scale are not normally distributed, so treat these factors as a rough guide only.
 - On a short point scale, z-scores jump in steps. For a single item, report the raw answer and the change in points first, and the z-score second as approximate. In a simulation run for the file (stable athletes, 14-day baselines, independent days), the chance rate of z ≤ −2 on one item ranged from 3.3% to 5.6% depending on the usual answer, against 3.8% expected, and most flags were a one-point drop.
-- We found no peer-reviewed source that sets a minimum number of baseline days. Ask the user, and report the number of baseline days with every z-score. If the user has no number, the file offers 14 baseline answers inside a 28-day window, labeled as its own choice, and never fewer than 7 answers covering one full training week. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019). The file infers, as its own suggestion, that a baseline should cover at least one full training week.
+- Keep single-item z-scores out of squad flag lists. With 5 items and a 14-day baseline, about 17% to 20% of athletes get at least one item flagged on an ordinary day by chance, treating the items as independent. That is 4 or 5 of 25 athletes a day, against about 1 when you flag on the total. The 17.5% comes from the t distribution, 1 − (1 − 0.0377)^5, and a simulation of 1 to 5 answers run for the skill gave about 20% for a squad with mixed usual answers, and about 25% when every usual answer was 4.25. Flag the squad on the total or on the practitioner's raw-answer rule, and show each item's raw answer and change in points beside each flagged athlete. Keep item z-scores, labeled approximate, in the athlete detail view.
+- We found no peer-reviewed source that sets a minimum number of baseline days. Ask the user, and report the number of baseline days with every z-score. If the user has no number, the file offers 14 baseline answers inside a 28-day window, labeled as its own choice, and never fewer than 10 answers covering at least one full training week. Ten matches the floor the monitoring-statistics skill offers for an individual baseline. A user's choice below 10 is applied and labeled as the user's choice. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019). The file infers, as its own suggestion, that a baseline should cover at least one full training week.
 - Report the number of flags expected by chance next to the number found. Recommend a repeat answer or a conversation with the athlete before anyone acts on a single flag (Barnett et al., 2005).
 
 **What changes the number.** These choices change the result when the athlete has not changed:
 
-- Baseline length: with the last 7 days as the baseline, today's sleep z-score is −3.46 (mean 4.00, SD 0.58) instead of −3.13 with 14 days.
+- Baseline length: with the last 10 days as the baseline, today's sleep z-score is −3.35 (mean 3.90, SD 0.57) instead of −3.13 with 14 days.
 - Including today in the baseline: the sleep z-score shrinks from −3.13 to −2.32.
 - Item versus total: the total z-score is −2.84. The plain mean of the five item z-scores is −0.68.
 - Size of the baseline SD: an answer of 3 gives z = −2.36 on stress (mean 3.86, SD 0.36) but −0.96 on soreness (mean 3.50, SD 0.52).

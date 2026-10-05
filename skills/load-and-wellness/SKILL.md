@@ -75,7 +75,7 @@ Run these checks on your own result before you show it:
 - Count check: count with code, not by hand. Report sessions, athletes, filled and missing ratings, athlete-days with training, rest days you added, total athlete-days, and complete athlete-days. Sessions and athletes match the input. Total athlete-days equal the athlete-days in the input plus the days you added. Complete athlete-days are athlete-days with no missing value. Copy every count in the answer from the code output.
 - Direction check: the sign of each wellness z-score matches the item's scale direction.
 - Raw value check: every wellness z-score shows the raw answer, the change in points, and a status.
-- Chance check: when you flag wellness answers across a squad, show the number of flags expected by chance next to the number found.
+- Chance check: when you flag wellness answers across a squad, flag on the total z-score or the practitioner's own raw-answer rule, not on single-item z-scores. Show each item's raw answer and change in points beside each flagged athlete. Show the number of flags expected by chance next to the number found. Keep item z-scores, labeled approximate, in the athlete detail view.
 
 If a check fails, say which check failed and why. Do not hide the result.
 

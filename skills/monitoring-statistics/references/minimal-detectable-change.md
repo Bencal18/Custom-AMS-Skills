@@ -181,7 +181,7 @@ These choices change the MDC even when the athlete does not change:
 
 - **Confidence level.** In the worked example, MDC95 is 1.7418 cm and MDC90 is 1.4619 cm. The same 1.6 cm change fails MDC95 and passes MDC90.
 - **Small TE study.** The SEM of 0.6284 cm came from 6 athletes. With t(5) = 2.5706, the band is 2.5706 × 0.6284 × 1.4142 = 2.2845 cm, and the 1.6 cm change is inside it.
-- **Baseline mean of n values.** Against a mean of 8 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/8) = 1.3064 cm, smaller than MDC95.
+- **Baseline mean of n values.** Against a mean of 10 prior tests, the 95% band is 1.96 × 0.6284 × √(1 + 1/10) = 1.2918 cm, smaller than MDC95.
 - **Practical threshold.** Hopkins's 1.5 × TE and 2.0 × TE give 0.9426 cm and 1.2568 cm (Hopkins, 2000).
 - **Leaving out √2.** `1.96 × SEM` gives 1.2317 cm, which is 29% too small. It makes noise look like change.
 - **Which SEM.** An SEM from a different protocol, from tests weeks apart, or from an ICC formula on a different group changes the MDC (Weir, 2005).
