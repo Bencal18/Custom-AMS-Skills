@@ -40,9 +40,11 @@ For more than one session in a day, calculate each session's load, then add them
 Record injured, ill, or modified-training days this way:
 
 - Mark each day in a separate column, such as `availability`, with values such as `full`, `modified`, and `out`.
-- Rate a modified or rehab session the usual way, with its own duration.
+- Rate a modified session the usual way, with its own duration.
 - Record a day with no activity as `0` AU, with the reason in the `availability` column. Keep a day with activity but no rating as missing.
 - Report these days apart, so you do not read a drop in load as a planned easy week.
+
+These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
 
 Use these spreadsheet formulas, with RPE in column `C`, minutes in column `D`, and session load in column `E`. The first keeps a blank rating or duration blank instead of 0 AU. The second leaves a day blank if any of its sessions has a blank load. Here the sessions are rows 2 and 3:
 

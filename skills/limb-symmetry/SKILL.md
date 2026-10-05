@@ -15,7 +15,7 @@ This skill helps you compare an athlete's left and right limbs with a named, con
 Use this skill when the user asks to:
 
 - Calculate a limb symmetry index (LSI), asymmetry percentage, or left versus right difference.
-- Compare an injured or involved limb with the other limb.
+- Compare the dominant limb with the nondominant limb, or the stronger limb with the weaker limb.
 - Explain why two reports show different asymmetry numbers for the same athlete.
 - Choose a formula for single-leg tests or two-plate tests.
 - Write a spreadsheet formula, Python or R code, or a Power BI or Tableau calculation for left versus right comparisons.
@@ -36,12 +36,12 @@ Follow these steps in order:
 3. Load `references/limb-symmetry-index.md`.
 4. Ask whether the test is unilateral (each limb tested on its own) or bilateral (both limbs push on one shared load at the same time, such as a two-plate jump), if it is not clear. The Nordic hamstring test is a two-leg task: both legs resist at the same time, each on its own sensor. Even so, its default is percentage difference against the stronger leg, because Nordic studies express imbalance on a one-leg scale (Opar et al., 2015; Bourne et al., 2015). BAI-1 would give about half the one-leg values.
 5. Offer the log ratio, 100 × ln(right / left), as an option for the Nordic hamstring test. Give this reason: it gives the same size whichever leg is stronger. Do not say it matches the Nordic studies. Opar et al. (2015) used a left-to-right ratio and log-transformed it only to calculate group means.
-6. Ask which formula the user's report, clinic, or comparison uses.
+6. Ask which formula the user's report or comparison uses.
 7. If the user names none, use percentage difference for unilateral tests and the Nordic test, and the bilateral asymmetry index (BAI-1) for bilateral tests, and tell the user you chose it.
 8. If no dominant limb is named, calculate BAI-1 as right minus left, and say so.
-9. Ask which limb is the reference: involved and uninvolved, dominant and nondominant, or the larger value. If the user names none, use the larger value, say so, and still ask for each athlete's dominant or involved limb.
+9. Ask which limb is the reference: dominant and nondominant, or the larger value (stronger and weaker). If the user names none, use the larger value, say so, and still ask for each athlete's dominant limb.
 10. Record the reference limb for each athlete, and keep it the same across sessions.
-11. Never infer the involved limb from the data. If the user does not name it, do not calculate an LSI.
+11. Never infer the dominant limb from the data. If the user does not name it, do not calculate an LSI.
 12. List each input column with its unit.
 13. Confirm left and right labels against the device file.
 14. Use the same trial summary for both limbs, either the best trial or the mean of trials.
@@ -56,7 +56,7 @@ Follow these steps in order:
 23. If no SE exists, say the difference cannot be judged against noise. Judge a change in one limb's value between sessions with the `monitoring-statistics` skill if it is installed, or say it cannot be judged without a typical error.
 24. Run the checks below.
 25. Report the result in this format: both raw limb values with units, the formula name and equation, the reference limb, the percentage with its sign, the larger side, the SE and its source, the band, and whether the difference is outside it. For a bilateral test, add the device's own asymmetry formula next to BAI-1 only where the device documents it, as described below.
-26. When the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+26. When the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal."
 
 Bishop et al. (2021) drew one line per metric at the largest group coefficient of variation across the tests and limbs they compared. Use it only if the user asks, and call it an optional, lenient screen. It flags more differences than the band.
 
@@ -97,11 +97,10 @@ This skill gives decision support only. Follow these limits in every answer:
 - Do not make clearance, return-to-sport, return-to-training, injury-risk, or training decisions. Leave those to the practitioner.
 - Do not diagnose an injury or say an athlete is injured, at risk, ready, cleared, recovered, or safe.
 - Do not apply any threshold as a pass or fail. Thresholds depend on the formula, test, metric, and population. Do not invent one.
-- If the user asks whether an athlete can return to sport or play, state that this skill cannot answer that. Give the numbers with their formula, and refer the decision to the treating clinician or practitioner.
-- If the user asks about a 90% LSI or any other return-to-sport criterion, state that it belongs to a clinician-run test battery, and that an LSI alone can overestimate function. Give the Wellsandt et al. (2017) example from the reference file. Do not say whether the athlete meets it.
-- Do not advise whether or when an injured or rehabilitating athlete should do a maximal test. That is the clinician's decision.
-- If the data note pain during a rep or trial, keep the row and set its status to `pain_reported`. Do not delete it, because painful reps can be part of a planned rehab protocol (Hickey et al., 2020). Do not treat it as a valid maximum. Leave it out of the best rep, the mean, relative force, baselines, z-scores, change, and imbalance. You may state once what the top value would be with it, labeled as not valid. Tell the user to pass the pain report to the medical team. If every rep on a limb had pain, report no valid maximum for that limb.
-- Do not present an LSI as a measure of recovery on its own. The uninvolved limb can lose capacity too. Show each limb's own value over time.
+- If the user asks whether an athlete can return to sport or play, state that this skill cannot answer that.
+- If the user asks about a 90% LSI or any other clearance or return-to-sport criterion, state that symmetry is not a clearance criterion. Do not say whether the athlete meets it.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+- Do not present an LSI as a measure of change on its own. Either limb can change. Show each limb's own value over time.
 - Do not compare percentages from different formulas, tests, metrics, or devices as if they were the same.
 - Do not drop the raw limb values. Show both values, with units, next to every percentage, including ones in running text.
 - Use only the figures in the reference file, and name the source and population.

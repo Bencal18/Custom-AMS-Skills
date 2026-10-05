@@ -68,7 +68,7 @@ If the `ams-data-setup` skill is installed, use its table layout for athletes, s
 Run these checks on your own result before you show it:
 
 - Range check: compare each value with the typical range in the reference file. Flag a value as "check this value" when it falls outside the reported observed range or, where only a mean and standard deviation (SD) are given, more than 3 SD from the mean. The 3 SD line is this skill's choice, not a published rule. Name the population the range came from. For the IMTP, use the internal checks in its reference file instead.
-- Population check: an injured, rehabilitating, youth, or untrained athlete can fall outside a healthy-sample range for real reasons. Do not label such a value a data error or abnormal for that reason alone.
+- Population check: a youth or untrained athlete can fall outside a published range for real reasons. Do not label such a value a data error or abnormal for that reason alone.
 - Unit check: confirm jump height is in m or cm and not mixed, time is in s, force is in N, and relative force is in N/kg.
 - Method check: confirm every value in one column uses the same method, such as all takeoff velocity or all flight time.
 - Recompute check: recompute one athlete by hand and confirm it matches your code or formula.
@@ -105,8 +105,7 @@ Follow these limits:
 - Do not compare values across methods, devices, postures, or arm-swing conditions without saying so.
 - Do not calculate Nordic knee torque or muscle force from ankle force. If the export gives a torque, report it as given, labeled as the device's value, and say that it depends on how the knee position is set.
 - Do not call a change real when it is inside the noise band.
-- Do not advise whether or when an injured or rehabilitating athlete should do a maximal test. That is the clinician's decision.
-- If the data note pain during a rep or trial, keep the row and set its status to `pain_reported`. Do not delete it, because painful reps can be part of a planned rehab protocol (Hickey et al., 2020; see `references/eccentric-hamstring-force.md`). Do not treat it as a valid maximum. Leave it out of the best rep, means, relative and allometric force, rate of force development, baselines, z-scores, change, and imbalance. You may state once what the top value would be with it, labeled as not valid. Tell the user to pass the pain report to the medical team. If every rep had pain, report no valid maximum for that test or leg.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
 - Do not quote injury-study cut-offs as targets or flags.
 
 ## References
