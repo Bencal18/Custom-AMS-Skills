@@ -1,0 +1,35 @@
+name: Wrong formula, figure, or citation
+description: Report a formula, range, threshold, or citation that is wrong or unsupported.
+title: "Wrong: <metric or file>"
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: Do not paste real athlete data. Use made-up numbers.
+  - type: input
+    id: file
+    attributes:
+      label: File and section
+      description: The file path, and the heading or line number.
+      placeholder: skills/force-plate/references/cmj-jump-height.md, Formula
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: Quote the text, and say what is wrong with it.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix
+      description: The correct formula, figure, or wording.
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: A peer-reviewed source or vendor document that supports the fix, with a DOI or link. Confirm you read the source itself.
+    validations:
+      required: true

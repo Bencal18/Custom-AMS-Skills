@@ -6,3 +6,6 @@ __pycache__/
 # Internal plans
 plans/
 Eclipse_*_Plan_*.md
+
+# Built skill zips
+dist/
