@@ -34,8 +34,8 @@ Follow these steps in order:
 1. Ask which device and test the data came from, if the user has not said.
 2. Load the device file when one exists for that device.
 3. Load `references/limb-symmetry-index.md`.
-4. Ask whether the test is unilateral (each limb tested on its own) or bilateral (both limbs push on one shared load at the same time, such as a two-plate jump), if it is not clear. The Nordic hamstring test is a two-leg task: both legs resist at the same time, each on its own sensor. Even so, its default is percentage difference, because Nordic studies express imbalance on a one-leg scale: a left-to-right ratio, log-transformed and back-transformed to a percentage (Opar et al., 2015; Bourne et al., 2015). BAI-1 would give about half those values.
-5. Offer the log ratio, 100 × ln(right / left), as an option for the Nordic hamstring test.
+4. Ask whether the test is unilateral (each limb tested on its own) or bilateral (both limbs push on one shared load at the same time, such as a two-plate jump), if it is not clear. The Nordic hamstring test is a two-leg task: both legs resist at the same time, each on its own sensor. Even so, its default is percentage difference against the stronger leg, because Nordic studies express imbalance on a one-leg scale (Opar et al., 2015; Bourne et al., 2015). BAI-1 would give about half the one-leg values.
+5. Offer the log ratio, 100 × ln(right / left), as an option for the Nordic hamstring test. Give this reason: it gives the same size whichever leg is stronger. Do not say it matches the Nordic studies. Opar et al. (2015) used a left-to-right ratio and log-transformed it only to calculate group means.
 6. Ask which formula the user's report, clinic, or comparison uses.
 7. If the user names none, use percentage difference for unilateral tests and the Nordic test, and the bilateral asymmetry index (BAI-1) for bilateral tests, and tell the user you chose it.
 8. If no dominant limb is named, calculate BAI-1 as right minus left, and say so.
@@ -51,17 +51,25 @@ Follow these steps in order:
 18. Calculate the value with the formula in the reference file. Follow its "Calculate the metric" steps.
 19. Judge the left-right difference with one rule, whatever formula you report: the difference in raw units is larger than noise only when it exceeds 1.96 × √(SE_left² + SE_right²). SE is the test's typical error for single or best trials, or a pooled squad coefficient of variation × the limb's value / √k for a mean of k trials.
 20. Take the SE from a squad reliability study, or from a published reliability study of the same test, device, and population, never from one athlete's own trials or from the same trials you are judging.
-21. State the SE and its source.
-22. If no SE exists, say the difference cannot be judged against noise. Judge a change in one limb's value between sessions with the `monitoring-statistics` skill if it is installed, or say it cannot be judged without a typical error.
-23. Run the checks below.
-24. Report the result in this format: both raw limb values with units, the formula name and equation, the reference limb, the percentage with its sign, the larger side, the SE and its source, the band, and whether the difference is outside it.
-25. When the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+21. For a left-right difference from one session, use a within-session typical error, from trials repeated in the same session, when such a study exists. If only a separate-day typical error exists, use it, and label the band "likely wider than needed". Day-to-day changes that affect both limbs alike cancel out of a same-session difference, so a separate-day typical error widens the band. In one force plate study, within-session typical error was a median 0.90 times the separate-day value (Heishman et al., 2019).
+22. State the SE, its source, and whether it came from the same session or separate days.
+23. If no SE exists, say the difference cannot be judged against noise. Judge a change in one limb's value between sessions with the `monitoring-statistics` skill if it is installed, or say it cannot be judged without a typical error.
+24. Run the checks below.
+25. Report the result in this format: both raw limb values with units, the formula name and equation, the reference limb, the percentage with its sign, the larger side, the SE and its source, the band, and whether the difference is outside it. For a bilateral test, add the device's own asymmetry formula next to BAI-1 only where the device documents it, as described below.
+26. When the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
 
 Bishop et al. (2021) drew one line per metric at the largest group coefficient of variation across the tests and limbs they compared. Use it only if the user asks, and call it an optional, lenient screen. It flags more differences than the band.
 
 If the user wants to compare with a value from another source, recalculate both values with the same formula first. If you cannot, say the values are not comparable.
 
 If the device export gives its own asymmetry column, check the device file for its formula. Never read its sign. Recompute from the left and right values. Do not mix it with values from another formula.
+
+For a bilateral test, follow these rules to show the device's own asymmetry formula next to BAI-1:
+
+- Show it only when the device documents its formula. The VALD ForceDecks Technical Glossary V2.0 gives (left − right) / max(left, right) × 100. A positive value means the left limb is larger.
+- Recompute it from the left and right values. Never copy the vendor column.
+- Label it with the device name and the larger side. For example, left 920 N and right 1000 N give "BAI-1: 4.17%, right larger" and "VALD ForceDecks formula: −8.00%, right larger".
+- Hawkin Dynamics and the VALD NordBord app do not publish their formulas. For those devices, say the formula is unpublished, and show no device value.
 
 If the `ams-data-setup` skill is installed, use its table layout. If the `monitoring-statistics` skill is installed, use it to judge whether a change over time is larger than noise.
 
@@ -78,7 +86,7 @@ Run these checks on your own result before you show it:
 - Side check: confirm left and right labels were not swapped between the export and your table.
 - Count check: confirm the number of athletes, sessions, and trials per limb matches the input.
 - Raw value check: every percentage, including ones in running text and equations, has both limb values with units beside it.
-- Noise check: confirm you compared the raw difference with the band from step 19, stated the SE source, and used the required wording when it is inside the band.
+- Noise check: confirm you compared the raw difference with the band from step 19, stated the SE source and its retest interval, and used the required wording when it is inside the band.
 
 If a check fails, say which check failed and why. Do not hide the result.
 
@@ -92,7 +100,7 @@ This skill gives decision support only. Follow these limits in every answer:
 - If the user asks whether an athlete can return to sport or play, state that this skill cannot answer that. Give the numbers with their formula, and refer the decision to the treating clinician or practitioner.
 - If the user asks about a 90% LSI or any other return-to-sport criterion, state that it belongs to a clinician-run test battery, and that an LSI alone can overestimate function. Give the Wellsandt et al. (2017) example from the reference file. Do not say whether the athlete meets it.
 - Do not advise whether or when an injured or rehabilitating athlete should do a maximal test. That is the clinician's decision.
-- If the data note pain during a rep or trial, flag that rep and do not treat it as a valid maximum. Calculate every result without it. You may state once what the top value would be with it, labeled as not valid. Do not use it in relative force, change, or imbalance results.
+- If the data note pain during a rep or trial, keep the row and set its status to `pain_reported`. Do not delete it, because painful reps can be part of a planned rehab protocol (Hickey et al., 2020). Do not treat it as a valid maximum. Leave it out of the best rep, the mean, relative force, baselines, z-scores, change, and imbalance. You may state once what the top value would be with it, labeled as not valid. Tell the user to pass the pain report to the medical team. If every rep on a limb had pain, report no valid maximum for that limb.
 - Do not present an LSI as a measure of recovery on its own. The uninvolved limb can lose capacity too. Show each limb's own value over time.
 - Do not compare percentages from different formulas, tests, metrics, or devices as if they were the same.
 - Do not drop the raw limb values. Show both values, with units, next to every percentage, including ones in running text.
