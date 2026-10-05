@@ -38,10 +38,10 @@ These are the main risks of a traffic-light flag:
 
 Use these design choices when the user asks for colors:
 
-- Use three states for change: `within usual variation`, `larger than measurement error; may or may not be worthwhile`, and `larger than measurement error; likely range beyond the smallest worthwhile change; worth a conversation`. Add `no data`. See the change-versus-noise reference for the rules.
+- Use three states for change: `within measurement error`, `larger than measurement error; may or may not be worthwhile`, and `larger than measurement error; likely range beyond the smallest worthwhile change; worth a conversation`. Add `no data`. See the change-versus-noise reference for the rules. Without a typical error, use only the two usual-variation states, `within usual variation` and `outside usual variation`, from the flagging-change reference.
 - Use a palette that readers with red-green color deficiency can tell apart, or shapes, not red and green. Blue and orange are both in the Okabe and Ito color set, chosen to stay distinct for colorblind readers (Okabe and Ito, 2008). Using them for these states is a design choice, not a tested result. Always add a label, because color must not be the only visual means of conveying information (W3C, 2024).
 - Show the number, the unit, and the baseline beside the color.
-- Keep the colors for coaches and staff. Show athletes their own values in plain words. See the audience reference.
+- Keep the colors for coaches and staff. Show athletes no status colors by default. Show each athlete one neutral trend line of their own values, with the usual range shaded, and say in plain words where the latest value sits. Keep `worth a conversation` when a change needs one. Add status colors for athletes only if the user asks, with a plain label on each. See the audience reference.
 - Do not combine several measures into one color unless the user defines the rule, and show the parts beside it.
 
 Robertson and colleagues (2017) describe the analysis approaches and the way to visualize and communicate results in a traffic-light system. Use that paper as a starting point if the user wants a full design.
@@ -58,7 +58,7 @@ These are the mistakes AI tools make most often with traffic lights:
 - Using red and green with no label
 - Writing `at risk`, `high risk`, or `cleared` next to a color
 - Not telling the user how many flags to expect by chance
-- Showing the color to athletes with no explanation of what it means
+- Showing status colors to athletes by default. Show a neutral trend line, a shaded usual range, and plain words instead.
 
 ## Example request
 
@@ -71,6 +71,7 @@ Run these checks on the color rules:
 - Read the rule for each color. Confirm it uses each athlete's own baseline and the noise band, and that the top color needs the change minus the band to pass the smallest worthwhile change.
 - Find an athlete with no data. Confirm that athlete shows grey with a `no data` label.
 - Check that every color has a text label, the raw value, and the sub-scores beside it.
+- Read the athlete version. Confirm it shows no status colors unless the user asked for them.
 
 ## Sources
 

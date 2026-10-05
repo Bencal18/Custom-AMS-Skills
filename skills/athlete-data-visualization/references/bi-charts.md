@@ -21,7 +21,9 @@ Both tools assume the model in the `ams-data-setup` skill's `power-bi.md` and `t
 
 ### Build the noise band measures
 
-Every band in this file uses `baseline mean ± 1.96 × TE × √(1 + 1/n)`. Take TE from a test-retest study, never from the athlete's own values. The 95 percent level is a choice. Hopkins (2017) uses the same TE × √(1 + 1/n) error for a change from the mean of several tests.
+Every TE band in this file uses `baseline mean ± 1.96 × TE × √(1 + 1/n)`. Take TE from a test-retest study. Never use the athlete's own values as TE. The 95 percent level is a choice. Hopkins (2017) uses the same TE × √(1 + 1/n) error for a change from the mean of several tests.
+
+When no TE exists, you may draw a usual-variation band instead: `baseline mean ± t(n − 1) × baseline SD × √(1 + 1/n)`, from at least 10 stable values. Get t from `T.INV.2T(0.05, n − 1)` in DAX. Follow the rules in the time series reference: label it usual variation, never noise or measurement error, and show only two states, inside or outside.
 
 In Power BI, use these DAX measures. `Baseline mean (cm)` and `Baseline n` come from the baseline measures in the `monitoring-statistics` skill, or from a fixed baseline period:
 

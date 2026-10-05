@@ -73,6 +73,7 @@ These metrics judge whether a change in one athlete is real, and whether it is b
 | Smallest worthwhile change (SWC) | `SWC = 0.2 × SD_between` | Units of the measure | [smallest-worthwhile-change.md](../skills/monitoring-statistics/references/smallest-worthwhile-change.md) |
 | Minimal detectable change (MDC) | `MDC95 = SEM × 1.96 × √2`, `MDC90 = SEM × 1.645 × √2` | Units of the measure | [minimal-detectable-change.md](../skills/monitoring-statistics/references/minimal-detectable-change.md) |
 | Noise band against a baseline mean (derived) | `1.96 × TE × √(1 + 1/n)` | Units of the measure | [individual-baselines-z-scores.md](../skills/monitoring-statistics/references/individual-baselines-z-scores.md) |
+| Usual-variation band, when no TE exists | `baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)` | Units of the measure | [individual-baselines-z-scores.md](../skills/monitoring-statistics/references/individual-baselines-z-scores.md) |
 | Individual z-score | `z = (today − baseline_mean) / baseline_SD` | No unit | [individual-baselines-z-scores.md](../skills/monitoring-statistics/references/individual-baselines-z-scores.md) |
 | Group p-value | A paired t-test on change scores. The file gives no formula. | Probability from 0 to 1 | [misleading-methods.md](../skills/monitoring-statistics/references/misleading-methods.md) |
 
@@ -88,6 +89,20 @@ Take typical error from the right study:
 - Retesting on separate days is an optional practice choice, not a published rule. It counts normal day-to-day variation as noise and gives a larger TE than a same-day retest. Name the choice with the result.
 - Compute TE on the same summary you compare: a single trial, the best of 3, or the mean of 3. The error of a mean of n independent trials is TE / √n (Hopkins, 2000).
 - An SD from the athlete's own baseline values is not TE. It mixes biological variation with measurement error. Do not use it as TE.
+
+When no TE exists, use the usual-variation band from `individual-baselines-z-scores.md` instead:
+
+```text
+Usual-variation band:   baseline mean ± t(n − 1) × baseline SD × √(1 + 1/n)
+```
+
+Apply these rules to it:
+
+- Use at least 10 values from a stable period, with today left out. Hopkins (2017) says at least 10 tests are needed for even modest precision. His monitoring spreadsheet uses the athlete's own scatter about the trend line when no short-term TE is entered.
+- Take t from n − 1 degrees of freedom. The band is the standard prediction interval for one new value (NIST, Dataplot reference manual, after Hahn and Meeker, 1991, pp. 61-62). With 10 values, the multiplier is t(9) × √(1 + 1/10) = 2.2622 × 1.0488 = 2.37.
+- With 10 stable values, independent days, and normal data, 5.0% of values fall outside the band by chance with t(9), and 8.2% with 1.96. In a simulation run for the skill, a correlation of 0.3 or 0.5 between consecutive days raised the t(9) rate to 5.7% or 6.6%.
+- Give two states only: within usual variation or outside usual variation. Add no smallest worthwhile change tier.
+- Never call the band noise or measurement error. It holds real day-to-day change as well as error.
 
 Use these noise band formulas:
 
@@ -460,7 +475,7 @@ Result: today is 4.59 of the athlete's usual SDs below baseline (window 8 prior 
 - Population SD: `STDEV.P` gives an SD of 0.5732 cm and z = −4.91.
 - Team SD instead of the athlete's SD: dividing by the between-athlete SD of 3.0927 cm gives z = −0.91. That answers a different question.
 - Small n: Swinton et al. (2018) show that a 95% interval based on a TE from 5 individuals needs a multiplier of 2.78 instead of 1.96.
-- Own SD as TE: using the baseline SD of 0.6128 cm in place of TE gives a band of 1.2739 cm with 1.96, or 1.5369 cm with t(7) = 2.3646. Neither is a measurement-error band.
+- Own SD in place of TE: the baseline SD also holds biological variation, so a band built on it is never a measurement-error band. With at least 10 stable values, it gives the usual-variation band, `baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)`, with two states only. Today is outside that band when |z| > t(n − 1) × √(1 + 1/n), which is 2.37 for 10 values. With fewer than 10 values, do not build that band. See [Shared rules for judging change](#shared-rules-for-judging-change).
 - Trend in the baseline: a baseline should be stable, with low variability and no clear trend (Sands et al., 2019). In a 28-test example that falls 0.1 cm per test from test 9, the rolling z never reaches −2; its lowest value is −1.91. Before test 28, the rolling mean has drifted to 38.4500 cm, with an SD of 0.4440 cm. Against the fixed baseline of tests 1 to 8 (mean 40.0000 cm), test 28 is 2.4000 cm lower, beyond the noise band of 1.3064 cm. Pair a rolling baseline with a fixed reference period or a trend line.
 - Mixed conditions: a baseline that spans preseason and in-season, or an illness period, changes both the mean and the SD.
 

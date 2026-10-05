@@ -69,7 +69,30 @@ For 25 athletes checked for drops, you expect 0.625 false flags each week. The c
 
 Recommend a repeat test before anyone acts on a single flag. A flagged value was picked for being extreme, and regression to the mean makes the next value likely to sit closer to the athlete's usual level (Barnett et al., 2005).
 
-Do not use the athlete's own baseline SD as a stand-in for TE. From a few values it needs a t multiplier, and it mixes biological variation with measurement error.
+Do not use the athlete's own baseline SD as TE. It mixes biological variation with measurement error.
+
+### Use usual variation when no TE exists
+
+When no TE exists for the test, you can still compare today with the athlete's usual variation. Hopkins's (2017) monitoring spreadsheet takes a similar approach: if no short-term TE is entered, it uses the athlete's own scatter about the trend line. Build the band from the baseline SD:
+
+```text
+usual-variation band = baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)
+```
+
+The terms mean the following:
+
+- `t(n − 1)`: the two-sided 95% t value with n − 1 degrees of freedom, because the SD comes from the n baseline values. In a spreadsheet, use `T.INV.2T(0.05, n − 1)`.
+- `√(1 + 1/n)`: adds the spread of the new value to the uncertainty of the baseline mean.
+
+This is the standard prediction interval for one new value from a normal distribution (NIST, after Hahn and Meeker, 1991, pp. 61-62). Today sits outside the band when |z| > t(n − 1) × √(1 + 1/n). With 10 values, that multiplier is 2.2622 × 1.0488 = 2.37.
+
+Follow these rules:
+
+- Use at least 10 values from a stable period: one protocol, no clear trend, no illness or injury, and today left out. Hopkins (2017) says at least 10 tests are needed for even modest precision.
+- Use t, not 1.96. With 10 stable values, independent days, and normal data, 5.0% of values fall outside the band by chance with t(9), and 8.2% with 1.96.
+- Give two states only: `Within usual variation` or `Outside usual variation`. Do not add a smallest worthwhile change tier.
+- Never call the band noise or measurement error. It holds real day-to-day change as well as error.
+- Say that day-to-day correlation raises the chance rate. In a simulation run for this skill, with 10 values and a correlation of 0.3 or 0.5 between consecutive days, 5.7% or 6.6% of values fell outside the t(9) band.
 
 ## Calculate a rolling z-score
 
@@ -312,7 +335,7 @@ These choices change the z-score for the same athlete on the same day:
 - **Population SD.** `STDEV.P` gives an SD of 0.5732 cm and z = −4.91.
 - **Team SD instead of the athlete's SD.** Dividing by the between-athlete SD of 3.0927 cm from the smallest worthwhile change reference gives z = −0.91. That answers a different question.
 - **Small n.** An SD from few values is imprecise. Swinton et al. (2018) show that a 95% interval based on a TE from 5 individuals needs a multiplier of 2.78 instead of 1.96.
-- **Own SD as TE.** Using the baseline SD of 0.6128 cm in place of TE gives a band of 1.2739 cm with 1.96, or 1.5369 cm with t(7) = 2.3646. Neither is a measurement-error band, because the SD also holds biological variation.
+- **Own SD in place of TE.** The baseline SD also holds biological variation, so a band built on it is never a measurement-error band. With at least 10 stable values, it gives the usual-variation band, `baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)`, with two states only. With fewer than 10 values, do not build that band.
 - **Trend in the baseline.** A baseline should be stable, with low variability and no clear trend (Sands et al., 2019). A rolling baseline that follows a slow decline can hide it. See the example below.
 - **Mixed conditions.** A baseline that spans preseason and in-season, or an illness period, changes both the mean and the SD.
 
@@ -395,3 +418,4 @@ Run these checks on the result:
 - Barnett AG, van der Pols JC, Dobson AJ. Regression to the mean: what it is and how to deal with it. International Journal of Epidemiology. 2005;34(1):215-220. https://doi.org/10.1093/ije/dyh299
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Medicine. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Weir JP. Quantifying test-retest reliability using the intraclass correlation coefficient and the SEM. Journal of Strength and Conditioning Research. 2005;19(1):231-240. https://doi.org/10.1519/15184.1
+- National Institute of Standards and Technology. Dataplot reference manual: prediction limits. https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm (accessed 2026-10-05). Gives the prediction interval mean ± t(n − 1) × s × √(1/n + 1/m) for the mean of m new values, after Hahn GJ, Meeker WQ, Statistical Intervals: A Guide for Practitioners, Wiley, 1991, pp. 61-62. With m = 1, the factor is √(1 + 1/n).

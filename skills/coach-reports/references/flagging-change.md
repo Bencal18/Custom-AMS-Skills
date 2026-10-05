@@ -57,7 +57,7 @@ Ask the user which direction matters. A drop in jump height and a rise in a sore
 
 | State | Rule | Wording |
 |---|---|---|
-| No flag | The change is inside the noise band. | Within usual variation |
+| No flag | The change is inside the noise band. | Within measurement error |
 | Noted | The change is beyond the noise band, and the change minus the band is not beyond the SWC. | Larger than measurement error; may or may not be worthwhile |
 | Flagged | The change minus the noise band is beyond the SWC in the chosen direction. For a rise, change minus band is above the SWC. For a drop, change plus band is below minus the SWC. | Larger than measurement error; likely range beyond the smallest worthwhile change; worth a conversation |
 | No data | The new value or the baseline is missing, or `n` is below the minimum the user set. | Not enough data |
@@ -84,7 +84,7 @@ Hopkins (2000) states that reasonable precision for a reliability estimate needs
 
 If the user has no TE, tell them how to get one: retest the athletes a short time apart, when no true change is expected, with the same protocol and the same summary as the values compared.
 
-Without a TE, you can describe the change, but you cannot separate it from noise. Do not flag. Do not use the spread of an athlete's own baseline values in place of TE.
+Without a TE, you can describe the change, but you cannot separate it from measurement error. Do not give the states in the table above. Do not use the spread of an athlete's own baseline values in place of TE. Offer the usual-variation band below instead.
 
 Treat the SWC as a convention, with these limits:
 
@@ -92,9 +92,40 @@ Treat the SWC as a convention, with these limits:
 - It is imprecise in a small squad.
 - The observed between-athlete SD includes measurement error. The SD of the athletes' true scores is `sqrt(SD^2 - TE^2)`. This is derived by adding the variances.
 
+### Use usual variation when no TE exists
+
+When no TE exists, you can compare the new value with the athlete's usual variation instead. Hopkins (2017) takes a similar approach in his monitoring spreadsheet: if no short-term TE is entered, it uses the athlete's own scatter about the trend line. Use this band:
+
+```text
+usual-variation band = baseline mean ± t(n - 1) x baseline SD x sqrt(1 + 1/n)
+```
+
+The terms mean the following:
+
+- `baseline SD`: the sample standard deviation of the `n` baseline values, in the unit of the measure
+- `t(n - 1)`: the two-sided 95 percent t value with `n - 1` degrees of freedom. In a spreadsheet, use `T.INV.2T(0.05, n - 1)`. With 10 values, t(9) is 2.26, and the full multiplier `t(9) x sqrt(1 + 1/10)` is 2.37.
+
+This is the standard prediction interval for one new value (NIST, Dataplot reference manual, after Hahn and Meeker, 1991, pages 61-62).
+
+Follow these rules:
+
+- Use the band only with at least 10 baseline values from a stable period: one protocol, no clear trend, no illness or injury, and the new value left out. Hopkins (2017) says at least 10 tests are needed for even modest precision.
+- Use t, not 1.96. With 10 stable values, 5.0 percent of unchanged values fall outside the band by chance with t(9), against 8.2 percent with 1.96.
+- Do not give the `Noted` or `Flagged` states, and do not compare the change with the SWC.
+- Never call this band noise or measurement error. It holds real day-to-day change as well as error.
+- Name the band and its `n` in the report, so the reader can tell it from the TE noise band.
+
+Give each athlete and measure one of these states:
+
+| State | Rule | Wording |
+|---|---|---|
+| Inside | The change is inside the usual-variation band. | Within usual variation |
+| Outside | The change is beyond the usual-variation band. | Outside usual variation |
+| No data | The new value is missing, or the baseline has fewer than 10 values. | Not enough data |
+
 ### Build the baseline
 
-Ask the user how to build the baseline: which period, and how many values. Do not invent a minimum count. Show `n` in the report. Mark a baseline built from few values as uncertain.
+Ask the user how to build the baseline: which period, and how many values. Do not invent a minimum count. The usual-variation band is the one exception, and it needs at least 10 values. Show `n` in the report. Mark a baseline built from few values as uncertain.
 
 Rebuild the baseline when the athlete's situation changes, such as after a long break, a new training phase, or a new device. Say when you did.
 
@@ -240,7 +271,7 @@ RETURN
 Flag wording =
 SWITCH (
     [Flag state],
-    "No flag", "Within usual variation",
+    "No flag", "Within measurement error",
     "Noted", "Larger than measurement error; may or may not be worthwhile",
     "Flagged", "Larger than measurement error; likely range beyond the smallest worthwhile change; worth a conversation",
     "Not enough data"
@@ -320,7 +351,7 @@ END
 
 Flag wording (table calculation):
 CASE [Flag state]
-WHEN "No flag" THEN "Within usual variation"
+WHEN "No flag" THEN "Within measurement error"
 WHEN "Noted" THEN "Larger than measurement error; may or may not be worthwhile"
 WHEN "Flagged" THEN "Larger than measurement error; likely range beyond the smallest worthwhile change; worth a conversation"
 ELSE "Not enough data"
@@ -380,8 +411,9 @@ These are the mistakes AI tools and spreadsheets make most often when they flag 
 - Including the new value in the baseline. This shrinks the change.
 - Building the baseline from few values and not saying so
 - Using the standard error of the mean as noise
-- Using the spread of an athlete's own baseline values as TE. It mixes real change with error, and a 1.96 band then flags far more than 5 percent of unchanged results.
+- Using the spread of an athlete's own baseline values as TE. It mixes real change with error, and a 1.96 band then flags more than 5 percent of unchanged results. Without a TE, use the usual-variation band, with t at `n - 1` degrees of freedom and two states only.
 - Taking TE from retests far enough apart for real change to occur. Real change then inflates TE.
+- Calling a usual-variation band measurement error, or adding an SWC tier to it
 - Building the t multiplier from the baseline `n`. Take its degrees of freedom from the TE study.
 - Shading a chart band of `1.96 x TE` while flagging with `1.96 x TE x sqrt(1 + 1/n)`. The chart and the flags then disagree.
 - Flagging on one extreme value and not asking for a repeat. Regression to the mean makes this common.
@@ -411,3 +443,4 @@ These sources support the formulas and rules in this file:
 - Hopkins WG, Marshall SW, Batterham AM, Hanin J. Progressive statistics for studies in sports medicine and exercise science. *Medicine and Science in Sports and Exercise*. 2009;41(1):3-13. doi:10.1249/MSS.0b013e31818cb278. Lists 0.2 as the small standardized difference.
 - Barnett AG, van der Pols JC, Dobson AJ. Regression to the mean: what it is and how to deal with it. *International Journal of Epidemiology*. 2005;34(1):215-220. doi:10.1093/ije/dyh299. Explains that unusually large or small measurements tend to be followed by measurements closer to the mean.
 - Jeffries AC, Wallace L, Coutts AJ, McLaren SJ, McCall A, Impellizzeri FM. Athlete-reported outcome measures for monitoring training responses: a systematic review of risk of bias and measurement property quality according to the COSMIN guidelines. *International Journal of Sports Physiology and Performance*. 2020;15(9):1203-1215. doi:10.1123/ijspp.2020-0386. Accessed 2026-10-02. Found measurement error inadequate for multiple-item measures. Apart from 2 studies of reliability and responsiveness, it found no validation studies of the single items most used in sport.
+- National Institute of Standards and Technology. Dataplot reference manual: prediction limits. https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm. Accessed 2026-10-05. Gives the prediction interval for the mean of m new values as mean ± t x s x sqrt(1/n + 1/m), with t at n - 1 degrees of freedom, after Hahn and Meeker (1991), *Statistical Intervals: A Guide for Practitioners*, pages 61-62. With m = 1, the factor is sqrt(1 + 1/n).

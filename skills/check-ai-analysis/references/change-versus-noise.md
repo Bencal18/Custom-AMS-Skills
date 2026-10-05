@@ -494,6 +494,7 @@ These are the mistakes AI tools and spreadsheets make most often when they judge
 - Reporting a change with no comparison to TE, so the reader cannot tell a real change from noise
 - Calling a change larger than the SWC because the observed change passes the SWC. The change minus the noise band must pass the SWC.
 - Using the standard deviation of one athlete's own baseline values as TE. It is not TE: it mixes real change with error. It is also imprecise when it comes from few values. By the t distribution, a 1.96 band built on an SD from 5 stable values flags about 12 percent of unchanged values, not 5 percent. Get TE from a test-retest study instead.
+- Using an athlete's own baseline SD without the usual-variation rules. When no TE exists, that SD may give a usual-variation band: `baseline mean ± t(n - 1) x baseline SD x sqrt(1 + 1/n)`, from at least 10 stable values (Hopkins, 2017). This is the standard prediction interval for one new value (NIST, Dataplot reference manual). Check that it uses t with n - 1 degrees of freedom, not 1.96: with 10 values, 1.96 lets 8.2 percent of unchanged values fall outside, against 5.0 percent with t(9). Check that it gives two states only, within or outside usual variation, with no smallest worthwhile change tier, and that it never calls the band measurement error.
 - Using the between-athlete SD as TE. It is much larger, because athletes differ from each other.
 - Using the standard error of the mean as the SWC or the noise
 - Taking TE from a paper for a different test, device, or population

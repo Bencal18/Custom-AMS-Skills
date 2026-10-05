@@ -38,6 +38,7 @@ Follow these points when you build the band:
 
 - Compute TE on the same summary as the values you plot. If you plot the best of 3 jumps, take TE from the best of 3 jumps.
 - Do not use the SD of the athlete's own baseline values as TE. That SD mixes real change with error, so it is not TE.
+- When no TE exists, you may shade a usual-variation band instead: `baseline mean ± t(n − 1) × baseline SD × √(1 + 1/n)`, from at least 10 stable values (Hopkins, 2017). This is the standard prediction interval for one new value (NIST, after Hahn and Meeker, 1991). Label it `Usual variation`, never noise or measurement error. Mark points only as inside or outside it.
 - The `√(1 + 1/n)` term is derived by adding the variance of the new value to the variance of the baseline mean. Hopkins (2000) gives the error of a mean of `n` trials as `TE / √n`. Hopkins (2017) uses the resulting error, `TE × √(1 + 1/n)`, for a change from the mean of several tests in his monitoring spreadsheet. The 95 percent level is a choice.
 - For two single tests (`n = 1`), the band is `1.96 × √2 × TE`, about `2.77 × TE` (Hopkins, 2000, section 1.1; Swinton et al., 2018). Hopkins calls this 95 percent limit too stringent for a decision limit when the person is an athlete, which is why the next point offers a lower threshold.
 - When TE comes from a study of few athletes, replace 1.96 with a t value. A t value is a wider multiplier that allows for TE being estimated from a small sample. Its degrees of freedom count how much data the TE estimate rests on. Use the degrees of freedom from the TE study, not from the baseline: athletes minus 1 for two trials, or (athletes minus 1) × (trials minus 1) for the two-way model. For example, TE from 6 athletes gives t(5) = 2.57, and from 10 athletes gives t(9) = 2.26 (Swinton et al., 2018, Table 2).
@@ -115,7 +116,7 @@ There is no baseline, no band, no unit, and no event label. A red line and a one
 These are the mistakes AI tools make most often with athlete time series:
 
 - Filling missing tests with 0, or joining the line across them.
-- Using the SD of the athlete's own recent values as the noise.
+- Labeling a band built from the SD of the athlete's own recent values as noise. Label it usual variation, and build it from at least 10 values with t(n − 1).
 - Shading baseline ± 1.96 × TE, which is narrower than the flag rule and makes the chart disagree with the flags.
 - Using a band from a different summary than the plotted values, such as single-trial TE for best-of-3 values.
 - Smoothing with a rolling mean without saying so, or with a centered window.
@@ -195,3 +196,4 @@ This file draws on these sources:
 - Microsoft Support. Display empty cells, null (#N/A) values, and hidden worksheet data in a chart. https://support.microsoft.com/en-us/office/display-empty-cells-null-n-a-values-and--worksheet-data-in-a-chart-a1ee6f0c-192f-4248-abeb-9ca49cb92274. Accessed 2026-10-02.
 - W3C. Web Content Accessibility Guidelines (WCAG) 2.2. W3C Recommendation, 2024-12-12. https://www.w3.org/TR/WCAG22/. Success criterion 1.4.11, non-text contrast of 3:1.
 - ggplot2 reference. Connect observations: `geom_path`, `geom_line`, `geom_step`. https://ggplot2.tidyverse.org/reference/geom_path.html. Accessed 2026-10-02.
+- National Institute of Standards and Technology. Dataplot reference manual: prediction limits. https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm. Accessed 2026-10-05. Gives the prediction interval for the mean of `m` new values as `mean ± t(n − 1) × s × √(1/n + 1/m)`, after Hahn and Meeker (1991), *Statistical Intervals: A Guide for Practitioners*, pages 61-62. With `m = 1`, the factor is `√(1 + 1/n)`.
