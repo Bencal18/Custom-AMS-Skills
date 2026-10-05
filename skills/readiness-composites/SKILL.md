@@ -27,10 +27,20 @@ Return to sport is a shared decision across a continuum. Clinicians, athletes, a
 
 Follow these rules for any athlete in rehab:
 
-- Never put pain, swelling or effusion, loss of motion, giving way, locking, wound problems, calf pain or swelling, new numbness or weakness, or systemic symptoms such as fever into a composite. Show each one as a raw value.
-- Tell the user to pass any report of these signs to the medical team, whatever the composite shows.
-- State that a composite back at the pre-injury baseline is not a return-to-sport criterion.
+- Do not calculate a single composite by default. Show a table with one row for each input: the raw value, the change since the last test, and the percentage of the pre-injury value. Calculate a composite only when the medical team asks for one, and show the table beside it.
+- Never put a red-flag sign into a composite, a z-score, or a percentage. Show each one as a raw value.
+- Sort any report of a red-flag sign into a tier, and tell the user what the tier says to do, whatever the other inputs show. The tiers are listed below.
+- Tell the user that no sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them.
+- Keep rehab load, such as rehab session RPE, beside the table or the composite. Never put it into a composite, even when the user asks. A direction on rehab load implies a progression call.
+- Use a pre-injury baseline only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase. The clinician decides whether it is too old.
+- State that a composite or an input back at the pre-injury baseline is not a return-to-sport criterion.
 - Name the baseline: pre-injury or a fixed post-injury block. Prefer pre-injury when it exists, and tell the user it shows the remaining deficit. Do not use a rolling baseline in rehab. If you mention one, tell the user it follows the athlete upward and hides progress: steady recovery reads as the same small z-score every day. Against a fixed post-injury block, show the change in raw units, because the z-scores grow very large.
+
+Use these red-flag tiers:
+
+- Call emergency services: chest pain, sudden breathlessness, or coughing up blood. Also new weakness or numbness in both legs with back pain.
+- Stop the session and refer the same day: calf pain, swelling, warmth, or tenderness. Also wound redness or discharge, or fever, and new numbness or weakness in one limb.
+- Pass to the medical team: pain, joint swelling, loss of motion, giving way, and locking.
 
 ## When to use
 
@@ -39,7 +49,7 @@ Use this skill when the user asks to:
 - Combine wellness, jump, or other test results into one readiness score.
 - Build a dashboard with colors or arrows from several measures, under the color rules in Limits.
 - Check a readiness score from an app, a spreadsheet, or a Power BI or Tableau dashboard they inherited.
-- Track a rehab athlete's monitoring measures as one summary for the medical team.
+- Track a rehab athlete's monitoring measures for the medical team. Show a table for each input, not one score, unless the medical team asks for a composite.
 - Understand why a composite score went up or down.
 
 This skill covers this metric:
@@ -56,28 +66,29 @@ Follow these steps in order:
 2. If the purpose is clearance, return to sport, or injury prediction, explain the limit above before you continue.
 3. Ask which form, app, or device each input came from, and for one example row of each with names removed.
 4. Load [references/readiness-composites.md](references/readiness-composites.md).
-5. List every input with its unit and its direction (is a higher value better or worse).
-6. Confirm the list with the user.
-7. Keep load measures, such as session load, distance, or ACWR, out of the composite by default.
-8. Show load measures in their own columns beside the composite.
-9. If the user insists on adding a load measure, ask them to state its direction and the reason.
-10. Label that load measure as the user's choice.
-11. Keep the rehab signs listed above out of the composite. Show them raw.
-12. Remove inputs that count the same thing twice, such as a load and a ratio built from that load.
-13. Tell the user which inputs you removed and why.
-14. Ask for the baseline window and the minimum number of baseline days for each input. Do not invent them.
-15. Standardize each input against that athlete's own baseline, as a z-score that excludes the day being scored.
-16. Flip the sign of any input where a higher value is worse, so a positive z-score means "better than usual" for every input.
-17. Ask for the weights.
-18. If the user has none, use equal weights and say so. Never invent unequal weights.
-19. Say what share of the weight each construct gets.
-20. Offer to group related items first.
-21. Calculate the composite only on days with every input present, unless the user chooses another rule.
-22. Name the missing-input rule you used.
-23. Show a table with every input's raw value, change in raw units, baseline mean, z-score, and the composite, side by side.
-24. Name the largest contributors to each change in the composite.
-25. Show the formula, the weights, the baseline window, and the units next to every result.
-26. Run the checks below before you answer.
+5. For a rehab athlete, build the table for each input from Rehab athletes. Continue to a composite only if the medical team asked for one.
+6. List every input with its unit and its direction (is a higher value better or worse).
+7. Confirm the list with the user.
+8. Keep load measures, such as session load, distance, or ACWR, out of the composite by default.
+9. Show load measures in their own columns beside the composite.
+10. If the user insists on adding a load measure for a healthy athlete, ask them to state its direction and the reason. For a rehab athlete, keep rehab load out even when the user asks.
+11. Label that load measure as the user's choice.
+12. Keep the red-flag signs listed above out of the composite. Show each one raw, with its tier.
+13. Remove inputs that count the same thing twice, such as a load and a ratio built from that load.
+14. Tell the user which inputs you removed and why.
+15. Ask for the baseline window and the minimum number of baseline days for each input. Do not invent them.
+16. Standardize each input against that athlete's own baseline, as a z-score that excludes the day being scored.
+17. Flip the sign of any input where a higher value is worse, so a positive z-score means "better than usual" for every input.
+18. Ask for the weights.
+19. If the user has none, use equal weights and say so. Never invent unequal weights.
+20. Say what share of the weight each construct gets.
+21. Offer to group related items first.
+22. Calculate the composite only on days with every input present, unless the user chooses another rule.
+23. Name the missing-input rule you used.
+24. Show a table with every input's raw value, change in raw units, baseline mean, z-score, and the composite, side by side.
+25. Name the largest contributors to each change in the composite.
+26. Show the formula, the weights, the baseline window, and the units next to every result.
+27. Run the checks below before you answer.
 
 ## Checks before answering
 
@@ -87,8 +98,9 @@ Run these checks on your own result before you show it:
 - Direction check: for every input, a positive z-score means the same thing (better than usual).
 - Baseline check: each z-score uses only that athlete's data and excludes the day being scored.
 - Weight check: the weights in the formula match what the user gave, and they are shown with each construct's share.
-- Load check: no load measure is inside the composite unless the user chose it and stated its direction and reason.
-- Red-flag check: no pain, swelling, loss of motion, giving way, locking, wound problem, calf pain or swelling, new numbness or weakness, or systemic symptom is inside the composite.
+- Load check: no load measure is inside the composite unless the user chose it for a healthy athlete and stated its direction and reason. Rehab load is never inside it.
+- Red-flag check: no red-flag sign from the three tiers is inside the composite, and each reported sign shows its tier and what the tier says to do.
+- Rehab check: for a rehab athlete, the output is a table for each input unless the medical team asked for a composite. The pre-injury baseline shows its date and season phase.
 - Missing check: no missing input was treated as zero or as baseline. Days with missing inputs are marked.
 - Double-count check: no two inputs come from the same raw data.
 - Arithmetic check: recalculate one athlete-day by hand and show it: each input's z-score from its baseline mean and SD, the direction sign, then the weighted mean.

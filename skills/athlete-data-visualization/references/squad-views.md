@@ -22,9 +22,9 @@ Draw one small panel per athlete, each with the athlete's own baseline and noise
 
 One shared chart was faster for comparisons over a small visual span. The main experiment tested 2, 4, and 8 series (Javed et al., 2010).
 
-Order panels by roster or position group, not by score. Beyond about 20 panels, or when panels are too small to read the band at viewing size, split by position group. The number 20 is practice advice.
+Order panels by roster or position group, not by score. Beyond about 20 panels, or when panels are too small to read the band at viewing size, split by position group. The number 20 is practice advice. Keep it for a laptop screen or a printed page. On a phone, do not draw small multiples. Use the sorted change dot plot below instead.
 
-With small multiples of line charts from 2 to 70 panels, accuracy fell steadily as panels were added, with no single point where it collapsed (Hosseinpour et al., 2025). Highlighting the panels of interest reduced the loss but did not remove it. So highlight the athletes the coach asked about.
+With small multiples of line charts from 2 to 70 panels, accuracy fell steadily as panels were added, with no single point where it collapsed (Hosseinpour et al., 2025). Highlighting the panels of interest reduced the loss but did not remove it. So highlight the athletes the coach asked about. Participants in that study used screens of at least 9.4 × 6.6 inches, so the evidence does not cover phones.
 
 ### Use a sorted dot plot for "who moved"
 
