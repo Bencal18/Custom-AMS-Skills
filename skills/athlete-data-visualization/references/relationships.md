@@ -24,7 +24,7 @@ A within-athlete question asks: on days when an athlete trains more than usual, 
 
 The correlation of the centered values equals the repeated measures correlation (rmcorr) estimate. Their slope equals the rmcorr common slope. The degrees of freedom are rows minus athletes minus 1. Bakdash and Marusich (2017) write this as N(k − 1) − 1, for N athletes with k values each on average.
 
-The paper writes the model with one measure as deviations from each athlete's mean. It does not state that the correlation of centered values equals the rmcorr estimate. That equivalence follows from the model. It was checked against the `pingouin` package on the example data and on 2,000 random data sets with unequal rows per athlete.
+The paper writes the model with one measure as deviations from each athlete's mean. It does not state that the correlation of centered values equals the rmcorr estimate. The equivalence is a case of the Frisch-Waugh-Lovell theorem. Ding (2021) states it for a fit with group indicators: the coefficient of a measure is the same as in a fit on values centered within each group, and the standard errors differ only by a correction for degrees of freedom. Here each athlete is a group. The equivalence was also checked against the `pingouin` package on the example data and on 2,000 random data sets with unequal rows per athlete.
 
 A plain Pearson test on the centered values uses rows minus 2 degrees of freedom (118 in the example, not 111). It overstates precision. Take any p-value or interval from `rmcorr` or `pingouin.rm_corr`.
 
@@ -40,7 +40,7 @@ The within-athlete r is -0.84 (rmcorr, 111 degrees of freedom). The pooled numbe
 
 To show each athlete's own relationship, draw one small panel per athlete with the same axes on every panel. Keep the axes identical, or the panels cannot be compared.
 
-Beyond about 20 panels, or when panels are too small to read at viewing size, switch to the centered plot or split by position group. This section is practice advice. Most evidence for small multiples comes from time-series charts (Javed et al., 2010; Hosseinpour et al., 2025).
+Beyond about 20 panels, or when panels are too small to read at viewing size, switch to the centered plot or split by position group. Keep the limit of about 20 panels for a laptop screen or a printed page. On a phone, do not draw small multiples. Show the centered plot, or the sorted change dot plot in [squad-views.md](squad-views.md) when the question is who moved. This section is practice advice. Most evidence for small multiples comes from time-series charts (Javed et al., 2010; Hosseinpour et al., 2025). The Hosseinpour et al. (2025) participants used screens of at least 9.4 × 6.6 inches, so that evidence does not cover phones.
 
 One study gave each panel one entity's path on shared x and y axes. Those panels were more accurate than animation (Robertson et al., 2008). No study tested per-athlete scatter plots.
 
@@ -226,6 +226,7 @@ Run these checks on the chart:
 
 This file draws on these sources:
 
+- Ding P. The Frisch-Waugh-Lovell theorem for standard errors. *Statistics and Probability Letters*. 2021;168:108945. doi:10.1016/j.spl.2020.108945. https://arxiv.org/pdf/2009.06621v1. Accessed 2026-10-05. Shows that the coefficient from a fit with group indicators equals the coefficient from a fit on values centered within each group, and that the standard errors differ only by a correction for degrees of freedom.
 - Bakdash JZ, Marusich LR. Repeated measures correlation. *Frontiers in Psychology*. 2017;8:456. doi:10.3389/fpsyg.2017.00456. Explains that simple correlation on repeated measures violates independence and can give biased, specious results, and introduces rmcorr for the common within-individual association.
 - Kievit RA, Frankenhuis WE, Waldorp LJ, Borsboom D. Simpson's paradox in psychological science: a practical guide. *Frontiers in Psychology*. 2013;4:513. doi:10.3389/fpsyg.2013.00513. Shows an association can reverse between population and subgroup levels, most often when inferences cross levels of explanation.
 - Curran PJ, Bauer DJ. The disaggregation of within-person and between-person effects in longitudinal models of change. *Annual Review of Psychology*. 2011;62:583-619. doi:10.1146/annurev.psych.093008.100356. Reviews methods that separate within-person and between-person effects.
