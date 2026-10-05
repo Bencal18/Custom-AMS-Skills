@@ -141,6 +141,8 @@ The skills support your decisions. They do not make them. The skills do not:
 
 Check every result before you act on it. Each skill tells the AI to show the formula, the units, and any check that failed.
 
+The skills and documents are general guidance. Do your own research. Read the cited sources, and confirm that each method fits your athletes, your devices, and your organization's rules before you rely on it. Nothing in this repository is legal or medical advice.
+
 ## Suggest a fix
 
 Found a wrong formula, a broken link, or a metric we should add? Open an issue or a pull request. Read [CONTRIBUTING.md](CONTRIBUTING.md) first for the content rules and how changes are reviewed.

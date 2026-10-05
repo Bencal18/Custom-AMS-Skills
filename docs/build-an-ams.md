@@ -6,7 +6,7 @@ This guide shows you how to plan an athlete management system (AMS) that you bui
 
 The guide is for coaches, sports scientists, performance analysts, and athletic trainers. You do not need to write code. Each section links to a detailed reference file in the [`ams-architecture`](../skills/ams-architecture/) skill. Your AI tool reads the same files when you install the skill.
 
-This guide is not legal advice. Your organization's compliance, legal, and IT staff decide which laws and policies apply to your athlete data. If your organization has none, ask the person accountable for athlete data, such as the athletic director, the head of school, or the club owner.
+This guide is general guidance, not legal advice. Laws, policies, and products differ by country, state, organization, and sport, and they change. Do your own research, and confirm what applies to you before you act. Your organization's compliance, legal, and IT staff decide which laws and policies apply to your athlete data. If your organization has none, ask the person accountable for athlete data, such as the athletic director, the head of school, or the club owner.
 
 Product names in this guide are examples, checked on the date above. Naming a product is not an endorsement. Check prices, plan limits, and features on each vendor's own page.
 
