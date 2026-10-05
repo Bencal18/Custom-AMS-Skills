@@ -290,7 +290,7 @@ These are the mistakes AI tools and spreadsheets make most often with the SWC:
 - Recomputing the SWC every week from new data. The threshold then drifts. Fix the baseline period and state it.
 - Mixing units. Do not compare a change in percent with an SWC in centimeters.
 - Calling a change worthwhile because it exceeds the SWC while its interval includes zero. Check noise first.
-- Using one athlete's own baseline SD as the TE. That SD mixes biological variation with measurement error, and from a few values it needs a t multiplier. Use a TE from test-retest data.
+- Using one athlete's own baseline SD as the TE. It mixes biological variation with measurement error. Use a TE from test-retest data. Without a TE, use the usual-variation band.
 
 ## Example request
 

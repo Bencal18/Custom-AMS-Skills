@@ -389,7 +389,7 @@ These are the mistakes AI tools and spreadsheets make most often with baselines 
 - Using a window of calendar days with gaps, then calling it "28 days of data". Report the count of values.
 - Filling missing days with zero. That drags the mean down and inflates the SD.
 - Treating a large z-score as a real change and not checking noise. A z-score uses day-to-day variation, which mixes biological variation and measurement error. Compare the change with the noise band from TE too.
-- Using the athlete's own baseline SD as the TE. It needs a t multiplier with few values, and it mixes biological variation with measurement error.
+- Using the athlete's own baseline SD as the TE. It mixes biological variation with measurement error. Without a TE, use the usual-variation band.
 - Computing an SD from few values. Report n, and use a t multiplier when you build a band from it.
 - Applying ±1.5 or ±2 as flag cut points without a source. Name the source, or label the cut point as the user's choice. With a 10-value baseline and pure noise, these flag about 18.6% and 8.9% of tests.
 - Reporting squad flags without the number expected by chance. Show results × 5%, or × 2.5% for one direction, next to the flags found.

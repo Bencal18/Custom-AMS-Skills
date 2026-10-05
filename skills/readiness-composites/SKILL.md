@@ -30,7 +30,7 @@ Follow these rules for any athlete in rehab:
 - Do not calculate a single composite by default. Show a table with one row for each input: the raw value, the change since the last test, and the percentage of the pre-injury value. Calculate a composite only when the medical team asks for one, and show the table beside it.
 - Never put a red-flag sign into a composite, a z-score, or a percentage. Show each one as a raw value.
 - Sort any report of a red-flag sign into a tier, and tell the user what the tier says to do, whatever the other inputs show. The tiers are listed below.
-- Tell the user that no sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them.
+- Tell the user that no sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them. The qualifier "out of proportion to the exercise" is the authors' wording, not a guideline's. The authors added it because breathlessness is normal during training.
 - Keep rehab load, such as rehab session RPE, beside the table or the composite. Never put it into a composite, even when the user asks. A direction on rehab load implies a progression call.
 - Use a pre-injury baseline only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase. The clinician decides whether it is too old. Without a valid pre-injury baseline, leave the percentage column blank and say why.
 - State that a composite or an input back at the pre-injury baseline is not a return-to-sport criterion.
@@ -38,9 +38,13 @@ Follow these rules for any athlete in rehab:
 
 These tiers are safety referrals, not a training recommendation. Use these red-flag tiers:
 
-- Call emergency services: chest pain, shortness of breath, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back pain.
-- Stop the session and refer the same day: calf or leg pain, swelling, warmth, or tenderness. Also wound redness or discharge, or fever, and new numbness or weakness in one limb.
-- Pass to the medical team: pain not in the calf, leg, or chest, joint swelling, loss of motion, giving way, and locking.
+- Call emergency services: chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
+- Stop the session and refer the same day for any of these signs:
+  - Calf pain, or new swelling, warmth, or tenderness in one calf or leg, which is more urgent after surgery or immobilization
+  - Wound redness or discharge
+  - Fever
+  - New numbness or weakness in one limb
+- Pass to the medical team: pain or swelling at the injured joint or tissue, loss of motion, giving way, and locking.
 
 ## When to use
 
@@ -76,7 +80,7 @@ Follow these steps in order:
 12. Keep the red-flag signs listed above out of the composite. Show each one raw, with its tier.
 13. Remove inputs that count the same thing twice, such as a load and a ratio built from that load.
 14. Tell the user which inputs you removed and why.
-15. Ask for the baseline window and the minimum number of baseline days for each input. Do not invent them.
+15. Ask for the baseline window and the minimum number of baseline days for each input. If the user has none, offer at least 10 prior values, labeled as a practice default.
 16. Standardize each input against that athlete's own baseline, as a z-score that excludes the day being scored.
 17. Flip the sign of any input where a higher value is worse, so a positive z-score means "better than usual" for every input.
 18. Ask for the weights.

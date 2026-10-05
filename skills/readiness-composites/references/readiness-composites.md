@@ -24,17 +24,21 @@ For a rehab athlete, follow these rules:
 
 These tiers are safety referrals, not a training recommendation. Sort any report of a red-flag sign into one of three tiers. Tell the user what the tier says to do, whatever the other inputs show:
 
-- Call emergency services: chest pain, shortness of breath, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back pain.
-- Stop the session and refer the same day: calf or leg pain, swelling, warmth, or tenderness. Also wound redness or discharge, or fever, and new numbness or weakness in one limb.
-- Pass to the medical team: pain not in the calf, leg, or chest, joint swelling, loss of motion, giving way, and locking.
+- Call emergency services: chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
+- Stop the session and refer the same day for any of these signs:
+  - Calf pain, or new swelling, warmth, or tenderness in one calf or leg, which is more urgent after surgery or immobilization
+  - Wound redness or discharge
+  - Fever
+  - New numbness or weakness in one limb
+- Pass to the medical team: pain or swelling at the injured joint or tissue, loss of motion, giving way, and locking.
 
-No sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them. The evidence for each item differs:
+No sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them. The qualifier "out of proportion to the exercise" is the authors' wording, not a guideline's. The authors added it because breathlessness is normal during training. The evidence for each item differs:
 
-- Chest pain, shortness of breath, or coughing up blood can signal a pulmonary embolism, a blood clot in the lungs (NICE, 2020, recommendation 1.1.15; Drobnic et al., 2015). Refer as an emergency.
+- Chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood can signal a pulmonary embolism, a blood clot in the lungs (NICE, 2020, recommendation 1.1.15; Drobnic et al., 2015). Refer as an emergency.
 - Severe or worsening weakness or numbness in both legs, with back or leg pain, needs emergency referral (GIRFT, 2023).
-- Calf or leg pain, swelling, warmth, or tenderness can signal a deep vein thrombosis (DVT), a blood clot in a deep leg vein (NICE, 2020; Hillegass et al., 2016). Refer the same day.
+- Calf pain, or new swelling, warmth, or tenderness in one calf or leg, can signal a deep vein thrombosis (DVT), a blood clot in a deep leg vein (NICE, 2020; Hillegass et al., 2016). Recent surgery or immobilization of the leg raises that risk (NICE, 2020). Refer the same day.
 - The numbness, wound, and fever items rest on general guidance, not on a sports source. New numbness or tingling in a limb can signal a nerve or blood-flow problem that needs prompt medical review (Royal Children's Hospital Melbourne, 2023). A surgical guideline asks clinicians to tell patients how to recognize a wound infection and whom to contact (NICE, 2019, recommendation 1.1.3).
-- Clinicians judge pain, joint swelling, loss of motion, giving way, and locking each on its own. One guideline lists full knee extension, knee flexion range, and no effusion as separate criteria for return to running after ACL reconstruction (Kotsifaki et al., 2023).
+- Clinicians judge pain or swelling at the injured joint or tissue, loss of motion, giving way, and locking each on its own. One guideline lists full knee extension, knee flexion range, and no effusion as separate criteria for return to running after ACL reconstruction (Kotsifaki et al., 2023).
 
 These rules also apply in rehab:
 
@@ -151,7 +155,7 @@ For a rehab athlete, build the table for each input from the rehab rules above i
 2. Keep load measures, such as `load_prev_day_au` (AU), in their own columns beside the composite, not in it. For a rehab athlete, keep rehab load out even when the user asks.
 3. Keep every red-flag sign from the three tiers out of the composite as well. Show each one raw, with its tier and what the tier says to do.
 4. Write down each input's direction with the user: +1 if a higher value is better, −1 if a higher value is worse.
-5. Ask the user for the baseline window and the minimum number of baseline days for each input.
+5. Ask the user for the baseline window and the minimum number of baseline days for each input. If the user has none, offer at least 10 prior values, labeled as a practice default.
 6. For each athlete, input, and day, calculate the baseline mean and sample SD from the baseline window before that day. Exclude the day being scored.
 7. Mark an input as missing for that day if its baseline is too short or its SD is 0.
 8. Calculate each input's z-score: (value − baseline mean) ÷ baseline SD.
@@ -198,13 +202,13 @@ The higher load before Day A is shown for context. The composite does not say wh
 
 ### Rehab athlete
 
-A rehab athlete gets a table for each input, not a composite. The pre-injury baseline is the mean of tests with the same protocol, recorded with its date and season phase, for example 2026-02-10, preseason. Pain during the test is a red-flag sign, so it shows raw, with no percentage:
+A rehab athlete gets a table for each input, not a composite. The pre-injury baseline is the mean of tests with the same protocol, recorded with its date and season phase, for example 2026-02-10, preseason. Pain at the injured joint or tissue during the test is a red-flag sign, so it shows raw, with no percentage:
 
 | Input | Pre-injury value | Last test | Today | Change since last test | Percentage of pre-injury value |
 |---|---|---|---|---|---|
 | CMJ jump height | 38.0 cm | 33.9 cm | 34.6 cm | +0.7 cm | 91.1% |
 | Isometric mid-thigh pull (IMTP) peak force | 2,850 N | 2,480 N | 2,610 N | +130 N | 91.6% |
-| Pain during the test (0 to 10) | | 1 | 3 | +2 | Not calculated. Red-flag sign, shown raw. Tier: pass to the medical team. |
+| Pain at the injured joint or tissue during the test (0 to 10) | | 1 | 3 | +2 | Not calculated. Red-flag sign, shown raw. Tier: pass to the medical team. |
 
 Each percentage is today's value ÷ the pre-injury value × 100. For example, CMJ jump height is 34.6 ÷ 38.0 × 100 = 91.1%. The table makes no return-to-sport or progression call. The medical team reads it.
 
@@ -236,7 +240,7 @@ Collect this data:
 
 - Source: each input's form, app, or device, joined by athlete and date
 - Sampling: one value per input per athlete per day, collected at the same time of day
-- Minimum data: each input needs its own baseline. Use the minimum number of baseline days the user chose for each input, and report the count. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019).
+- Minimum data: each input needs its own baseline. Use the minimum number of baseline days the user chose for each input. If the user has none, offer at least 10 prior values, labeled as a practice default. Report the count. A baseline should be stable, with low variability and no clear trend (Sands et al., 2019).
 
 ## Common mistakes
 
@@ -261,8 +265,8 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Building the composite from unvalidated questions and treating it as validated. The most used single-item wellness questions have not been validated (Jeffries et al., 2020).
 - Assuming subjective and objective inputs move together. They generally did not correlate in a systematic review, and subjective measures tracked training load more consistently (Saw et al., 2016). Disagreement between inputs is information. Show it.
 - Building a single composite for a rehab athlete by default. Show a table for each input instead, and calculate a composite only when the medical team asks.
-- Putting a red-flag sign, such as pain, joint swelling, calf pain, or new numbness or weakness, into a rehab composite. Other inputs can average it away. Show it raw, with its tier and what the tier says to do.
-- Treating every red-flag sign the same way. Chest pain, shortness of breath, or coughing up blood calls for emergency services, and calf or leg pain calls for a same-day referral. Use the three tiers.
+- Putting a red-flag sign, such as pain or swelling at the injured joint, calf pain, or new numbness or weakness, into a rehab composite. Other inputs can average it away. Show it raw, with its tier and what the tier says to do.
+- Treating every red-flag sign the same way. Chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood calls for emergency services. Calf pain calls for a same-day referral. Use the three tiers.
 - Using a pre-injury baseline from another test, device, protocol, or arm condition. It is not a valid baseline. Record the baseline's date and season phase, and let the clinician decide whether it is too old.
 - Treating a return of the composite or an input to the pre-injury baseline as a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), require passing every test in a battery. Name the baseline used.
 

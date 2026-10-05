@@ -106,7 +106,7 @@ Follow these limits:
 - Do not calculate Nordic knee torque or muscle force from ankle force. If the export gives a torque, report it as given, labeled as the device's value, and say that it depends on how the knee position is set.
 - Do not call a change real when it is inside the noise band.
 - Do not advise whether or when an injured or rehabilitating athlete should do a maximal test. That is the clinician's decision.
-- If the data note pain during a rep or trial, keep the row and set its status to `pain_reported`. Do not delete it, because painful reps can be part of a planned rehab protocol (Hickey et al., 2020). Do not treat it as a valid maximum. Leave it out of the best rep, the mean, relative force, baselines, z-scores, change, and imbalance. You may state once what the top value would be with it, labeled as not valid. Tell the user to pass the pain report to the medical team. If every rep had pain, report no valid maximum for that test or leg.
+- If the data note pain during a rep or trial, keep the row and set its status to `pain_reported`. Do not delete it, because painful reps can be part of a planned rehab protocol (Hickey et al., 2020; see `references/eccentric-hamstring-force.md`). Do not treat it as a valid maximum. Leave it out of the best rep, means, relative and allometric force, rate of force development, baselines, z-scores, change, and imbalance. You may state once what the top value would be with it, labeled as not valid. Tell the user to pass the pain report to the medical team. If every rep had pain, report no valid maximum for that test or leg.
 - Do not quote injury-study cut-offs as targets or flags.
 
 ## References
