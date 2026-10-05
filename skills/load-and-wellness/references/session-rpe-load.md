@@ -37,14 +37,14 @@ Collect the rating this way:
 
 For more than one session in a day, calculate each session's load, then add them. Daily load is the sum of session loads. Weekly load is the sum of daily loads.
 
-Record injured, ill, or modified-training days this way:
+Record ill, unavailable, or modified-training days this way:
 
 - Mark each day in a separate column, such as `availability`, with values such as `full`, `modified`, and `out`.
 - Rate a modified session the usual way, with its own duration.
 - Record a day with no activity as `0` AU, with the reason in the `availability` column. Keep a day with activity but no rating as missing.
 - Report these days apart, so you do not read a drop in load as a planned easy week.
 
-These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 
 Use these spreadsheet formulas, with RPE in column `C`, minutes in column `D`, and session load in column `E`. The first keeps a blank rating or duration blank instead of 0 AU. The second leaves a day blank if any of its sessions has a blank load. Here the sessions are rows 2 and 3:
 
@@ -139,7 +139,7 @@ Follow these steps to calculate the metric from raw inputs:
 4. Convert any duration in hours or `hh:mm` text to minutes, and store it in `duration_min`.
 5. Multiply `rpe_cr10` by `duration_min` for each session, and store the result in `srpe_load_au` (AU). Keep the result missing if either input is missing.
 6. Add `srpe_load_au` across sessions for each `athlete_id` and `date` to get daily load in AU. If any session that day has a missing rating, mark the day as missing.
-7. Add daily loads across each calendar week, Monday to Sunday unless the user names another start day, to get weekly load in AU. Do this even when the user asked only for daily load. Report how many days had complete data and how many were marked injured, ill, or modified. Mark a week with any missing day as incomplete, and give its total with the number of days it covers, such as 6 of 7 days.
+7. Add daily loads across each calendar week, Monday to Sunday unless the user names another start day, to get weekly load in AU. Do this even when the user asked only for daily load. Report how many days had complete data and how many were marked ill, unavailable, or modified. Mark a week with any missing day as incomplete, and give its total with the number of days it covers, such as 6 of 7 days.
 
 ## Worked example
 
@@ -202,7 +202,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Mixing what counts as duration. No consensus says whether duration includes the warm-up or the cool-down. Ask, keep one rule for each session type, and record it. If the user has no rule, offer this default and label it as this skill's choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) defined training duration the same way: it includes the warm-up and recovery periods and excludes the cool-down. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played correlated with GPS distance more closely than loads from total match duration: r = 0.808 against 0.566 (Pustina et al., 2017). Under minutes played, an unused substitute's warm-up scores 0 AU. The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
 - Averaging RPE across sessions and multiplying by total minutes. This is not the same as adding each session's load. Multiply first, then add.
 - Treating a missing rating as zero. A zero load means no training. A missing rating means unknown. Keep it missing and report coverage. A spreadsheet `=C2*D2` makes this mistake on every blank row.
-- Hiding injured, ill, or modified-training days. A low load from an injury looks like a planned easy day. Mark these days.
+- Hiding ill, unavailable, or modified-training days. A low load from an absence looks like a planned easy day. Mark these days.
 - Collecting the rating straight after the last drill. The end of the session can dominate the rating (Foster et al., 2001). Collect it at a fixed delay.
 - Comparing AU across athletes as if they were the same scale. Two athletes can rate the same session differently. Use each athlete's own history.
 - Calling session RPE load "external load" or adding it to GPS distance. Internal and external load are different constructs (Impellizzeri et al., 2019).

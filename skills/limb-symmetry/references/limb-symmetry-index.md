@@ -218,7 +218,7 @@ This example uses one pair of values and runs every formula variant on it. It re
 | Right limb | 25 cm |
 | Left limb | 20 cm |
 
-Case A: the right limb is dominant.
+Case A: the right limb is dominant:
 
 | Formula | Calculation | Result |
 |---|---|---|
@@ -231,7 +231,7 @@ Case A: the right limb is dominant.
 
 The asymmetry formulas range from 7.04% to 22.22% on the same data. That is a spread of 15.18 percentage points, and the largest is 3.15 times the smallest.
 
-Case B: same numbers, but the left limb is dominant, so the dominant limb is the weaker one.
+Case B: same numbers, but the left limb is dominant, so the dominant limb is the weaker one:
 
 | Formula | Result |
 |---|---|

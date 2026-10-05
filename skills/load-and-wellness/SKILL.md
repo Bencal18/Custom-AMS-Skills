@@ -47,7 +47,7 @@ Follow these steps in order:
 10. Build one row per athlete per calendar day for any rolling calculation.
 11. Put `0` on days with no training.
 12. Put a missing value on days when training happened but no rating was recorded.
-13. Mark injured, ill, or modified-training days in a separate column.
+13. Mark ill, unavailable, or modified-training days in a separate column.
 14. For ACWR, ask which variant the user wants: rolling average coupled, rolling average uncoupled, or exponentially weighted moving average (EWMA).
 15. Ask for the acute and chronic windows.
 16. If the user has no preference, show all three and say they differ.
@@ -88,6 +88,7 @@ Keep to these limits:
 - Do not invent a threshold or range. Use only the figures in the reference files, and name the source.
 - Do not set a wellness flag cut-off on your own. Ask the user which cut-off they use, and label it as their choice. A z-score cannot show a chronic problem, so never hide the raw answer. Recommend a repeat answer or a talk with the athlete before anyone acts on a single flag.
 - Do not diagnose illness, overtraining, or injury from a wellness score.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 - Do not fill missing RPE or wellness answers with zero, an average, or the last value unless the user asks. If the user asks, name the method and show results with and without the filled values.
 - Athlete data is personal health data. Tell the user to check their organization's data policy before they paste it into a cloud AI tool.
 - If the `ams-data-setup` skill is installed, use its table layout. This skill works without it.

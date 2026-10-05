@@ -98,7 +98,7 @@ Keep to these limits:
 - Offer neutral colors or arrows before red, amber, and green. Red, amber, and green read as stop, caution, and go.
 - If the user wants colors, tie each one to the user's own distance-from-baseline cut-off, and add this legend: "Colors show distance from this athlete's baseline. Not a training or clearance decision."
 - Do not rely on red and green alone. About 8% of men of European descent have red-green color deficiency (Birch, 2012). Add a symbol or text label to each color.
-- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 - Athlete data is personal health data. Tell the user to check their organization's data policy before they paste it into a cloud AI tool.
 - If the `load-and-wellness` or `ams-data-setup` skill is installed, you may use its methods and table layout. This skill works without them.
 

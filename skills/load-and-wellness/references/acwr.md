@@ -367,7 +367,7 @@ Follow these steps to calculate the metric from raw inputs:
 4. Put `0` on rest days.
 5. Leave days with training but no recorded load as missing.
 6. Check that every calendar day has exactly one row. Stop and fix the data if it does not.
-7. Mark days when the athlete was injured, ill, or on modified training in a separate column, such as `availability`.
+7. Mark days when the athlete was ill, unavailable, or on modified training in a separate column, such as `availability`.
 8. Ask the user for the variant and the windows.
 9. Use 7 and 28 days if they have no preference. Say the windows are a convention, even when the user chose them.
 10. For rolling coupled ACWR, divide the mean daily load of the last 7 days by the mean daily load of the last 28 days.
@@ -470,7 +470,7 @@ ACWR has no unit. A value of 1.0 means acute and chronic load are equal. No ACWR
 Collect this data:
 
 - Source: a daily load log, such as session RPE load, or external load from a GPS or local positioning export.
-- Sampling: one total per athlete per calendar day, with `0` on rest days and a note on injured, ill, or modified-training days.
+- Sampling: one total per athlete per calendar day, with `0` on rest days and a note on ill, unavailable, or modified-training days.
 - Minimum data: 28 days with no gaps before the first rolling value, and 56 days before the first EWMA value.
 
 ## Common mistakes

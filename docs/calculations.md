@@ -585,7 +585,7 @@ Follow these steps from raw inputs:
 2. Convert any duration in hours or `hh:mm` text to minutes.
 3. Multiply `rpe_cr10` by `duration_min` for each session, and store it in `srpe_load_au`. Keep the result missing if either input is missing.
 4. Add `srpe_load_au` across sessions for each `athlete_id` and `date` to get daily load. If any session that day has a missing rating, mark the day as missing.
-5. Add daily loads across each calendar week, Monday to Sunday unless the user names another start day, to get weekly load. Do this even when the user asked only for daily load. Report how many days had complete data and how many were marked injured, ill, or modified. Mark a week with any missing day as incomplete, and give its total with the number of days it covers, such as 6 of 7 days.
+5. Add daily loads across each calendar week, Monday to Sunday unless the user names another start day, to get weekly load. Do this even when the user asked only for daily load. Report how many days had complete data and how many were marked ill, unavailable, or modified. Mark a week with any missing day as incomplete, and give its total with the number of days it covers, such as 6 of 7 days.
 
 **Worked example.** One athlete trains three days. Monday, 2026-08-03, has a practice and a lift:
 
@@ -805,7 +805,7 @@ Read these limits before you use it:
 
 - One daily load total per athlete per calendar day in one load measure, such as `srpe_load_au` (AU) or `distance_m` (m)
 - `0` on rest days, and missing for days with training but no recorded load
-- An `availability` column that marks injured, ill, or modified-training days
+- An `availability` column that marks ill, unavailable, or modified-training days
 
 **Calculation.** Three variants are in use. They give different numbers from the same data, so name the variant every time:
 
@@ -2121,7 +2121,7 @@ Read these limits before you build one:
 - Traffic-light monitoring systems lack a standard way of being set up (Robertson et al., 2017). A composite's colors are a local choice.
 - Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). Load is the dose, and wellness and test results are the response. Self-reported well-being worsened with acute rises in load and improved with acute reductions (Saw et al., 2016), so a composite that holds both counts a dose and its response together. Keep load measures out of the composite by default, and show them beside it. Do not include the ACWR as an input (Impellizzeri et al., 2020a).
 - The user may still add a load measure, with its direction and reason, labeled as the user's choice.
-- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 
 **Inputs.** The calculation needs these data:
 

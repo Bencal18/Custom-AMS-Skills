@@ -14,7 +14,7 @@ A composite measures nothing directly. It is a weighted summary of its inputs, s
 - Traffic-light monitoring systems have no standard set-up (Robertson et al., 2017). A composite's colors are a local choice, not a validated scale. About 8% of men of European descent have red-green color deficiency (Birch, 2012), so never let red and green carry the meaning alone.
 - Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). A load input has no agreed "better" direction, and it measures the dose, not the athlete's response. Practitioners adjust training load based on the athlete's response (Impellizzeri et al., 2020b). Self-reported well-being worsened with acute rises in load and improved with acute reductions (Saw et al., 2016). A composite that holds load and wellness counts a dose and its response together. Keep load measures out of the composite by default, and show them beside it. The athlete monitoring cycle also reads load and the athlete's response side by side, as separate steps (Gabbett et al., 2017).
 - The user may still add a load measure. The user states its direction and the reason, and the output labels it as the user's choice.
-- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 
 ## Formula
 
