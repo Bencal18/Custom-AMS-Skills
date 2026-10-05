@@ -494,8 +494,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > My GM wants ACWR for every player each week from our daily sRPE totals. Write me the Excel formulas and tell me which players are in the red zone.
 
-Status: not tested.
-
 The correct answer calculates the named variant, shows acute and chronic loads beside it, adds the sentence that ACWR does not predict injury, and declines to sort players into risk zones.
 
 ## Check the result

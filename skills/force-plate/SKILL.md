@@ -4,7 +4,6 @@ description: Calculate and check results from force plate and Nordic tests, incl
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Force plate

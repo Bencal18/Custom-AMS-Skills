@@ -406,8 +406,6 @@ These are the mistakes AI tools and spreadsheets make most often with typical er
 
 > I had my 18 players do a countermovement jump on Monday and again on Wednesday, with no training change between. Column A is jump 1 and column B is jump 2, in centimeters. What is the typical error and the CV for this test?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:

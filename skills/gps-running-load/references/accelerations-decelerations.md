@@ -351,8 +351,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > My GPS export has one row per player per session with columns for accelerations and decelerations above 3 m/s². We updated the software in March. Can you chart each player's decelerations per session for the season and flag big changes?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

@@ -181,8 +181,6 @@ Use these notes for other tools:
 
 > Make this team distance chart readable for our color-blind assistant coach, and add alt text for the PDF report.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:

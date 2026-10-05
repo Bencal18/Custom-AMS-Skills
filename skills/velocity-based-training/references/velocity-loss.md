@@ -298,8 +298,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > Here is a CSV from our bar speed app for bench press. Each row is one rep with athlete, date, set number, rep number, load, and mean velocity. For every set, give me the velocity loss, and flag sets where it went past 25%.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

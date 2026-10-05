@@ -210,8 +210,6 @@ Use these notes for other tools:
 
 > Is there a relationship between training load and next-day jump height in my squad? I have daily load and jumps for 8 players over 3 weeks.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:

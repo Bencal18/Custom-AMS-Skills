@@ -137,8 +137,6 @@ These are the mistakes AI tools and staff make most often with system layout:
 
 > My workbook has grown to 30 tabs and nobody else understands it. Help me reorganize it so it's easier to maintain and hand over.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the layout:

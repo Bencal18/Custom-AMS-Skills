@@ -164,8 +164,6 @@ Use these notes for other tools:
 
 > Show me whether Jordan's jump height change since preseason is real or just noise. Our CMJ typical error is 1.4 cm and squad SD is 4.8 cm.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:

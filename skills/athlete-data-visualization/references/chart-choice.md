@@ -120,8 +120,6 @@ Use these notes for other tools:
 
 > I tested the squad's jumps before and after our 6-week block. Make me a chart that shows whether it worked.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:

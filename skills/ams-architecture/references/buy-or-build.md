@@ -83,8 +83,6 @@ These are the mistakes AI tools and staff make most often with this decision:
 
 > Should we buy an AMS or keep building our own in Excel and Power BI? We have two sports scientists and about 300 athletes.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the recommendation:

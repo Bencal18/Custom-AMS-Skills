@@ -224,8 +224,6 @@ These are the mistakes AI tools and spreadsheets make most often with missing da
 
 > Some athletes skipped the wellness form on some days. Work out each athlete's weekly average wellness score and tell me how much data is missing.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:

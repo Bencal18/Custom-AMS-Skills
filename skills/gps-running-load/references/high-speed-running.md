@@ -244,8 +244,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I have 10 Hz GPS files for 22 players from Saturday's match. Speed is in km/h. Give me each player's distance above 19.8 km/h and above 25.2 km/h, and the number of efforts above 25.2 km/h that last at least 1 second.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

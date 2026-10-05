@@ -236,8 +236,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I exported last week's GPS data to a spreadsheet. Each row is one player in one session, with total distance in kilometres and session duration as `hh:mm:ss`. Give me metres per minute for each row and a weekly total distance per player.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

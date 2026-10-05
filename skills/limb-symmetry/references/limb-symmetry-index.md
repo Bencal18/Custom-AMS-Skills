@@ -335,8 +335,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I have single-leg jump heights for my athletes, left and right, three trials each. Can you give me a symmetry column in Excel and tell me which formula you used?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

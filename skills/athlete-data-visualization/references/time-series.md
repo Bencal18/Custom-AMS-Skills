@@ -169,8 +169,6 @@ Use these notes for other tools:
 
 > Plot Maya's weekly jump height since May and show me if she has dropped below her normal. We missed two weeks in July.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:

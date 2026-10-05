@@ -88,8 +88,6 @@ These are the mistakes AI tools and staff make most often with backups and hando
 
 > I'm leaving at the end of the season. What do I need to set up so the next person can keep our athlete monitoring system running?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the plan:

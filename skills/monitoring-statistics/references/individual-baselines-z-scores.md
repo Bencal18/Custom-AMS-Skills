@@ -376,8 +376,6 @@ These are the mistakes AI tools and spreadsheets make most often with baselines 
 
 > For each player, compare today's jump height with their own last 8 tests and flag anyone who is unusually low. Tell me what window you used.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:

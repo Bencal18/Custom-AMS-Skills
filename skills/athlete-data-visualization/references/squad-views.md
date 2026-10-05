@@ -170,8 +170,6 @@ Use these notes for other tools:
 
 > Give me one view of the whole squad's jump testing this week so I can see who has moved away from their normal. Don't make it a ranking.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the chart:

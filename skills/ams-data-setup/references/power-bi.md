@@ -152,8 +152,6 @@ These are the mistakes AI tools and Power BI users make most often with athlete 
 
 > I have my measures table as a CSV with athlete_id, measure_date, measure_name, value, unit, and status. Set it up in Power BI so I can see each athlete's weekly jump height and how many athletes tested.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks after you build the model:

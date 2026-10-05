@@ -4,7 +4,6 @@ description: Calculate mean concentric velocity, velocity loss in a set, and loa
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Velocity-based training

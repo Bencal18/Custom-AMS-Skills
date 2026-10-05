@@ -4,7 +4,6 @@ description: Build reports and dashboards from athlete data for coaches and athl
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Coach and athlete reports

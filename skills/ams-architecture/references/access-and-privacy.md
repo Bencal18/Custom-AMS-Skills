@@ -133,8 +133,6 @@ These are the mistakes AI tools and staff make most often with access and privac
 
 > Who should be able to see what in our athlete monitoring system? We have S&C, sport coaches, athletic trainers, and athletes.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the access plan:

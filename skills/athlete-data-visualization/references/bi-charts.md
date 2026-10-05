@@ -318,8 +318,6 @@ These are the mistakes AI tools and BI users make most often with these charts:
 
 > Build me a Power BI page that shows each athlete's weekly jump height against their own baseline, with a noise band, and a squad view of who changed this week.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks before you share a chart:

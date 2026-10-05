@@ -97,8 +97,6 @@ These are the mistakes AI tools and staff make most often when they choose a set
 
 > We have about 120 athletes across four teams, GPS every practice, and force plates weekly. I know Excel and a little Power BI. Should I use a spreadsheet, a database, or something else?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the recommendation:

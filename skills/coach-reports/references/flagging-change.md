@@ -393,8 +393,6 @@ These are the mistakes AI tools and spreadsheets make most often when they flag 
 
 > Flag which athletes' jump height this week is different from their own normal, and ignore changes that are only testing noise.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the flags:

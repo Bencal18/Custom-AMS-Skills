@@ -150,8 +150,6 @@ These are the mistakes AI tools and spreadsheets make most often when they struc
 
 > I have wellness form exports, GPS files, and jump tests in separate spreadsheets. Set up one workbook where I can see all of it by athlete and date.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the finished tables:

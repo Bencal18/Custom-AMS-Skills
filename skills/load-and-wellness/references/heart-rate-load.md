@@ -460,8 +460,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I have second-by-second heart rate exports for my players from today's practice. I know their ages and resting heart rates. Give me time in zones, Edwards TRIMP, and Banister TRIMP for each player, and tell me who worked hardest.
 
-Status: not tested.
-
 The correct answer asks for measured HRmax or names the age formula used, removes dropouts, shows the zone boundaries and Banister form, and compares each player with their own history rather than ranking players against each other.
 
 ## Check the result

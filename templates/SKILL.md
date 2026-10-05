@@ -4,7 +4,6 @@ description: <What the skill does and when to use it, in the words a coach would
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "<YYYY-MM-DD>"
 ---
 
 # <Skill title>

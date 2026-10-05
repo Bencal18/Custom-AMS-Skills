@@ -510,8 +510,6 @@ These are the mistakes AI tools and spreadsheets make most often when they judge
 
 > Here are two rounds of jump tests, a week apart, for the squad. Which athletes changed by more than noise?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:

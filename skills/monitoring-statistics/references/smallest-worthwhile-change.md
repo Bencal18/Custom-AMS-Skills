@@ -296,8 +296,6 @@ These are the mistakes AI tools and spreadsheets make most often with the SWC:
 
 > Here are preseason sprint times for 22 players and their times today. Which players changed by more than the smallest worthwhile change, and which changes are only noise? Our 10 m sprint typical error is 0.03 s.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:

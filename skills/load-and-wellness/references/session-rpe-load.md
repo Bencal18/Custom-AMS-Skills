@@ -209,8 +209,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I have a Google Sheet with athlete, date, session type, RPE out of 10, and minutes. Some days have two sessions. Give me daily and weekly sRPE load per athlete.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

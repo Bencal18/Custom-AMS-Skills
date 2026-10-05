@@ -77,8 +77,6 @@ These are the mistakes AI tools make most often when they build a report:
 
 > Make me a one-page weekly report for the head coach from the jump tests and the wellness forms, and a separate version I can send to each athlete.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on both versions:

@@ -155,8 +155,6 @@ These are the mistakes AI tools and spreadsheets make most often in an athlete d
 
 > Here is the spreadsheet and the summary the AI gave me about my athletes' jump tests this month. Is it right? Check it before I send it to the coach.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the checklist itself:

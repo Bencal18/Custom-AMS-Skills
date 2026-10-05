@@ -92,8 +92,6 @@ These are the mistakes AI tools make most often when they chart athlete data:
 
 > Chart each athlete's weekly jump height so I can see who has moved away from their own normal. Keep it readable for a coach on a phone.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on each chart:

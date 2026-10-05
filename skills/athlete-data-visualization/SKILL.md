@@ -4,7 +4,6 @@ description: Make clear, honest charts of athlete data, such as trends against b
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Athlete data visualization

@@ -279,8 +279,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I have an export from our bar speed device for bench press. Each row is one rep with athlete, date, load in kg, mean velocity, and peak velocity. Build each athlete's load-velocity profile from Monday's warm-up sets and estimate their bench press 1RM.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

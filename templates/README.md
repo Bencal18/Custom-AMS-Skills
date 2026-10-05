@@ -13,7 +13,7 @@ Copy these files when you add to the repository. Each template marks the parts t
 Follow these steps to add a skill:
 
 1. Create a folder in `skills/`. Name it in lowercase with hyphens, such as `sprint-testing`.
-2. Copy `SKILL.md` into the folder, and set `name` to the folder name. Set `last-tested` to `not tested` until you test the skill.
+2. Copy `SKILL.md` into the folder, and set `name` to the folder name.
 3. Write the `description` in the words a coach would use to ask for the task. Keep it under 200 characters.
 4. Create a `references/` folder, and add one file for each metric from `metric-reference.md`.
 5. Optional: Add a device reference for each vendor from `device-export-reference.md`. If another skill already has one for that vendor, copy it unchanged. Add each new device reference to the device table in [`skills/README.md`](../skills/README.md#device-export-references).

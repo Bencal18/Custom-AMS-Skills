@@ -70,8 +70,6 @@ These are the mistakes AI tools and staff make most often when they plan an AMS:
 
 > I'm the only sports scientist for three teams. We have force plates, GPS, and a morning wellness form. Help me plan an athlete management system.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the plan:

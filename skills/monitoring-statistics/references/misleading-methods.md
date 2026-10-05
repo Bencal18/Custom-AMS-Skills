@@ -393,8 +393,6 @@ These are the mistakes AI tools and spreadsheets make most often with these meth
 
 > Calculate the acute to chronic workload ratio for each player from this daily session RPE log, and tell me who is in the danger zone.
 
-Status: not tested.
-
 The correct answer computes the named variant, shows acute and chronic loads, and explains that no validated danger zone exists.
 
 ## Check the result

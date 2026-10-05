@@ -102,8 +102,6 @@ These are the mistakes AI tools and staff make most often with intake:
 
 > Our GPS vendor has an API. Can you help me set up an automatic pull every morning into our Microsoft 365 setup?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the intake plan:

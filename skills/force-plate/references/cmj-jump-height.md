@@ -240,8 +240,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I exported raw force data from our CMJ testing at 1000 Hz. Can you write me a Python function that gives jump height for each trial, and tell me why it's lower than the number on the old jump mat?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

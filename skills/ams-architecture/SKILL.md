@@ -4,7 +4,6 @@ description: Plan a whole athlete management system (AMS): spreadsheet or databa
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Plan an athlete management system

@@ -342,8 +342,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > Our players fill in a 1 to 5 wellness form every morning: sleep, soreness, fatigue, stress, and mood. Build me a sheet that flags anyone who is well below their own normal today.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

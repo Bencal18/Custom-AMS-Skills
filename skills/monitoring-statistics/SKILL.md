@@ -4,7 +4,6 @@ description: Decide if a change in an athlete's data is real or noise. Covers ty
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Statistics for athlete monitoring

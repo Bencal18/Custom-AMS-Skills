@@ -232,8 +232,6 @@ These are the mistakes AI tools and spreadsheets make most often with the MDC:
 
 > Our isometric mid-thigh pull has an SEM of 85 N from last month's reliability session. One athlete went from 2,410 N to 2,560 N. Is that a real change?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the result:

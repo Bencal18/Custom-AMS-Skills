@@ -193,8 +193,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > Our force plate export has jump height in cm and contraction time in ms for every CMJ. Can you add an RSI-modified column in Google Sheets and flag any values that look like data errors?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

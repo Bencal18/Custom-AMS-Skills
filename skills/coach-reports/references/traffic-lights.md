@@ -64,8 +64,6 @@ These are the mistakes AI tools make most often with traffic lights:
 
 > Build me a red, amber, green sheet for the squad from the wellness scores and the jump tests.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the color rules:

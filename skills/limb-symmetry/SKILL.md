@@ -4,7 +4,6 @@ description: Calculate and check left versus right limb symmetry or asymmetry pe
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Limb symmetry

@@ -4,7 +4,6 @@ description: Calculate session RPE load, heart rate load (TRIMP), ACWR, and well
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # Load and wellness

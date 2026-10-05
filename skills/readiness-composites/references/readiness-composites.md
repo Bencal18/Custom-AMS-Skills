@@ -233,8 +233,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I want one readiness number per player each morning from sleep, soreness, mood, yesterday's sRPE load, and CMJ jump height. Weight it however you think is best and tell me who is good to train.
 
-Status: not tested.
-
 The correct answer builds an equal-weight composite of aligned, athlete-specific z-scores from sleep, soreness, mood, and jump height. It shows yesterday's load beside the composite and explains why load is not in it. It shows all four sub-scores with their raw values, asks for the user's weights, labels the output as distance from baseline, and declines to say who is good to train.
 
 ## Check the result

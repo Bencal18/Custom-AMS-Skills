@@ -4,7 +4,6 @@ description: Calculate total distance, metres per minute, high-speed running, an
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
-  last-tested: "not tested"
 ---
 
 # GPS running load

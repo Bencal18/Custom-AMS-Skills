@@ -13,7 +13,7 @@ Each skill folder has this layout:
 
 ## Version 1 skills
 
-Version 1 has these 11 skills:
+Version 1 has these 12 skills:
 
 | Skill | What it covers | Status |
 |---|---|---|
@@ -28,14 +28,7 @@ Version 1 has these 11 skills:
 | [`check-ai-analysis`](check-ai-analysis/SKILL.md) | Questions to answer before trusting a result | Reviewed |
 | [`coach-reports`](coach-reports/SKILL.md) | What to show coaches versus athletes, and how to flag changes without noise | Reviewed |
 | [`athlete-data-visualization`](athlete-data-visualization/SKILL.md) | Chart choice, time series, complex relationships, uncertainty, color and accessibility, and squad views | Reviewed |
-
-## Draft skills
-
-This skill is a draft. It has not been tested or reviewed:
-
-| Skill | What it covers | Status |
-|---|---|---|
-| [`ams-architecture`](ams-architecture/SKILL.md) | The parts of an AMS, spreadsheet, low-code, or database setups, hosting, data layers, data intake, access and privacy, backups and handover, and buy versus build | Draft |
+| [`ams-architecture`](ams-architecture/SKILL.md) | The parts of an AMS, spreadsheet, low-code, or database setups, hosting, data layers, data intake, access and privacy, backups and handover, and buy versus build | Reviewed |
 
 ## Device export references
 

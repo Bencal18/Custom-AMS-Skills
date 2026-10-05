@@ -119,8 +119,6 @@ These are the mistakes AI tools and spreadsheets make most often when they join 
 
 > I export GPS data from my units every week and my athletes fill in a wellness form each morning. Join them by athlete and day so I can see load next to wellness.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks on the joined table:

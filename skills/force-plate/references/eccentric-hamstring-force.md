@@ -260,8 +260,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I've got Nordic results for the squad from two test days, left and right peak force for three reps each. Can you build a sheet that shows each player's best rep per leg, force per kg, the left-right difference, and whether anything changed?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:

@@ -132,8 +132,6 @@ These are the mistakes AI tools and Tableau users make most often with athlete d
 
 > I have my measures table as a CSV with athlete_id, measure_date, measure_name, value, unit, and status. Set it up in Tableau so I can see each athlete's wellness z-score against the last 28 days.
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks after you build the data source:

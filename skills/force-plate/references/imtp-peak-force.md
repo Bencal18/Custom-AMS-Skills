@@ -250,8 +250,6 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 
 > I have IMTP peak force for my team from three test days, plus body weight. Can you make a table of relative peak force and tell me who improved?
 
-Status: not tested.
-
 ## Check the result
 
 Run these checks:
