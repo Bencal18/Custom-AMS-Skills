@@ -68,7 +68,7 @@ These versions are not tested in Power BI or Tableau. A missing rating or durati
 
 Both versions work on a session table with one row per athlete, date, and session: `athlete_id`, `measure_date`, `session_id`, `rpe_cr10`, and `duration_min`. Build it from the long `measures` table by pivoting `measure_name` to columns.
 
-In Power Query, first set `value` to null on rows whose `status` is not `ok`. Then keep only `athlete_id`, `measure_date`, `session_id`, `measure_name`, and `value`. Select `measure_name`, then **Transform**, then **Pivot column**, with `value` as the value column. Under **Advanced**, choose **Don't aggregate**. The default is a sum, which would add two ratings for one session with no warning. With **Don't aggregate**, a duplicate shows as an error in that cell. Fix the duplicate at the source.
+In Power Query, first set `value` to null on rows whose `status` is not `ok`. Then keep only `athlete_id`, `measure_date`, `session_id`, `measure_name`, and `value`. Select `measure_name`, then **Transform**, then **Pivot column**, with `value` as the value column. Under **Advanced**, choose **Don't aggregate**. The default is a sum, which would silently add two ratings for one session. With **Don't aggregate**, a duplicate shows as an error in that cell. Fix the duplicate at the source.
 
 In Power BI, use a calculated column for the session load and a measure for the daily load. The session load is a calculated column because both inputs sit on the same row and do not change with slicers. The daily load is a measure because it sums rows:
 

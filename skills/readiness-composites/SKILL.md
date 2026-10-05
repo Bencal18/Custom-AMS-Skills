@@ -3,7 +3,7 @@ name: readiness-composites
 description: Build or check a readiness-style composite of wellness and test results, shown as distance from the athlete's own baseline with every sub-score. Decision support only, never clearance.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

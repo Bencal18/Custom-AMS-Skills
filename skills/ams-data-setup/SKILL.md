@@ -3,7 +3,7 @@ name: ams-data-setup
 description: Set up a home-built athlete management system in a spreadsheet, tables, Power BI, or Tableau. Covers athlete IDs, long measure tables, joining devices by athlete and date, units, and missing data.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

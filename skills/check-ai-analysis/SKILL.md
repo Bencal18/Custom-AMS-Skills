@@ -3,7 +3,7 @@ name: check-ai-analysis
 description: Check an analysis of athlete data before you trust it, whether the AI wrote it or you pasted it. Test formulas, units, row counts, missing data, windows, noise, charts, and overreach.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

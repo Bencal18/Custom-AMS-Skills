@@ -118,7 +118,7 @@ These are the mistakes AI tools make most often with uncertainty:
 - Putting error bars on two means from the same athletes and reading overlap as no change.
 - Using the SD of an athlete's own recent values as TE.
 - Drawing the noise band with `1.96 × TE` and no `√(1 + 1/n)` term.
-- Calling a change worthwhile because it passed the noise band, without checking the SWC.
+- Calling a change worthwhile because it passed the noise band, with no check of the SWC.
 - Calling a change clearly worthwhile when only the point, not the whole interval, lies beyond the SWC.
 - Printing percent changes to two decimals.
 - Coloring changes green and red by sign.

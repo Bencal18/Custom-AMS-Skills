@@ -87,7 +87,7 @@ These versions are not tested in Power BI or Tableau. They follow the `acwr` fun
 - The 7-day mean shows whenever its own 7 days have no missing day.
 - A ratio is blank when its chronic load is 0. The Python function gives a missing value or infinity there.
 
-Both versions count calendar days, not rows. A window of 7 or 28 rows spans more calendar days when a day has no row, so a missing day would stretch the window with no warning. Each window below takes a fixed run of calendar dates and counts how many of them have a load.
+Both versions count calendar days, not rows. A window of 7 or 28 rows spans more calendar days when a day has no row, so a missing day would silently stretch the window. Each window below takes a fixed run of calendar dates and counts how many of them have a load.
 
 Both versions assume one row per athlete and calendar day in a `measures` table, with `measure_name` `daily_load` and `unit` `au`. Build the daily totals before import, in the AMS sheet, Python, or R. Add up each athlete's sessions for each calendar day. Write 0 on a rest day. Leave a day with an unrated session missing, with no value. Append the totals to `measures` with `measure_name` `daily_load`, `unit` `au`, and `status` `ok`. A day with no row, or with a row whose `status` is not `ok`, is a missing day. For distance, change the name and unit, for example to `daily_distance` in `m`. Use one load measure for every athlete and every day.
 
@@ -483,7 +483,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Mixing variants across athletes or weeks. Use one variant for every athlete and every day in a report.
 - Rolling over rows instead of calendar days. If rest days have no row, a "7-row" window can span 10 days. Fill rest days with `0` first.
 - Treating missing days as rest. A day with no data is unknown, not zero load. Leave it missing, and report the ratio as missing for windows that contain it.
-- Letting EWMA run through a missing day. EWMA keeps the previous day's value and keeps reporting. Mask EWMA ACWR on the missing day and the 27 days after it.
+- Letting EWMA run through a missing day. EWMA keeps the value from the previous day and keeps reporting. Mask EWMA ACWR on the missing day and the 27 days after it.
 - Reporting a ratio too early. The first 27 days of rolling values depend on too little data. EWMA values before day 56 depend on the start value.
 - Leaving out the acute and chronic loads. A ratio of 1.5 can come from 150 ÷ 100 or 1,500 ÷ 1,000. Show both loads.
 - Assuming the uncoupled variant fixes ACWR. It removes the shared week, but the ratio fails to normalize acute load (Impellizzeri et al., 2020a).

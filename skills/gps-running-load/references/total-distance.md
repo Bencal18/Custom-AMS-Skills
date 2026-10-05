@@ -13,7 +13,7 @@ The data come from a GPS (global positioning system) unit worn by the athlete, a
 Use total distance as reported by the device software when the file holds one summary row per athlete per session. When the file holds raw speed samples, add the distance covered in each sample. When it holds raw positions, add the straight-line distance between consecutive positions:
 
 ```text
-from speed:      total_distance_m = Σ (speed_m_s × Δt_s)
+from speed:      total_distance_m = Σ (speed_m_s × dt_s)
 from positions:  total_distance_m = Σ √((x[i] − x[i−1])² + (y[i] − y[i−1])²)
 distance_per_min = total_distance_m ÷ duration_min
 ```
@@ -21,7 +21,7 @@ distance_per_min = total_distance_m ÷ duration_min
 Define every term in the formula:
 
 - `speed_m_s`: the athlete's speed in one sample, in metres per second (m/s). Convert km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048 first.
-- `Δt_s`: the time between samples, in seconds. Take it from the timestamp differences. At 10 Hz (10 samples per second), it is 0.1 s.
+- `dt_s`: the time between samples, in seconds. Take it from the timestamp differences. At 10 Hz (10 samples per second), it is 0.1 s.
 - `x`, `y`: the athlete's position in metres on the field or court axes
 - `total_distance_m`: distance in metres (m)
 - `duration_min`: the time you divide by, in minutes. Choose one rule and keep it: whole session, time on the field, or drill time only.
@@ -129,9 +129,9 @@ Follow these steps to calculate the metric from raw inputs:
 3. If the file holds raw samples instead of a distance column, find the speed column and its unit.
 4. Convert km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048 to get m/s.
 5. Find the sampling rate in Hz.
-6. Take `Δt_s` for each sample from the timestamp differences.
+6. Take `dt_s` for each sample from the timestamp differences.
 7. Flag any step longer than expected as a gap.
-8. Multiply each speed sample by its `Δt_s` to get the distance for that sample, in metres.
+8. Multiply each speed sample by its `dt_s` to get the distance for that sample, in metres.
 9. Add the sample distances for each athlete and session to get `total_distance_m`.
 10. If the file holds positions only, add the straight-line distance between consecutive positions instead.
 11. Label the result as recalculated from positions.
@@ -165,7 +165,7 @@ The same player gives 85.0 m/min or 103.5 m/min depending on the duration rule. 
 Follow these steps for the raw speed samples:
 
 1. Convert to m/s by dividing by 3.6: 5.000, 5.111, 5.250, 5.361, 5.500, 5.611, 5.694, 5.806, 5.889, 6.000.
-2. Multiply each by `Δt_s` = 0.1 s and add: 5.52 m in one second.
+2. Multiply each by `dt_s` = 0.1 s and add: 5.52 m in one second.
 
 Follow these steps for the raw positions:
 
@@ -178,7 +178,7 @@ Follow these steps for the raw positions:
 These choices change the result even when the athlete's performance does not:
 
 - Duration rule. In the worked example, whole session time gives 85.0 m/min and time on the field gives 103.5 m/min for the same distance.
-- Assumed sampling interval. Treating the 10 Hz samples in the worked example as 5 Hz (`Δt_s` = 0.2 s) doubles the distance from 5.52 m to 11.04 m.
+- Assumed sampling interval. Treating the 10 Hz samples in the worked example as 5 Hz (`dt_s` = 0.2 s) doubles the distance from 5.52 m to 11.04 m.
 - Speed unit. Adding km/h values as if they were m/s gives 19.88 instead of 5.52 for the same second, 3.6 times too large.
 - Distance method. Vendor totals, speed × time, odometer differences, and summed positions differ. In the worked example, ±0.1 m of position noise adds 7.7%.
 - Sampling rate of the device. 5 Hz units were more valid than 1 Hz units (Jennings et al., 2010), and 10 Hz units were the most valid and reliable (Scott et al., 2016). Errors are largest for short, fast, or turning movements.
@@ -223,7 +223,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Dividing by the wrong duration. Whole-session time, time on the field, and drill time give different metres per minute. State the rule, and use one rule for every row.
 - Mixing whole-session and peak-period distance per minute. A peak 1-minute value is at least as high as the session average. Label which one you report.
 - Comparing rolling and fixed peak periods. Fixed windows give lower peaks (Varley et al., 2012; Fereday et al., 2020). State the window length and type.
-- Assuming the sampling interval. Do not assume 10 Hz. A 5 Hz file processed with `Δt = 0.1 s` gives half the true distance. Take the time step from the timestamps.
+- Assuming the sampling interval. Do not assume 10 Hz. A 5 Hz file processed with `dt = 0.1 s` gives half the true distance. Take the time step from the timestamps.
 - Ignoring gaps. A fixed time step hides dropouts. Flag every step longer than expected, and report the gap time.
 - Mixing distance methods. Summed positions, speed × time, odometer differences, and vendor totals differ. Use one method for the whole trend (Thornton et al., 2019).
 - Comparing values across device types as if they were the same. GPS, local positioning, and video tracking give different values for the same movement (Linke et al., 2018; Buchheit et al., 2014). Between-system differences in total distance were trivial to small, but they exist. Keep device type in the table and flag cross-system comparisons.

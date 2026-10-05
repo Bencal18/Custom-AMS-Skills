@@ -3,7 +3,7 @@ name: athlete-data-visualization
 description: Make clear, honest charts of athlete data, such as trends against baseline, squad views, how two measures relate, noise bands, and color-blind-safe colors. Use for any chart.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

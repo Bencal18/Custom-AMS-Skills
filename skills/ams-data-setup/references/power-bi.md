@@ -6,7 +6,7 @@ Not tested in Power BI or Tableau. No step or DAX formula in this file was run i
 
 ## What it covers
 
-This file shows how to load the athlete, session, and measure tables from the table layout reference into Power BI. It covers import, missing values, the athlete and date tables, relationships, units, refresh, and the traps that give a wrong number with no warning.
+This file shows how to load the athlete, session, and measure tables from the table layout reference into Power BI. It covers import, missing values, the athlete and date tables, relationships, units, refresh, and the traps that silently give a wrong number.
 
 ## Method
 
@@ -114,7 +114,7 @@ Some formulas need two measures on one row, such as session RPE and minutes. Bui
 2. Replace `value` with `null` on rows whose `status` is not `ok`.
 3. Remove every column except the key columns, `measure_name`, and `value`.
 4. Select `measure_name`, then **Transform**, then **Pivot column**, with `value` as the value column.
-5. Under **Advanced**, choose **Don't aggregate**. The default is a sum, which would add two rows for one key with no warning. With **Don't aggregate**, a duplicate shows as an error in that cell.
+5. Under **Advanced**, choose **Don't aggregate**. The default is a sum, which would silently add two rows for one key. With **Don't aggregate**, a duplicate shows as an error in that cell.
 
 ### Handle dates and time zones
 

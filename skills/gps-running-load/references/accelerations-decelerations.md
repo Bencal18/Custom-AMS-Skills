@@ -15,22 +15,22 @@ The data come from a GPS (global positioning system) unit worn by the athlete, a
 Calculate acceleration from the change in speed, then count efforts above the threshold:
 
 ```text
-accel_m_s2[i] = (speed_m_s[i] − speed_m_s[i − k]) ÷ (k × Δt_s)
+accel_m_s2[i] = (speed_m_s[i] − speed_m_s[i − k]) ÷ (k × dt_s)
 acceleration effort = a run of consecutive samples with accel_m_s2 ≥ threshold_m_s2,
                       lasting at least min_duration_s
 deceleration effort = a run of consecutive samples with accel_m_s2 ≤ −threshold_m_s2,
                       lasting at least min_duration_s
-effort_distance_m   = Σ (speed_m_s × Δt_s) over the samples in counted efforts
+effort_distance_m   = Σ (speed_m_s × dt_s) over the samples in counted efforts
 ```
 
 Define every term in the formula:
 
 - `speed_m_s`: speed in metres per second (m/s). Convert km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048 before you calculate acceleration.
-- `Δt_s`: the time between samples, in seconds. At 10 Hz, `Δt_s` is 0.1 s.
+- `dt_s`: the time between samples, in seconds. At 10 Hz, `dt_s` is 0.1 s.
 - `k`: how many samples back you look to calculate the change in speed. With `k = 1` at 10 Hz, the interval is 0.1 s. With `k = 2`, it is 0.2 s. Varley et al. (2017) compared 0.2 s and 0.3 s intervals.
 - `accel_m_s2`: acceleration in metres per second squared (m/s²). Positive values are accelerations. Negative values are decelerations. If acceleration is in ft/s², multiply by 0.3048.
 - `threshold_m_s2`: the acceleration threshold. See the list below.
-- `min_duration_s`: the minimum effort duration, also called dwell time. It is the shortest time the athlete must stay beyond the threshold for the run to count. Measure a run as the number of samples × `Δt_s`. Harper et al. (2019) report 0.2 to 1 s across the studies that stated it: 4 of 19 studies in their results, 8 in their discussion.
+- `min_duration_s`: the minimum effort duration, also called dwell time. It is the shortest time the athlete must stay beyond the threshold for the run to count. Measure a run as the number of samples × `dt_s`. Harper et al. (2019) report 0.2 to 1 s across the studies that stated it: 4 of 19 studies in their results, 8 in their discussion.
 - `effort_distance_m`: distance covered during counted efforts, in metres
 
 This file uses one boundary rule: a sample counts when its absolute acceleration is at or above the lower bound and below the upper bound, if a band has one. Varley et al. (2017) used ≥ 2.78 m/s². Harper et al. (2019) wrote their thresholds as strictly above (> 2.5 m/s²).
@@ -74,7 +74,7 @@ The snippet rounds acceleration to 6 decimals. Without rounding, floating-point 
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the `efforts` function above. They take the change in speed over `k` samples, round acceleration to 6 decimals, and count a sample at or above the threshold and below the upper bound. They keep runs that last at least the minimum duration, and add speed × `Δt_s` over the samples in each kept run. A blank speed gives a blank acceleration, which ends a run, as `NaN` does in Python. A session with samples but no efforts gives 0, not a blank.
+These versions are not tested in Power BI or Tableau. They follow the `efforts` function above. They take the change in speed over `k` samples, round acceleration to 6 decimals, and count a sample at or above the threshold and below the upper bound. They keep runs that last at least the minimum duration, and add speed × `dt_s` over the samples in each kept run. A blank speed gives a blank acceleration, which ends a run, as `NaN` does in Python. A session with samples but no efforts gives 0, not a blank.
 
 Both versions assume a `speed_samples` table with one row per sample: `athlete_id`, `session_id`, `sample_index` as a whole number, and `speed_m_s`. Convert speed to m/s before import. Keep one row for every sample, with a blank speed for a dropped sample. Like the Python function, both versions read samples by position, so a missing row joins the samples on either side as if they were 1 sample apart. Set the five settings once at the top: Hz, `k`, threshold, upper bound, and minimum duration. Use the same settings for every session in a trend, and label each result with them, the boundary rule, the filter, and the software version.
 
@@ -233,8 +233,8 @@ Follow these steps to calculate the metric from raw inputs:
 
 1. Find the speed column and its unit.
 2. Convert km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048 to get m/s.
-3. Find the sampling rate in Hz and set `Δt_s = 1 ÷ Hz`.
-4. Ask which interval to use for the change in speed (`k × Δt_s`) and whether a filter is applied first. Use the same choice for every file.
+3. Find the sampling rate in Hz and set `dt_s = 1 ÷ Hz`.
+4. Ask which interval to use for the change in speed (`k × dt_s`) and whether a filter is applied first. Use the same choice for every file.
 5. Calculate acceleration for each sample in m/s².
 6. Ask for the threshold in m/s², and the vendor's boundary rule.
 7. If the rule is not known, count a value equal to the threshold.
@@ -243,10 +243,10 @@ Follow these steps to calculate the metric from raw inputs:
 10. For a band, also stop at the upper bound.
 11. Group consecutive marked samples into runs.
 12. Ask for the minimum effort duration in seconds.
-13. Measure each run as samples × `Δt_s`.
+13. Measure each run as samples × `dt_s`.
 14. Keep runs that last at least the minimum effort duration. Each kept run is one effort.
 15. Count the efforts.
-16. For distance, add speed × `Δt_s` over the samples in each kept run.
+16. For distance, add speed × `dt_s` over the samples in each kept run.
 17. Label each result with the threshold, boundary rule, minimum duration, interval, filter, and software version.
 
 ## Worked example
@@ -258,7 +258,7 @@ This example uses three seconds of one athlete's speed at 10 Hz (30 samples). Th
 | Speed, m/s, samples 1 to 10 | 1.00, 1.30, 1.65, 2.00, 2.35, 2.62, 2.85, 3.05, 3.20, 3.30 |
 | Speed, m/s, samples 11 to 20 | 3.38, 3.42, 3.44, 3.45, 3.20, 2.85, 2.50, 2.20, 2.00, 1.95 |
 | Speed, m/s, samples 21 to 30 | 1.93, 2.20, 2.15, 2.10, 2.05, 2.00, 1.98, 1.97, 1.96, 1.95 |
-| Sampling rate | 10 Hz, so `Δt_s` = 0.1 s |
+| Sampling rate | 10 Hz, so `dt_s` = 0.1 s |
 | Interval for the change in speed | 0.1 s (`k` = 1) |
 | Threshold | at or above 2.5 m/s² |
 | Minimum effort duration | 0.2 s |

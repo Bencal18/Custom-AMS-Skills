@@ -1382,7 +1382,7 @@ The fields for this metric are:
 - **Window or phase:** See the table above.
 - **Calculation:**
   - Vendor definition (paraphrased): Time in hours, minutes, and seconds spent in each band ([Post-Activity Parameters](https://core.catapultsports.com/hc/en-us/articles/7209919599375-Post-Activity-Parameters)).
-  - Restatement, not a vendor statement: `T_k = Σ Δt` for samples with HR inside band `k`.
+  - Restatement, not a vendor statement: `T_k = Σ dt` for samples with HR inside band `k`.
 - **Inputs:** Heart rate, profile max HR.
 - **Units:** h:mm:ss. OpenField Cloud tables can show seconds ([What Is Heart Rate Exertion](https://support.catapultsports.com/hc/en-us/articles/360002137375-What-Is-Heart-Rate-Exertion)).
 - **Variants:** Absolute bpm bands or relative % bands ([Bands (Vector Core)](https://core.catapultsports.com/hc/en-us/articles/7209599125263-Bands)).
@@ -2311,7 +2311,7 @@ The fields for this metric are:
 - **Window or phase:** None.
 - **Calculation:**
   - Vendor definition (paraphrased): End position minus start position. Taking only the Z axis gives vertical displacement ([Metrics Measured by Perch](https://perch.catapultsports.com/hc/en-us/articles/13221007932175-Metrics-Measured-by-Perch)).
-  - Restatement, not a vendor statement: `Δz = z_end − z_start`.
+  - Restatement, not a vendor statement: `dz = z_end − z_start`.
 - **Inputs:** 3D camera path.
 - **Units:** Not stated. Velocities are in m/s, so this page reads it as metres.
 - **Variants:** Per axis.
@@ -2475,7 +2475,7 @@ The fields for this metric are:
 - **Window or phase:** None.
 - **Calculation:**
   - Vendor definition (paraphrased): `W = F × d`, where `F` is the average force on the bar and `d` is displacement. Reported in kJ ([Metrics Measured by Perch](https://perch.catapultsports.com/hc/en-us/articles/13221007932175-Metrics-Measured-by-Perch)).
-  - Restatement, not a vendor statement: With Perch's mean-force assumption, `W ≈ m × 9.8 × Δz ÷ 1000` kJ per rep. How reps and sets are summed into `Total Work` is Not published.
+  - Restatement, not a vendor statement: With Perch's mean-force assumption, `W ≈ m × 9.8 × dz ÷ 1000` kJ per rep. How reps and sets are summed into `Total Work` is Not published.
 - **Inputs:** Load, 3D path.
 - **Units:** kJ.
 - **Variants:** Per user over a time range in the Set History Users tab ([Perch TRAIN Overview](https://perch.catapultsports.com/hc/en-us/articles/13220953796495-Perch-TRAIN-Overview)).

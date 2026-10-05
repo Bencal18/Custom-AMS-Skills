@@ -82,7 +82,7 @@ Follow these points:
 
 - Do not number athletes `#1` to `#25`. Do not use medals, `best`, `worst`, `top`, or `bottom`.
 - If the user needs an order, sort by change from own baseline, and show the noise band.
-- If the user insists on a ranking, show each value with the noise for one test. Say that two athletes differ beyond noise only if their difference exceeds `1.96 × √2 × TE`, about `2.77 × TE`. Do not judge this from whether two intervals overlap. To compare two athletes' changes from their own baselines, use `1.96 × TE × √(2 × (1 + 1/n))`. With TE 1.4 cm and `n = 5`, that is 4.25 cm. This band is derived by adding variances and computed, not published.
+- If the user insists on a ranking, show each value with the noise for one test. Say that two athletes differ beyond noise only if their difference exceeds `1.96 × √2 × TE`, about `2.77 × TE`. Do not base this on whether two intervals overlap. To compare two athletes' changes from their own baselines, use `1.96 × TE × √(2 × (1 + 1/n))`. With TE 1.4 cm and `n = 5`, that is 4.25 cm. This band is derived by adding variances and computed, not published.
 - Do not color athletes red, amber, or green by rank or by an unstated cut point.
 - Do not rank composite readiness or wellness scores. Show the parts.
 - Write titles that describe the data, such as `Change from own baseline, week of 2026-09-28`, not `Who is ready`.

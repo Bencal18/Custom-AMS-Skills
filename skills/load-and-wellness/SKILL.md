@@ -3,7 +3,7 @@ name: load-and-wellness
 description: Calculate session RPE load, heart rate load (TRIMP), ACWR, and wellness z-scores from training logs, wellness forms, heart rate, or GPS exports. Shows the formula and checks each result.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

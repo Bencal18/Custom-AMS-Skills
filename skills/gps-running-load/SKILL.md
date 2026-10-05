@@ -3,7 +3,7 @@ name: gps-running-load
 description: Calculate total distance, metres per minute, high-speed running, and accelerations and decelerations from GPS or local positioning exports. Check thresholds, units, and settings.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

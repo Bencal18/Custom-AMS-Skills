@@ -6,7 +6,7 @@ Not tested in Power BI or Tableau. No step or calculation in this file was run i
 
 ## What it covers
 
-This file shows how to load the athlete, session, and measure tables from the table layout reference into Tableau Desktop. It covers import, missing values, athlete and calendar tables, relationships and joins, units, refresh, and the traps that give a wrong number with no warning.
+This file shows how to load the athlete, session, and measure tables from the table layout reference into Tableau Desktop. It covers import, missing values, athlete and calendar tables, relationships and joins, units, refresh, and the traps that silently give a wrong number.
 
 ## Method
 
@@ -28,7 +28,7 @@ Follow these steps for the `measures` table:
 6. Set `value` to **Number (decimal)**. Tableau shows text it cannot convert, such as `NA`, as null.
 7. Change types before you create an extract.
 
-Step 6 also turns any other text in `value`, such as a typo, into null with no warning. Add this check calculation and confirm its sum is 0:
+Step 6 also silently turns any other text in `value`, such as a typo, into null. Add this check calculation and confirm its sum is 0:
 
 ```text
 ok row with no number (row-level):
@@ -123,7 +123,7 @@ These are the mistakes AI tools and Tableau users make most often with athlete d
 - Counting a rolling window in marks when days are missing. Table calculations see only the marks in the view. With no row for a rest day or a missing day, a 28-mark window spans more than 28 calendar days. Use the scaffold.
 - Filtering dates with a dimension filter in a view with a rolling window. The filter runs before table calculations and removes the earlier days from the window. Use a table calculation filter to show a shorter range.
 - Leaving a table calculation on its default direction. The default can run across the wrong field. For a rolling window over time, set **Compute Using** to **Specific Dimensions**, with the date checked and `athlete_id` unchecked. For a summary across athletes, such as TE or the SWC, compute using `athlete_id`.
-- Using `WINDOW_STDEV` or `WINDOW_AVG` on views with null marks without checking. Tableau Help does not state how they treat nulls. Build the mean and SD from `WINDOW_SUM` of non-null values, or check one row by hand.
+- Using `WINDOW_STDEV` or `WINDOW_AVG` on views with null marks without a check. Tableau Help does not state how they treat nulls. Build the mean and SD from `WINDOW_SUM` of non-null values, or check one row by hand.
 - Dividing without a test. Tableau Help does not state what division by zero returns. Test the divisor first.
 - Filtering `measure_name` or a date on the Filters shelf in a view built on a left join from the roster. The filter removes the athletes with no row. Put the condition inside the calculation.
 - Reading a time zone into a date. Evening sessions land on the next day.

@@ -66,7 +66,7 @@ These are the mistakes most often made with NordBord data:
 
 - Treating ankle hook force as hamstring muscle force.
 - Comparing torque across sessions with different knee position settings.
-- Comparing values per kg without checking which body mass was used.
+- Comparing values per kg and not checking which body mass was used.
 - Reading the deprecated and the v2 endpoints with one set of field names. They name the athlete ID and the modified time differently.
 - Assuming an imbalance formula. Compute imbalance yourself and state the formula.
 - Mixing Nordic tests with isometric tests from the same export.

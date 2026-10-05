@@ -9,7 +9,7 @@ This file describes the Hawkin Dynamics API output and export format, what each 
 Use one of these four routes:
 
 - Web export: in the Hawkin Cloud, open the **Tests** tab, select a team, group, or athlete, set a custom **Date Range**, and select **Export**. Without a date range the export holds only the 100 most recent tests. Choose an **Export Type**: **Tests** gives one row per trial, **Averages** gives one row per athlete per day, and **Averages & Tests** gives both. A session is one day. Select **Include Inactive Metrics** to export every metric; otherwise only active metrics export. **Deidentify Data** replaces names with a 20-digit code. A single test can also be exported as raw force, velocity, or power at 1000 rows per second (Hawkin help, exporting data).
-- API: only the organization administrator can create an API token, in the Hawkin Cloud under **Settings**, then **Integrations** (Hawkin help, API token). The token is a refresh token. Send it as `Authorization: Bearer <refresh token>` to `GET <base>/token` to get an access token, then send the access token as a bearer token on every call (API specification 1.12).
+- API: only the organization administrator can create an API token, in the Hawkin Cloud under **Settings**, then **Integrations** (Hawkin help, API token). The token is a refresh token. Send it as `Authorization: Bearer <refresh token>` to `GET <base>/token` to get an `access_token`, then send the `access_token` as a bearer token on every call (API specification 1.12).
 - R: the `hawkinR` package, published by Hawkin on CRAN. Store the token with `hd_auth_store()`, connect with `hd_connect(region = "Americas")`, and pull trials with `get_tests()`.
 - Python: the `hdforce` package, published by Hawkin on PyPI. Connect with `AuthManager(region="Americas", authMethod="env")` and pull trials with `GetTests()`.
 
@@ -47,7 +47,7 @@ The API returns trials. Each trial carries its athlete, its test type, and its m
 
 | Endpoint | Returns | Key fields |
 |---|---|---|
-| `GET <base>/token` | An access token | `access_token`, `token_type`, `expires_at` (Unix seconds) |
+| `GET <base>/token` | A bearer token for API calls | `access_token`, `token_type`, `expires_at` (Unix seconds) |
 | `GET <base>/v1` | Trials that match the query | `data[]`: `id`, `timestamp`, `segment`, `testType`, `athlete`, one field per metric; envelope `count`, `lastTestTime`, `lastSyncTime`, `nextCursor` |
 | `GET <base>/v1/athletes` | Athletes | `id`, `name`, `active`, `teams`, `groups`, `external`; with API 1.14 also `image`, `position`, `dob`, `sport`, `height`, `lastTestedOn` |
 | `GET <base>/v1/forcetime/{testId}` | The raw trace for one trial | `Time(s)`, `LeftForce(N)`, `RightForce(N)`, `CombinedForce(N)`, `Velocity(m/s)`, `Displacement(m)`, `Power(W)`, `rsi`; some trials also carry tri-axial `X` and `Y` plate forces and moments |
@@ -149,7 +149,7 @@ Follow these steps to turn Hawkin data into the athlete, session, and measure ta
 10. Remove duplicates by trial `id`. When a sync pull returns a trial you already have, replace the old row. Mark trials with `active` false as excluded.
 11. Take the trial number from the end of `segment`, or rank trials by `timestamp` within the session.
 12. Choose one trial rule per metric, such as the best trial or the mean of all trials, and state it. The cloud **Averages** export uses the mean of the day's trials.
-13. Keep the drop jump method tag and `Drop Height` with each drop jump trial. Hawkin adds the tag automatically (Hawkin blog, drop jump method).
+13. Keep the drop jump method tag and ``Drop Height`` with each drop jump trial. Hawkin adds the tag automatically (Hawkin blog, drop jump method).
 14. Recompute asymmetry from the `Left` and `Right` values with one stated formula and sign convention. Keep Hawkin's `L|R` value beside it for comparison.
 
 ## Common mistakes

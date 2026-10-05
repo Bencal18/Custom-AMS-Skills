@@ -116,7 +116,7 @@ These are the mistakes most often made with GymAware data:
 - Sending only `start` or only `end`, or using a window longer than 1 month. Send both, or neither.
 - Hard-coding rep metric keys. Read them from `/analysis`, because the `label` strings are not published.
 - Keeping rows with `deleted` set to `true`.
-- Reading power without checking load. Wrong bar weight or body mass changes power, and +BM exercises add body mass automatically.
+- Reading power and not checking load. Wrong bar weight or body mass changes power, and +BM exercises add body mass automatically.
 - Assuming API values follow the Cloud lb or inch display settings. This is not published.
 - Mixing RS and FLEX sets without noting the device. API rows may not say which device recorded a set. The two devices measure position differently.
 - Comparing GymAware jump height with jump mat values. GymAware says mats typically give higher values.

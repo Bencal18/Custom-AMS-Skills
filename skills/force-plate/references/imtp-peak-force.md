@@ -128,7 +128,7 @@ END
 
 Blanks behave this way in each tool:
 
-- Power BI: a blank body mass times 9.81 is blank, and a number minus a blank is the number. So a plain `f - m * 9.81` gives gross force with no warning. The `ISBLANK` test stops that.
+- Power BI: a blank body mass times 9.81 is blank, and a number minus a blank is the number. So a plain `f - m * 9.81` silently gives gross force. The `ISBLANK` test stops that.
 - Tableau: a null body mass makes the arithmetic null. The `ISNULL` test makes that explicit, and the `<= 0` test stops a division by 0.
 
 ## Calculate the metric

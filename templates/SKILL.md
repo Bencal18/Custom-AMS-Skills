@@ -3,7 +3,7 @@ name: <skill-name>
 description: <What the skill does and when to use it, in the words a coach would use to ask for the task. Name the metrics, devices, and file types it covers. Keep it under 200 characters, because some Claude apps reject longer descriptions.>
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "<YYYY-MM-DD>"
 ---
 

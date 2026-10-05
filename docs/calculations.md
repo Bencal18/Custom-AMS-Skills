@@ -911,14 +911,14 @@ These metrics come from GPS (global positioning system) units, local positioning
 
 | Metric | Formula | Units | Reference file |
 |---|---|---|---|
-| Total distance, from speed | `Σ (speed_m_s × Δt_s)` | m | [total-distance.md](../skills/gps-running-load/references/total-distance.md) |
+| Total distance, from speed | `Σ (speed_m_s × dt_s)` | m | [total-distance.md](../skills/gps-running-load/references/total-distance.md) |
 | Total distance, from positions | `Σ √((x[i] − x[i−1])² + (y[i] − y[i−1])²)` | m | [total-distance.md](../skills/gps-running-load/references/total-distance.md) |
 | Distance per minute | `total_distance_m ÷ duration_min` | m/min | [total-distance.md](../skills/gps-running-load/references/total-distance.md) |
-| High-speed running distance | `Σ (speed_m_s × Δt_s)` for samples where `speed_m_s ≥ threshold_m_s` | m | [high-speed-running.md](../skills/gps-running-load/references/high-speed-running.md) |
-| Speed band distance | `Σ (speed_m_s × Δt_s)` for samples where `lower_m_s ≤ speed_m_s < upper_m_s` | m | [high-speed-running.md](../skills/gps-running-load/references/high-speed-running.md) |
-| Acceleration | `(speed_m_s[i] − speed_m_s[i − k]) ÷ (k × Δt_s)` | m/s² | [accelerations-decelerations.md](../skills/gps-running-load/references/accelerations-decelerations.md) |
+| High-speed running distance | `Σ (speed_m_s × dt_s)` for samples where `speed_m_s ≥ threshold_m_s` | m | [high-speed-running.md](../skills/gps-running-load/references/high-speed-running.md) |
+| Speed band distance | `Σ (speed_m_s × dt_s)` for samples where `lower_m_s ≤ speed_m_s < upper_m_s` | m | [high-speed-running.md](../skills/gps-running-load/references/high-speed-running.md) |
+| Acceleration | `(speed_m_s[i] − speed_m_s[i − k]) ÷ (k × dt_s)` | m/s² | [accelerations-decelerations.md](../skills/gps-running-load/references/accelerations-decelerations.md) |
 | Acceleration and deceleration efforts | Runs of samples beyond ± the threshold that last at least `min_duration_s` | Count | [accelerations-decelerations.md](../skills/gps-running-load/references/accelerations-decelerations.md) |
-| Effort distance | `Σ (speed_m_s × Δt_s)` over the samples in counted efforts | m | [accelerations-decelerations.md](../skills/gps-running-load/references/accelerations-decelerations.md) |
+| Effort distance | `Σ (speed_m_s × dt_s)` over the samples in counted efforts | m | [accelerations-decelerations.md](../skills/gps-running-load/references/accelerations-decelerations.md) |
 
 ### Total distance and distance per minute
 
@@ -927,14 +927,14 @@ These metrics come from GPS (global positioning system) units, local positioning
 **Inputs.** The calculation needs one of these data sources:
 
 - A summary export with one row per athlete per session and a total distance column
-- Raw speed samples with a `time_s` column, from which you take `Δt_s`
+- Raw speed samples with a `time_s` column, from which you take `dt_s`
 - Raw positions `x` and `y` in metres on the field or court axes
 - A duration in minutes under one rule: whole session, time on the field, or drill time only
 
 **Calculation.** Use the device's total distance when the file holds one summary row per athlete per session. Otherwise, add the distance in each sample:
 
 ```text
-from speed:      total_distance_m = Σ (speed_m_s × Δt_s)
+from speed:      total_distance_m = Σ (speed_m_s × dt_s)
 from positions:  total_distance_m = Σ √((x[i] − x[i−1])² + (y[i] − y[i−1])²)
 distance_per_min = total_distance_m ÷ duration_min
 ```
@@ -942,7 +942,7 @@ distance_per_min = total_distance_m ÷ duration_min
 The terms mean the following:
 
 - `speed_m_s`: speed in one sample, in m/s. Convert km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048 first.
-- `Δt_s`: the time between samples, in seconds, from the timestamp differences. At 10 Hz it is 0.1 s.
+- `dt_s`: the time between samples, in seconds, from the timestamp differences. At 10 Hz it is 0.1 s.
 - `x`, `y`: the athlete's position in metres
 - `total_distance_m`: distance in metres
 - `duration_min`: the time you divide by, in minutes, under one stated rule
@@ -952,8 +952,8 @@ Follow these steps from raw inputs:
 
 1. Find the distance column and its unit. Convert kilometres × 1,000 and yards × 0.9144 to metres.
 2. For raw samples, find the speed column and convert it to m/s.
-3. Take `Δt_s` for each sample from the timestamp differences. Flag any step longer than expected as a gap.
-4. Multiply each speed sample by its `Δt_s`, then add the sample distances for each athlete and session.
+3. Take `dt_s` for each sample from the timestamp differences. Flag any step longer than expected as a gap.
+4. Multiply each speed sample by its `dt_s`, then add the sample distances for each athlete and session.
 5. If the file holds positions only, add the straight-line distances between consecutive positions. Label the result as recalculated from positions.
 6. Convert the duration to minutes. A value of `hh:mm:ss` becomes `hh × 60 + mm + ss ÷ 60`.
 7. Divide `total_distance_m` by `duration_min`.
@@ -986,7 +986,7 @@ Distance per minute has two variants:
 **What changes the number.** These choices change the result when the athlete's performance does not change:
 
 - Duration rule: 85.0 m/min for the whole session against 103.5 m/min for time on the field.
-- Assumed sampling interval: treating the 10 Hz samples as 5 Hz (`Δt_s` = 0.2 s) doubles the distance from 5.52 m to 11.04 m.
+- Assumed sampling interval: treating the 10 Hz samples as 5 Hz (`dt_s` = 0.2 s) doubles the distance from 5.52 m to 11.04 m.
 - Speed unit: adding km/h values as if they were m/s gives 19.88 instead of 5.52 for the same second, 3.6 times too large.
 - Distance method: ±0.1 m of position noise adds 7.7%.
 - Sampling rate: 5 Hz units were more valid than 1 Hz units (Jennings et al., 2010), and 10 Hz units were the most valid and reliable (Scott et al., 2016).
@@ -1033,27 +1033,27 @@ The error rows come from circuits and from units compared with each other. They 
 **Calculation.** Add the distance of every sample at or above the threshold. For a band with an upper limit, count samples at or above the lower bound and below the upper bound:
 
 ```text
-hsr_distance_m  = Σ (speed_m_s × Δt_s)   for samples where speed_m_s ≥ threshold_m_s
-band_distance_m = Σ (speed_m_s × Δt_s)   for samples where lower_m_s ≤ speed_m_s < upper_m_s
+hsr_distance_m  = Σ (speed_m_s × dt_s)   for samples where speed_m_s ≥ threshold_m_s
+band_distance_m = Σ (speed_m_s × dt_s)   for samples where lower_m_s ≤ speed_m_s < upper_m_s
 threshold_m_s   = threshold_km_h ÷ 3.6, or threshold_mph × 0.44704
 ```
 
 The terms mean the following:
 
 - `speed_m_s`: speed in one sample, in m/s
-- `Δt_s`: the time between samples. At 10 Hz, it is 0.1 s.
+- `dt_s`: the time between samples. At 10 Hz, it is 0.1 s.
 - `threshold_m_s`: the speed threshold in m/s
 - `lower_m_s`, `upper_m_s`: the bounds of a speed band, in m/s
 - `hsr_distance_m`: the distance covered at or above the threshold, in metres
-- Effort: one continuous stretch at or above the threshold that lasts at least a minimum time, the minimum effort duration or dwell time. The file measures a run's length as samples × `Δt_s`.
+- Effort: one continuous stretch at or above the threshold that lasts at least a minimum time, the minimum effort duration or dwell time. The file measures a run's length as samples × `dt_s`.
 
 Follow these steps from raw inputs:
 
 1. Convert speed to m/s, and convert the threshold to m/s.
 2. For individualized thresholds, join each athlete's own threshold to their rows by athlete ID.
-3. Set `Δt_s = 1 ÷ Hz`, and check it against the timestamps.
+3. Set `dt_s = 1 ÷ Hz`, and check it against the timestamps.
 4. Mark each sample at or above the threshold, and below the upper bound for a band, unless the vendor's rule differs. Round speed and threshold to the same number of decimals first.
-5. Multiply each marked sample's speed by `Δt_s`, and add the marked distances for each athlete and session.
+5. Multiply each marked sample's speed by `dt_s`, and add the marked distances for each athlete and session.
 6. For effort counts, group consecutive marked samples into runs. Count a run as an effort only if it lasts at least the minimum effort duration.
 7. Label each result with the threshold, its unit, the threshold type, the boundary rule, and the minimum effort duration.
 
@@ -1082,7 +1082,7 @@ The same 30 samples give these results under other settings:
 | 15.0 km/h (4.167 m/s) | 0.5 s | 12.08 m | 2.3 s | 1 |
 | 14.4 km/h (4.0 m/s) | 0.5 s | 12.48 m | 2.4 s | 1 |
 | 60% of a 9.0 m/s maximum speed: 5.4 m/s (19.44 km/h) | 0.5 s | 6.22 m | 0.7 s and 0.4 s | 1 |
-| 19.8 km/h, run length as (n − 1) × `Δt_s` | 0.3 s | 5.13 m | 0.5 s and 0.2 s | 1 |
+| 19.8 km/h, run length as (n − 1) × `dt_s` | 0.3 s | 5.13 m | 0.5 s and 0.2 s | 1 |
 
 The athlete did not change. The distance more than doubled when the threshold dropped from 19.8 to 14.4 km/h.
 
@@ -1091,7 +1091,7 @@ The athlete did not change. The distance more than doubled when the threshold dr
 - Absolute threshold: one speed for every athlete. Published examples are 19.8 km/h (5.5 m/s), the default of one camera-based system (Abt & Lovell, 2009); 14.4 km/h (4.0 m/s) in youth soccer (Buchheit et al., 2014b); 14.0 to 19.99 km/h for high-speed running and above 20.0 km/h for very high-speed running (Johnston et al., 2014); and 4.17 m/s (15.0 km/h) for high-speed running and 7.00 m/s (25.2 km/h) for sprinting (Varley et al., 2017).
 - Individualized threshold: a speed set per athlete. Abt and Lovell (2009) used each player's running speed at the second ventilatory threshold. Reardon et al. (2015) used 60% of each player's maximum speed from a season of training and match data.
 
-Some software measures a run from the first to the last sample, (n − 1) × `Δt_s`, instead of samples × `Δt_s`. Ask which rule the software uses.
+Some software measures a run from the first to the last sample, (n − 1) × `dt_s`, instead of samples × `dt_s`. Ask which rule the software uses.
 
 **What changes the number.** These choices change the result when the athlete's performance does not change:
 
@@ -1140,34 +1140,34 @@ The error rows compare units or systems. They are not the test-retest error of o
 **Calculation.** Work out acceleration from the change in speed, then count efforts beyond the threshold:
 
 ```text
-accel_m_s2[i] = (speed_m_s[i] − speed_m_s[i − k]) ÷ (k × Δt_s)
+accel_m_s2[i] = (speed_m_s[i] − speed_m_s[i − k]) ÷ (k × dt_s)
 acceleration effort = a run of consecutive samples with accel_m_s2 ≥ threshold_m_s2,
                       lasting at least min_duration_s
 deceleration effort = a run of consecutive samples with accel_m_s2 ≤ −threshold_m_s2,
                       lasting at least min_duration_s
-effort_distance_m   = Σ (speed_m_s × Δt_s) over the samples in counted efforts
+effort_distance_m   = Σ (speed_m_s × dt_s) over the samples in counted efforts
 ```
 
 The terms mean the following:
 
 - `speed_m_s`: speed in m/s. Convert before you work out acceleration.
-- `Δt_s`: the time between samples, 0.1 s at 10 Hz
+- `dt_s`: the time between samples, 0.1 s at 10 Hz
 - `k`: how many samples back you look. With `k = 1` at 10 Hz the interval is 0.1 s, and with `k = 2` it is 0.2 s. Varley et al. (2017) compared 0.2 s and 0.3 s intervals.
 - `accel_m_s2`: acceleration in m/s². Positive values are accelerations and negative values are decelerations. Multiply ft/s² by 0.3048.
 - `threshold_m_s2`: the acceleration threshold
-- `min_duration_s`: the minimum effort duration, or dwell time, measured as samples × `Δt_s`. Harper et al. (2019) report 0.2 to 1 s across the studies that stated it.
+- `min_duration_s`: the minimum effort duration, or dwell time, measured as samples × `dt_s`. Harper et al. (2019) report 0.2 to 1 s across the studies that stated it.
 - `effort_distance_m`: distance covered during counted efforts
 
 The file's boundary rule counts a sample when its absolute acceleration is at or above the lower bound and below any upper bound. Varley et al. (2017) used ≥ 2.78 m/s². Harper et al. (2019) wrote their thresholds as strictly above.
 
 Follow these steps from raw inputs:
 
-1. Convert speed to m/s, and set `Δt_s = 1 ÷ Hz`.
+1. Convert speed to m/s, and set `dt_s = 1 ÷ Hz`.
 2. Ask which interval and filter to use, and use the same choice for every file.
 3. Calculate acceleration for each sample.
 4. Mark samples at or above the threshold as acceleration samples, and samples at or below the negative threshold as deceleration samples.
 5. Group consecutive marked samples into runs. Keep runs that last at least the minimum effort duration. Each kept run is one effort.
-6. Count the efforts. For distance, add speed × `Δt_s` over the samples in each kept run.
+6. Count the efforts. For distance, add speed × `dt_s` over the samples in each kept run.
 7. Label each result with the threshold, boundary rule, minimum duration, interval, filter, and software version.
 
 **Worked example.** Three seconds of one athlete's speed at 10 Hz (30 samples), with an interval of 0.1 s (`k` = 1), a threshold at or above 2.5 m/s², and a minimum effort duration of 0.2 s:
@@ -1709,7 +1709,7 @@ The terms mean the following:
 - `intercept`: the velocity the line predicts at zero load
 - `v1rm_m_s`: the velocity at 1RM, also called the minimum velocity threshold, the mean velocity of a successful 1RM lift
 
-A value you recalculate from a trace depends on the phase start and end, the acceleration rule (the file uses a forward difference, `(v[i+1] − v[i]) ÷ Δt`), whether the sample before braking is in the propulsive phase, and whether you average the samples or integrate over time. Label any recalculated value "recalculated", state the conventions, and never compare it with device values or published tables.
+A value you recalculate from a trace depends on the phase start and end, the acceleration rule (the file uses a forward difference, `(v[i+1] − v[i]) ÷ dt`), whether the sample before braking is in the propulsive phase, and whether you average the samples or integrate over time. Label any recalculated value "recalculated", state the conventions, and never compare it with device values or published tables.
 
 Follow these steps from raw inputs:
 
@@ -2228,7 +2228,7 @@ This page cites these sources, as the reference files list them. Seven sources h
 - Lucia A, Hoyos J, Santalla A, Earnest C, Chicharro JL. Tour de France versus Vuelta a España: which is harder? Med Sci Sports Exerc. 2003;35(5):872-878. https://doi.org/10.1249/01.MSS.0000064999.82036.B4
 - Maffiuletti NA, Aagaard P, Blazevich AJ, Folland J, Tillin N, Duchateau J. Rate of force development: physiological and methodological considerations. Eur J Appl Physiol. 2016;116(6):1091-1116. https://doi.org/10.1007/s00421-016-3346-6
 - Malone JJ, Lovell R, Varley MC, Coutts AJ. Unpacking the black box: applications and considerations for using GPS devices in sport. Int J Sports Physiol Perform. 2017;12(Suppl 2):S2-18-S2-26. https://doi.org/10.1123/ijspp.2016-0236
-- Manzi V, Castagna C, Padua E, Lombardo M, D'Ottavio S, Massaro M, Volterrani M, Iellamo F. Dose-response relationship of autonomic nervous system responses to individualized training impulse in marathon runners. Am J Physiol Heart Circ Physiol. 2009;296(6):H1733-H1740. https://doi.org/10.1152/ajpheart.00054.2009
+- Manzi V, Castagna C, Padua E, Lombardo M, D’Ottavio S, Massaro M, Volterrani M, Iellamo F. Dose-response relationship of autonomic nervous system responses to individualized training impulse in marathon runners. Am J Physiol Heart Circ Physiol. 2009;296(6):H1733-H1740. https://doi.org/10.1152/ajpheart.00054.2009
 - McMahon JJ, Suchomel TJ, Lake JP, Comfort P. Understanding the key phases of the countermovement jump force-time curve. Strength Cond J. 2018;40(4):96-106. https://doi.org/10.1519/SSC.0000000000000375 (cited as McMahon et al., 2018a)
 - McMahon JJ, Jones PA, Suchomel TJ, Lake J, Comfort P. Influence of the reactive strength index modified on force- and power-time curves. Int J Sports Physiol Perform. 2018;13(2):220-227. https://doi.org/10.1123/ijspp.2017-0056 (cited as McMahon et al., 2018b)
 - Merrigan JJ, Stone JD, Galster SM, Hagen JA. Analyzing force-time curves: comparison of commercially available automated software and custom MATLAB analyses. J Strength Cond Res. 2022;36(9):2387-2402. https://doi.org/10.1519/JSC.0000000000004275

@@ -18,7 +18,7 @@ Follow these steps to use the API:
 1. Register a client at `https://admin.polaraccesslink.com/` with a Polar account. Leave the data subscriptions empty.
 2. Send the coach to `https://auth.polar.com/oauth/authorize` with `response_type=code` and `scope=team_read`. The coach grants access to team and player exercise data.
 3. Exchange the returned code at `https://auth.polar.com/oauth/token`. Send HTTP Basic authentication built from the client ID and secret, and `grant_type=authorization_code`.
-4. Send the access token as `Authorization: Bearer <token>`. The token lasts 12 hours. Renew it with `grant_type=refresh_token`.
+4. Send the `access_token` from the response as `Authorization: Bearer <token>`. The token lasts 12 hours. Renew it with `grant_type=refresh_token`.
 5. Keep to 1 request per second. The API allows bursts of up to 100 requests and returns HTTP 429 when you go over.
 
 The API is read-only (`team_read`). The API reference links a license agreement. I did not read it.
@@ -119,7 +119,7 @@ Zones, thresholds, and load settings come from each team's sport profile. Read t
 | `training_load` | Older load score | Not published. Polar names heart rate, age, sex, weight, VO2max, training history, thresholds, and sport as inputs. | No unit. Typically 50 to 250 for a 30 to 90 minute session. | None | Do not compare it with cardio load. |
 | `recovery_time_ms` | Estimated time to recover | Not published | ms | None | The manual rates it from Mild (0 to 6 hours) to Extreme (over 48 hours). |
 | `distance_meters` and Total distance | Distance covered | GNSS at 10 Hz outdoors. The inertial sensor indoors. Not published beyond that. | m | `total-distance.md` in `gps-running-load` | Polar reports distance error of 1 percent or less on a 100 m straight path and 2 percent or less on a 120 m multi-directional path, from a study its white paper cites. |
-| `speed_zones_kmh` and Distance in speed zone | Distance in five speed bands | Five bands set in the sport profile. Defaults are Not published. | m, with limits in km/h | `high-speed-running.md` in `gps-running-load` | Zone limits are team settings and change by edit. The default sprint rule is not speed-based. |
+| `speed_zones_kmh` and Distance in speed zone | Distance in five speed bands | Five bands set in the sport profile. Defaults are Not published. | m, with limits in km/h | `high-speed-running.md` in `gps-running-load` | Zone limits are team settings and change by edit. The default rule for sprints is not speed-based. |
 | `speed_avg_kmh`, `speed_max_kmh` | Mean and top speed | Not published | km/h by field name | `high-speed-running.md` in `gps-running-load` | The API types them as integers, but the sample shows decimals. |
 | `sprint_counter` and Sprints | Count of accelerations above a threshold | Each acceleration above 2.8 m/s² counts once, whatever its length. The coach can switch to a speed threshold in km/h. | Count | `accelerations-decelerations.md` in `gps-running-load` | The default is an acceleration test, not a high-speed distance test. |
 | `acceleration_zones_ms2` and Number of accelerations | Counts in acceleration bands | Four acceleration and four deceleration thresholds. Defaults are Not published. | Count, with limits in m/s² | `accelerations-decelerations.md` in `gps-running-load` | Polar does not publish the effort definition or minimum duration. |
@@ -163,10 +163,10 @@ These are the mistakes most often made with Polar Team Pro data:
 - Using the session summary and the session details as the same numbers. The summary returns trimmed values.
 - Reading Polar's strain and tolerance bands as injury prediction.
 - Comparing `training_load` with `cardio_load`. They are different methods.
-- Parsing `samples` by position without checking the row width, or treating `null` in `rr_intervals` as a beat.
+- Parsing `samples` by position and not checking the row width, or treating `null` in `rr_intervals` as a beat.
 - Comparing a session RMSSD with a resting RMSSD.
 - Ignoring that heart rate above HRmax changes zone time and TRIMP. Check for it before you use either number.
-- Letting the access token run past 12 hours, or exceeding 1 request per second.
+- Letting the `access_token` run past 12 hours, or exceeding 1 request per second.
 
 ## Details that are not confirmed
 

@@ -15,15 +15,15 @@ The data come from a GPS (global positioning system) unit worn by the athlete, a
 Add the distance of every sample at or above the speed threshold. For a band with an upper limit, count samples at or above the lower bound and below the upper bound:
 
 ```text
-hsr_distance_m = Σ (speed_m_s × Δt_s)   for samples where speed_m_s ≥ threshold_m_s
-band_distance_m = Σ (speed_m_s × Δt_s)  for samples where lower_m_s ≤ speed_m_s < upper_m_s
+hsr_distance_m = Σ (speed_m_s × dt_s)   for samples where speed_m_s ≥ threshold_m_s
+band_distance_m = Σ (speed_m_s × dt_s)  for samples where lower_m_s ≤ speed_m_s < upper_m_s
 threshold_m_s  = threshold_km_h ÷ 3.6, or threshold_mph × 0.44704
 ```
 
 Define every term in the formula:
 
 - `speed_m_s`: the athlete's speed in one sample, in metres per second (m/s)
-- `Δt_s`: the time between samples, in seconds. At 10 Hz, `Δt_s` is 0.1 s.
+- `dt_s`: the time between samples, in seconds. At 10 Hz, `dt_s` is 0.1 s.
 - `threshold_m_s`: the speed threshold in m/s. Thresholds are often published in km/h. Divide by 3.6 to convert. Multiply mph by 0.44704, or ft/s by 0.3048.
 - `lower_m_s`, `upper_m_s`: the lower and upper bounds of a speed band, in m/s
 - `hsr_distance_m`: the distance covered at or above the threshold, in metres (m)
@@ -50,7 +50,7 @@ No standard threshold exists across sports. A systematic review found speed zone
 
 High-speed running can also be counted as efforts. An effort is one continuous stretch at or above the threshold that lasts at least a minimum time, often called the minimum effort duration or dwell time. Effort counts change with filtering and dwell time (Varley et al., 2017).
 
-This file measures a run's length as the number of samples × `Δt_s`. Some software measures from the first to the last sample, (n − 1) × `Δt_s`. The two rules give different effort counts, so ask which one the software uses.
+This file measures a run's length as the number of samples × `dt_s`. Some software measures from the first to the last sample, (n − 1) × `dt_s`. The two rules give different effort counts, so ask which one the software uses.
 
 Use this spreadsheet formula, with speed in km/h in column `B`, the threshold in km/h in cell `F1`, and 10 Hz data. It returns a blank when the threshold is blank or not a number, when column `B` holds no speeds, or when any speed cell holds text, such as a dropout code:
 
@@ -60,7 +60,7 @@ Use this spreadsheet formula, with speed in km/h in column `B`, the threshold in
 
 Adjust the range `B2:B5001` to the rows in your file.
 
-Use this Python code, with a `time_s` column. Run length is the number of samples × `Δt_s`:
+Use this Python code, with a `time_s` column. Run length is the number of samples × `dt_s`:
 
 ```python
 hz, threshold_kmh, min_s = 10, 19.8, 0.5          # ask the user for all three
@@ -125,7 +125,7 @@ Blanks behave this way in each tool:
 
 - Power BI: a blank threshold returns a blank result. A blank speed sample adds nothing. Without the `NOT ISBLANK` test, a blank speed compares as 0, which is below any threshold, so it also adds nothing. The test keeps the intent visible.
 - Tableau: a null threshold makes every row null, and `SUM` of only nulls is null. A null speed sample is null and `SUM` ignores it.
-- Both: a text dropout code in the speed column becomes null on import, so it adds nothing. The spreadsheet formula returns a blank for the whole session instead. Count the dropout samples, because a dropout shortens the distance with no warning.
+- Both: a text dropout code in the speed column becomes null on import, so it adds nothing. The spreadsheet formula returns a blank for the whole session instead. Count the dropout samples, because a dropout silently shortens the distance.
 
 ## Calculate the metric
 
@@ -137,14 +137,14 @@ Follow these steps to calculate the metric from raw inputs:
 4. Convert the threshold to m/s.
 5. Ask whether the threshold is absolute or individualized.
 6. For individualized thresholds, join each athlete's own threshold to their rows by athlete ID.
-7. Find the sampling rate in Hz and set `Δt_s = 1 ÷ Hz`.
+7. Find the sampling rate in Hz and set `dt_s = 1 ÷ Hz`.
 8. Check the sampling rate against the timestamps.
 9. Ask for the vendor's boundary rule.
 10. If the rule is not known, mark each sample at or above the threshold, and below the upper bound for a band.
-11. Multiply each marked sample's speed by `Δt_s` to get its distance in metres.
+11. Multiply each marked sample's speed by `dt_s` to get its distance in metres.
 12. Add the marked distances for each athlete and session.
 13. If the user wants effort counts, group consecutive marked samples into runs.
-14. Measure each run as samples × `Δt_s`.
+14. Measure each run as samples × `dt_s`.
 15. Count a run as an effort only if it lasts at least the minimum effort duration in seconds.
 16. Label each result with the threshold, its unit, the threshold type, the boundary rule, and the minimum effort duration.
 
@@ -157,7 +157,7 @@ This example uses three seconds of one athlete's speed at 10 Hz (30 samples). Ev
 | Speed, km/h, samples 1 to 10 | 14.0, 15.5, 17.0, 18.5, 19.6, 20.4, 21.0, 21.3, 21.1, 20.6 |
 | Speed, km/h, samples 11 to 20 | 19.9, 19.0, 18.2, 17.6, 17.9, 18.8, 19.9, 20.3, 20.1, 19.7 |
 | Speed, km/h, samples 21 to 30 | 18.9, 17.8, 16.4, 15.2, 14.6, 14.1, 13.5, 13.0, 12.4, 11.8 |
-| Sampling rate | 10 Hz, so `Δt_s` = 0.1 s |
+| Sampling rate | 10 Hz, so `dt_s` = 0.1 s |
 | Threshold | 19.8 km/h = 5.5 m/s |
 | Minimum effort duration | 0.5 s |
 
@@ -180,7 +180,7 @@ Run the same 30 samples with other settings to get these results:
 | 15.0 km/h (4.167 m/s) | 0.5 s | 12.08 m | 2.3 s | 1 |
 | 14.4 km/h (4.0 m/s) | 0.5 s | 12.48 m | 2.4 s | 1 |
 | 60% of a 9.0 m/s maximum speed: 5.4 m/s (19.44 km/h) | 0.5 s | 6.22 m | 0.7 s and 0.4 s | 1 |
-| 19.8 km/h, run length as (n − 1) × `Δt_s` | 0.3 s | 5.13 m | 0.5 s and 0.2 s | 1 |
+| 19.8 km/h, run length as (n − 1) × `dt_s` | 0.3 s | 5.13 m | 0.5 s and 0.2 s | 1 |
 
 The athlete did not change. The distance more than doubled when the threshold dropped from 19.8 to 14.4 km/h. The effort count doubled when the minimum duration dropped from 0.5 to 0.3 s. With a 0.3 s minimum, the run length rule alone changes the count from 2 to 1.
 
@@ -191,7 +191,7 @@ These choices change the result even when the athlete's performance does not:
 - Threshold speed. In the worked example, 19.8 km/h gives 5.13 m and 14.4 km/h gives 12.48 m from the same three seconds. In a match study, the same players covered 845 m above the default 19.8 km/h threshold and 2,258 m above their individualized threshold (Abt and Lovell, 2009).
 - Threshold unit. A km/h threshold applied to m/s data catches almost nothing. In the worked example, 19.8 applied to m/s data selects 0 of 30 samples. A m/s threshold applied to km/h data selects everything: 5.5 applied to km/h data selects 30 of 30 samples. A threshold of 19.8 km/h is 12.3 mph.
 - Absolute or individualized threshold. Individualized thresholds move each athlete's line, so the ranking of athletes can change. With an individualized threshold, forwards in elite rugby union covered more high-speed distance, and backs less, than with an absolute threshold (Reardon et al., 2015).
-- Run length rule. Counting a run as n × `Δt_s` or (n − 1) × `Δt_s` changes effort counts, as the worked example shows.
+- Run length rule. Counting a run as n × `dt_s` or (n − 1) × `dt_s` changes effort counts, as the worked example shows.
 - Minimum effort duration. It changes effort counts but not distance. In the worked example, 0.5 s gives 1 effort and 0.3 s gives 2. Effort counts drop as minimum duration rises (Varley et al., 2017).
 - Speed filtering. Different velocity filters changed high-speed running effort counts when minimum duration was under 0.5 s (Varley et al., 2017).
 - Sampling rate. Error grows as speed rises, and 10 Hz units are more valid than 1 Hz or 5 Hz units (Jennings et al., 2010; Scott et al., 2016; Johnston et al., 2014).

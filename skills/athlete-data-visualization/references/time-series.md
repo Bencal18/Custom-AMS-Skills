@@ -145,7 +145,7 @@ ax.axhspan(base - half, base + half, fc="#E8E8E8", ec="#767676")  # band, 3:1 ed
 ax.axhline(base, color="#767676", lw=1)                     # baseline mean
 ax.plot(df.index, df.jump_cm, color="#0072B2", marker="o")  # NaN leaves a gap
 ax.set_ylabel("CMJ jump height (cm)")
-ax.set_title(f"Weekly jump height; band = baseline ± {half:.1f} cm (n = {n})")
+ax.set_title(f'Weekly jump height; band = baseline ± {half:.1f} cm (n = {n})')
 fig.autofmt_xdate()
 fig.savefig("trend.png", dpi=150, bbox_inches="tight")
 ```

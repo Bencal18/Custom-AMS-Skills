@@ -9,7 +9,7 @@ This file describes the Firstbeat Sports Cloud API output and Data Export format
 Use one of these routes:
 
 - Web export: in Sports Cloud, open the top-left menu, then **Data Export**. Premium and Premium+ accounts have it. The export is an Excel file, not CSV. Several files are zipped. Pick a date range of up to one month, a team, and the measurement types: exercises, Quick Recovery Tests, and Stress and Recovery data. The summary file holds all selected variables for measurements, laps, and sessions, with an `Analysis period` column. Premium+ accounts can also export time series and RR data, with one file for each measurement. Exports are queued, and Firstbeat keeps each file for 30 days.
-- API: the Firstbeat Sports Cloud API at `https://api.firstbeat.com/v1`. Premium accounts get access only through an API partner platform. Premium+ accounts can build their own client. Standard accounts can add partner access as a paid feature. Partners listed by Firstbeat include gpexe, XPS Network, Kinexon, Kitman Lab, Apollo V2, Teamworks, and SAP Sports One.
+- API: the Firstbeat Sports Cloud API, served over HTTPS from host `api.firstbeat.com` under the path `/v1`. Premium accounts get access only through an API partner platform. Premium+ accounts can build their own client. Standard accounts can add partner access as a paid feature. Partners listed by Firstbeat include gpexe, XPS Network, Kinexon, Kitman Lab, Apollo V2, Teamworks, and SAP Sports One.
 - Other routes into Sports Cloud: a Garmin Connect link, a single `.fit` file import, manual exercise entry, and Bodyguard 3 files for stress and recovery. These add data to Sports Cloud. They are not export routes.
 
 To get direct API access, follow these steps:
@@ -29,7 +29,7 @@ Date and time format: RFC 3339. `startTime` and `endTime` are in UTC and end in 
 
 ## API output
 
-All paths in this table start with `https://api.firstbeat.com/v1`:
+All paths in this table sit under the `/v1` path on host `api.firstbeat.com`, over HTTPS:
 
 | Endpoint | Returns | Key fields |
 |---|---|---|

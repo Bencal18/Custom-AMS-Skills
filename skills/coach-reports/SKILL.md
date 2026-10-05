@@ -3,7 +3,7 @@ name: coach-reports
 description: Build reports and dashboards from athlete data for coaches and athletes. Covers what each audience needs, flagging real change without noise, chart choices, and traffic-light risks.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

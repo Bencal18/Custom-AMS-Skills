@@ -30,7 +30,7 @@ Define every term in the formula:
 Prefer the device's own per-rep MV, MPV, and PV. A value you recalculate from a velocity trace depends on these conventions:
 
 - Phase start and end: which sample starts the concentric phase, and which ends it
-- Acceleration: this file uses a forward difference, `(v[i+1] − v[i]) ÷ Δt`, so braking starts after sample i.
+- Acceleration: this file uses a forward difference, `(v[i+1] − v[i]) ÷ dt`, so braking starts after sample i.
 - The phase-ending sample: whether the sample immediately before braking is in the propulsive phase
 - Averaging: the mean of the samples, or the time integral of velocity (displacement) divided by the phase duration
 

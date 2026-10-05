@@ -3,7 +3,7 @@ name: force-plate
 description: Calculate and check results from force plate and Nordic tests, including CMJ jump height, RSI-modified, IMTP peak force, and eccentric hamstring force. Use for jump, pull, or Nordic data.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

@@ -52,7 +52,7 @@ VALD does not publish the column list for the Hub CSV export. A public parser fo
 From 2026-09-28, the Hub export adds these columns for the listed test types:
 
 - `Additional Load` for the LCMJ, LSJ, PUSHUPT, SLSQT, and SQT test types.
-- `Drop Height` for the DJ, SLDJ, LAH, and SLLAH test types.
+- ``Drop Height`` for the DJ, SLDJ, LAH, and SLLAH test types.
 
 Exports vary. Check each file for these differences:
 

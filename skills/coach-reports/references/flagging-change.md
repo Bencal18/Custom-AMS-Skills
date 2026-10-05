@@ -147,11 +147,11 @@ These versions are not tested in Power BI or Tableau. They follow the formulas a
 
 Both versions assume one row per athlete, date, measure, and trial in a `measures` table, with the test in `measure_name`, such as `cmj_jump_height` in `cm`. They take the best trial on each test date with `MAX`, for a measure where higher is better. Use the same summary as the TE. Use `MIN` when lower is better, such as a sprint time. Use `AVERAGE` in Power BI and `AVG` in Tableau when the TE comes from the mean of trials. Change the summary everywhere it appears: `Test value (cm)` in Power BI, and the INCLUDE expressions in `Baseline n` and `Baseline mean (cm)` and `New value (cm)` in Tableau. They also assume a `reliability` table with one row per measure: `measure_name`, `te`, `te_df`, `te_source`, and `multiplier`. Enter 1.96 in `multiplier` for a TE from a large reliability study. For a TE from few athletes, enter the t multiplier for `te_df` from the assumptions list above, such as 2.57 for a TE from 6 athletes.
 
-The user sets five things: the first and last dates of the baseline, the new test date, the minimum baseline `n`, and the direction that matters, `rise` or `drop`. Do not set the minimum for them. Show the results with one athlete per row. Show `Direction of change` next to `Flag wording`, so the reader sees which way each change went.
+The user sets five things: the first and last dates of the baseline, the new test date, the minimum baseline `n`, and the direction that matters, `rise` or `fall`. Do not set the minimum for them. Show the results with one athlete per row. Show `Direction of change` next to `Flag wording`, so the reader sees which way each change went.
 
 The SWC is 0.2 times the SD across athletes of each athlete's baseline mean. That uses the baseline mean as each athlete's score at baseline. This is this file's choice, so name it in the report. It uses every athlete with a baseline mean that the filters and slicers leave in the view, so set the comparison group with those filters.
 
-In Power BI, use a marked date table `dates` related to `measures[measure_date]`. Add three tables that are not related to anything: `baseline_pick` and `new_pick`, each with one `date` column, and `direction_pick`, with one `direction` column holding `rise` and `drop`. Add a **Between** slicer on `baseline_pick[date]`, and single-select slicers on `new_pick[date]` and `direction_pick[direction]`. Set both baseline dates on the slicer. A **Between** slicer left untouched may apply no filter, and every state then reads `No data`. Add a whole-number what-if parameter `Min baseline tests` with a minimum of 1. Put `athletes[athlete_id]` in the visual. Use these DAX measures. They are measures because each one reads dates chosen in slicers, and the SWC reads every athlete in the group. A calculated column is computed once per row at data refresh and does not change with slicers (https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-calculations-options):
+In Power BI, use a marked date table `dates` related to `measures[measure_date]`. Add three tables that are not related to anything: `baseline_pick` and `new_pick`, each with one `date` column, and `direction_pick`, with one `direction` column holding `rise` and `fall`. Add a **Between** slicer on `baseline_pick[date]`, and single-select slicers on `new_pick[date]` and `direction_pick[direction]`. Set both baseline dates on the slicer. A **Between** slicer left untouched may apply no filter, and every state then reads `No data`. Add a whole-number what-if parameter `Min baseline tests` with a minimum of 1. Put `athletes[athlete_id]` in the visual. Use these DAX measures. They are measures because each one reads dates chosen in slicers, and the SWC reads every athlete in the group. A calculated column is computed once per row at data refresh and does not change with slicers (https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-calculations-options):
 
 ```text
 Test value (cm) =
@@ -232,7 +232,7 @@ RETURN
                 || ISBLANK ( swc ) || ISBLANK ( dir ), "No data",
             ABS ( c ) <= band, "No flag",
             dir = "rise" && c - band > swc, "Flagged",
-            dir = "drop" && c + band < -swc, "Flagged",
+            dir = "fall" && c + band < -swc, "Flagged",
             "Noted"
         )
     )
@@ -248,7 +248,7 @@ SWITCH (
 
 Direction of change =
 VAR c = [Change (cm)]
-RETURN IF ( NOT ISBLANK ( c ), IF ( c > 0, "rise", IF ( c < 0, "drop", "none" ) ) )
+RETURN IF ( NOT ISBLANK ( c ), IF ( c > 0, "rise", IF ( c < 0, "fall", "none" ) ) )
 
 Results checked =
 COUNTROWS ( FILTER ( ALLSELECTED ( athletes[athlete_id] ), [Flag state] <> "No data" ) ) + 0
@@ -262,7 +262,7 @@ Expected beyond the band by chance =
 
 `DATESBETWEEN` includes the first and last baseline dates (https://learn.microsoft.com/en-us/dax/datesbetween-function-dax). `dates[date] < d` keeps only tests before the new test date in the baseline, even when the baseline range runs past that date. The `HASONEVALUE` tests return a blank in a total row, where no single athlete is in the filter. Do not filter the visual on `Flag state` or `Flag wording`. That filter changes what `ALLSELECTED` returns, and so changes the SWC and the counts. To bring flags to the top, sort by `Flag state`, or use conditional formatting on the text without color bands. `Expected beyond the band by chance` counts both directions. Multiply `Results checked` by 0.025 instead to compare with the changes beyond the band in one direction.
 
-In Tableau, relate `reliability` to `measures` on `measure_name`. Make five parameters: `Baseline start` and `Baseline end` as dates, `New date` as a date, `Min baseline tests` as an integer, and `Direction` as a string with the values `rise` and `drop`. Put `athlete_id` on Rows. To list athletes with no test, use a left join from the roster, as the Tableau setup reference in the `ams-data-setup` skill says. Use these calculations:
+In Tableau, relate `reliability` to `measures` on `measure_name`. Make five parameters: `Baseline start` and `Baseline end` as dates, `New date` as a date, `Min baseline tests` as an integer, and `Direction` as a string with the values `rise` and `fall`. Put `athlete_id` on Rows. To list athletes with no test, use a left join from the roster, as the Tableau setup reference in the `ams-data-setup` skill says. Use these calculations:
 
 ```text
 Baseline test (cm) (row-level):
@@ -314,7 +314,7 @@ IF ISNULL([Change (cm)]) OR [Baseline n] < [Min baseline tests]
    OR ISNULL([Noise band (cm)]) OR ISNULL([SWC (cm)]) THEN "No data"
 ELSEIF ABS([Change (cm)]) <= [Noise band (cm)] THEN "No flag"
 ELSEIF [Direction] = "rise" AND [Change (cm)] - [Noise band (cm)] > [SWC (cm)] THEN "Flagged"
-ELSEIF [Direction] = "drop" AND [Change (cm)] + [Noise band (cm)] < -[SWC (cm)] THEN "Flagged"
+ELSEIF [Direction] = "fall" AND [Change (cm)] + [Noise band (cm)] < -[SWC (cm)] THEN "Flagged"
 ELSE "Noted"
 END
 
@@ -329,7 +329,7 @@ END
 Direction of change (aggregate):
 IF ISNULL([Change (cm)]) THEN NULL
 ELSEIF [Change (cm)] > 0 THEN "rise"
-ELSEIF [Change (cm)] < 0 THEN "drop"
+ELSEIF [Change (cm)] < 0 THEN "fall"
 ELSE "none"
 END
 

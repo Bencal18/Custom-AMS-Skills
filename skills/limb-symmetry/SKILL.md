@@ -3,7 +3,7 @@ name: limb-symmetry
 description: Calculate and check left versus right limb symmetry or asymmetry percentages from jumps, strength tests, or Nordic data, with the formula and reference limb named. Decision support only.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

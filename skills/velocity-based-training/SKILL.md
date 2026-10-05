@@ -3,7 +3,7 @@ name: velocity-based-training
 description: Calculate mean concentric velocity, velocity loss in a set, and load-velocity profiles from data recorded by a bar speed device. Check the velocity type, units, and reference rep.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 

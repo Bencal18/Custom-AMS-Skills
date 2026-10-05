@@ -361,7 +361,7 @@ These are the mistakes AI tools and spreadsheets make most often with baselines 
 - Using the population SD. Use `STDEV.S` or pandas `.std()`.
 - Using a window of calendar days with gaps, then calling it "28 days of data". Report the count of values.
 - Filling missing days with zero. That drags the mean down and inflates the SD.
-- Treating a large z-score as a real change without checking noise. A z-score uses day-to-day variation, which mixes biological variation and measurement error. Compare the change with the noise band from TE too.
+- Treating a large z-score as a real change and not checking noise. A z-score uses day-to-day variation, which mixes biological variation and measurement error. Compare the change with the noise band from TE too.
 - Using the athlete's own baseline SD as the TE. It needs a t multiplier with few values, and it mixes biological variation with measurement error.
 - Computing an SD from few values. Report n, and use a t multiplier when you build a band from it.
 - Applying ±1.5 or ±2 as flag cut points without a source. Name the source, or label the cut point as the user's choice. With an 8-value baseline and pure noise, these flag about 20.0% and 10.1% of tests.

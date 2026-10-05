@@ -183,10 +183,10 @@ r_between = means.load.corr(means.jump)
 r_within = cent.load.corr(cent.jump)                  # equals the rmcorr estimate
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(9, 4))
 a1.scatter(means.load, means.jump, color="#0072B2")
-a1.set(title=f"Between athletes: r = {r_between:.2f} (n = {len(means)})",
+a1.set(title=f'Between athletes: r = {r_between:.2f} (n = {len(means)})',
        xlabel="Athlete mean load (AU)", ylabel="Athlete mean jump (cm)")
 a2.scatter(cent.load, cent.jump, s=10, color="#D55E00")
-a2.set(title=f"Within athletes: r = {r_within:.2f}, {len(d) - len(means) - 1} df",
+a2.set(title=f'Within athletes: r = {r_within:.2f}, {len(d) - len(means) - 1} df',
        xlabel="Load minus own mean (AU)", ylabel="Jump minus own mean (cm)")
 fig.tight_layout()
 fig.savefig("within_between.png", dpi=150)

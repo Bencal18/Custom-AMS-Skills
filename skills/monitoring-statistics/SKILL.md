@@ -3,7 +3,7 @@ name: monitoring-statistics
 description: Decide if a change in an athlete's data is real or noise. Covers typical error, smallest worthwhile change, MDC, baselines, z-scores, and why ACWR and p-values mislead.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "0.1"
+  version: "1"
   last-tested: "not tested"
 ---
 
@@ -99,7 +99,7 @@ Run these checks on your own result before you show it:
 
 - Noise check: confirm you compared every change with TE or the MDC before you called it real.
 - Formula check: confirm you divided by √2 for TE from difference scores. Confirm you multiplied TE by √2 for two single tests, or by √(1 + 1/n) for a new value against a baseline mean of n values.
-- SD check: confirm you used the sample SD (`STDEV.S`, pandas `.std()`, or `ddof=1`), not the population SD.
+- SD check: confirm you used the sample SD (`STDEV.S()`, pandas `.std()`, or `ddof=1`), not the population SD.
 - Baseline check: confirm today's value is not part of its own baseline.
 - TE check: confirm TE came from a short-term test-retest study with no true change expected, on the same summary (single trial, best of 3, or mean of 3) as the values compared. A separate-day retest is an optional choice that gives a larger TE. Do not use the athlete's own baseline SD as TE.
 - Multiplier check: confirm the multiplier fits the TE study. Use t with the TE study's degrees of freedom when TE comes from few athletes, not the baseline count.
