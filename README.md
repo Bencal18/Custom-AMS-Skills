@@ -8,7 +8,7 @@ The skills work with data from any vendor. Reference files for VALD, Hawkin Dyna
 
 ## Who it's for
 
-These skills are for coaches, sports scientists, performance analysts, athletic trainers, and physical therapists who:
+These skills are for coaches, sports scientists, performance analysts, and athletic trainers working with healthy athletes. They help you if you:
 
 - Work with athlete data from force plates, GPS or local positioning, velocity devices, wellness forms, or other wearables.
 - Use an AI tool to clean, calculate, trend, or chart that data.

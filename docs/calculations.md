@@ -2122,19 +2122,8 @@ Read these limits before you build one:
 - Combining variables into one loses information and makes the result harder to interpret (Song et al., 2013). A single score hides which input changed. Song et al. (2013) discuss composites for research analyses, so their points carry over to one athlete's daily score by reasoning, not by direct evidence.
 - Traffic-light monitoring systems lack a standard way of being set up (Robertson et al., 2017). A composite's colors are a local choice.
 - Training-load measures cannot tell you whether a change raises or lowers injury risk (Impellizzeri et al., 2020b). Load is the dose, and wellness and test results are the response. Self-reported well-being worsened with acute rises in load and improved with acute reductions (Saw et al., 2016), so a composite that holds both counts a dose and its response together. Keep load measures out of the composite by default, and show them beside it. Do not include the ACWR as an input (Impellizzeri et al., 2020a).
-- For a healthy athlete, the user may still add a load measure, with its direction and reason, labeled as the user's choice. For a rehab athlete, keep rehab load beside the table or the composite even when the user asks, because a direction on rehab load implies a progression call.
-- For a rehab athlete, do not calculate a single composite by default. Show a table with one row for each input: the raw value, the change since the last test, and the percentage of the pre-injury value. Calculate a composite only when the medical team asks for one, and show the table beside it.
-- A pre-injury baseline counts only when it used the same test, device, protocol, and arm condition while the athlete was healthy. Record its date and season phase, and let the clinician decide whether it is too old. Without a valid pre-injury baseline, leave the percentage column blank and say why. In one study of 23 college soccer players, hop test results were best in preseason (Montgomery and Carranza, 2023). In a case study, strength and power deficits against the pre-injury mean remained after jump asymmetries had recovered (Jordan et al., 2020).
-- Never put a red-flag sign into a composite. The tiers draw on general guidelines for blood clots in the legs and lungs (NICE, 2020; Hillegass et al., 2016; Drobnic et al., 2015) and for weakness or numbness in both legs (GIRFT, 2023). No sports-specific red-flag list was found, and the numbness, wound, and fever items rest on general guidance (Royal Children's Hospital Melbourne, 2023; NICE, 2019). A clinician should confirm the tiers. The qualifier "out of proportion to the exercise" is the authors' wording, not a guideline's. The authors added it because breathlessness is normal during training. These tiers are safety referrals, not a training recommendation. Show each sign raw, sorted into these three tiers:
-  - Call emergency services: chest pain, coughing up blood, or shortness of breath that is sudden, unexplained, or out of proportion to the exercise. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
-  - Stop the session and refer the same day for any of these signs:
-    - Calf pain, or new swelling, warmth, or tenderness in one calf or leg, which is more urgent after surgery or immobilization
-    - Wound redness or discharge
-    - Fever
-    - New numbness or weakness in one limb
-  - Pass to the medical team: pain or swelling at the injured joint or tissue, loss of motion, giving way, and locking.
-- A composite can average a red-flag sign away. A pain z-score of −2 with a CMJ z-score of +1, a sleep z-score of +1, and a fatigue z-score of 0 gives a composite of 0.0.
-- A return of the composite or an input to the pre-injury baseline is not a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), are batteries of tests in which passing meant a score above 90 on all tests. A composite lets a good score on one input hide a failed one.
+- The user may still add a load measure, with its direction and reason, labeled as the user's choice.
+- These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
 
 **Inputs.** The calculation needs these data:
 
@@ -2166,7 +2155,7 @@ The terms mean the following:
 
 Follow these steps from raw inputs:
 
-1. Join the inputs by athlete and date. Keep load measures and red-flag signs out of the composite, and show them raw. For a rehab athlete, build the table for each input instead, unless the medical team asked for a composite.
+1. Join the inputs by athlete and date. Keep load measures out of the composite, and show them beside it.
 2. For each athlete, input, and day, calculate the baseline mean and sample SD from the window before that day.
 3. Mark an input as missing for that day if its baseline is too short or its SD is 0.
 4. Calculate each input's z-score, then multiply it by its direction sign.
@@ -2192,16 +2181,6 @@ Each aligned z-score is (raw − mean) ÷ SD × direction. Day A sleep is (3 −
 
 Result: both days read −0.5. On Day A, one poor night of sleep drives the score. On Day B, more soreness and a lower jump drive it. Only the sub-scores show the difference.
 
-For a rehab athlete, the reference file shows a table for each input instead. The pre-injury baseline is recorded with its date and season phase, for example 2026-02-10, preseason:
-
-| Input | Pre-injury value | Last test | Today | Change since last test | Percentage of pre-injury value |
-|---|---|---|---|---|---|
-| CMJ jump height | 38.0 cm | 33.9 cm | 34.6 cm | +0.7 cm | 91.1% |
-| Isometric mid-thigh pull (IMTP) peak force | 2,850 N | 2,480 N | 2,610 N | +130 N | 91.6% |
-| Pain at the injured joint or tissue during the test (0 to 10) | | 1 | 3 | +2 | Not calculated. Red-flag sign, shown raw. Tier: pass to the medical team. |
-
-Each percentage is today's value ÷ the pre-injury value × 100, for example 34.6 ÷ 38.0 × 100 = 91.1%. The table makes no return-to-sport or progression call. The medical team reads it.
-
 **Variants.** The file describes these choices:
 
 - Weights from a prior study or from a statistical method such as principal components analysis (Song et al., 2013). No published weights exist for a general readiness composite. Use equal weights unless the user supplies weights and their source.
@@ -2215,7 +2194,7 @@ The composite is not a z-score. A mean of k unrelated z-scores has an SD of 1 ÷
 - Weights: doubling the weight on jump height gives Day A −0.4 and Day B −0.6. Doubling the weight on sleep gives Day A −0.8 and Day B −0.4. The order of the two days flips.
 - Grouping: averaging the three wellness items first, then averaging with jump height, gives Day A −0.33 and Day B −0.67.
 - Direction of an input: soreness entered with a direction of −1 by mistake makes Day B read 0.0 instead of −0.5.
-- Adding load: for a healthy athlete, previous-day load on Day A (690 AU, z = +2.0) gives −0.8 with a direction of −1 and 0.0 with +1. No published rule sets that direction (Impellizzeri et al., 2020b). Rehab load stays out, even on request.
+- Adding load: previous-day load on Day A (690 AU, z = +2.0) gives −0.8 with a direction of −1 and 0.0 with +1. No published rule sets that direction (Impellizzeri et al., 2020b).
 - Missing inputs: with no jump test on Day B, filling the gap with 0 gives −0.25, and averaging the three inputs present gives −0.33. Both differ from the complete −0.5. Mark the day as incomplete.
 - Number of inputs, baseline window, and team versus athlete baseline: each changes every z-score or the composite's spread.
 - Rescaling: converting to a 0 to 100 scale changes how it reads, not what it measures. It is not "% ready".
@@ -2247,7 +2226,7 @@ Every exportable metric each vendor publishes is broken down on its page. The pa
 
 ## Sources
 
-This page cites these sources, as the reference files list them. Thirteen sources have no DOI, and the entry says so:
+This page cites these sources, as the reference files list them. Eight sources have no DOI, and the entry says so:
 
 - Abt G, Lovell R. The use of individualized speed and intensity thresholds for determining the distance run at high-intensity in professional soccer. J Sports Sci. 2009;27(9):893-898. https://doi.org/10.1080/02640410902998239
 - Achten J, Jeukendrup AE. Heart rate monitoring: applications and limitations. Sports Med. 2003;33(7):517-538. https://doi.org/10.2165/00007256-200333070-00004
@@ -2277,7 +2256,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Cummins C, Orr R, O'Connor H, West C. Global positioning systems (GPS) and microtechnology sensors in team sports: a systematic review. Sports Med. 2013;43(10):1025-1042. https://doi.org/10.1007/s40279-013-0069-2
 - de Vet HC, Terwee CB, Ostelo RW, Beckerman H, Knol DL, Bouter LM. Minimal changes in health status questionnaires: distinction between minimally detectable change and minimally important change. Health Qual Life Outcomes. 2006;4:54. https://doi.org/10.1186/1477-7525-4-54
 - Dos'Santos T, Jones PA, Comfort P, Thomas C. Effect of different onset thresholds on isometric midthigh pull force-time variables. J Strength Cond Res. 2017;31(12):3463-3473. https://doi.org/10.1519/JSC.0000000000001765
-- Drobnic F, Pineda A, Escudero JR, Soria JM, Souto JC. Clinical guidelines for the prevention, diagnosis and treatment of venous thromboembolism in sport. Apunts Med Esport. 2015;50(188):147-159. https://www.apunts.org/en-clinical-guidelines-for-prevention-diagnosis-articulo-X1886658115462543 (accessed 2026-10-05). No DOI found.
 - Ebben WP, Petushek EJ. Using the reactive strength index modified to evaluate plyometric performance. J Strength Cond Res. 2010;24(8):1983-1987. https://doi.org/10.1519/JSC.0b013e3181e72466
 - Edwards S. The Heart Rate Monitor Book. Sacramento (CA): Fleet Feet Press; Port Washington (NY): Polar CIC; 1993. Third printing, October 1993. The Library of Congress catalogs the book (ISBN 0963463306, LCCN 92062064) as c1992. Book, not peer reviewed, no DOI. The five zones are listed on p. 56 of the third printing. A text search of that printing found Chapter 12 on pp. 113-123, but no zone weights on those pages. The search covered text only, so a figure could still hold them. The zone weights come from Paulson et al. (2015) and Hourcade et al. (2018).
 - Exell TA, Irwin G, Gittoes MJR, Kerwin DG. Implications of intra-limb variability on asymmetry analyses. J Sports Sci. 2012;30(4):403-409. https://doi.org/10.1080/02640414.2011.647047
@@ -2289,14 +2267,12 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Gabbett TJ, Hulin B, Blanch P, Chapman P, Bailey D. To couple or not to couple? For acute:chronic workload ratios and injury risk, does it really matter? Int J Sports Med. 2019;40(9):597-600. https://doi.org/10.1055/a-0955-5589
 - García-Ramos A, Pestaña-Melero FL, Pérez-Castilla A, Rojas FJ, Haff GG. Mean velocity vs. mean propulsive velocity vs. peak velocity: which variable determines bench press relative load with higher reliability? J Strength Cond Res. 2018;32(5):1273-1279. https://doi.org/10.1519/JSC.0000000000001998
 - García-Ramos A, Weakley J, Janicijevic D, Jukic I. Number of repetitions performed before and after reaching velocity loss thresholds: first repetition versus fastest repetition, mean velocity versus peak velocity. Int J Sports Physiol Perform. 2021;16(7):950-957. https://doi.org/10.1123/ijspp.2020-0629
-- Getting It Right First Time (GIRFT), NHS England. Spinal surgery: national suspected cauda equina syndrome (CES) pathway. 2023-02. https://spinal.co.uk/wp-content/uploads/2023/08/National-Suspected-Cauda-Equina-Pathway-February-2023-FINAL-V1-1.pdf (accessed 2026-10-02). No DOI.
 - Gillinov S, Etiwy M, Wang R, Blackburn G, Phelan D, Gillinov AM, Houghtaling P, Javadikasgari H, Desai MY. Variable accuracy of wearable heart rate monitors during aerobic exercise. Med Sci Sports Exerc. 2017;49(8):1697-1703. https://doi.org/10.1249/MSS.0000000000001284
 - Glaister M, Gissane C. Caffeine and physiological responses to submaximal exercise: a meta-analysis. Int J Sports Physiol Perform. 2018;13(4):402-411. https://doi.org/10.1123/ijspp.2017-0312
 - Godhe M, Bergman S, Petré H. Between-session reliability of portable isometric mid-thigh pull and countermovement jump tests in elite male ice hockey players from the Swedish Hockey League. Sports. 2025;13(12):456. https://doi.org/10.3390/sports13120456
 - González-Badillo JJ, Sánchez-Medina L. Movement velocity as a measure of loading intensity in resistance training. Int J Sports Med. 2010;31(5):347-352. https://doi.org/10.1055/s-0030-1248333
 - González-Badillo JJ, Yañez-García JM, Mora-Custodio R, Rodríguez-Rosell D. Velocity loss as a variable for monitoring resistance exercise. Int J Sports Med. 2017;38(3):217-225. https://doi.org/10.1055/s-0042-120324
 - Gregson W, Drust B, Atkinson G, Di Salvo V. Match-to-match variability of high-speed activities in premier league soccer. Int J Sports Med. 2010;31(4):237-242. https://doi.org/10.1055/s-0030-1247546
-- Grindem H, Snyder-Mackler L, Moksnes H, Engebretsen L, Risberg MA. Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study. Br J Sports Med. 2016;50(13):804-808. https://doi.org/10.1136/bjsports-2016-096031
 - Haddad M, Stylianides G, Djaoui L, Dellal A, Chamari K. Session-RPE method for training load monitoring: validity, ecological usefulness, and influencing factors. Front Neurosci. 2017;11:612. https://doi.org/10.3389/fnins.2017.00612
 - Haff GG, Ruben RP, Lider J, Twine C, Cormie P. A comparison of methods for determining the rate of force development during isometric midthigh clean pulls. J Strength Cond Res. 2015;29(2):386-395. https://doi.org/10.1519/JSC.0000000000000705
 - Harman EA, Rosenstein MT, Frykman PN, Rosenstein RM. The effects of arms and countermovement on vertical jumping. Med Sci Sports Exerc. 1990;22(6):825-833. https://doi.org/10.1249/00005768-199012000-00015
@@ -2306,7 +2282,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Heishman A, Daub B, Miller R, Brown B, Freitas E, Bemben M. Countermovement jump inter-limb asymmetries in collegiate basketball players. Sports. 2019;7(5):103. https://doi.org/10.3390/sports7050103 (cited as Heishman et al., 2019b). The 0.90 ratio and its range were calculated from the typical errors in the paper's within-session and separate-day reliability tables.
 - Herzog W, Nigg BM, Read LJ, Olsson E. Asymmetries in ground reaction force patterns in normal human gait. Med Sci Sports Exerc. 1989;21(1):110-114. https://doi.org/10.1249/00005768-198902000-00020
 - Hickey JT, Timmins RG, Maniar N, Rio E, Hickey PF, Pitcher CA, Williams MD, Opar DA. Pain-free versus pain-threshold rehabilitation following acute hamstring strain injury: a randomized controlled trial. J Orthop Sports Phys Ther. 2020;50(2):91-103. https://doi.org/10.2519/jospt.2020.8895. Read in abstract form only.
-- Hillegass E, Puthoff M, Frese EM, Thigpen M, Sobush DC, Auten B. Role of physical therapists in the management of individuals at risk for or diagnosed with venous thromboembolism: evidence-based clinical practice guideline. Phys Ther. 2016;96(2):143-166. https://doi.org/10.2522/ptj.20150264
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Med. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
 - Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02). No DOI. The skills use only its error formula, not its magnitude-based inference.
 - Hopkins WG, Marshall SW, Batterham AM, Hanin J. Progressive statistics for studies in sports medicine and exercise science. Med Sci Sports Exerc. 2009;41(1):3-13. https://doi.org/10.1249/MSS.0b013e31818cb278
@@ -2322,7 +2297,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Jeffries AC, Wallace L, Coutts AJ, McLaren SJ, McCall A, Impellizzeri FM. Athlete-reported outcome measures for monitoring training responses: a systematic review of risk of bias and measurement property quality according to the COSMIN guidelines. Int J Sports Physiol Perform. 2020;15(9):1203-1215. https://doi.org/10.1123/ijspp.2020-0386
 - Jennings D, Cormack S, Coutts AJ, Boyd L, Aughey RJ. The validity and reliability of GPS units for measuring distance in team sport specific running patterns. Int J Sports Physiol Perform. 2010;5(3):328-341. https://doi.org/10.1123/ijspp.5.3.328
 - Johnston RJ, Watsford ML, Kelly SJ, Pine MJ, Spurrs RW. Validity and interunit reliability of 10 Hz and 15 Hz GPS units for assessing athlete movement demands. J Strength Cond Res. 2014;28(6):1649-1655. https://doi.org/10.1519/JSC.0000000000000323
-- Jordan MJ, Morris N, Lane M, Barnert J, MacGregor K, Heard M, Robinson S, Herzog W. Monitoring the return to sport transition after ACL injury: an alpine ski racing case study. Front Sports Act Living. 2020;2:12. https://doi.org/10.3389/fspor.2020.00012
 - Karjalainen J, Viitasalo M. Fever and cardiac rhythm. Arch Intern Med. 1986;146(6):1169-1171. https://doi.org/10.1001/archinte.1986.00360180179026
 - Karvonen MJ, Kentala E, Mustala O. The effects of training on heart rate; a longitudinal study. Ann Med Exp Biol Fenn. 1957;35(3):307-315. PMID: 13470504. No DOI.
 - Kraska JM, Ramsey MW, Haff GG, Fethke N, Sands WA, Stone ME, Stone MH. Relationship between strength characteristics and unweighted and weighted vertical jump height. Int J Sports Physiol Perform. 2009;4(4):461-473. https://doi.org/10.1123/ijspp.4.4.461
@@ -2338,11 +2312,8 @@ This page cites these sources, as the reference files list them. Thirteen source
 - McMahon JJ, Suchomel TJ, Lake JP, Comfort P. Understanding the key phases of the countermovement jump force-time curve. Strength Cond J. 2018;40(4):96-106. https://doi.org/10.1519/SSC.0000000000000375 (cited as McMahon et al., 2018a)
 - McMahon JJ, Jones PA, Suchomel TJ, Lake J, Comfort P. Influence of the reactive strength index modified on force- and power-time curves. Int J Sports Physiol Perform. 2018;13(2):220-227. https://doi.org/10.1123/ijspp.2017-0056 (cited as McMahon et al., 2018b)
 - Merrigan JJ, Stone JD, Galster SM, Hagen JA. Analyzing force-time curves: comparison of commercially available automated software and custom MATLAB analyses. J Strength Cond Res. 2022;36(9):2387-2402. https://doi.org/10.1519/JSC.0000000000004275
-- Montgomery MM, Carranza S. Changes in performance on common return-to-sport tests during a collegiate women's soccer season: implications for baseline testing. Sports Health. 2023;15(6):781-787. https://doi.org/10.1177/19417381221146556 Read as an abstract only.
 - Morán-Navarro R, Martínez-Cava A, Sánchez-Medina L, Mora-Rodríguez R, González-Badillo JJ, Pallarés JG. Movement velocity as a measure of level of effort during resistance exercise. J Strength Cond Res. 2019;33(6):1496-1504. https://doi.org/10.1519/JSC.0000000000002017
 - Nes BM, Janszky I, Wisløff U, Støylen A, Karlsen T. Age-predicted maximal heart rate in healthy subjects: the HUNT fitness study. Scand J Med Sci Sports. 2013;23(6):697-704. https://doi.org/10.1111/j.1600-0838.2012.01445.x
-- National Institute for Health and Care Excellence (NICE). Surgical site infections: prevention and treatment. NICE guideline NG125. Published 2019-04-11, updated 2020-08-19. Recommendation 1.1.3. https://www.nice.org.uk/guidance/ng125/chapter/Recommendations (accessed 2026-10-05). No DOI. Cited as NICE, 2019.
-- National Institute for Health and Care Excellence (NICE). Venous thromboembolic diseases: diagnosis, management and thrombophilia testing. NICE guideline NG158. Published 2020-03-26, updated 2023-08-02. https://www.nice.org.uk/guidance/ng158/chapter/recommendations (accessed 2026-10-05). No DOI. Cited as NICE, 2020.
 - National Institute of Standards and Technology. Dataplot reference manual: prediction limits. https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm (accessed 2026-10-02). No DOI.
 - Opar DA, Piatkowski T, Williams MD, Shield AJ. A novel device using the Nordic hamstring exercise to assess eccentric knee flexor strength: a reliability and retrospective injury study. J Orthop Sports Phys Ther. 2013;43(9):636-640. https://doi.org/10.2519/jospt.2013.4837
 - Opar DA, Williams MD, Timmins RG, Hickey J, Duhig SJ, Shield AJ. Eccentric hamstring strength and hamstring injury risk in Australian footballers. Med Sci Sports Exerc. 2015;47(4):857-865. https://doi.org/10.1249/MSS.0000000000000465
@@ -2358,7 +2329,6 @@ This page cites these sources, as the reference files list them. Thirteen source
 - Reardon C, Tobin DP, Delahunt E. Application of individualized speed thresholds to interpret position specific running demands in elite professional rugby union: a GPS study. PLoS One. 2015;10(7):e0133410. https://doi.org/10.1371/journal.pone.0133410
 - Robertson S, Bartlett JD, Gastin PB. Red, amber, or green? Athlete monitoring in team sport: the need for decision-support systems. Int J Sports Physiol Perform. 2017;12(Suppl 2):S2-73-S2-79. https://doi.org/10.1123/ijspp.2016-0541
 - Rodríguez-Marroyo JA, González B, Foster C, Carballo-Leyenda AB, Villa JG. Effect of the cooldown type on session rating of perceived exertion. Int J Sports Physiol Perform. 2021;16(4):573-577. https://doi.org/10.1123/ijspp.2020-0225
-- The Royal Children's Hospital Melbourne. Nursing guidelines: neurovascular observations. Updated 2023-02. https://www.rch.org.au/rchcpg/hospital_clinical_guideline_index/neurovascular_observations (accessed 2026-10-02). No DOI.
 - Sanchez-Medina L, Perez CE, Gonzalez-Badillo JJ. Importance of the propulsive phase in strength assessment. Int J Sports Med. 2010;31(2):123-129. https://doi.org/10.1055/s-0029-1242815
 - Sánchez-Medina L, González-Badillo JJ. Velocity loss as an indicator of neuromuscular fatigue during resistance training. Med Sci Sports Exerc. 2011;43(9):1725-1734. https://doi.org/10.1249/MSS.0b013e318213f880
 - Sands WA, Cardinale M, McNeal J, Murray S, Sole C, Reed J, Apostolopoulos N, Stone MH. Recommendations for measurement and management of an elite athlete. Sports. 2019;7(5):105. https://doi.org/10.3390/sports7050105

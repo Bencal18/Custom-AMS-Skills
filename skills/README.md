@@ -24,7 +24,7 @@ Version 1 has these 12 skills:
 | [`force-plate`](force-plate/SKILL.md) | CMJ jump height, RSI-modified, IMTP peak force, eccentric hamstring force | Reviewed |
 | [`velocity-based-training`](velocity-based-training/SKILL.md) | Mean concentric velocity, velocity loss across a set | Reviewed |
 | [`limb-symmetry`](limb-symmetry/SKILL.md) | Limb symmetry index, formula variants, and the reference-limb rule | Reviewed |
-| [`readiness-composites`](readiness-composites/SKILL.md) | Readiness and rehab-monitoring composites, and why sub-scores must stay visible | Reviewed |
+| [`readiness-composites`](readiness-composites/SKILL.md) | Readiness composites, and why sub-scores must stay visible | Reviewed |
 | [`check-ai-analysis`](check-ai-analysis/SKILL.md) | Questions to answer before trusting a result | Reviewed |
 | [`coach-reports`](coach-reports/SKILL.md) | What to show coaches versus athletes, and how to flag changes without noise | Reviewed |
 | [`athlete-data-visualization`](athlete-data-visualization/SKILL.md) | Chart choice, time series, complex relationships, uncertainty, color and accessibility, and squad views | Reviewed |
