@@ -142,7 +142,7 @@ Know the false-flag rates:
 - With all assumptions met, about 5% of pure-noise changes cross the band in either direction, or 2.5% when only one direction matters, such as a drop.
 - When the assumptions fail, the real rate can be higher or lower than 5%. It is higher when TE is too small, comes from few athletes, or varies between athletes. It can be lower when TE is overestimated or errors are positively correlated over time. Never call 5% a lower bound.
 - With TE from 6 athletes and 1.96, about 10.7% of pure-noise changes cross the band. With t(5), the rate is 5.0%.
-- A TE overestimated by 20% gives 1.87% for two single tests. Error correlation of 0.5 between consecutive tests gives 0.56% for two single tests, or 4.38% against a baseline of 8.
+- A TE overestimated by 20% gives 1.87% for two single tests. Error correlation of 0.5 between consecutive tests gives 0.56% for two single tests, or 4.59% against a baseline of 10.
 
 Report flags expected across a squad:
 

@@ -61,7 +61,7 @@ When the assumptions fail, the real rate can be higher or lower than 5%. It is h
 
 Never call 5% a lower bound. For example, with TE from 6 athletes and 1.96, about 10.7% of pure-noise changes cross the band. With t(5), the rate is 5.0%.
 
-A TE overestimated by 20% gives 1.87% for two single tests. Error correlation of 0.5 between consecutive tests gives 0.56% for two single tests, or 4.38% against a baseline of 8.
+A TE overestimated by 20% gives 1.87% for two single tests. Error correlation of 0.5 between consecutive tests gives 0.56% for two single tests, or 4.59% against a baseline of 10.
 
 Across a squad, report the number of flags expected by chance next to the number found. Expected flags = number of results × 5%, or × 2.5% for one direction.
 
