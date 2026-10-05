@@ -2,8 +2,6 @@
 
 Last checked: 2026-10-02
 
-Not tested in Power BI or Tableau. No step or calculation in this file was run in Tableau.
-
 ## What it covers
 
 This file shows how to load the athlete, session, and measure tables from the table layout reference into Tableau Desktop. It covers import, missing values, athlete and calendar tables, relationships and joins, units, refresh, and the traps that silently give a wrong number.

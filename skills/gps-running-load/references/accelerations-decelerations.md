@@ -74,7 +74,7 @@ The snippet rounds acceleration to 6 decimals. Without rounding, floating-point 
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the `efforts` function above. They take the change in speed over `k` samples, round acceleration to 6 decimals, and count a sample at or above the threshold and below the upper bound. They keep runs that last at least the minimum duration, and add speed × `dt_s` over the samples in each kept run. A blank speed gives a blank acceleration, which ends a run, as `NaN` does in Python. A session with samples but no efforts gives 0, not a blank.
+These versions follow the `efforts` function above. They take the change in speed over `k` samples, round acceleration to 6 decimals, and count a sample at or above the threshold and below the upper bound. They keep runs that last at least the minimum duration, and add speed × `dt_s` over the samples in each kept run. A blank speed gives a blank acceleration, which ends a run, as `NaN` does in Python. A session with samples but no efforts gives 0, not a blank.
 
 Both versions assume a `speed_samples` table with one row per sample: `athlete_id`, `session_id`, `sample_index` as a whole number, and `speed_m_s`. Convert speed to m/s before import. Keep one row for every sample, with a blank speed for a dropped sample. Like the Python function, both versions read samples by position, so a missing row joins the samples on either side as if they were 1 sample apart. Set the five settings once at the top: Hz, `k`, threshold, upper bound, and minimum duration. Use the same settings for every session in a trend, and label each result with them, the boundary rule, the filter, and the software version.
 

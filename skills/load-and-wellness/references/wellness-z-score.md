@@ -94,7 +94,7 @@ def wellness_z(item, window, min_baseline):
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They keep the rules of the spreadsheet formulas above. Today is left out of its own baseline. A blank answer today gives a blank change and z-score, not a z-score for 0 points. A baseline shorter than the minimum gives a blank. A baseline SD of 0 gives a blank z-score. The status says which rule applied.
+These versions keep the rules of the spreadsheet formulas above. Today is left out of its own baseline. A blank answer today gives a blank change and z-score, not a z-score for 0 points. A baseline shorter than the minimum gives a blank. A baseline SD of 0 gives a blank z-score. The status says which rule applied.
 
 Both versions use the previous 28 calendar days, not the previous 28 rows. A day with no answer counts as a day in the window but not as a baseline value.
 

@@ -39,7 +39,7 @@ Use this spreadsheet formula, with jump height in meters in `B2` and time to tak
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They divide jump height and time to takeoff from the same trial. They return a blank when either value is missing or time to takeoff is 0.
+These versions divide jump height and time to takeoff from the same trial. They return a blank when either value is missing or time to takeoff is 0.
 
 Both versions assume one row per athlete, date, session, measure, and trial in a `measures` table. Jump height is `measure_name` `cmj_jump_height` in `m`. Time to takeoff is `cmj_time_to_takeoff` in `s`. Convert cm to m and ms to s on import. A height in cm gives a value 100 times too large.
 

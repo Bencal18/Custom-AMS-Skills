@@ -122,7 +122,7 @@ The settings `WINDOW = 8` and `MIN_N = 5` are examples, not published standards.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow steps 4 to 9 above. The baseline is the previous k tests for the same athlete, with today left out. A baseline with fewer values than the minimum gives a blank z-score. A baseline SD of 0 gives a blank z-score. A missing test today gives a blank z-score, never a z-score for 0.
+These versions follow steps 4 to 9 above. The baseline is the previous k tests for the same athlete, with today left out. A baseline with fewer values than the minimum gives a blank z-score. A baseline SD of 0 gives a blank z-score. A missing test today gives a blank z-score, never a z-score for 0.
 
 The window counts test dates that have a row for the measure, as the spreadsheet and Python versions count rows. A test date with only a reason-coded row takes a place in the window but adds no value, so n can be smaller than k.
 

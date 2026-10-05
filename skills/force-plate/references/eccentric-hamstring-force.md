@@ -48,7 +48,7 @@ Without the blank check, a blank leg gives an imbalance of 0 and names that leg 
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. Each result returns a blank when an input it needs is missing: both legs for the two-limb average, the imbalance, and the weaker side, and the left leg and body mass for relative force. They never read a missing leg as 0 N.
+Each result returns a blank when an input it needs is missing: both legs for the two-limb average, the imbalance, and the weaker side, and the left leg and body mass for relative force. They never read a missing leg as 0 N.
 
 Both versions assume one row per athlete, date, side, and repetition in a `measures` table, with `measure_name` `nordic_peak_force`, `side` `left` or `right`, and `unit` `N`. Body mass is a row with `measure_name` `body_mass` and `unit` `kg` on the same date. Show the results with one athlete and one date per row. Do not put `side` in the visual, or each row holds only one leg.
 

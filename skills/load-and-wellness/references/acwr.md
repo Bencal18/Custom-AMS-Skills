@@ -79,7 +79,7 @@ On a missing day, each EWMA keeps the previous day's value and keeps reporting, 
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the `acwr` function and steps 10 to 17 in the next section. They give the 7-day mean, the 28-day mean, and the days 8 to 28 mean, with three ratios: rolling coupled, rolling uncoupled, and EWMA with λ = 2 ÷ (N + 1). They keep these rules from the Python function:
+These versions follow the `acwr` function and steps 10 to 17 in the next section. They give the 7-day mean, the 28-day mean, and the days 8 to 28 mean, with three ratios: rolling coupled, rolling uncoupled, and EWMA with λ = 2 ÷ (N + 1). They keep these rules from the Python function:
 
 - A rolling ratio is blank until the 28 days ending that day all have a recorded load. It is also blank on a missing day and the 27 days after it.
 - Each EWMA starts at the day 1 load. On a missing day, it keeps the previous day's value.

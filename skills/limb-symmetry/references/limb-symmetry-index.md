@@ -92,7 +92,7 @@ def symmetry_variants(right, left, dominant="right", involved="left"):
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. Each returns a blank when a limb value it needs is missing. The log ratio and the symmetry angle return a blank unless both values are above zero. The LSI returns a blank unless the user named the involved limb.
+Each returns a blank when a limb value it needs is missing. The log ratio and the symmetry angle return a blank unless both values are above zero. The LSI returns a blank unless the user named the involved limb.
 
 Both versions assume one row per athlete, date, test, side, and trial in a `measures` table, with `side` `left` or `right`. They use the best trial for each limb. Use the mean of trials instead if that is the user's summary, and use the same summary for both limbs. The involved limb comes from a column `involved_side` in the `athletes` table, `left` or `right`, entered by the user. Never infer it from the data.
 

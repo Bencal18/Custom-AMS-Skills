@@ -202,7 +202,7 @@ def lucia_au(hr_bpm, hr_vt, hr_rcp, dt_s=1.0):
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the boundary rule in this file: a heart rate equal to a zone boundary counts in the higher zone. Dropouts stay blank and add nothing. Banister TRIMP uses the weighting the user chose for each athlete and returns a blank when none is recorded. Both return a blank when HRmax is missing or the session has no samples.
+These versions follow the boundary rule in this file: a heart rate equal to a zone boundary counts in the higher zone. Dropouts stay blank and add nothing. Banister TRIMP uses the weighting the user chose for each athlete and returns a blank when none is recorded. Both return a blank when HRmax is missing or the session has no samples.
 
 Both versions assume an `hr_samples` table with one row per second: `athlete_id`, `session_id`, `time_s`, and `hr_bpm`. They also assume an `athletes` table with `hr_max_bpm`, `hr_rest_bpm`, and `trimp_weighting`, set to `male` or `female` by the user. Never infer the weighting from a name or roster data. Show the results with one athlete and one session per row. In Power BI, relate `athletes[athlete_id]` to `hr_samples[athlete_id]`, one to many, single direction, and put `athletes[athlete_id]` in the visual.
 

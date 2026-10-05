@@ -57,7 +57,7 @@ Without the blank check, a blank body mass makes net force equal gross force.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They return a blank, not gross force, when body mass is missing.
+These versions return a blank, not gross force, when body mass is missing.
 
 Both versions assume one row per athlete, date, session, measure, and trial in a `measures` table. Gross peak force is `measure_name` `imtp_gross_peak_force` in `N`. Body mass from the quiet period is `measure_name` `imtp_body_mass` in `kg`, in the same session, as body weight in N divided by 9.81. Show the results with one athlete and one session per row.
 

@@ -83,7 +83,7 @@ This code returns a missing composite on any day with a missing input.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. A day with any missing input gives a blank composite, never a composite of the inputs that remain. A z-score of 0 counts as present. Weights that sum to 0 give a blank. Show every aligned z-score, raw value, and change in raw units next to the composite.
+A day with any missing input gives a blank composite, never a composite of the inputs that remain. A z-score of 0 counts as present. Weights that sum to 0 give a blank. Show every aligned z-score, raw value, and change in raw units next to the composite.
 
 Both versions assume one aligned z-score measure or field per input, where a positive value means better than usual. Build each z-score with the baseline rules in this skill or the `monitoring-statistics` skill. Multiply by -1 for an input where a higher value is worse. Show the results with one athlete and one date per row.
 

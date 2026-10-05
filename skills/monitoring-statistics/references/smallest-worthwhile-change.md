@@ -118,7 +118,7 @@ print(classify_change(2.6, te=0.6284, swc=0.6185))
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. The SWC uses only athletes with a baseline value, and it is blank with fewer than 2 of them. A missing baseline or new value gives a blank change. A missing TE gives a blank half-width, never a band of 0.
+The SWC uses only athletes with a baseline value, and it is blank with fewer than 2 of them. A missing baseline or new value gives a blank change. A missing TE gives a blank half-width, never a band of 0.
 
 Both versions assume one row per athlete, date, measure, and trial in a `measures` table, and a `reliability` table with one row per measure: `measure_name`, `te`, `te_df`, and `te_source`. The user picks the baseline and the new test dates. Show the results with one athlete per row. The SWC uses every athlete the filters and slicers leave in the view, so set the comparison group with those filters.
 

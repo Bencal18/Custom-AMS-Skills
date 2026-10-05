@@ -72,7 +72,7 @@ def cmj_height_takeoff_velocity(force_n, fs_hz, takeoff_index, quiet_s=1.0, g=9.
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They use the flight time method only. They return a blank, not 0 m, when flight time is missing, and they read only flight times stored in seconds.
+These versions use the flight time method only. They return a blank, not 0 m, when flight time is missing, and they read only flight times stored in seconds.
 
 Both versions assume one row per athlete, date, session, measure, and trial in a `measures` table, with flight time stored as `measure_name` `cmj_flight_time` and `unit` `s`. Convert milliseconds to seconds on import. A value in ms inside this formula gives a height about a million times too large.
 

@@ -85,7 +85,7 @@ The values below come from the t distribution. Take the degrees of freedom from 
 
 ### Calculate TE and the t multiplier in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They use only athletes with both tests, and they return a blank, not 0 or an error, when fewer than 2 athletes qualify.
+These versions use only athletes with both tests, and they return a blank, not 0 or an error, when fewer than 2 athletes qualify.
 
 Both versions assume one row per athlete, test, and trial in a `measures` table, with the retest stored as `trial_number` 1 and 2 in one retest session. The session filter keeps trials from other dates out. Replace `S0101` with the retest session. For a measure taken on each side, replace `bilateral` with `left` or `right` and compute each side separately. If your retest uses two sessions instead, filter test 1 and test 2 on their two `session_id` values in place of `trial_number`.
 
@@ -195,7 +195,7 @@ This prints `[0.62, -0.15]` and `0.54`.
 
 ### Calculate TE from three or more trials in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They follow the Python above. They give the mean change between consecutive trials, the TE, and its degrees of freedom, (athletes minus 1) x (trials minus 1).
+These versions follow the Python above. They give the mean change between consecutive trials, the TE, and its degrees of freedom, (athletes minus 1) x (trials minus 1).
 
 They treat missing data as the Python does:
 

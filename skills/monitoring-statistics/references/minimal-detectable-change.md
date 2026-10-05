@@ -73,7 +73,7 @@ print(f"MDC95 = {mdc(sem):.4f} cm, MDC90 = {mdc(sem, 1.645):.4f} cm")
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They return a blank MDC when the SEM is missing, so the band never collapses to 0. They compare a change with the MDC only when both tests and the SEM exist. Otherwise they say `not enough data`.
+These versions return a blank MDC when the SEM is missing, so the band never collapses to 0. They compare a change with the MDC only when both tests and the SEM exist. Otherwise they say `not enough data`.
 
 Both versions assume one row per athlete, date, measure, and trial in a `measures` table, and a `reliability` table with one row per measure: `measure_name`, `te` (the SEM, in the unit of the measure), `te_df`, and `te_source`. The user picks the old and the new test dates. Show the results with one athlete per row.
 

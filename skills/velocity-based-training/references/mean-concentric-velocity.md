@@ -83,7 +83,7 @@ est_1rm = (v1rm - intercept) / slope
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They use only points with both a load and a velocity. The slope and intercept are blank with fewer than 2 different loads. The 1RM estimate is blank when the slope is 0 or above, or when the 1RM velocity is missing. A flat or rising line has no 1RM. Estimate 1RM only for a lift with a published 1RM velocity and a published validation, as this file says.
+These versions use only points with both a load and a velocity. The slope and intercept are blank with fewer than 2 different loads. The 1RM estimate is blank when the slope is 0 or above, or when the 1RM velocity is missing. A flat or rising line has no 1RM. Estimate 1RM only for a lift with a published 1RM velocity and a published validation, as this file says.
 
 Both versions assume a `lv_points` table with one row per athlete, date, exercise, and load: `athlete_id`, `measure_date`, `exercise`, `load_kg`, and `mv_m_s`, the mean velocity of the fastest rep at that load. The 1RM velocity comes from the user, in an `exercises` table column `v1rm_m_s` or in a parameter. Show the results with one athlete, date, and exercise per row. In Power BI, relate `exercises[exercise]` to `lv_points[exercise]`, one to many, single direction, and put `exercises[exercise]` in the visual.
 

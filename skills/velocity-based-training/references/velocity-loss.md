@@ -90,7 +90,7 @@ out.loc[out.n < 2, ["vl_fastest_pct", "vl_first_pct"]] = float("nan")  # 1-rep s
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They take the last completed rep as the highest rep number with a velocity, as the spreadsheet `LOOKUP` does, so a gap in the middle of the set is skipped. A set with fewer than 2 reps with a velocity gives a blank, as the Python version does. A rep stored as 0 m/s gives a blank and a flag, because a failed rep is not a completed rep. Leave failed reps out, or code them with a reason, and note them.
+These versions take the last completed rep as the highest rep number with a velocity, as the spreadsheet `LOOKUP` does, so a gap in the middle of the set is skipped. A set with fewer than 2 reps with a velocity gives a blank, as the Python version does. A rep stored as 0 m/s gives a blank and a flag, because a failed rep is not a completed rep. Leave failed reps out, or code them with a reason, and note them.
 
 Both versions assume a `reps` table with one row per rep: `set_id` (one code per athlete, date, exercise, and set), `rep_number`, `mv_m_s`, and `status`. Show the results with one set per row.
 

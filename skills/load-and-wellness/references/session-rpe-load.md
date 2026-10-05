@@ -64,7 +64,7 @@ daily = (df.groupby(["athlete_id", "date"])["srpe_load_au"]
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. A missing rating or duration keeps the session load blank, not 0 AU. A day with any blank session load stays blank, so it is not undercounted. A rating of 0 is a real 0.
+A missing rating or duration keeps the session load blank, not 0 AU. A day with any blank session load stays blank, so it is not undercounted. A rating of 0 is a real 0.
 
 Both versions work on a session table with one row per athlete, date, and session: `athlete_id`, `measure_date`, `session_id`, `rpe_cr10`, and `duration_min`. Build it from the long `measures` table by pivoting `measure_name` to columns.
 

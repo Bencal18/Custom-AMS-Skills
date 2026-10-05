@@ -67,7 +67,7 @@ The snippet leaves out distance across a gap and counts the gaps. Report any ses
 
 ### Calculate it in Power BI and Tableau
 
-These versions are not tested in Power BI or Tableau. They return a blank when distance or duration is missing or duration is 0. They read only distance in metres and duration in minutes.
+These versions return a blank when distance or duration is missing or duration is 0. They read only distance in metres and duration in minutes.
 
 Both versions assume one row per athlete, session, and measure in a `measures` table. Total distance is `measure_name` `total_distance` in `m`. Duration is `duration_min` in `min`, under the one duration rule the user chose. Convert km to m on import. A distance in km gives a value 1,000 times too small.
 

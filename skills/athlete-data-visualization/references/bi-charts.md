@@ -2,8 +2,6 @@
 
 Last checked: 2026-10-02
 
-Not tested in Power BI or Tableau. No chart in this file was built.
-
 ## What the problem is
 
 Power BI and Tableau draw a chart from whatever the data model gives them. Their defaults can break the rules of this skill without a warning: a line joins across a missing week, a sum stands in for a mean, a band has no edge, or a palette carries meaning in color alone.
