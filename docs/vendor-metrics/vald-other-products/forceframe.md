@@ -4,7 +4,7 @@ ForceFrame is a VALD isometric strength device. The athlete pushes or pulls agai
 
 ForceFrame, DynaMo, SmartSpeed, HumanTrak, NordBord, ForceDecks, VALD Hub, and VALD are trademarks of VALD. GymAware is a trademark of its owner. This repository is not affiliated with or endorsed by VALD or GymAware.
 
-This page is part of [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](vald-other-products.md). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](vald-forcedecks-nordbord.md).
+This page is part of [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](README.md). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](../vald-forcedecks-nordbord/README.md).
 
 ## How to read this page
 
@@ -583,4 +583,4 @@ The following details are marked Not published in this section:
 - Calculation of training `impulseLeft` and `impulseRight`, including threshold and aggregation.
 - Calculation of Hub training "Reps Completed" and "Exercise Type".
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

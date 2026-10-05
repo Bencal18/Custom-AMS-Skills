@@ -4,7 +4,7 @@ DynaMo is a handheld dynamometer and inclinometer. It measures force with a load
 
 ForceFrame, DynaMo, SmartSpeed, HumanTrak, NordBord, ForceDecks, VALD Hub, and VALD are trademarks of VALD. GymAware is a trademark of its owner. This repository is not affiliated with or endorsed by VALD or GymAware.
 
-This page is part of [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](vald-other-products.md). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](vald-forcedecks-nordbord.md).
+This page is part of [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](README.md). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](../vald-forcedecks-nordbord/README.md).
 
 ## How to read this page
 
@@ -427,4 +427,4 @@ The public sources checked do not publish these details:
 - Whether summaries and asymmetry recalculate after rep deletion or laterality edits in Hub.
 - Torque, lever arm, and per-kg values: no DynaMo export fields.
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

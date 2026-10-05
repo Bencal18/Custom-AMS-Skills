@@ -1,6 +1,6 @@
 # VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics
 
-This page explains how the metrics in the exports of five measurement products are calculated. ForceFrame measures isometric force on paddle sensors. DynaMo measures handheld isometric force and range of motion. SmartSpeed measures timing gate splits, sprint profiles, and jump mat times. HumanTrak measures joint angles and positions with markerless 3D tracking. GymAware measures barbell or body displacement, velocity, power, and force for each rep. GymAware has been owned by VALD since VALD announced the acquisition on 2026-08-10 ([source](https://www.valdperformance.com/news/vald-acquires-gymaware-bringing-the-gold-standard-in-velocity-based-training-into-the-worlds-leading-performance-technology-ecosystem)). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](vald-forcedecks-nordbord.md).
+This page explains how the metrics in the exports of five measurement products are calculated. ForceFrame measures isometric force on paddle sensors. DynaMo measures handheld isometric force and range of motion. SmartSpeed measures timing gate splits, sprint profiles, and jump mat times. HumanTrak measures joint angles and positions with markerless 3D tracking. GymAware measures barbell or body displacement, velocity, power, and force for each rep. GymAware has been owned by VALD since VALD announced the acquisition on 2026-08-10 ([source](https://www.valdperformance.com/news/vald-acquires-gymaware-bringing-the-gold-standard-in-velocity-based-training-into-the-worlds-leading-performance-technology-ecosystem)). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](../vald-forcedecks-nordbord/README.md).
 
 Checked against: the VALD knowledge base, VALD education pages, the VALD OpenAPI specs, the `valdr` R package 4.0.0, the GymAware Cloud API guide, and the GymAware help center, 2026-10-02.
 
@@ -25,11 +25,11 @@ A formula labeled Restated is a plain restatement on these pages, not the vendor
 
 The metrics are split into one page for each product:
 
-- [ForceFrame metrics](vald-other-products-forceframe.md)
-- [DynaMo metrics](vald-other-products-dynamo.md)
-- [SmartSpeed metrics](vald-other-products-smartspeed.md)
-- [HumanTrak metrics](vald-other-products-humantrak.md)
-- [GymAware metrics](vald-other-products-gymaware.md)
+- [ForceFrame metrics](forceframe.md)
+- [DynaMo metrics](dynamo.md)
+- [SmartSpeed metrics](smartspeed.md)
+- [HumanTrak metrics](humantrak.md)
+- [GymAware metrics](gymaware.md)
 
 The SmartSpeed page includes a worked example for split times and start methods. The GymAware page includes a worked example for velocity, power, and velocity loss.
 
@@ -39,7 +39,7 @@ Each table lists the metric blocks on the product page. The last column says whe
 
 ### ForceFrame
 
-ForceFrame measures: isometric force on four paddles (inner and outer, left and right). Details are on [the ForceFrame page](vald-other-products-forceframe.md).
+ForceFrame measures: isometric force on four paddles (inner and outer, left and right). Details are on [the ForceFrame page](forceframe.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -76,7 +76,7 @@ ForceFrame measures: isometric force on four paddles (inner and outer, left and 
 
 ### DynaMo
 
-DynaMo measures: handheld isometric force and IMU range of motion. Details are on [the DynaMo page](vald-other-products-dynamo.md).
+DynaMo measures: handheld isometric force and IMU range of motion. Details are on [the DynaMo page](dynamo.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -103,7 +103,7 @@ DynaMo measures: handheld isometric force and IMU range of motion. Details are o
 
 ### SmartSpeed
 
-SmartSpeed measures: timing gate splits, sprint profiles, and jump mat times. Details are on [the SmartSpeed page](vald-other-products-smartspeed.md).
+SmartSpeed measures: timing gate splits, sprint profiles, and jump mat times. Details are on [the SmartSpeed page](smartspeed.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -157,7 +157,7 @@ SmartSpeed measures: timing gate splits, sprint profiles, and jump mat times. De
 
 ### HumanTrak
 
-HumanTrak measures: markerless 3D joint angles, positions, and jumps. Details are on [the HumanTrak page](vald-other-products-humantrak.md).
+HumanTrak measures: markerless 3D joint angles, positions, and jumps. Details are on [the HumanTrak page](humantrak.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -226,7 +226,7 @@ HumanTrak measures: markerless 3D joint angles, positions, and jumps. Details ar
 
 ### GymAware
 
-GymAware measures: barbell or body displacement, velocity, power, and force per rep. Details are on [the GymAware page](vald-other-products-gymaware.md).
+GymAware measures: barbell or body displacement, velocity, power, and force per rep. Details are on [the GymAware page](gymaware.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -835,4 +835,4 @@ These are the public pages and documents behind the metric blocks, grouped by pr
 - https://gymaware.zendesk.com/hc/en-us/articles/6947901598735-FLEX-Considerations
 - https://gymaware.com/barbell-vs-system-velocity/
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

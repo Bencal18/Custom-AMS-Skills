@@ -2,7 +2,7 @@
 
 Hawkin Dynamics and TruStrength are trademarks of their owner. VALD and ForceDecks are trademarks of their owner, and appear here only to compare metric names. This repository is not affiliated with or endorsed by Hawkin Dynamics.
 
-This page is one part of [the Hawkin Dynamics metrics index](hawkin-dynamics.md). It holds 29 metric blocks for the free run on the force plates. The index explains how to read each block, lists the sources with access dates, and holds the name collisions, conflicts, and the worked example. Checked against the same sources, on 2026-10-02.
+This page is one part of [the Hawkin Dynamics metrics index](README.md). It holds 29 metric blocks for the free run on the force plates. The index explains how to read each block, lists the sources with access dates, and holds the name collisions, conflicts, and the worked example. Checked against the same sources, on 2026-10-02.
 
 ## Metric blocks
 

@@ -6,17 +6,17 @@ Checked against: the VALD ForceDecks Technical Glossary V2.0 (March 2024), the V
 
 VALD, ForceDecks, NordBord, VALD Hub, and Hawkin Dynamics are trademarks of their owners. This repository is not affiliated with or endorsed by VALD.
 
-VALD's other products (ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware) are on [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](vald-other-products.md). Hawkin Dynamics force plates are on [Hawkin Dynamics metrics](hawkin-dynamics.md). Some Hawkin metrics share a name with VALD metrics but differ. See [Hawkin and VALD name collisions](hawkin-dynamics.md#hawkin-and-vald-name-collisions) before you compare the two vendors.
+VALD's other products (ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware) are on [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](../vald-other-products/README.md). Hawkin Dynamics force plates are on [Hawkin Dynamics metrics](../hawkin-dynamics/README.md). Some Hawkin metrics share a name with VALD metrics but differ. See [Hawkin and VALD name collisions](../hawkin-dynamics/README.md#hawkin-and-vald-name-collisions) before you compare the two vendors.
 
 ## Pages in this set
 
 Open the metric blocks on these part pages:
 
-- [Countermovement jump](vald-forcedecks-nordbord-cmj.md): 125 metric blocks. Covers the countermovement jump (CMJ) and its loaded, Abalakov, and single-leg variants.
-- [Squat jump and drop jump](vald-forcedecks-nordbord-squat-jump-drop-jump.md): 128 metric blocks. Covers the squat jump (SJ, LSJ) and the drop jump (DJ, SLDJ).
-- [Rebound, hop, and landing tests](vald-forcedecks-nordbord-rebound-hop-landing.md): 60 metric blocks. Covers the countermovement rebound jump (CMRJ, SLCMRJ), hop tests (HJ, SLHJ), Hop and Return (SLHAR), and Land and Hold (LAH, SLLAH).
-- [Squat, push-up, sit to stand, balance, isometric, and general tests](vald-forcedecks-nordbord-squat-isometric-general.md): 75 metric blocks. Covers the squat assessment (SQT, SLSQT), push-up tests (PUSHUPT, PPU), Sit to Stand to Sit (STSTS), balance tests (QSB, SLSB, SLROSB), isometric tests (IMTP and others), General Force-Time Analysis (GFTA), and the cross-test ratios (DSI, EUR).
-- [NordBord](vald-forcedecks-nordbord-nordbord.md): 38 metric blocks. Covers NordBord test metrics and training mode metrics.
+- [Countermovement jump](cmj.md): 125 metric blocks. Covers the countermovement jump (CMJ) and its loaded, Abalakov, and single-leg variants.
+- [Squat jump and drop jump](squat-jump-drop-jump.md): 128 metric blocks. Covers the squat jump (SJ, LSJ) and the drop jump (DJ, SLDJ).
+- [Rebound, hop, and landing tests](rebound-hop-landing.md): 60 metric blocks. Covers the countermovement rebound jump (CMRJ, SLCMRJ), hop tests (HJ, SLHJ), Hop and Return (SLHAR), and Land and Hold (LAH, SLLAH).
+- [Squat, push-up, sit to stand, balance, isometric, and general tests](squat-isometric-general.md): 75 metric blocks. Covers the squat assessment (SQT, SLSQT), push-up tests (PUSHUPT, PPU), Sit to Stand to Sit (STSTS), balance tests (QSB, SLSB, SLROSB), isometric tests (IMTP and others), General Force-Time Analysis (GFTA), and the cross-test ratios (DSI, EUR).
+- [NordBord](nordbord.md): 38 metric blocks. Covers NordBord test metrics and training mode metrics.
 
 ## How to read this page
 
@@ -48,22 +48,22 @@ The table lists each test type, the number of metric blocks on these pages, and 
 
 | Test group | Test codes | Metric blocks | VALD-stated metric count | Page |
 |---|---|---|---|---|
-| Countermovement jump (CMJ, LCMJ, ABCMJ, SLJ) | CMJ, LCMJ, ABCMJ, SLJ | 125 | 112 (User Guide, 2023) | [cmj](vald-forcedecks-nordbord-cmj.md) |
-| Squat jump (SJ, LSJ) | SJ, LSJ | 70 | 71 (User Guide, 2023) | [squat-jump-drop-jump](vald-forcedecks-nordbord-squat-jump-drop-jump.md) |
-| Drop jump (DJ, SLDJ) | DJ, SLDJ | 58 | 59 (User Guide, 2023) | [squat-jump-drop-jump](vald-forcedecks-nordbord-squat-jump-drop-jump.md) |
-| Countermovement rebound jump (CMRJ, SLCMRJ) | CMRJ, SLCMRJ | 26 | 82 (User Guide, 2023) | [rebound-hop-landing](vald-forcedecks-nordbord-rebound-hop-landing.md) |
-| Hop tests (HJ, SLHJ) | HJ, SLHJ | 11 | 54 (User Guide, 2023) | [rebound-hop-landing](vald-forcedecks-nordbord-rebound-hop-landing.md) |
-| Hop and Return (SLHAR) | SLHAR | 8 | Not published | [rebound-hop-landing](vald-forcedecks-nordbord-rebound-hop-landing.md) |
-| Land and Hold (LAH, SLLAH) | LAH, SLLAH | 15 | 3 (2023), more added 2026-07-01 | [rebound-hop-landing](vald-forcedecks-nordbord-rebound-hop-landing.md) |
-| Squat assessment (SQT, SLSQT) | SQT, SLSQT | 24 | 25 (User Guide, 2023) | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| Push up and plyometric push up (PUSHUPT, PPU) | PUSHUPT, PPU | 16 | Not published | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| Sit to Stand to Sit (STSTS) | STSTS | 8 | Not published | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| Balance tests (QSB, SLSB, SLROSB) | QSB, SLSB, SLROSB | 6 | 8 for QSB (User Guide, 2023) | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| Isometric tests (IMTP and others) | IMTP, ISOT, SLISOT, ISOSQT, SLISOSQT, IBSQT, ISOPU, STICR, SLSTICR, SEICR, SLSEICR, SLIMTP, SLHTTI, SLHSSI, SLHNTI, SLHNNI, SHLDISOI, SHLDISOT, SHLDISOY, RSAIP, RSHIP, RSKIP | 16 | 44 (User Guide, 2023) | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| General Force-Time Analysis (GFTA) | GFTA | 3 | Not published | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| Cross-test ratios (DSI, EUR) | Reports | 2 | Not applicable | [squat-isometric-general](vald-forcedecks-nordbord-squat-isometric-general.md) |
-| NordBord test metrics | Nordic, Razor, ISO Prone, ISO 30°, ISO 60°, Custom | 22 | Not published | [nordbord](vald-forcedecks-nordbord-nordbord.md) |
-| NordBord training metrics | Eccentric and isometric training mode | 16 | Not published | [nordbord](vald-forcedecks-nordbord-nordbord.md) |
+| Countermovement jump (CMJ, LCMJ, ABCMJ, SLJ) | CMJ, LCMJ, ABCMJ, SLJ | 125 | 112 (User Guide, 2023) | [cmj](cmj.md) |
+| Squat jump (SJ, LSJ) | SJ, LSJ | 70 | 71 (User Guide, 2023) | [squat-jump-drop-jump](squat-jump-drop-jump.md) |
+| Drop jump (DJ, SLDJ) | DJ, SLDJ | 58 | 59 (User Guide, 2023) | [squat-jump-drop-jump](squat-jump-drop-jump.md) |
+| Countermovement rebound jump (CMRJ, SLCMRJ) | CMRJ, SLCMRJ | 26 | 82 (User Guide, 2023) | [rebound-hop-landing](rebound-hop-landing.md) |
+| Hop tests (HJ, SLHJ) | HJ, SLHJ | 11 | 54 (User Guide, 2023) | [rebound-hop-landing](rebound-hop-landing.md) |
+| Hop and Return (SLHAR) | SLHAR | 8 | Not published | [rebound-hop-landing](rebound-hop-landing.md) |
+| Land and Hold (LAH, SLLAH) | LAH, SLLAH | 15 | 3 (2023), more added 2026-07-01 | [rebound-hop-landing](rebound-hop-landing.md) |
+| Squat assessment (SQT, SLSQT) | SQT, SLSQT | 24 | 25 (User Guide, 2023) | [squat-isometric-general](squat-isometric-general.md) |
+| Push up and plyometric push up (PUSHUPT, PPU) | PUSHUPT, PPU | 16 | Not published | [squat-isometric-general](squat-isometric-general.md) |
+| Sit to Stand to Sit (STSTS) | STSTS | 8 | Not published | [squat-isometric-general](squat-isometric-general.md) |
+| Balance tests (QSB, SLSB, SLROSB) | QSB, SLSB, SLROSB | 6 | 8 for QSB (User Guide, 2023) | [squat-isometric-general](squat-isometric-general.md) |
+| Isometric tests (IMTP and others) | IMTP, ISOT, SLISOT, ISOSQT, SLISOSQT, IBSQT, ISOPU, STICR, SLSTICR, SEICR, SLSEICR, SLIMTP, SLHTTI, SLHSSI, SLHNTI, SLHNNI, SHLDISOI, SHLDISOT, SHLDISOY, RSAIP, RSHIP, RSKIP | 16 | 44 (User Guide, 2023) | [squat-isometric-general](squat-isometric-general.md) |
+| General Force-Time Analysis (GFTA) | GFTA | 3 | Not published | [squat-isometric-general](squat-isometric-general.md) |
+| Cross-test ratios (DSI, EUR) | Reports | 2 | Not applicable | [squat-isometric-general](squat-isometric-general.md) |
+| NordBord test metrics | Nordic, Razor, ISO Prone, ISO 30°, ISO 60°, Custom | 22 | Not published | [nordbord](nordbord.md) |
+| NordBord training metrics | Eccentric and isometric training mode | 16 | Not published | [nordbord](nordbord.md) |
 | **Total** | | **426** | | |
 
 ForceFrame, DynaMo, SmartSpeed, and HumanTrak are out of scope here. See the other VALD products page above.
@@ -74,7 +74,7 @@ Each table lists the metric blocks for one test group, in page order. The last c
 
 ### Countermovement jump (CMJ, LCMJ, ABCMJ, SLJ)
 
-The blocks for this group are on [the countermovement jump page](vald-forcedecks-nordbord-cmj.md).
+The blocks for this group are on [the countermovement jump page](cmj.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -206,7 +206,7 @@ The blocks for this group are on [the countermovement jump page](vald-forcedecks
 
 ### Squat jump (SJ, LSJ)
 
-The blocks for this group are on [the squat jump and drop jump page](vald-forcedecks-nordbord-squat-jump-drop-jump.md).
+The blocks for this group are on [the squat jump and drop jump page](squat-jump-drop-jump.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -283,7 +283,7 @@ The blocks for this group are on [the squat jump and drop jump page](vald-forced
 
 ### Drop jump (DJ, SLDJ)
 
-The blocks for this group are on [the squat jump and drop jump page](vald-forcedecks-nordbord-squat-jump-drop-jump.md).
+The blocks for this group are on [the squat jump and drop jump page](squat-jump-drop-jump.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -348,7 +348,7 @@ The blocks for this group are on [the squat jump and drop jump page](vald-forced
 
 ### Countermovement rebound jump (CMRJ, SLCMRJ)
 
-The blocks for this group are on [the rebound, hop, and landing tests page](vald-forcedecks-nordbord-rebound-hop-landing.md).
+The blocks for this group are on [the rebound, hop, and landing tests page](rebound-hop-landing.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -381,7 +381,7 @@ The blocks for this group are on [the rebound, hop, and landing tests page](vald
 
 ### Hop tests (HJ, SLHJ)
 
-The blocks for this group are on [the rebound, hop, and landing tests page](vald-forcedecks-nordbord-rebound-hop-landing.md).
+The blocks for this group are on [the rebound, hop, and landing tests page](rebound-hop-landing.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -399,7 +399,7 @@ The blocks for this group are on [the rebound, hop, and landing tests page](vald
 
 ### Hop and Return (SLHAR)
 
-The blocks for this group are on [the rebound, hop, and landing tests page](vald-forcedecks-nordbord-rebound-hop-landing.md).
+The blocks for this group are on [the rebound, hop, and landing tests page](rebound-hop-landing.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -414,7 +414,7 @@ The blocks for this group are on [the rebound, hop, and landing tests page](vald
 
 ### Land and Hold (LAH, SLLAH)
 
-The blocks for this group are on [the rebound, hop, and landing tests page](vald-forcedecks-nordbord-rebound-hop-landing.md).
+The blocks for this group are on [the rebound, hop, and landing tests page](rebound-hop-landing.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -436,7 +436,7 @@ The blocks for this group are on [the rebound, hop, and landing tests page](vald
 
 ### Squat assessment (SQT, SLSQT)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -467,7 +467,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### Push up and plyometric push up (PUSHUPT, PPU)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -490,7 +490,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### Sit to Stand to Sit (STSTS)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -505,7 +505,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### Balance tests (QSB, SLSB, SLROSB)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -518,7 +518,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### Isometric tests (IMTP and others)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -541,7 +541,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### General Force-Time Analysis (GFTA)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -551,7 +551,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### Cross-test ratios (DSI, EUR)
 
-The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](vald-forcedecks-nordbord-squat-isometric-general.md).
+The blocks for this group are on [the squat, push-up, sit to stand, balance, isometric, and general tests page](squat-isometric-general.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -560,7 +560,7 @@ The blocks for this group are on [the squat, push-up, sit to stand, balance, iso
 
 ### NordBord test metrics
 
-The blocks for this group are on [the NordBord page](vald-forcedecks-nordbord-nordbord.md).
+The blocks for this group are on [the NordBord page](nordbord.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -589,7 +589,7 @@ The blocks for this group are on [the NordBord page](vald-forcedecks-nordbord-no
 
 ### NordBord training mode metrics
 
-The blocks for this group are on [the NordBord page](vald-forcedecks-nordbord-nordbord.md).
+The blocks for this group are on [the NordBord page](nordbord.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -1218,4 +1218,4 @@ These are the public pages and documents behind the metric blocks. All were acce
 - Weight Settings in ForceDecks Jump: <https://support.vald.com/hc/en-au/articles/5349963760409-Weight-Settings-in-ForceDecks-Jump>, accessed 2026-10-02.
 - Zeroing ForceDecks: <https://support.vald.com/hc/en-au/articles/5000438165785-Zeroing-ForceDecks>, accessed 2026-10-02.
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

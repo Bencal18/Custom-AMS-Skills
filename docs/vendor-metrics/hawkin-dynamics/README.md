@@ -8,16 +8,16 @@ Hawkin Dynamics and TruStrength are trademarks of their owner. VALD and ForceDec
 
 The metric blocks sit on part pages, one per test type. Use these links to open them:
 
-- [Countermovement jump](hawkin-dynamics-cmj.md): 85 metric blocks.
-- [Squat jump](hawkin-dynamics-squat-jump.md): 47 metric blocks.
-- [Drop jump](hawkin-dynamics-drop-jump.md): 85 metric blocks.
-- [Isometric test](hawkin-dynamics-isometric.md): 62 metric blocks.
-- [Countermovement rebound jump](hawkin-dynamics-cmj-rebound.md): 115 metric blocks.
-- [Multi rebound](hawkin-dynamics-multi-rebound.md): 29 metric blocks.
-- [Drop landing](hawkin-dynamics-drop-landing.md): 40 metric blocks.
-- [Free run on the force plates](hawkin-dynamics-free-run.md): 29 metric blocks.
-- [Weigh-in](hawkin-dynamics-weigh-in.md): 4 metric blocks.
-- [TruStrength tests](hawkin-dynamics-trustrength.md): 14 metric blocks.
+- [Countermovement jump](cmj.md): 85 metric blocks.
+- [Squat jump](squat-jump.md): 47 metric blocks.
+- [Drop jump](drop-jump.md): 85 metric blocks.
+- [Isometric test](isometric.md): 62 metric blocks.
+- [Countermovement rebound jump](cmj-rebound.md): 115 metric blocks.
+- [Multi rebound](multi-rebound.md): 29 metric blocks.
+- [Drop landing](drop-landing.md): 40 metric blocks.
+- [Free run on the force plates](free-run.md): 29 metric blocks.
+- [Weigh-in](weigh-in.md): 4 metric blocks.
+- [TruStrength tests](trustrength.md): 14 metric blocks.
 
 ## How to read this page
 
@@ -60,17 +60,17 @@ This table counts metrics per test type. The API count comes from the `MetricDic
 
 | Test type | Canonical test type ID | Abbreviation | API metrics | Metric database web page entries | Web-only metrics added | Blocks on this page | Part page |
 |---|---|---|---|---|---|---|---|
-| Countermovement jump | `7nNduHeM5zETPjHxvm7s` | `CMJ` | 79 | 85 | 6 | 85 | [countermovement jump](hawkin-dynamics-cmj.md) |
-| Squat jump | `QEG7m7DhYsD6BrcQ8pic` | `SJ` | 41 | 46 | 6 | 47 | [squat jump](hawkin-dynamics-squat-jump.md) |
-| Drop jump | `gyBETpRXpdr63Ab2E0V8` | `DJ` | 81 | 84 | 4 | 85 | [drop jump](hawkin-dynamics-drop-jump.md) |
-| Isometric test | `2uS5XD5kXmWgIZ5HhQ3A` | `ISO` | 62 | 54 | 0 | 62 | [isometric test](hawkin-dynamics-isometric.md) |
-| Countermovement rebound jump | `pqgf2TPUOQOQs6r0HQWb` | `CMJR` | 106 | 114 | 9 | 115 | [countermovement rebound jump](hawkin-dynamics-cmj-rebound.md) |
-| Multi rebound | `r4fhrkPdYlLxYQxEeM78` | `MR` | 29 | 29 | 0 | 29 | [multi rebound](hawkin-dynamics-multi-rebound.md) |
-| Drop landing | `rKgI4y3ItTAzUekTUpvR` | `DL` | 38 | 40 | 2 | 40 | [drop landing](hawkin-dynamics-drop-landing.md) |
-| Free run on the force plates | `5pRSUQVSJVnxijpPMck3` | `FREE` | 0 | 29 | 29 | 29 | [free run on the force plates](hawkin-dynamics-free-run.md) |
-| Weigh-in | `ubeWMPN1lJFbuQbAM97s` | `WI` | 4 | 4 | 0 | 4 | [weigh-in](hawkin-dynamics-weigh-in.md) |
-| TruStrength isometric test | `umnEZPgi6zaxuw0KhUpM` | `TSISO` | 7 | Not listed | 0 | 7 | [TruStrength tests](hawkin-dynamics-trustrength.md) |
-| TruStrength free run | `4KlQgKmBxbOY6uKTLDFL` | `TSFR` | 7 | Not listed | 0 | 7 | [TruStrength tests](hawkin-dynamics-trustrength.md) |
+| Countermovement jump | `7nNduHeM5zETPjHxvm7s` | `CMJ` | 79 | 85 | 6 | 85 | [countermovement jump](cmj.md) |
+| Squat jump | `QEG7m7DhYsD6BrcQ8pic` | `SJ` | 41 | 46 | 6 | 47 | [squat jump](squat-jump.md) |
+| Drop jump | `gyBETpRXpdr63Ab2E0V8` | `DJ` | 81 | 84 | 4 | 85 | [drop jump](drop-jump.md) |
+| Isometric test | `2uS5XD5kXmWgIZ5HhQ3A` | `ISO` | 62 | 54 | 0 | 62 | [isometric test](isometric.md) |
+| Countermovement rebound jump | `pqgf2TPUOQOQs6r0HQWb` | `CMJR` | 106 | 114 | 9 | 115 | [countermovement rebound jump](cmj-rebound.md) |
+| Multi rebound | `r4fhrkPdYlLxYQxEeM78` | `MR` | 29 | 29 | 0 | 29 | [multi rebound](multi-rebound.md) |
+| Drop landing | `rKgI4y3ItTAzUekTUpvR` | `DL` | 38 | 40 | 2 | 40 | [drop landing](drop-landing.md) |
+| Free run on the force plates | `5pRSUQVSJVnxijpPMck3` | `FREE` | 0 | 29 | 29 | 29 | [free run on the force plates](free-run.md) |
+| Weigh-in | `ubeWMPN1lJFbuQbAM97s` | `WI` | 4 | 4 | 0 | 4 | [weigh-in](weigh-in.md) |
+| TruStrength isometric test | `umnEZPgi6zaxuw0KhUpM` | `TSISO` | 7 | Not listed | 0 | 7 | [TruStrength tests](trustrength.md) |
+| TruStrength free run | `4KlQgKmBxbOY6uKTLDFL` | `TSFR` | 7 | Not listed | 0 | 7 | [TruStrength tests](trustrength.md) |
 | Total | | | 454 | 485 | 56 | 510 | |
 
 Read the counts with these points in mind:
@@ -87,7 +87,7 @@ Each table lists the metrics of one test type. The last column shows whether Haw
 
 ### Countermovement jump
 
-The 85 metric blocks are on [the countermovement jump part page](hawkin-dynamics-cmj.md).
+The 85 metric blocks are on [the countermovement jump part page](cmj.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -179,7 +179,7 @@ The 85 metric blocks are on [the countermovement jump part page](hawkin-dynamics
 
 ### Squat jump
 
-The 47 metric blocks are on [the squat jump part page](hawkin-dynamics-squat-jump.md).
+The 47 metric blocks are on [the squat jump part page](squat-jump.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -233,7 +233,7 @@ The 47 metric blocks are on [the squat jump part page](hawkin-dynamics-squat-jum
 
 ### Drop jump
 
-The 85 metric blocks are on [the drop jump part page](hawkin-dynamics-drop-jump.md).
+The 85 metric blocks are on [the drop jump part page](drop-jump.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -325,7 +325,7 @@ The 85 metric blocks are on [the drop jump part page](hawkin-dynamics-drop-jump.
 
 ### Isometric test
 
-The 62 metric blocks are on [the isometric test part page](hawkin-dynamics-isometric.md).
+The 62 metric blocks are on [the isometric test part page](isometric.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -394,7 +394,7 @@ The 62 metric blocks are on [the isometric test part page](hawkin-dynamics-isome
 
 ### Countermovement rebound jump
 
-The 115 metric blocks are on [the countermovement rebound jump part page](hawkin-dynamics-cmj-rebound.md).
+The 115 metric blocks are on [the countermovement rebound jump part page](cmj-rebound.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -516,7 +516,7 @@ The 115 metric blocks are on [the countermovement rebound jump part page](hawkin
 
 ### Multi rebound
 
-The 29 metric blocks are on [the multi rebound part page](hawkin-dynamics-multi-rebound.md).
+The 29 metric blocks are on [the multi rebound part page](multi-rebound.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -552,7 +552,7 @@ The 29 metric blocks are on [the multi rebound part page](hawkin-dynamics-multi-
 
 ### Drop landing
 
-The 40 metric blocks are on [the drop landing part page](hawkin-dynamics-drop-landing.md).
+The 40 metric blocks are on [the drop landing part page](drop-landing.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -599,7 +599,7 @@ The 40 metric blocks are on [the drop landing part page](hawkin-dynamics-drop-la
 
 ### Free run on the force plates
 
-The 29 metric blocks are on [the free run on the force plates part page](hawkin-dynamics-free-run.md).
+The 29 metric blocks are on [the free run on the force plates part page](free-run.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -635,7 +635,7 @@ The 29 metric blocks are on [the free run on the force plates part page](hawkin-
 
 ### Weigh-in
 
-The 4 metric blocks are on [the weigh-in part page](hawkin-dynamics-weigh-in.md).
+The 4 metric blocks are on [the weigh-in part page](weigh-in.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -646,7 +646,7 @@ The 4 metric blocks are on [the weigh-in part page](hawkin-dynamics-weigh-in.md)
 
 ### TruStrength isometric test
 
-The 7 metric blocks are on [the TruStrength tests part page](hawkin-dynamics-trustrength.md).
+The 7 metric blocks are on [the TruStrength tests part page](trustrength.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -660,7 +660,7 @@ The 7 metric blocks are on [the TruStrength tests part page](hawkin-dynamics-tru
 
 ### TruStrength free run
 
-The 7 metric blocks are on [the TruStrength tests part page](hawkin-dynamics-trustrength.md).
+The 7 metric blocks are on [the TruStrength tests part page](trustrength.md).
 
 | Metric | What it measures | Units | Calculation published |
 |---|---|---|---|
@@ -1128,7 +1128,7 @@ These sources support the facts on this page:
 - VALD ForceDecks Technical Glossary V2.0: <https://support.vald.com/hc/en-au/articles/31552969607321-ForceDecks-Technical-Metric-Glossary>, accessed 2026-10-02.
 - VALD help: key moments and phases of a CMJ: <https://support.vald.com/hc/en-au/articles/4999710329113-Key-Moments-and-Phases-of-a-Countermovement-Jump>, accessed 2026-10-02.
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.
 
 [Badby 2023]: https://doi.org/10.3390/s23104820
 [Hawkin blog, center of pressure]: https://www.hawkindynamics.com/blog/cop

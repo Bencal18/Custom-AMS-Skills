@@ -4,7 +4,7 @@ This page explains how VALD ForceDecks calculates each metric for these tests. I
 
 VALD, ForceDecks, NordBord, VALD Hub, and Hawkin Dynamics are trademarks of their owners. This repository is not affiliated with or endorsed by VALD.
 
-This page is part of [VALD ForceDecks and NordBord metrics](vald-forcedecks-nordbord.md). The index explains how to read each block, and it holds the event and term glossary, the factors that change the numbers, the conflicts in VALD's own sources, the Not published list, the worked example, and the sources with access dates. VALD's other products (ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware) are on [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](vald-other-products.md). Hawkin Dynamics force plates are on [Hawkin Dynamics metrics](hawkin-dynamics.md). Some Hawkin metrics share a name with VALD metrics but differ. See [Hawkin and VALD name collisions](hawkin-dynamics.md#hawkin-and-vald-name-collisions) before you compare the two vendors.
+This page is part of [VALD ForceDecks and NordBord metrics](README.md). The index explains how to read each block, and it holds the event and term glossary, the factors that change the numbers, the conflicts in VALD's own sources, the Not published list, the worked example, and the sources with access dates. VALD's other products (ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware) are on [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](../vald-other-products/README.md). Hawkin Dynamics force plates are on [Hawkin Dynamics metrics](../hawkin-dynamics/README.md). Some Hawkin metrics share a name with VALD metrics but differ. See [Hawkin and VALD name collisions](../hawkin-dynamics/README.md#hawkin-and-vald-name-collisions) before you compare the two vendors.
 
 ## Metric blocks
 
@@ -25,7 +25,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Default CMRJ and SLCMRJ metric ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Rebound Jump Height (Imp-Mom)`
@@ -39,7 +39,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Default CMRJ metric ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Rebound Jump Height (Flight Time)`
@@ -53,7 +53,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Default SLCMRJ metric ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight; landing technique ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight; landing technique ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.19](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Rebound Contact Time`
@@ -67,7 +67,7 @@ This metric has these fields:
 - **Units:** ms.
 - **Variants:** A release fixed its display unit from cm to ms ([ForceDecks Windows - Release Notes](https://support.vald.com/hc/en-au/articles/29733426841113-ForceDecks-Windows-Release-Notes)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [ForceDecks Windows - Release Notes](https://support.vald.com/hc/en-au/articles/29733426841113-ForceDecks-Windows-Release-Notes).
 
 #### `Rebound RSI (JH (Flight Time) / Contact Time)`
@@ -81,7 +81,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Default CMRJ and SLCMRJ metric; unit shown as `-` ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight; changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight; changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Takeoff Peak Power / BM`
@@ -95,7 +95,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.21](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Peak Drop Landing Force`
@@ -109,7 +109,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** The User Guide lists it only under Asymmetry Metrics ([User Guide p.21](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.21](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [User Guide p.19](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Peak Landing Force`
@@ -123,7 +123,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** The User Guide lists it only under Asymmetry Metrics ([User Guide p.21](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.21](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [User Guide p.19](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Takeoff Eccentric Deceleration Peak Force`
@@ -137,7 +137,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** `/ BW` variant.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Takeoff Eccentric Deceleration Peak Force / BW`
@@ -151,7 +151,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Takeoff Concentric Impulse:Eccentric Deceleration Impulse Ratio`
@@ -165,7 +165,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Takeoff Eccentric Acceleration Phase Duration`
@@ -179,7 +179,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Takeoff Eccentric Deceleration Phase Duration`
@@ -193,7 +193,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Takeoff Concentric Phase:Contraction Time Ratio`
@@ -207,7 +207,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Takeoff Eccentric Deceleration:Contraction Time Ratio`
@@ -221,7 +221,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Takeoff Eccentric Unloading Phase:Contraction Time Ratio`
@@ -235,7 +235,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Takeoff Eccentric Yielding Phase:Contraction Time Ratio`
@@ -249,7 +249,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Takeoff Eccentric Acceleration Phase:Contraction Time Ratio`
@@ -263,7 +263,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Power`
@@ -277,7 +277,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** `/ BM` variant.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Eccentric Deceleration Mean Power / BM`
@@ -291,7 +291,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Eccentric Deceleration Mean Velocity`
@@ -305,7 +305,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [User Guide p.20](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Take-off Momentum`
@@ -319,7 +319,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published. Which take-off (first or second) is not published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Start of movement method and threshold; start of integration setting; body weight accuracy; take-off threshold (20 N or 30 N); body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Mean Landing Force`
@@ -333,7 +333,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Landing Stiffness`
@@ -347,7 +347,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight; start of integration setting; body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight; start of integration setting; body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Bodyweight in Kilograms`
@@ -361,7 +361,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -375,7 +375,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
 ### Hop tests (HJ, SLHJ)
@@ -395,7 +395,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Default HJ metric. The SLHJ default is written `Mean RSI (JH (Flight Time) / Contact Time)` ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** The User Guide links the mean of the best 5 of 10 hops to the '10/5 RSI' ([User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Hop Test](https://support.vald.com/hc/en-au/articles/4999706431001-Key-Moments-and-Phases-of-a-Hop-Test), [User Guide p.51](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Mean Jump Height (Flight Time)`
@@ -409,7 +409,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Default HJ and SLHJ metric.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; landing technique ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; landing technique ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Hop Test](https://support.vald.com/hc/en-au/articles/4999706431001-Key-Moments-and-Phases-of-a-Hop-Test), [User Guide p.51](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Mean Contact Time`
@@ -423,7 +423,7 @@ This metric has these fields:
 - **Units:** ms.
 - **Variants:** Default HJ and SLHJ metric.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Hop Test](https://support.vald.com/hc/en-au/articles/4999706431001-Key-Moments-and-Phases-of-a-Hop-Test), [User Guide p.51](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Mean Impulse`
@@ -437,7 +437,7 @@ This metric has these fields:
 - **Units:** Ns.
 - **Variants:** `Mean Impulse – Asymmetry` is a default HJ metric ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)). The common-tests page lists the unit as N/s, which conflicts with Ns ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Hop Test](https://support.vald.com/hc/en-au/articles/4999706431001-Key-Moments-and-Phases-of-a-Hop-Test), [User Guide p.51](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Best Reactive Strength Index (RSI)`
@@ -451,7 +451,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published; the export label may differ from the User Guide wording.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Hop Test](https://support.vald.com/hc/en-au/articles/4999706431001-Key-Moments-and-Phases-of-a-Hop-Test), [User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `RSI (Flight Time/Contact Time)`
@@ -465,7 +465,7 @@ This metric has these fields:
 - **Units:** Unitless.
 - **Variants:** Listed for the Single Leg Hop Test ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)). Window (best hop or mean) not published. The glossary defines the same-named drop jump metric as the ratio of flight time to contact time ([Glossary V2.0 p.12](https://support.vald.com/hc/en-au/article_attachments/31552911571353)); VALD does not confirm that the hop version uses it.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.102](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application), [Glossary V2.0 p.12](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Contact Time`
@@ -479,7 +479,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Mean Active Stiffness`
@@ -493,7 +493,7 @@ This metric has these fields:
 - **Units:** N/m.
 - **Variants:** Listed for the SLHJ ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; stability before and after the movement; take-off threshold (20 N or 30 N); landing threshold and impacts during flight; body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Peak Force`
@@ -507,7 +507,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** `Peak Force Asymmetry` (per hop) and `Mean Peak Force Asymmetry` (average of per-rep peaks) ([User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Number and style of hops; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Number and style of hops; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.52](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Bodyweight in Kilograms`
@@ -521,7 +521,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -535,7 +535,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
 ### Hop and Return (SLHAR)
@@ -553,7 +553,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** Default SLHAR metric.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Peak First Landing Force`
@@ -567,7 +567,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Default SLHAR metric.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Peak Takeoff Force`
@@ -581,7 +581,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Default SLHAR metric.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Time to Stabilization`
@@ -595,7 +595,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** A release fixed inconsistent calculation of this metric for Hop and Return ([ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Duration`
@@ -609,7 +609,7 @@ This metric has these fields:
 - **Units:** ms.
 - **Variants:** Listed for SLHAR in ms and in s on the common-tests page ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Concentric Duration`
@@ -623,7 +623,7 @@ This metric has these fields:
 - **Units:** ms.
 - **Variants:** Listed for SLHAR in ms and in s ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N) ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N) ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Bodyweight in Kilograms`
@@ -637,7 +637,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -651,7 +651,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
 ### Land and Hold (LAH, SLLAH)
@@ -671,7 +671,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** `Time to Stabilization – Bilateral Total` is the LAH default; SLLAH reports the single-leg value ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Drop technique and drop height ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). Stepping off too soon, putting the other foot down or hopping prevents detection ([User Guide p.56](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
+- **What changes the number:** Drop technique and drop height ([factor details](README.md#factors-that-change-the-numbers)). Stepping off too soon, putting the other foot down or hopping prevents detection ([User Guide p.56](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [User Guide p.57](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [User Guide p.56](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Peak Drop Landing Force`
@@ -685,7 +685,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** `Peak Drop Landing Force – Bilateral Total` and `Peak Drop Landing Force – Asymmetry` are LAH defaults ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Drop technique and drop height; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Drop technique and drop height; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Peak Drop Landing Force / BW`
@@ -699,7 +699,7 @@ This metric has these fields:
 - **Units:** N/kg.
 - **Variants:** SLLAH default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report; body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report; body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Peak Landing Force`
@@ -713,7 +713,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Drop technique and drop height ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Drop technique and drop height ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.57](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Stability Depth`
@@ -727,7 +727,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Peak Drop Landing Acceleration`
@@ -741,7 +741,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Mean Drop Landing Acceleration`
@@ -755,7 +755,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Peak Drop Landing Velocity`
@@ -769,7 +769,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Peak Drop Landing Power`
@@ -783,7 +783,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Passive Stiffness`
@@ -797,7 +797,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Landing Stiffness`
@@ -811,7 +811,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; drop technique and drop height; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Drop Landing RFD`
@@ -825,7 +825,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Drop technique and drop height; sampling rate ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Drop technique and drop height; sampling rate ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS v3.3.0 Release Notes, 2026-07-01](https://support.vald.com/hc/en-au/articles/59548906192537-ForceDecks-iOS-v3-3-0-Release-Notes-1-July-2026).
 
 #### `Drop Landing`
@@ -839,7 +839,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Drop technique and drop height ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Drop technique and drop height ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments of a Land and Hold Test](https://support.vald.com/hc/en-au/articles/4999681991065-Key-Moments-of-a-Land-and-Hold-Test), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Bodyweight in Kilograms`
@@ -853,7 +853,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -867,7 +867,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

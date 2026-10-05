@@ -4,7 +4,7 @@ This page explains how VALD ForceDecks calculates each metric for these tests. I
 
 VALD, ForceDecks, NordBord, VALD Hub, and Hawkin Dynamics are trademarks of their owners. This repository is not affiliated with or endorsed by VALD.
 
-This page is part of [VALD ForceDecks and NordBord metrics](vald-forcedecks-nordbord.md). The index explains how to read each block, and it holds the event and term glossary, the factors that change the numbers, the conflicts in VALD's own sources, the Not published list, the worked example, and the sources with access dates. VALD's other products (ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware) are on [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](vald-other-products.md). Hawkin Dynamics force plates are on [Hawkin Dynamics metrics](hawkin-dynamics.md). Some Hawkin metrics share a name with VALD metrics but differ. See [Hawkin and VALD name collisions](hawkin-dynamics.md#hawkin-and-vald-name-collisions) before you compare the two vendors.
+This page is part of [VALD ForceDecks and NordBord metrics](README.md). The index explains how to read each block, and it holds the event and term glossary, the factors that change the numbers, the conflicts in VALD's own sources, the Not published list, the worked example, and the sources with access dates. VALD's other products (ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware) are on [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](../vald-other-products/README.md). Hawkin Dynamics force plates are on [Hawkin Dynamics metrics](../hawkin-dynamics/README.md). Some Hawkin metrics share a name with VALD metrics but differ. See [Hawkin and VALD name collisions](../hawkin-dynamics/README.md#hawkin-and-vald-name-collisions) before you compare the two vendors.
 
 ## Metric blocks
 
@@ -25,7 +25,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Added for SQT and SLSQT in a release ([ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes)). VALD Health also describes it as total downward displacement of the centre of mass ([Squat Assessment: Understanding kinetics and kinematics](https://valdhealth.com/news/squat-assessment-understanding-kinetics-and-kinematics)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [Squat Assessment: Understanding kinetics and kinematics](https://valdhealth.com/news/squat-assessment-understanding-kinetics-and-kinematics).
 
 #### `Maximum Negative Displacement`
@@ -39,7 +39,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Listed for SQT, SLSQT and Push Up ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Eccentric Peak Velocity`
@@ -53,7 +53,7 @@ This metric has these fields:
 - **Units:** m/s.
 - **Variants:** SLSQT default ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Eccentric Mean Velocity`
@@ -67,7 +67,7 @@ This metric has these fields:
 - **Units:** m/s.
 - **Variants:** SQT default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Concentric Mean Velocity`
@@ -81,7 +81,7 @@ This metric has these fields:
 - **Units:** m/s.
 - **Variants:** SQT default. VALD Health: average upward speed from maximum squat depth to end of movement ([Squat Assessment: Understanding kinetics and kinematics](https://valdhealth.com/news/squat-assessment-understanding-kinetics-and-kinematics)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Squat Assessment: Understanding kinetics and kinematics](https://valdhealth.com/news/squat-assessment-understanding-kinetics-and-kinematics).
 
 #### `Concentric Peak Velocity`
@@ -95,7 +95,7 @@ This metric has these fields:
 - **Units:** m/s.
 - **Variants:** SLSQT default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Peak Force`
@@ -109,7 +109,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** `Peak Force Asymmetry` ([User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Eccentric Peak Force`
@@ -123,7 +123,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Asymmetry variant listed for SQT and Push Up ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Concentric Peak Force`
@@ -137,7 +137,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Asymmetry variant listed for SQT and Push Up ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Eccentric Mean Force Asymmetry`
@@ -151,7 +151,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Concentric Mean Force Asymmetry`
@@ -165,7 +165,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Eccentric Impulse`
@@ -179,7 +179,7 @@ This metric has these fields:
 - **Units:** Ns.
 - **Variants:** `Eccentric Impulse – Asymmetry` is an SQT default; SLSQT shows the single-leg value ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Concentric Impulse`
@@ -193,7 +193,7 @@ This metric has these fields:
 - **Units:** Ns.
 - **Variants:** `Concentric Impulse – Asymmetry` is an SQT default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Eccentric Peak Power`
@@ -207,7 +207,7 @@ This metric has these fields:
 - **Units:** W.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [User Guide p.44](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Concentric Peak Power / BM`
@@ -221,7 +221,7 @@ This metric has these fields:
 - **Units:** W/kg.
 - **Variants:** Listed for SLSQT ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Eccentric Deceleration Peak Force`
@@ -235,7 +235,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Also for Push Up.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Force`
@@ -249,7 +249,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Also for Push Up.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Peak Force / BW`
@@ -263,7 +263,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Power`
@@ -277,7 +277,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** `/ BM` variant.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Power / BM`
@@ -291,7 +291,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report; body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report; body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Velocity`
@@ -305,7 +305,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; external load; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Key Moments and Phases of a Squat Assessment](https://support.vald.com/hc/en-au/articles/4999722757401-Key-Moments-and-Phases-of-a-Squat-Assessment), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Additional Load`
@@ -319,7 +319,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Exported for LCMJ, LSJ, PUSHUPT, SLSQT and SQT since 2026-09-28 ([VALD Hub Release Notes, 2026-09-28](https://support.vald.com/hc/en-au/articles/62663382316697-VALD-Hub-Release-Notes-28-September-2026)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; external load ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). Entering the wrong load produces poor start-of-movement detection and missed reps ([User Guide p.40](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
+- **What changes the number:** Body weight accuracy; external load ([factor details](README.md#factors-that-change-the-numbers)). Entering the wrong load produces poor start-of-movement detection and missed reps ([User Guide p.40](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Sources:** [Performing a test in ForceDecks with external load](https://support.vald.com/hc/en-au/articles/5978399478041-Performing-a-test-in-ForceDecks-with-external-load), [VALD Hub Release Notes, 2026-09-28](https://support.vald.com/hc/en-au/articles/62663382316697-VALD-Hub-Release-Notes-28-September-2026), [User Guide p.40](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Bodyweight in Kilograms`
@@ -333,7 +333,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -347,7 +347,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
 ### Push up and plyometric push up (PUSHUPT, PPU)
@@ -365,7 +365,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** PUSHUPT default; added in a release ([ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Impulse – Asymmetry`
@@ -379,7 +379,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** PUSHUPT and PPU default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Concentric Impulse – Asymmetry`
@@ -393,7 +393,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** PUSHUPT and PPU default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Eccentric Mean Velocity`
@@ -407,7 +407,7 @@ This metric has these fields:
 - **Units:** m/s.
 - **Variants:** PUSHUPT default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Concentric Mean Velocity`
@@ -421,7 +421,7 @@ This metric has these fields:
 - **Units:** m/s.
 - **Variants:** PUSHUPT default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Eccentric Peak Force`
@@ -435,7 +435,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Asymmetry variant listed for Push Up ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Concentric Peak Force`
@@ -449,7 +449,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Asymmetry variant listed for Push Up ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Maximum Negative Displacement`
@@ -463,7 +463,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** Listed for Push Up ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Push Up Height (Flight Time)`
@@ -477,7 +477,7 @@ This metric has these fields:
 - **Units:** cm.
 - **Variants:** PPU default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Take-off threshold (20 N or 30 N); landing threshold and impacts during flight ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Takeoff Peak Force / BM`
@@ -491,7 +491,7 @@ This metric has these fields:
 - **Units:** N/kg.
 - **Variants:** PPU default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report; body mass used to normalise ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report; body mass used to normalise ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Peak Landing Force – Asymmetry`
@@ -505,7 +505,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** PPU default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Landing threshold and impacts during flight; foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Landing threshold and impacts during flight; foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Eccentric Deceleration Peak Force`
@@ -519,7 +519,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** `/ BW` variant listed for PPU and PUSHUPT.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Force`
@@ -533,7 +533,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Power`
@@ -547,7 +547,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** `/ BM` variant.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Eccentric Deceleration Mean Velocity`
@@ -561,7 +561,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Additional Load`
@@ -575,7 +575,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Exported for PUSHUPT ([VALD Hub Release Notes, 2026-09-28](https://support.vald.com/hc/en-au/articles/62663382316697-VALD-Hub-Release-Notes-28-September-2026)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** External load ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** External load ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Performing a test in ForceDecks with external load](https://support.vald.com/hc/en-au/articles/5978399478041-Performing-a-test-in-ForceDecks-with-external-load), [VALD Hub Release Notes, 2026-09-28](https://support.vald.com/hc/en-au/articles/62663382316697-VALD-Hub-Release-Notes-28-September-2026).
 
 ### Sit to Stand to Sit (STSTS)
@@ -593,7 +593,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** STSTS default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). Chair height changes difficulty ([ForceDecks Test Protocol - Sit to Stand to Sit](https://support.vald.com/hc/en-au/articles/6725192582425-ForceDecks-Test-Protocol-Sit-to-Stand-to-Sit)).
+- **What changes the number:** Which trial you report ([factor details](README.md#factors-that-change-the-numbers)). Chair height changes difficulty ([ForceDecks Test Protocol - Sit to Stand to Sit](https://support.vald.com/hc/en-au/articles/6725192582425-ForceDecks-Test-Protocol-Sit-to-Stand-to-Sit)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [ForceDecks Test Protocol - Sit to Stand to Sit](https://support.vald.com/hc/en-au/articles/6725192582425-ForceDecks-Test-Protocol-Sit-to-Stand-to-Sit).
 
 #### `Time to Sit`
@@ -607,7 +607,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** STSTS default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). Chair height changes difficulty ([ForceDecks Test Protocol - Sit to Stand to Sit](https://support.vald.com/hc/en-au/articles/6725192582425-ForceDecks-Test-Protocol-Sit-to-Stand-to-Sit)).
+- **What changes the number:** Which trial you report ([factor details](README.md#factors-that-change-the-numbers)). Chair height changes difficulty ([ForceDecks Test Protocol - Sit to Stand to Sit](https://support.vald.com/hc/en-au/articles/6725192582425-ForceDecks-Test-Protocol-Sit-to-Stand-to-Sit)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [ForceDecks Test Protocol - Sit to Stand to Sit](https://support.vald.com/hc/en-au/articles/6725192582425-ForceDecks-Test-Protocol-Sit-to-Stand-to-Sit).
 
 #### `Mean Standing Force – Asymmetry`
@@ -621,7 +621,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** STSTS default. VALD Health calls it 'Average Standing & Sitting Force Asymmetry' ([The Sit-to-Stand Test](https://valdhealth.com/news/the-sit-to-stand-test-a-key-assessment-tool-in-modern-rehabilitation-and-fitness)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353), [The Sit-to-Stand Test](https://valdhealth.com/news/the-sit-to-stand-test-a-key-assessment-tool-in-modern-rehabilitation-and-fitness).
 
 #### `Mean Sitting Force – Asymmetry`
@@ -635,7 +635,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** STSTS default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 #### `Peak Standing Force`
@@ -649,7 +649,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Listed as left and right side values ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Mean Standing RFD`
@@ -663,7 +663,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** None published.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [The Sit-to-Stand Test](https://valdhealth.com/news/the-sit-to-stand-test-a-key-assessment-tool-in-modern-rehabilitation-and-fitness).
 
 #### `Bodyweight in Kilograms`
@@ -677,7 +677,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -691,7 +691,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Weighing Profiles in ForceDecks](https://support.vald.com/hc/en-au/articles/5000560831641-Weighing-Profiles-in-ForceDecks), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
 ### Balance tests (QSB, SLSB, SLROSB)
@@ -711,7 +711,7 @@ This metric has these fields:
 - **Units:** mm.
 - **Variants:** API identifier `BAL_COP_TOTAL_EXCURSION`, unit `Millimeter`, supports asymmetry ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Balance testing with ForceDecks: A beginner's guide to Centre of Pressure metrics](https://valdhealth.com/news/balance-testing-beginners-guide-centre-of-pressure-metrics), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Mean Velocity`
@@ -725,7 +725,7 @@ This metric has these fields:
 - **Units:** mm/s.
 - **Variants:** Default for all balance tests ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** VALD prefers it over total excursion because it compares across test lengths ([Balance testing with ForceDecks: A beginner's guide to Centre of Pressure metrics](https://valdhealth.com/news/balance-testing-beginners-guide-centre-of-pressure-metrics)).
-- **What changes the number:** Test conditions; lifting a foot during the test ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Test conditions; lifting a foot during the test ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Balance testing with ForceDecks: A beginner's guide to Centre of Pressure metrics](https://valdhealth.com/news/balance-testing-beginners-guide-centre-of-pressure-metrics), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Area of CoP Ellipse`
@@ -739,7 +739,7 @@ This metric has these fields:
 - **Units:** mm2.
 - **Variants:** Default for all balance tests.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `CoP Range, Medial-Lateral`
@@ -753,7 +753,7 @@ This metric has these fields:
 - **Units:** mm.
 - **Variants:** `CoP Range, Medial-Lateral – Bilateral` for QSB uses the combined CoP of both plates ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `CoP Range, Anterior-Posterior`
@@ -767,7 +767,7 @@ This metric has these fields:
 - **Units:** mm.
 - **Variants:** `CoP Range, Anterior-Posterior – Bilateral` for QSB ([Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Test length; test conditions; lifting a foot during the test ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS).
 
 #### `Mean Force – Asymmetry`
@@ -781,7 +781,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** QSB default.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Foot placement and landing timing; test conditions ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Foot placement and landing timing; test conditions ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353).
 
 ### Isometric tests (IMTP and others)
@@ -803,7 +803,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** `Peak Vertical Force [N] Asymmetry` ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)); `Peak Vertical Force / BM`; `Peak Vertical Force (Net of BW)`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Pretension; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). An impact without pretension can register as the peak; that peak is not a real muscular action ([User Guide p.66](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
+- **What changes the number:** Pretension; which trial you report ([factor details](README.md#factors-that-change-the-numbers)). An impact without pretension can register as the peak; that peak is not a real muscular action ([User Guide p.66](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Sources:** [User Guide p.70](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application), [User Guide p.66](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Peak Vertical Force / BM`
@@ -817,7 +817,7 @@ This metric has these fields:
 - **Units:** N/kg.
 - **Variants:** The User Guide writes `Peak Vertical Force/BW` ([User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.70](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Peak Vertical Force (Net of BW)`
@@ -831,7 +831,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Added in a release ([ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes)). A VALD article on the Isometric Belt Squat, writing about peak force net of body weight in general rather than this export metric, describes it as a measure that practitioners commonly use to compare athletes and to track change over time ([Isometric Belt Squat: A practical alternative for lower-body strength testing](https://valdperformance.com/news/isometric-belt-squat-a-practical-alternative-for-lower-body-strength-testing)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.70](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [Isometric Belt Squat: A practical alternative for lower-body strength testing](https://valdperformance.com/news/isometric-belt-squat-a-practical-alternative-for-lower-body-strength-testing).
 
 #### `Force at 100ms`
@@ -845,7 +845,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** The User Guide lists `Force @ 100/150/200ms` ([User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). A VALD Health table calls force at fixed time points sensitive to execution strategy (for example pretension) and clinician cueing ([Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)). A VALD Health table calls force at fixed time points sensitive to execution strategy (for example pretension) and clinician cueing ([Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development).
 
 #### `Force @ 150ms`
@@ -859,7 +859,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Name written as `Force @ 100/150/200ms` in the User Guide ([User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)); exact export label not confirmed.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Force @ 200ms`
@@ -873,7 +873,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** As above ([User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `RFD at 100ms`
@@ -887,7 +887,7 @@ This metric has these fields:
 - **Units:** N/s.
 - **Variants:** The User Guide lists a rate of force development at a time epoch you choose ([User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report; sampling rate ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report; sampling rate ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Updated ForceDecks Default Metrics for Streamlined Assessments](https://valdhealth.com/news/smarter-defaults-for-aligned-decision-making-in-forcedecks), [User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `RFD - 100-150`
@@ -901,7 +901,7 @@ This metric has these fields:
 - **Units:** N/s.
 - **Variants:** Listed for SLISOT ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report; sampling rate ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report; sampling rate ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Start Time to 80% Net Peak Force`
@@ -915,7 +915,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** `Start Time to 80% Peak Force` is listed for the IMTP ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** The VALD Health default-metrics article describes this net metric as often more reliable than RFD ([Updated ForceDecks Default Metrics for Streamlined Assessments](https://valdhealth.com/news/smarter-defaults-for-aligned-decision-making-in-forcedecks)). A separate VALD Health table says `Time to 80% Peak Force` (not the net version) is a more reliable way to assess rapid force development than time to peak force ([Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development)).
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Default metrics](https://support.vald.com/hc/en-au/articles/59342932219289-Default-result-metrics-in-ForceDecks-iOS), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application), [Updated ForceDecks Default Metrics for Streamlined Assessments](https://valdhealth.com/news/smarter-defaults-for-aligned-decision-making-in-forcedecks), [Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development).
 
 #### `Start Time to 80% Peak Force`
@@ -929,7 +929,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** Listed for the IMTP ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Start Time to Peak Force`
@@ -943,7 +943,7 @@ This metric has these fields:
 - **Units:** s.
 - **Variants:** Listed for the ASH test ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Understanding Rate of Force Development](https://valdhealth.com/news/understanding-rate-of-force-development), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 #### `Absolute Impulse`
@@ -957,7 +957,7 @@ This metric has these fields:
 - **Units:** Ns.
 - **Variants:** `Absolute Impulse Asymmetry` ([User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.71](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Relative Peak Force`
@@ -971,7 +971,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Named in the Run-Specific Iso-Push protocols ([ForceDecks Test Protocol - Run-Specific Knee Iso-Push](https://support.vald.com/hc/en-au/articles/30764623490713-ForceDecks-Test-Protocol-Run-Specific-Knee-Iso-Push)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [User Guide p.70](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Cheat sheet: Quadrant Plots](https://resources.vald.com/hubfs/VALD%20Cheat%20Sheets%20(Resource)/Quadrant_Plot_Natera.pdf), [ForceDecks Test Protocol - Run-Specific Knee Iso-Push](https://support.vald.com/hc/en-au/articles/30764623490713-ForceDecks-Test-Protocol-Run-Specific-Knee-Iso-Push).
 
 #### `Impulse (Net of BW)`
@@ -985,7 +985,7 @@ This metric has these fields:
 - **Units:** Not published.
 - **Variants:** Test types not stated.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Isometric start-of-movement detection; pretension; weighing position; which trial you report ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes).
 
 #### `Bodyweight in Kilograms`
@@ -999,7 +999,7 @@ This metric has these fields:
 - **Units:** kg.
 - **Variants:** `Bodyweight in Pounds`. Test-level `weight` field in the API, which is -1 when weighing was skipped ([FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks Test Protocol - Isometric Test](https://support.vald.com/hc/en-au/articles/4999815982361-ForceDecks-Test-Protocol-Isometric-Test), [User Guide p.64](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS), [ForceDecks iOS - Release Notes](https://support.vald.com/hc/en-au/articles/29732555497241-ForceDecks-iOS-Release-Notes), [FD API guide](https://support.vald.com/hc/en-au/articles/38086939480729-A-guide-to-using-the-External-ForceDecks-API).
 
 #### `Bodyweight in Pounds`
@@ -1013,7 +1013,7 @@ This metric has these fields:
 - **Units:** lb.
 - **Variants:** `Bodyweight in Kilograms`.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Body weight accuracy ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Body weight accuracy ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [ForceDecks Test Protocol - Isometric Test](https://support.vald.com/hc/en-au/articles/4999815982361-ForceDecks-Test-Protocol-Isometric-Test), [User Guide p.64](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [Weighing profiles in ForceDecks iOS](https://support.vald.com/hc/en-au/articles/4999643957913-Weighing-profiles-in-ForceDecks-iOS).
 
 ### General Force-Time Analysis (GFTA)
@@ -1031,7 +1031,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Key moment shown for GFTA ([User Guide p.72](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). The marked range sets the value.
+- **What changes the number:** Which trial you report ([factor details](README.md#factors-that-change-the-numbers)). The marked range sets the value.
 - **Sources:** [User Guide p.72](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [User Guide p.73](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Minimum Force`
@@ -1045,7 +1045,7 @@ This metric has these fields:
 - **Units:** N.
 - **Variants:** Key moment shown for GFTA ([User Guide p.72](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). The marked range sets the value.
+- **What changes the number:** Which trial you report ([factor details](README.md#factors-that-change-the-numbers)). The marked range sets the value.
 - **Sources:** [User Guide p.72](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf), [User Guide p.73](https://support.vald.com/hc/en-au/article_attachments/31298911123353/VALD%20ForceDecks%20User%20Guide%20v2.pdf).
 
 #### `Standing Weight Asymmetry`
@@ -1059,7 +1059,7 @@ This metric has these fields:
 - **Units:** %.
 - **Variants:** Listed for GFTA ([Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application)).
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Foot placement and landing timing ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Foot placement and landing timing ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Glossary V2.0 p.3](https://support.vald.com/hc/en-au/article_attachments/31552911571353), [Common tests and metrics for ForceDecks application](https://support.vald.com/hc/en-au/articles/16299047617305-Common-tests-and-metrics-for-ForceDecks-application).
 
 ### Cross-test ratios (DSI, EUR)
@@ -1077,7 +1077,7 @@ This metric has these fields:
 - **Units:** Ratio.
 - **Variants:** Configured in VALD Hub; the Isometric Belt Squat can be the denominator ([VALD Hub - Release Notes](https://support.vald.com/hc/en-au/articles/29742770121241-VALD-Hub-Release-Notes)).
 - **Comparison with standard methods or other vendors:** VALD warns IMTP-based thresholds do not transfer to the Iso Belt Squat ([Recalibrating DSI with the Isometric Belt Squat](https://valdperformance.com/news/recalibrating-dsi-with-the-isometric-belt-squat)).
-- **What changes the number:** Which trial you report ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)). Which test is the isometric denominator; tagging of tests used in the report.
+- **What changes the number:** Which trial you report ([factor details](README.md#factors-that-change-the-numbers)). Which test is the isometric denominator; tagging of tests used in the report.
 - **Sources:** [ForceDecks Dynamic Strength Index](https://support.vald.com/hc/en-au/articles/5000254279065-ForceDecks-Dynamic-Strength-Index-DSI-Reports), [Recalibrating DSI with the Isometric Belt Squat](https://valdperformance.com/news/recalibrating-dsi-with-the-isometric-belt-squat), [VALD Hub - Release Notes](https://support.vald.com/hc/en-au/articles/29742770121241-VALD-Hub-Release-Notes).
 
 #### `Eccentric Utilization Ratio (EUR)`
@@ -1091,7 +1091,7 @@ This metric has these fields:
 - **Units:** Ratio.
 - **Variants:** Not a named ForceDecks export metric in VALD's public sources.
 - **Comparison with standard methods or other vendors:** No source-supported comparison found in VALD's public sources.
-- **What changes the number:** Changes in either term of the ratio ([factor details](vald-forcedecks-nordbord.md#factors-that-change-the-numbers)).
+- **What changes the number:** Changes in either term of the ratio ([factor details](README.md#factors-that-change-the-numbers)).
 - **Sources:** [Understanding the Eccentric Utilization Ratio](https://valdperformance.com/news/understanding-the-eccentric-utilization-ratio-eur).
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

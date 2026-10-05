@@ -4,7 +4,7 @@ HumanTrak is a markerless 3D movement analysis system. It uses one depth camera 
 
 ForceFrame, DynaMo, SmartSpeed, HumanTrak, NordBord, ForceDecks, VALD Hub, and VALD are trademarks of VALD. GymAware is a trademark of its owner. This repository is not affiliated with or endorsed by VALD or GymAware.
 
-This page is part of [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](vald-other-products.md). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](vald-forcedecks-nordbord.md).
+This page is part of [VALD ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware metrics](README.md). ForceDecks and NordBord are on a separate page: [VALD ForceDecks and NordBord metrics](../vald-forcedecks-nordbord/README.md).
 
 ## How to read this page
 
@@ -843,4 +843,4 @@ The public sources checked do not publish these details:
 - Metrics for Lunge, Lateral Hop, Medial Hop, Box Lift - Bench, and Box Lift - Overhead.
 - Sit to stand time field. Heel raise height threshold and field. Anthropometry field names and segment list. How custom test metrics appear in the API.
 
-See [the calculations overview](../calculations.md) for how these metrics relate to the methods in the skills.
+See [the calculations overview](../../calculations.md) for how these metrics relate to the methods in the skills.

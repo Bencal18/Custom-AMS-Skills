@@ -57,4 +57,4 @@ Follow these limits:
 Load these files when needed:
 
 - [references/<metric>.md](references/<metric>.md): <metric>.
-- [references/<device>-export.md](references/<device>-export.md): how to read <device> exports.
+- [references/<device>.md](references/<device>.md): how to read <device> exports.

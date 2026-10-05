@@ -6,6 +6,41 @@ The skill reference files are the source of truth. This page condenses them and 
 
 Every metric on this page is decision support only. No number here clears an athlete for training, competition, or return to sport. No number here predicts injury or makes a training decision. Each breakdown keeps the limits its reference file states.
 
+## Contents
+
+This page has these sections:
+
+- [Monitoring statistics](#monitoring-statistics)
+  - [Shared rules for judging change](#shared-rules-for-judging-change)
+  - [Typical error](#typical-error)
+  - [Smallest worthwhile change](#smallest-worthwhile-change)
+  - [Minimal detectable change](#minimal-detectable-change)
+  - [Individual baselines and z-scores](#individual-baselines-and-z-scores)
+  - [Group p-values for individual athletes](#group-p-values-for-individual-athletes)
+- [Load and wellness](#load-and-wellness)
+  - [Session RPE load](#session-rpe-load)
+  - [Heart rate load](#heart-rate-load)
+  - [Acute to chronic workload ratio](#acute-to-chronic-workload-ratio)
+  - [Wellness z-score](#wellness-z-score)
+- [Running load](#running-load)
+  - [Total distance and distance per minute](#total-distance-and-distance-per-minute)
+  - [High-speed running distance](#high-speed-running-distance)
+  - [Accelerations and decelerations](#accelerations-and-decelerations)
+- [Force plate](#force-plate)
+  - [Countermovement jump height](#countermovement-jump-height)
+  - [Reactive strength index-modified](#reactive-strength-index-modified)
+  - [Isometric mid-thigh pull peak force](#isometric-mid-thigh-pull-peak-force)
+  - [Eccentric hamstring force](#eccentric-hamstring-force)
+- [Velocity-based training](#velocity-based-training)
+  - [Mean concentric velocity](#mean-concentric-velocity)
+  - [Velocity loss](#velocity-loss)
+- [Limb symmetry](#limb-symmetry)
+  - [Limb symmetry index](#limb-symmetry-index)
+- [Composites](#composites)
+  - [Readiness composite](#readiness-composite)
+- [Vendor metric pages](#vendor-metric-pages)
+- [Sources](#sources)
+
 ## How to read this page
 
 Each analysis type starts with a summary table of its metrics, formulas, units, and reference files. One breakdown per metric follows the table. Each breakdown has these parts:
@@ -2133,17 +2168,17 @@ The composite is not a z-score. A mean of k unrelated z-scores has an SD of 1 ÷
 
 ## Vendor metric pages
 
-Every exportable metric each vendor publishes is broken down on its page. The pages paraphrase vendor definitions and link to the vendor sources:
+Every exportable metric each vendor publishes is broken down on its page. The pages paraphrase vendor definitions and link to the vendor sources. The [vendor metrics index](vendor-metrics/README.md) lists every page:
 
 | Vendor | Products | Page |
 |---|---|---|
-| VALD | ForceDecks and NordBord | [vald-forcedecks-nordbord.md](vendor-metrics/vald-forcedecks-nordbord.md) |
-| VALD | ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware | [vald-other-products.md](vendor-metrics/vald-other-products.md) |
-| Hawkin Dynamics | Force plates | [hawkin-dynamics.md](vendor-metrics/hawkin-dynamics.md) |
-| Catapult | Catapult and Perch | [catapult.md](vendor-metrics/catapult.md) |
-| Kinexon | Kinexon | [kinexon.md](vendor-metrics/kinexon.md) |
-| Polar | Polar Team Pro | [polar-team-pro.md](vendor-metrics/polar-team-pro.md) |
-| Firstbeat | Firstbeat Sports | [firstbeat-sports.md](vendor-metrics/firstbeat-sports.md) |
+| VALD | ForceDecks and NordBord | [VALD ForceDecks and NordBord metrics](vendor-metrics/vald-forcedecks-nordbord/README.md) |
+| VALD | ForceFrame, DynaMo, SmartSpeed, HumanTrak, and GymAware | [VALD other products](vendor-metrics/vald-other-products/README.md) |
+| Hawkin Dynamics | Force plates and TruStrength | [Hawkin Dynamics metrics](vendor-metrics/hawkin-dynamics/README.md) |
+| Catapult | Vector, Catapult One, and Perch | [Catapult metrics](vendor-metrics/catapult.md) |
+| Kinexon | Kinexon | [Kinexon metrics](vendor-metrics/kinexon.md) |
+| Polar | Polar Team Pro | [Polar Team Pro metrics](vendor-metrics/polar-team-pro.md) |
+| Firstbeat | Firstbeat Sports | [Firstbeat Sports metrics](vendor-metrics/firstbeat-sports.md) |
 
 ## Sources
 
