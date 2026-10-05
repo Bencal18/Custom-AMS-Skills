@@ -145,7 +145,7 @@ These choices change the result even when the athlete's performance does not:
 - Onset of movement. In the worked example, finding onset 30 ms earlier gives a time to takeoff of 0.680 s and RSImod of 0.4215 m/s. Finding it 30 ms later gives 0.620 s and 0.4622 m/s. Onset errors affect time-based measures such as RSImod more than they affect jump height (McMahon et al., 2018a).
 - Onset threshold. Some protocols step back 30 ms from the 5 standard deviation threshold (Owen et al., 2014). Use the same rule at every test.
 - Takeoff threshold. It changes both jump height and time to takeoff (McMahon et al., 2018a).
-- Arm swing and jump type. RSImod differs between jump types (Ebben and Petushek, 2010). The ranges below come from jumps without arm swing: a light bar across the shoulders (Sole et al., 2018) or hands on hips (McMahon et al., 2018b). In basketball players, arm swing raised RSImod by 20 to 24% (Heishman et al., 2019).
+- Arm swing and jump type. RSImod differs between jump types (Ebben and Petushek, 2010). The ranges below come from jumps without arm swing: a light bar across the shoulders (Sole et al., 2018) or hands on hips (McMahon et al., 2018b). In basketball players, arm swing raised RSImod by 20 to 24% (Heishman et al., 2019a).
 - Trial summary. The mean of trial RSImod values differs from mean jump height divided by mean time to takeoff.
 
 ## Units and typical range
@@ -154,11 +154,11 @@ Report RSImod in m/s. Name the jump height method used.
 
 | Population | Typical range | Source |
 |---|---|---|
-| NCAA Division I men, CMJ without arm swing (light bar across the shoulders), jump height from flight time, 10 N threshold | 0.424 ± 0.102 m/s (mean ± SD); observed range 0.208 to 0.704 m/s | Sole et al., 2018 |
-| NCAA Division I women, CMJ without arm swing (light bar across the shoulders), jump height from flight time, 10 N threshold | 0.314 ± 0.089 m/s (mean ± SD); observed range 0.135 to 0.553 m/s | Sole et al., 2018 |
+| NCAA Division I men, CMJ without arm swing (light bar across the shoulders), jump height from flight time, 10 N threshold, 10 Hz low-pass filter | 0.424 ± 0.102 m/s (mean ± SD); observed range 0.208 to 0.704 m/s | Sole et al., 2018 |
+| NCAA Division I women, CMJ without arm swing (light bar across the shoulders), jump height from flight time, 10 N threshold, 10 Hz low-pass filter | 0.314 ± 0.089 m/s (mean ± SD); observed range 0.135 to 0.553 m/s | Sole et al., 2018 |
 | Professional male rugby league, CMJ without arm swing (hands on hips), jump height from takeoff velocity, lowest and highest groups | 0.36 ± 0.03 and 0.53 ± 0.05 m/s (mean ± SD) | McMahon et al., 2018b |
 
-Sole et al. (2018) used a 10 N threshold to find both the onset of movement and takeoff, not the 5 standard deviation rule in `cmj-jump-height.md`. McMahon et al. (2018b) took jump height from the velocity at takeoff. Values from another threshold or jump height method are not directly comparable with these ranges.
+Sole et al. (2018) used a 10 N threshold to find both the onset of movement and takeoff, not the 5 standard deviation rule in `cmj-jump-height.md`. They filtered the force data with a 10 Hz low-pass Butterworth filter. McMahon et al. (2018b) took jump height from the velocity at takeoff. Values from another threshold, filter, or jump height method are not directly comparable with these ranges.
 
 Time to takeoff in these samples averaged 0.868 ± 0.105 s for men and 0.870 ± 0.114 s for women (Sole et al., 2018), and 0.707 to 0.881 s across the rugby league groups (McMahon et al., 2018b).
 
@@ -212,4 +212,4 @@ This file cites these sources:
 - Healy R, Kenny IC, Harrison AJ. Reactive strength index: a poor indicator of reactive strength? International Journal of Sports Physiology and Performance. 2018;13(6):802-809. https://doi.org/10.1123/ijspp.2017-0511
 - Thomas C, Dos'Santos T, Comfort P, Jones PA. Between-session reliability of common strength- and power-related measures in adolescent athletes. Sports. 2017;5(1):15. https://doi.org/10.3390/sports5010015
 - Sole CJ, Suchomel TJ, Stone MH. Preliminary scale of reference values for evaluating reactive strength index-modified in male and female NCAA Division I athletes. Sports. 2018;6(4):133. https://doi.org/10.3390/sports6040133
-- Heishman A, Brown B, Daub B, Miller R, Freitas E, Bemben M. The influence of countermovement jump protocol on reactive strength index modified and flight time: contraction time in collegiate basketball players. Sports. 2019;7(2):37. https://doi.org/10.3390/sports7020037 (accessed 2026-10-02)
+- Heishman A, Brown B, Daub B, Miller R, Freitas E, Bemben M. The influence of countermovement jump protocol on reactive strength index modified and flight time: contraction time in collegiate basketball players. Sports. 2019;7(2):37. https://doi.org/10.3390/sports7020037 (accessed 2026-10-02). Cited as Heishman et al., 2019a. The `force-plate` skill also cites Heishman et al., 2019b, in `eccentric-hamstring-force.md`.

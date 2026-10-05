@@ -193,8 +193,8 @@ Report jump height in meters or centimeters. Name the method and whether arm swi
 
 | Population | Typical range | Source |
 |---|---|---|
-| NCAA Division I men (n = 76), no arm swing (light bar across the shoulders), flight time method, mean of 2 trials | 0.36 ± 0.07 m (mean ± SD) | Sole et al., 2018 |
-| NCAA Division I women (n = 75), no arm swing (light bar across the shoulders), flight time method, mean of 2 trials | 0.27 ± 0.06 m (mean ± SD) | Sole et al., 2018 |
+| NCAA Division I men (n = 76), no arm swing (light bar across the shoulders), flight time method, 10 Hz low-pass filter, mean of 2 trials | 0.36 ± 0.07 m (mean ± SD) | Sole et al., 2018 |
+| NCAA Division I women (n = 75), no arm swing (light bar across the shoulders), flight time method, 10 Hz low-pass filter, mean of 2 trials | 0.27 ± 0.06 m (mean ± SD) | Sole et al., 2018 |
 | Professional male rugby league (n = 53), no arm swing (hands on hips), takeoff velocity method, mean of 3 trials | 0.35 ± 0.04 m (mean ± SD); lowest and highest RSI-modified groups (n = 20 each) 0.318 ± 0.032 m and 0.377 ± 0.039 m | McMahon et al., 2018b |
 
 Use these ranges to check that data are plausible, not to rate athletes.

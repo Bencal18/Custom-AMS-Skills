@@ -29,7 +29,7 @@ Define every term in the formula:
 
 This value equals the size of the signed percentage difference, (right - left) / max(right, left) × 100, in the `limb-symmetry` skill. A positive signed value means the right leg is stronger. The imbalance formula above is one of several.
 
-Injury studies on this test did not use the formula above. They used a left-to-right ratio, log-transformed and back-transformed to a percentage (Opar et al., 2015; Bourne et al., 2015). Neither paper prints the equation for one athlete. Offer the log ratio, 100 × ln(right / left), as an option. It keeps the same size whichever leg is stronger.
+Injury studies on this test did not use the formula above. They used a left-to-right ratio (Opar et al., 2015; Bourne et al., 2015). Opar et al. (2015) log-transformed the ratio only to calculate group means. Neither paper prints an equation for one athlete. Offer the log ratio, 100 × ln(right / left), as an option, because it gives the same size whichever leg is stronger. Do not say it matches the injury studies.
 
 Other asymmetry formulas give different numbers from the same legs (Bishop et al., 2018). If the `limb-symmetry` skill is installed, use it for the full list of formulas. Never compare an imbalance value with a published value calculated another way.
 
@@ -162,14 +162,15 @@ Follow these steps to calculate the metric from repetition-level data:
 1. Load one row per repetition with `athlete_id`, `test_date`, `side` (left or right), and `peak_force_n`.
 2. Check the side labels against the device file, so left and right are not swapped.
 3. Flag repetitions that did not reach a clear peak followed by a fast drop in force. That pattern marks the point where the athlete could no longer resist the fall (Bourne et al., 2015).
-4. For each athlete, date, and side, keep the highest `peak_force_n` among the valid repetitions.
-5. Divide each leg's peak by `body_mass_kg` from the same day to get relative force in N/kg.
-6. Average the left and right peaks to get the two-limb average.
-7. Calculate the imbalance from the left and right peaks.
-8. Record which side is weaker.
-9. For each earlier test the user cites, including a pre-injury baseline, subtract the earlier value from the new value for each leg.
-10. Compare each change with the noise band, 1.96 × TE × √(1 + 1/n), where n is the number of tests in the baseline mean. Use n = 1 for one earlier test, which gives 1.96 × √2 × TE. See "Judge a change and an imbalance" below.
-11. To judge the imbalance, compare the left-right difference in N with the asymmetry band, 1.96 × √(SE_left² + SE_right²). See "Judge a change and an imbalance" below.
+4. Set `status` to `pain_reported` for any repetition with noted pain. Keep the row. Tell the user to pass the pain report to the medical team.
+5. For each athlete, date, and side, keep the highest `peak_force_n` among the valid repetitions: those with `status` `ok` that you did not flag in step 3. Leave `pain_reported` repetitions out of the best repetition, the mean, relative force, baselines, z-scores, change, and imbalance. If every repetition on a leg has `pain_reported`, report no valid maximum for that leg.
+6. Divide each leg's peak by `body_mass_kg` from the same day to get relative force in N/kg.
+7. Average the left and right peaks to get the two-limb average.
+8. Calculate the imbalance from the left and right peaks.
+9. Record which side is weaker.
+10. For each earlier test the user cites, including a pre-injury baseline, subtract the earlier value from the new value for each leg.
+11. Compare each change with the noise band, 1.96 × TE × √(1 + 1/n), where n is the number of tests in the baseline mean. Use n = 1 for one earlier test, which gives 1.96 × √2 × TE. See "Judge a change and an imbalance" below.
+12. To judge the imbalance, compare the left-right difference in N with the asymmetry band, 1.96 × √(SE_left² + SE_right²). See "Judge a change and an imbalance" below.
 
 ## Worked example
 
@@ -190,7 +191,7 @@ Step 4. Imbalance = (360 - 325) / 360 × 100 = 9.72%. The left leg is weaker.
 
 Step 5. Change in the left leg since the previous test = 325 - 300 = 25 N. With TE = 21.7 N, the lowest value Opar et al. (2013) reported, and one earlier test (n = 1), the noise band is 1.96 × 21.7 × √2 = 60.1 N. With TE = 27.5 N, it is 76.2 N. These equal the minimal detectable change values Opar et al. (2013) reported. The 25 N change is inside both bands.
 
-Step 6. Left-right difference = 360 - 325 = 35 N. Assume SE = TE = 21.7 N for each leg. The asymmetry band is 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the stronger leg. The 35 N difference is inside the band.
+Step 6. Left-right difference = 360 - 325 = 35 N. Assume SE = TE = 21.7 N for each leg. The asymmetry band is 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the stronger leg. The 35 N difference is inside the band. This TE comes from a separate-day retest, so label the band as likely wider than needed for a same-session difference.
 
 Result: left 325 N (3.96 N/kg), right 360 N (4.39 N/kg), two-limb average 342.5 N (4.18 N/kg), and imbalance 9.72% with the left side weaker. Neither the 25 N change nor the 35 N difference can be told apart from measurement noise with these data. This does not show that the legs are equal or that nothing changed. Use your own TE when you have it.
 
@@ -227,6 +228,7 @@ If the `monitoring-statistics` skill is installed, use it for detail. Follow the
 - When TE comes from few athletes, use t with the degrees of freedom of the TE study (athletes − 1 for two trials) in place of 1.96.
 - A change is clearly larger than the smallest worthwhile change (SWC) only when the change minus the band is still beyond the SWC (Swinton et al., 2018). Otherwise, a change beyond the band reads: "larger than measurement error; may or may not be worthwhile".
 - Imbalance: treat the left-right difference as larger than noise only when it exceeds 1.96 × √(SE_left² + SE_right²). Use SE = TE for single or best repetitions. For a mean of k repetitions, use SE = pooled squad coefficient of variation × the leg's value / √k. Take the TE or coefficient of variation from a squad reliability study, or from a published reliability study of the same test, device, and population, never from one athlete's own repetitions or from the same repetitions you are judging.
+- For a left-right difference from one session, use a within-session TE when such a study exists. If only a separate-day TE exists, such as Opar et al. (2013), use it, and label the band as likely wider than needed. Typical error depends on the time between tests (Hopkins, 2011). Day-to-day changes that affect both legs alike cancel out of a same-session difference. In 22 collegiate basketball players, across 16 force measures from a two-plate CMJ with and without arm swing, within-session TE was a median 0.90 times the separate-day TE, with a range of 0.77 to 0.99 (Heishman et al., 2019b).
 - When the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
 
 Side-to-side strength ratios from this test had low reliability (Wiesinger et al., 2020). Treat a single imbalance value with caution.
@@ -254,7 +256,8 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Comparing values across different devices or with isokinetic results
 - Using published injury studies to predict injury for one athlete. Those studies report group-level associations in specific cohorts, and their findings on imbalance disagree (Opar et al., 2015; Bourne et al., 2015). Report the numbers and leave interpretation to the practitioner.
 - Quoting injury-study cut-offs, such as force or imbalance cut-offs from Opar et al. (2015) or Bourne et al. (2015), as targets or flags. Do not quote them for one athlete. The cut-offs did not replicate. Later cohorts found a different force cut-off, 337 N in soccer (Timmins et al., 2016), or no link with Nordic strength (van Dyk et al., 2017). A meta-analysis of six cohorts (1100 players) found no difference in pre-season Nordic strength or imbalance between players who later had a hamstring injury and those who did not (Opar et al., 2021).
-- Treating a repetition with pain as a valid maximum. Flag it. Pain lowers maximal strength: in 18 healthy adults, induced knee pain cut knee extension and flexion strength by 5 to 15% (Henriksen et al., 2011).
+- Calling low Nordic strength a training target. Programs that include the Nordic hamstring exercise roughly halved hamstring injuries (van Dyk et al., 2019, risk ratio 0.49), but pre-season Nordic strength did not differ between players who later had a hamstring injury and those who did not (Opar et al., 2021). Training choices stay with the coach.
+- Treating a repetition with pain as a valid maximum, or deleting it. Keep the row, set its `status` to `pain_reported`, leave it out of every calculated result, and tell the user to pass the pain report to the medical team. Pain lowers maximal strength: in 18 healthy adults, induced knee pain cut knee extension and flexion strength by 5 to 15% (Henriksen et al., 2011). Painful repetitions can also be part of a planned protocol. In one trial after acute hamstring strain injury, one group did its rehabilitation within pain-threshold limits rather than pain-free (Hickey et al., 2020).
 
 ## Example request
 
@@ -280,7 +283,11 @@ This file cites these sources:
 - Swinton PA, Hemingway BS, Saunders B, Gualano B, Dolan E. A statistical framework to interpret individual response to intervention: paving the way for personalized nutrition and exercise prescription. Frontiers in Nutrition. 2018;5:41. https://doi.org/10.3389/fnut.2018.00041
 - Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm (accessed 2026-10-02)
 - Bishop C, Read P, Lake J, Chavda S, Turner A. Interlimb asymmetries: understanding how to calculate differences from bilateral and unilateral tests. Strength and Conditioning Journal. 2018;40(4):1-6. https://doi.org/10.1519/SSC.0000000000000371
-- Opar DA, Timmins RG, Behan FP, Hickey JT, van Dyk N, Price K, Maniar N. Is pre-season eccentric strength testing during the Nordic hamstring exercise associated with future hamstring strain injury? A systematic review and meta-analysis. Sports Medicine. 2021;51(9):1935-1945. https://doi.org/10.1007/s40279-021-01474-1 (accessed 2026-10-02)
+- Opar DA, Timmins RG, Behan FP, Hickey JT, van Dyk N, Price K, Maniar N. Is pre-season eccentric strength testing during the Nordic hamstring exercise associated with future hamstring strain injury? A systematic review and meta-analysis. Sports Medicine. 2021;51(9):1935-1945. https://doi.org/10.1007/s40279-021-01474-1 (accessed 2026-10-05). Read in abstract form only.
+- van Dyk N, Behan FP, Whiteley R. Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes. British Journal of Sports Medicine. 2019;53(21):1362-1370. https://doi.org/10.1136/bjsports-2018-100045 (accessed 2026-10-05). Read in abstract form only.
+- Hickey JT, Timmins RG, Maniar N, Rio E, Hickey PF, Pitcher CA, Williams MD, Opar DA. Pain-free versus pain-threshold rehabilitation following acute hamstring strain injury: a randomized controlled trial. Journal of Orthopaedic and Sports Physical Therapy. 2020;50(2):91-103. https://doi.org/10.2519/jospt.2020.8895 (accessed 2026-10-05). Read in abstract form only.
+- Heishman A, Daub B, Miller R, Brown B, Freitas E, Bemben M. Countermovement jump inter-limb asymmetries in collegiate basketball players. Sports. 2019;7(5):103. https://doi.org/10.3390/sports7050103 (accessed 2026-10-05). Cited as Heishman et al., 2019b, to keep it apart from the 2019a paper in `rsi-modified.md`. The 0.90 ratio and its range were calculated from the typical errors in the paper's within-session and separate-day reliability tables.
+- Hopkins WG. A new view of statistics: measures of reliability. Sportscience. Last updated 2011-10-04. https://www.sportsci.org/resource/stats/precision.html (accessed 2026-10-05). No DOI.
 - Timmins RG, Bourne MN, Shield AJ, Williams MD, Lorenzen C, Opar DA. Short biceps femoris fascicles and eccentric knee flexor weakness increase the risk of hamstring injury in elite football (soccer): a prospective cohort study. British Journal of Sports Medicine. 2016;50(24):1524-1535. https://doi.org/10.1136/bjsports-2015-095362 (accessed 2026-10-02)
 - van Dyk N, Bahr R, Burnett AF, Whiteley R, Bakken A, Mosler A, Farooq A, Witvrouw E. A comprehensive strength testing protocol offers no clinical value in predicting risk of hamstring injury: a prospective cohort study of 413 professional football players. British Journal of Sports Medicine. 2017;51(23):1695-1702. https://doi.org/10.1136/bjsports-2017-097754 (accessed 2026-10-02)
 - Henriksen M, Rosager S, Aaboe J, Graven-Nielsen T, Bliddal H. Experimental knee pain reduces muscle strength. Journal of Pain. 2011;12(4):460-467. https://doi.org/10.1016/j.jpain.2010.10.004 (accessed 2026-10-02)

@@ -71,7 +71,7 @@ Use one row for each athlete, date, session, measure, side, and trial. Add these
 - `trial_number`: `1`, `2`, `3`, and so on. Use `1` when there is one trial.
 - `value`: the number, or `NA` if missing.
 - `unit`: the unit of `value`, for example `cm`, `N`, `s`, or `au`.
-- `status`: `ok`, `held` while a duplicate question is open, or a reason code when the value is missing or removed.
+- `status`: `ok`, `held` while a duplicate question is open, `pain_reported` when the athlete or tester noted pain during that trial, or a reason code when the value is missing or removed. Keep a `pain_reported` row, and leave it out of best-trial values, means, baselines, z-scores, change, and left-right comparisons. Pass the pain report to the medical team.
 - `source`: the device, form, or file.
 - `source_record_id`: the source's own row or test ID. Write `NA` when the source gives none.
 - `imported_on`: the date you imported the row.
@@ -83,6 +83,7 @@ athlete_id,measure_date,session_id,measure_name,side,trial_number,value,unit,sta
 A0001,2026-10-02,S0101,cmj_jump_height,bilateral,1,41.2,cm,ok,force_plate,T-88231,2026-10-03
 A0001,2026-10-02,S0101,cmj_jump_height,bilateral,2,42.0,cm,ok,force_plate,T-88232,2026-10-03
 A0002,2026-10-02,S0101,cmj_jump_height,bilateral,1,NA,cm,device_failure,force_plate,NA,2026-10-03
+A0003,2026-10-02,S0101,nordic_peak_force,left,2,298,N,pain_reported,nordic_device,NA,2026-10-03
 A0001,2026-10-02,none,wellness_score,bilateral,1,4,au,ok,wellness_form,NA,2026-10-03
 ```
 

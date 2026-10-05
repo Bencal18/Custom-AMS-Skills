@@ -241,6 +241,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Reading one plate of a two-plate setup as the whole force. Sum both plates.
 - Changing knee angle, hip angle, or bar height between sessions and then comparing peak force
 - Keeping trials with a countermovement, a dip before the pull, too much pre-tension on the bar, or leaning on the bar (Comfort et al., 2019). Flag them instead.
+- Using a trial with noted pain as the peak, or deleting it. Keep the row and set its `status` to `pain_reported`. Leave it out of the best trial, the mean, relative and allometric force, RFD, baselines, z-scores, and change. Tell the user to pass the pain report to the medical team. If every trial had pain, report no valid maximum for that test.
 - Finding onset with a fixed force threshold such as 75 N or 10% of body weight above body weight. These gave unacceptable agreement with the 5 standard deviation threshold (Dos'Santos et al., 2017).
 - Reporting average RFD as if it were a reliable measure
 - Taking the peak from outside the pull, such as a spike when the athlete lets go of the bar. Restrict the search to the pull.

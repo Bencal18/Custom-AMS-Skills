@@ -38,7 +38,7 @@ Use each variant this way:
 - Dominant-referenced asymmetry divides by the dominant limb. It gives a larger size of result when the dominant limb is the weaker one. Use it only when the user asks for it.
 - BAI-1 divides by the sum of both limbs. Bishop et al. (2018) recommend it for bilateral tests, where both limbs push at the same time, such as a two-plate CMJ, because each limb's force is part of the total. It gives smaller values than the other formulas (Parkinson et al., 2021). BAI-1 needs a dominant limb. When the user names none, calculate (right - left) / (right + left) × 100, so the sign matches the signed percentage difference, and say so.
 - The mean-referenced asymmetry index divides by the mean of both limbs. Bishop et al. (2018) list the same calculation under three names: LSI-3, the asymmetry index, and the bilateral asymmetry index 2 (BAI-2), 2 × (D - ND) / (D + ND) × 100. The name "symmetry index" is also used for other formulas, so do not rely on the name (Parkinson et al., 2021).
-- The log ratio is the natural log of right divided by left, × 100. Studies of the Nordic hamstring test have used a log-transformed left-to-right ratio, back-transformed to a percentage (Bourne et al., 2015). It changes sign, but not size, when you swap the limbs.
+- The log ratio is the natural log of right divided by left, × 100. It changes sign, but not size, when you swap the limbs, so it gives the same size whichever limb is stronger. That is the reason to offer it. It does not match the published Nordic studies. Opar et al. (2015) used a left-to-right ratio and log-transformed it only to calculate group means, not a value for each athlete.
 - The symmetry angle needs no reference limb and gives small values (Zifchock et al., 2008; Bishop et al., 2016). Use it only when both values are above zero. Then the result stays between -50% and 50%. Do not calculate it for zero or negative values.
 
 ### The reference-limb rule
@@ -196,19 +196,21 @@ Follow these steps to calculate a limb symmetry value from raw inputs:
 5. Record the reference limb definition for each athlete: involved and uninvolved, dominant and nondominant, or larger value.
 6. Choose the formula. Use the one the user names.
 7. If the user names none, use percentage difference for unilateral tests and BAI-1 for bilateral tests (Bishop et al., 2018), and say so.
-8. For the Nordic hamstring test, a two-leg task, use percentage difference, because Nordic studies express imbalance on a one-leg scale, a left-to-right ratio log-transformed and back-transformed to a percentage (Opar et al., 2015; Bourne et al., 2015).
-9. Offer the log ratio as an option.
+8. For the Nordic hamstring test, a two-leg task, use percentage difference against the stronger leg, because Nordic studies express imbalance on a one-leg scale (Opar et al., 2015; Bourne et al., 2015).
+9. Offer the log ratio as an option, because it gives the same size whichever leg is stronger. Do not say it matches the Nordic studies.
 10. Calculate the value and its sign.
 11. State which side is larger.
 12. Get a standard error (SE) for each limb's value, in the units of the measure.
 13. Use the test's typical error (TE) when you compare single or best trials. TE is the SD of one athlete's repeated scores when nothing real changed, from a short-term test-retest study in which no true change is expected (Hopkins, 2000).
 14. For a mean of k trials, use a pooled squad coefficient of variation × the limb's value / √k.
 15. Take the TE or coefficient of variation from a squad reliability study, or from a published reliability study of the same test, device, and population, never from one athlete's own trials or from the same trials you are judging.
-16. State the SE and its source.
-17. Calculate the noise band for the left-right difference: 1.96 × √(SE_left² + SE_right²). When the TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study, athletes − 1 for two trials.
-18. Compare the difference between the raw limb values, in units, with the band. Use this one rule whatever formula you report.
-19. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
-20. Report the raw values for both limbs, the formula, the reference limb, the result, the SE and its source, and the band.
+16. For a left-right difference from one session, use a within-session TE when such a study exists. If only a separate-day TE exists, use it, and label the band as likely wider than needed. See "Retest interval of the TE" in "What changes the number".
+17. State the SE, its source, and its retest interval: the same session or separate days.
+18. Calculate the noise band for the left-right difference: 1.96 × √(SE_left² + SE_right²). When the TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study, athletes − 1 for two trials.
+19. Compare the difference between the raw limb values, in units, with the band. Use this one rule whatever formula you report.
+20. If the difference is inside the band, write: "The difference cannot be told apart from measurement noise with these data. This does not show that the limbs are equal or that the athlete has recovered."
+21. Report the raw values for both limbs, the formula, the reference limb, the result, the SE and its source, and the band.
+22. For a bilateral test, add the device's own asymmetry formula next to BAI-1 only where the device documents it. VALD ForceDecks documents (left − right) / max(left, right) × 100 in its Technical Glossary V2.0. Recompute it from the left and right values, never from the vendor column. Label it with the device name and the larger side. Hawkin Dynamics and the VALD NordBord app do not publish their formulas, so say so and show no device value.
 
 ## Worked example
 
@@ -259,7 +261,7 @@ This example uses Nordic test values, left 325 N and right 360 N, best repetitio
 | SE per leg, option A | 21.7 N, the lowest typical error Opar et al. (2013) reported, from a retest on a separate occasion |
 | SE per leg, option B | Mean of 3 repetitions (317.7 N and 353.0 N) with an assumed pooled squad coefficient of variation of 5%: 5% × 317.7 / √3 = 9.17 N and 5% × 353.0 / √3 = 10.19 N |
 
-Option A: band = 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the larger leg. The 35 N difference is inside the band, so the difference cannot be told apart from measurement noise with these data.
+Option A: band = 1.96 × √(21.7² + 21.7²) = 60.1 N, which is 16.7% of the larger leg. The 35 N difference is inside the band, so the difference cannot be told apart from measurement noise with these data. This TE comes from a separate-day retest, so label the band as likely wider than needed for a same-session difference.
 
 Option B: band = 1.96 × √(9.17² + 10.19²) = 26.9 N. The mean-of-3 difference, 35.3 N, is outside the band.
 
@@ -277,7 +279,8 @@ These choices change the result even when the athlete has not changed:
 - Test and metric. The size and direction of asymmetry change between tests and metrics for the same athlete. Asymmetry rarely favored the same limb across tests (Bishop et al., 2021).
 - Trial selection. Best trial and mean of trials give different values.
 - Intra-limb variability. A between-limb difference can come from trial-to-trial noise within each limb (Exell et al., 2012).
-- Vendor formula and sign. A device export may calculate asymmetry with its own formula and sign. At least one device glossary uses (left - right) / max(left, right) × 100, where a positive value means the left limb is larger. That is the opposite of the signed percentage difference in this file.
+- Retest interval of the TE. Typical error depends on the time between tests (Hopkins, 2011). A separate-day TE includes day-to-day changes. Changes that affect both limbs alike cancel out of a same-session left-right difference, so a separate-day TE gives a wider band than needed. In 22 collegiate basketball players, across 16 force measures from a two-plate CMJ with and without arm swing, within-session TE was a median 0.90 times the separate-day TE, with a range of 0.77 to 0.99 (Heishman et al., 2019).
+- Vendor formula and sign. A device export may calculate asymmetry with its own formula and sign. The VALD ForceDecks Technical Glossary V2.0 uses (left - right) / max(left, right) × 100, where a positive value means the left limb is larger. That is the opposite of the signed percentage difference in this file. Hawkin Dynamics and the VALD NordBord app do not publish their formulas.
 - Reading vendor values. Never read the sign of a vendor value. Always recompute from the left and right values. See the device file.
 
 ## Units and typical range
@@ -357,6 +360,10 @@ This file cites these sources:
 - Opar DA, Williams MD, Timmins RG, Hickey J, Duhig SJ, Shield AJ. Eccentric hamstring strength and hamstring injury risk in Australian footballers. Medicine and Science in Sports and Exercise. 2015;47(4):857-865. https://doi.org/10.1249/MSS.0000000000000465 (accessed 2026-10-02)
 - Opar DA, Piatkowski T, Williams MD, Shield AJ. A novel device using the Nordic hamstring exercise to assess eccentric knee flexor strength: a reliability and retrospective injury study. Journal of Orthopaedic and Sports Physical Therapy. 2013;43(9):636-640. https://doi.org/10.2519/jospt.2013.4837
 - Hopkins WG. Measures of reliability in sports medicine and science. Sports Medicine. 2000;30(1):1-15. https://doi.org/10.2165/00007256-200030010-00001
+- Hopkins WG. A new view of statistics: measures of reliability. Sportscience. Last updated 2011-10-04. https://www.sportsci.org/resource/stats/precision.html (accessed 2026-10-05). No DOI.
+- Heishman A, Daub B, Miller R, Brown B, Freitas E, Bemben M. Countermovement jump inter-limb asymmetries in collegiate basketball players. Sports. 2019;7(5):103. https://doi.org/10.3390/sports7050103 (accessed 2026-10-05). The 0.90 ratio and its range were calculated from the typical errors in the paper's within-session and separate-day reliability tables.
+- Hickey JT, Timmins RG, Maniar N, Rio E, Hickey PF, Pitcher CA, Williams MD, Opar DA. Pain-free versus pain-threshold rehabilitation following acute hamstring strain injury: a randomized controlled trial. Journal of Orthopaedic and Sports Physical Therapy. 2020;50(2):91-103. https://doi.org/10.2519/jospt.2020.8895 (accessed 2026-10-05). Read in abstract form only. Cited in `SKILL.md`: one group did its rehabilitation within pain-threshold limits, so painful reps can be part of a planned protocol.
+- VALD. ForceDecks Technical Glossary V2.0. March 2024. https://support.vald.com/hc/en-au/article_attachments/31552911571353 (accessed 2026-10-02).
 - Exell TA, Irwin G, Gittoes MJR, Kerwin DG. Implications of intra-limb variability on asymmetry analyses. Journal of Sports Sciences. 2012;30(4):403-409. https://doi.org/10.1080/02640414.2011.647047
 - Herzog W, Nigg BM, Read LJ, Olsson E. Asymmetries in ground reaction force patterns in normal human gait. Medicine and Science in Sports and Exercise. 1989;21(1):110-114. https://doi.org/10.1249/00005768-198902000-00020
 - Impellizzeri FM, Rampinini E, Maffiuletti N, Marcora SM. A vertical jump force test for assessing bilateral strength asymmetry in athletes. Medicine and Science in Sports and Exercise. 2007;39(11):2044-2050. https://doi.org/10.1249/mss.0b013e31814fb55c

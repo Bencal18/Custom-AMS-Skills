@@ -84,6 +84,7 @@ If a check fails, say which check failed and why. Do not hide the result.
 If the `monitoring-statistics` skill is installed, use it for detail. Follow these rules before you call a change real:
 
 - Typical error (TE) is the test's noise: the SD of one athlete's repeated scores when nothing real changed. Take it from a short-term test-retest study in which no true change is expected. Use the same protocol and the same trial summary (single trial, best of 3, or mean of 3) as the values you compare. Retesting on separate days is an option. It counts normal day-to-day variation as noise, so it gives a larger TE. Label it as a choice. When you quote a published TE, state its retest interval (same day or separate days) and its population.
+- For a left versus right difference within one session, use a within-session TE from a squad or published reliability study when one exists. If only a separate-day TE exists, use it, and label the band as likely wider than needed. See `references/eccentric-hamstring-force.md`.
 - Noise band for two single tests: 1.96 × √2 × TE, about 2.77 × TE. For a new value against a baseline mean of n values: 1.96 × TE × √(1 + 1/n). The second form adds the variance of the new value to the variance of the baseline mean. The same error appears in Hopkins's monitoring spreadsheet (Hopkins WG. A spreadsheet for monitoring an individual's changes and trend. Sportscience. 2017;21:5-9. https://www.sportsci.org/2017/wghtrend.htm, accessed 2026-10-02). The 95% level is a choice.
 - The band assumes the athlete's true score did not change, errors are independent, TE is the same across athletes and values, and TE is known. Error alone gives a change smaller than the band about 95 percent of the time. When the assumptions fail, the real false-flag rate can be higher or lower.
 - When TE comes from few athletes, replace 1.96 with t at the degrees of freedom of the TE study: athletes − 1 for two trials. For 10 athletes, t(9) = 2.26. Never use the SD of the athlete's own baseline values as TE.
@@ -105,7 +106,7 @@ Follow these limits:
 - Do not calculate Nordic knee torque or muscle force from ankle force. If the export gives a torque, report it as given, labeled as the device's value, and say that it depends on how the knee position is set.
 - Do not call a change real when it is inside the noise band.
 - Do not advise whether or when an injured or rehabilitating athlete should do a maximal test. That is the clinician's decision.
-- If the data note pain during a rep or trial, flag that rep and do not treat it as a valid maximum. Calculate every result without it. You may state once what the top value would be with it, labeled as not valid. Do not use it in relative force, change, or imbalance results.
+- If the data note pain during a rep or trial, keep the row and set its status to `pain_reported`. Do not delete it, because painful reps can be part of a planned rehab protocol (Hickey et al., 2020). Do not treat it as a valid maximum. Leave it out of the best rep, the mean, relative force, baselines, z-scores, change, and imbalance. You may state once what the top value would be with it, labeled as not valid. Tell the user to pass the pain report to the medical team. If every rep had pain, report no valid maximum for that test or leg.
 - Do not quote injury-study cut-offs as targets or flags.
 
 ## References
