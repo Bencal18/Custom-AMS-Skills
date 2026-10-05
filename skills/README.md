@@ -19,8 +19,8 @@ Version 1 has these 12 skills:
 |---|---|---|
 | [`ams-data-setup`](ams-data-setup/SKILL.md) | Athlete, session, and measure tables; IDs; joining sources by athlete and date; missing data | Reviewed |
 | [`monitoring-statistics`](monitoring-statistics/SKILL.md) | Typical error, smallest worthwhile change, minimal detectable change, individual baselines, z-scores, why ACWR and group p-values mislead | Reviewed |
-| [`load-and-wellness`](load-and-wellness/SKILL.md) | Session RPE load, ACWR (with limitations), wellness score z-score | Reviewed |
-| [`gps-running-load`](gps-running-load/SKILL.md) | Total distance, high-speed running, accelerations and decelerations | Reviewed |
+| [`load-and-wellness`](load-and-wellness/SKILL.md) | Session RPE load, ACWR (with limitations), wellness score z-score, and estimated load for athletes who did not wear a device | Reviewed |
+| [`gps-running-load`](gps-running-load/SKILL.md) | Total distance, high-speed running, accelerations and decelerations, and ice hockey tracking and time-on-ice data | Reviewed |
 | [`force-plate`](force-plate/SKILL.md) | CMJ jump height, RSI-modified, IMTP peak force, eccentric hamstring force | Reviewed |
 | [`velocity-based-training`](velocity-based-training/SKILL.md) | Mean concentric velocity, velocity loss across a set | Reviewed |
 | [`limb-symmetry`](limb-symmetry/SKILL.md) | Limb symmetry index, formula variants, and the reference-limb rule | Reviewed |

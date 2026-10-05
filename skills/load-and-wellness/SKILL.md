@@ -1,6 +1,6 @@
 ---
 name: load-and-wellness
-description: Calculate session RPE load, heart rate load (TRIMP), ACWR, and wellness z-scores from training logs, wellness forms, heart rate, or GPS exports. Shows the formula and checks each result.
+description: Calculate session RPE load, heart rate load (TRIMP), ACWR, wellness z-scores, and estimated load for athletes who did not wear a device. Shows the formula and checks each result.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
@@ -20,6 +20,7 @@ Use this skill when the user asks to:
 - Compare rolling averages with exponentially weighted moving averages for load.
 - Flag a wellness answer that is unusual for that athlete.
 - Turn sleep, soreness, fatigue, stress, or mood scores into z-scores.
+- Estimate TRIMP or accelerometer load for athletes who played but did not wear a device, from minutes played or time on ice.
 - Set up a load and wellness log in a spreadsheet, R, Python, Power BI, or Tableau.
 
 This skill covers these metrics:
@@ -30,6 +31,7 @@ This skill covers these metrics:
 | Heart rate load (TRIMP) and time in zones | [references/heart-rate-load.md](references/heart-rate-load.md) |
 | Acute to chronic workload ratio (ACWR) | [references/acwr.md](references/acwr.md) |
 | Wellness z-score | [references/wellness-z-score.md](references/wellness-z-score.md) |
+| Estimated load for athletes who did not wear a device | [references/estimated-load.md](references/estimated-load.md) |
 
 ## Steps
 
@@ -43,21 +45,22 @@ Follow these steps in order:
 6. Stop and ask if the values look like the 6 to 20 scale.
 7. Ask about values above 10 before you call them errors: the form may use the Borg CR100 scale.
 8. Confirm duration is in minutes.
-9. Convert hours or `hh:mm` text to minutes before you multiply.
+9. Convert hours or `hh:mm` text to minutes before you multiply. Playing time and time on ice usually arrive as `mm:ss`. Check which format the column uses before you convert.
 10. Build one row per athlete per calendar day for any rolling calculation.
 11. Put `0` on days with no training.
 12. Put a missing value on days when training happened but no rating was recorded.
 13. Mark ill, unavailable, or modified-training days in a separate column.
-14. For ACWR, ask which variant the user wants: rolling average coupled, rolling average uncoupled, or exponentially weighted moving average (EWMA).
-15. Ask for the acute and chronic windows.
-16. If the user has no preference, show all three and say they differ.
-17. For wellness z-scores, ask which direction each item runs (is a high number good or bad), the baseline window, and the minimum number of baseline days before a z-score is shown.
-18. Ask whether the user also flags on the raw answer.
-19. Calculate each athlete separately. Never pool athletes to build one athlete's baseline.
-20. Show the formula, the method or variant name with its source (for example, session RPE, Foster et al., 2001), the window, and the units next to every result.
-21. Show the acute and chronic loads with every ACWR. Put the ACWR caveat sentence directly under each ACWR table or chart, and in the same paragraph as each ACWR value in text.
-22. Show the raw answer, the change in points, and the status with every wellness z-score.
-23. Run the checks below before you answer.
+14. For estimated load, ask whether the user has their own estimation formula, and where playing time comes from. Follow [references/estimated-load.md](references/estimated-load.md). Set `load_source` to `estimated` on every estimated row.
+15. For ACWR, ask which variant the user wants: rolling average coupled, rolling average uncoupled, or exponentially weighted moving average (EWMA).
+16. Ask for the acute and chronic windows.
+17. If the user has no preference, show all three and say they differ.
+18. For wellness z-scores, ask which direction each item runs (is a high number good or bad), the baseline window, and the minimum number of baseline days before a z-score is shown.
+19. Ask whether the user also flags on the raw answer.
+20. Calculate each athlete separately. Never pool athletes to build one athlete's baseline.
+21. Show the formula, the method or variant name with its source (for example, session RPE, Foster et al., 2001), the window, and the units next to every result.
+22. Show the acute and chronic loads with every ACWR. Put the ACWR caveat sentence directly under each ACWR table or chart, and in the same paragraph as each ACWR value in text.
+23. Show the raw answer, the change in points, and the status with every wellness z-score.
+24. Run the checks below before you answer.
 
 ## Checks before answering
 
@@ -67,7 +70,7 @@ Run these checks on your own result before you show it:
 - Unit check: duration is in minutes, session RPE load is in arbitrary units (AU), and ACWR and z-scores have no unit.
 - Formula check: every result and table has its formula, variant, and units beside it. Session RPE load also names its rating scale, such as CR-10 or CR100.
 - Arithmetic check: recalculate two rows by hand and show them.
-- Day check: the input has one row per calendar day. Rest days hold `0`. Missing days stay missing. No blank cell became `0`.
+- Day check: the input has one row per calendar day. Rest days hold `0`. Missing days stay missing, unless the user asked for an estimate and the row is marked `estimated`. No blank cell became `0`.
 - Window check: the first rolling ACWR appears on day 28 or later, and the first EWMA ACWR on day 56 or later. Any ACWR on a missing day or the 27 days after it shows as missing. The first z-score appears only after the minimum baseline is met.
 - Variant check: the ACWR variant and windows in the answer match what the user asked for.
 - Caveat check: the sentence that ACWR does not predict injury sits directly under each ACWR table or chart, and in the same paragraph as each ACWR value in text. One sentence at the end of the answer is not enough. This includes any summary line you draft for the user to send to someone else.
@@ -75,6 +78,7 @@ Run these checks on your own result before you show it:
 - Count check: count with code, not by hand. Report sessions, athletes, filled and missing ratings, athlete-days with training, rest days you added, total athlete-days, and complete athlete-days. Sessions and athletes match the input. Total athlete-days equal the athlete-days in the input plus the days you added. Complete athlete-days are athlete-days with no missing value. Copy every count in the answer from the code output.
 - Direction check: the sign of each wellness z-score matches the item's scale direction.
 - Raw value check: every wellness z-score shows the raw answer, the change in points, and a status.
+- Estimate check: every estimated load is marked `estimated`, names its method, and shows its leave-one-game-out error. Weekly totals and ACWR that include an estimate say how many days are estimated. No change is judged against the noise band when either value is estimated.
 - Chance check: when you flag wellness answers across a squad, flag on the total z-score or the practitioner's own raw-answer rule, not on single-item z-scores. Show each item's raw answer and change in points beside each flagged athlete. Show the number of flags expected by chance next to the number found. Keep item z-scores, labeled approximate, in the athlete detail view.
 
 If a check fails, say which check failed and why. Do not hide the result.
@@ -90,6 +94,7 @@ Keep to these limits:
 - Do not diagnose illness, overtraining, or injury from a wellness score.
 - These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team. A routine soreness rating on a wellness form is an input. A reported injury, pain, or symptom is not.
 - Do not fill missing RPE or wellness answers with zero, an average, or the last value unless the user asks. If the user asks, name the method and show results with and without the filled values.
+- Estimate load for an athlete who did not wear a device only when the user asks. Never present an estimate as a measurement.
 - Athlete data is personal health data. Tell the user to check their organization's data policy before they paste it into a cloud AI tool.
 - If the `ams-data-setup` skill is installed, use its table layout. This skill works without it.
 
@@ -101,6 +106,7 @@ Load these files when needed:
 - [references/heart-rate-load.md](references/heart-rate-load.md): heart rate zones, Edwards, Banister, and Lucia TRIMP, and how HRmax settings change them
 - [references/acwr.md](references/acwr.md): acute to chronic workload ratio, its variants, and why it does not predict injury
 - [references/wellness-z-score.md](references/wellness-z-score.md): wellness answers as z-scores against the athlete's own baseline
+- [references/estimated-load.md](references/estimated-load.md): estimating TRIMP or accelerometer load from minutes played or time on ice for athletes who did not wear a device, and checking the estimate
 - [references/catapult.md](references/catapult.md): how to read external load from Catapult exports
 - [references/kinexon.md](references/kinexon.md): how to read external load from Kinexon exports
 - [references/polar-team-pro.md](references/polar-team-pro.md): how to read heart rate, internal load, and GPS data from Polar Team Pro exports

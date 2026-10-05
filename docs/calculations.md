@@ -22,6 +22,7 @@ This page has these sections:
   - [Heart rate load](#heart-rate-load)
   - [Acute to chronic workload ratio](#acute-to-chronic-workload-ratio)
   - [Wellness z-score](#wellness-z-score)
+  - [Estimated load](#estimated-load)
 - [Running load](#running-load)
   - [Total distance and distance per minute](#total-distance-and-distance-per-minute)
   - [High-speed running distance](#high-speed-running-distance)
@@ -555,6 +556,8 @@ These metrics describe internal load, how recent load compares with longer-term 
 | ACWR, rolling uncoupled | Mean daily load, last 7 days ÷ mean daily load, days 8 to 28 back | No unit | [acwr.md](../skills/load-and-wellness/references/acwr.md) |
 | ACWR, EWMA | EWMA with N = 7 ÷ EWMA with N = 28, with λ = 2 ÷ (N + 1) | No unit | [acwr.md](../skills/load-and-wellness/references/acwr.md) |
 | Wellness z-score | `z = (x_today − baseline_mean) ÷ baseline_sd` | No unit (SD units) | [wellness-z-score.md](../skills/load-and-wellness/references/wellness-z-score.md) |
+| Estimated load, athlete rate | `rate_athlete = Σ load_measured ÷ Σ playing_min_measured`, then `estimated_load = rate_athlete × playing_min_today` | Unit of the load it replaces | [estimated-load.md](../skills/load-and-wellness/references/estimated-load.md) |
+| Held-out error of an estimate | `abs(estimate_without_game − load_measured) ÷ load_measured × 100` | % | [estimated-load.md](../skills/load-and-wellness/references/estimated-load.md) |
 
 ### Session RPE load
 
@@ -977,9 +980,68 @@ Treat the numbers with these limits in mind:
 
 **Reference file.** [wellness-z-score.md](../skills/load-and-wellness/references/wellness-z-score.md)
 
+### Estimated load
+
+**What it measures.** An estimated load is a stand-in value for an athlete who played but did not wear the device, built from their playing time and their own load in games they did wear it. It is not a measurement. No published study validates a model that predicts one athlete's game load from playing time alone, so every method here is unvalidated until it is checked on the user's own data.
+
+**Inputs.** The calculation needs these data:
+
+- One row per athlete per game with `athlete_id`, `game_id`, `load`, and `load_source` (`measured` or `estimated`)
+- Playing time for every game from an official source, such as time on ice (TOI) from the league's game report, converted from `mm:ss` to decimal minutes
+
+**Calculation.** Use the athlete's own load per playing minute:
+
+```text
+rate_athlete       = Σ load_measured ÷ Σ playing_min_measured
+estimated_load     = rate_athlete × playing_min_today
+held_out_error_pct = |estimate_without_game − load_measured| ÷ load_measured × 100
+```
+
+The terms mean the following:
+
+- `load_measured`: the device's load in a game the athlete wore it, such as TRIMP or PlayerLoad, in AU
+- `playing_min_measured`, `playing_min_today`: playing time in minutes, such as TOI. Use the same kind of minutes in the rate and in the estimate.
+- `rate_athlete`: a ratio of totals in AU per playing minute, not the mean of each game's ratio
+- `estimate_without_game`: the estimate for one measured game from the athlete's other measured games, a leave-one-game-out check
+
+Follow these steps from raw inputs:
+
+1. Ask whether the user has their own estimation formula. If so, convert playing time as in step 2, apply the formula as given, and go to step 6.
+2. Convert every playing time to decimal minutes.
+3. Keep measured games of the same type and season that the user chooses.
+4. Divide the sum of measured load by the sum of measured playing minutes.
+5. Multiply by today's playing minutes.
+6. Leave out each measured game in turn, estimate it from the rest, and report the mean and largest error in percent. This needs at least 2 measured games.
+7. Say whether today's playing time falls inside the measured range.
+8. Store the result with `load_source` set to `estimated` and the method name.
+
+**Worked example.** One forward wore a heart rate monitor in six games, with 529 AU of TRIMP over 101.33 minutes of TOI. The rate is 529 ÷ 101.33 = 5.220 AU per TOI minute. In game 7 the athlete played 18:30, or 18.50 minutes, so the estimate is 5.220 × 18.50 = 96.6 AU, reported as 97 AU. The leave-one-game-out errors were 5.6%, 5.7%, 3.3%, 8.7%, 10.1%, and 3.8%: a mean of 6.2% and a largest of 10.1%. Dividing by the 150-minute game recording instead of TOI gives 0.588 AU per minute and an estimate of 10.9 AU, about one ninth of the right value.
+
+**Variants.** Use these when the athlete rate does not fit:
+
+- The user's own formula: apply it as given, and still run the held-out check.
+- Athlete line: `load = a + b × playing_min`, fitted by least squares. The file's choice is at least 10 measured games.
+- Position rate: `Σ load ÷ Σ playing_min` across wearers in the same position, labeled as a group estimate. Individual models predicted session RPE from GPS data with less error than a group model in Australian football (Bartlett et al., 2017).
+- Research imputation methods: multiple imputation with predictive mean matching was best in most simulated scenarios (Bache-Mathiesen et al., 2022). The daily team mean was the best method in one study (Griffin et al., 2021) and the worst in another (Epp-Stobbe et al., 2022). These studies filled random gaps, not whole games for a player who never wore a device.
+
+**What changes the number.** These choices change the estimate when the athlete's game does not:
+
+- Playing time: in elite ice hockey, players with more TOI had lower intensity per minute (r = −0.63 to −0.18) (Rago et al., 2022), so a constant rate can overestimate long games.
+- Position: defensemen had lower load per minute than forwards (Allard et al., 2022). Do not share a rate across positions.
+- Denominator: a rate per recording minute multiplied by playing minutes underestimates the load, as the worked example shows.
+- Game type: a rate built on training sessions does not fit games.
+
+**Units and typical range.** An estimate has the unit of the load it replaces and no range of its own. Game TRIMP in men's varsity hockey was 98 ± 59 AU (Bigg et al., 2022). TRIMP test-retest typical error in collegiate hockey practices was 12.2% (Ulmer et al., 2019). PlayerLoad test-retest CV ranged from 2.2% to 26.6% across hockey tasks (Van Iterson et al., 2017). The estimate's error adds to this measurement error.
+
+**Vendor equivalents.** None. Firstbeat `TRIMP/min` divides by session duration, not playing time, so it is not a rate per playing minute.
+
+**Reference file.** [estimated-load.md](../skills/load-and-wellness/references/estimated-load.md)
+
 ## Running load
 
 These metrics come from GPS (global positioning system) units, local positioning systems, or video tracking. Speed is in km/h or m/s. Sampling rate is in Hz, samples per second.
+
+Running thresholds and ranges do not apply to skating. For ice hockey tracking, wearable, and time-on-ice data, see [ice-hockey.md](../skills/gps-running-load/references/ice-hockey.md).
 
 | Metric | Formula | Units | Reference file |
 |---|---|---|---|
@@ -2228,15 +2290,19 @@ This page cites these sources, as the reference files list them. Eight sources h
 
 - Abt G, Lovell R. The use of individualized speed and intensity thresholds for determining the distance run at high-intensity in professional soccer. J Sports Sci. 2009;27(9):893-898. https://doi.org/10.1080/02640410902998239
 - Achten J, Jeukendrup AE. Heart rate monitoring: applications and limitations. Sports Med. 2003;33(7):517-538. https://doi.org/10.2165/00007256-200333070-00004
+- Allard P, Martinez R, Deguire S, Tremblay J. In-season session training load relative to match load in professional ice hockey. J Strength Cond Res. 2022;36(2):486-492. https://doi.org/10.1519/JSC.0000000000003490
 - Ardern CL, Glasgow P, Schneiders A, Witvrouw E, Clarsen B, Cools A, et al. 2016 Consensus statement on return to sport from the First World Congress in Sports Physical Therapy, Bern. Br J Sports Med. 2016;50(14):853-864. https://doi.org/10.1136/bjsports-2016-096278
 - Atkinson G, Nevill AM. Statistical methods for assessing measurement error (reliability) in variables relevant to sports medicine. Sports Med. 1998;26(4):217-238. https://doi.org/10.2165/00007256-199826040-00002
+- Bache-Mathiesen LK, Andersen TE, Clarsen B, Fagerland MW. Handling and reporting missing data in training load and injury risk research. Science and Medicine in Football. 2022;6(4):452-464. https://doi.org/10.1080/24733938.2021.1998587
 - Banister EW. Modeling elite athletic performance. In: MacDougall JD, Wenger HA, Green HJ, editors. Physiological Testing of the High-Performance Athlete. 2nd ed. Champaign (IL): Human Kinetics Books; 1991:403-424. ISBN 0873223004. Book chapter, not peer reviewed, no DOI. Read through the Internet Archive full-text search: https://archive.org/details/physiologicaltes0000unse (accessed 2026-10-02).
 - Banister EW, Hamilton CL. Variations in iron status with fatigue modelled from training in female distance runners. Eur J Appl Physiol Occup Physiol. 1985;54(1):16-23. https://doi.org/10.1007/BF00426292
 - Banister EW, Morton RH, Fitz-Clarke J. Dose/response effects of exercise modeled from training: physical and biochemical measures. Ann Physiol Anthropol. 1992;11(3):345-356. https://doi.org/10.2114/ahs1983.11.345
 - Banyard HG, Nosaka K, Haff GG. Reliability and validity of the load-velocity relationship to predict the 1RM back squat. J Strength Cond Res. 2017;31(7):1897-1904. https://doi.org/10.1519/JSC.0000000000001657
 - Barnett AG, van der Pols JC, Dobson AJ. Regression to the mean: what it is and how to deal with it. Int J Epidemiol. 2005;34(1):215-220. https://doi.org/10.1093/ije/dyh299
+- Bartlett JD, O'Connor F, Pitchford N, Torres-Ronda L, Robertson SJ. Relationships between internal and external training load in team-sport athletes: evidence for an individualized approach. Int J Sports Physiol Perform. 2017;12(2):230-234. https://doi.org/10.1123/ijspp.2015-0791
 - Bassek M, Raabe D, Memmert D, Rein R. Analysis of motion characteristics and metabolic power in elite male handball players. J Sports Sci Med. 2023;22(2):310-316. https://doi.org/10.52082/jssm.2023.310
 - Batterham AM, Hopkins WG. Making meaningful inferences about magnitudes. Int J Sports Physiol Perform. 2006;1(1):50-57. https://doi.org/10.1123/ijspp.1.1.50
+- Bigg JL, Gamble ASD, Spriet LL. Internal load of male varsity ice hockey players during training and games throughout an entire season. Int J Sports Physiol Perform. 2022;17(2):286-295. https://doi.org/10.1123/ijspp.2021-0089
 - Bishop C, Read P, Chavda S, Turner A. Asymmetries of the lower limb: the calculation conundrum in strength training and conditioning. Strength Cond J. 2016;38(6):27-32. https://doi.org/10.1519/SSC.0000000000000264
 - Bishop C, Read P, Lake J, Chavda S, Turner A. Interlimb asymmetries: understanding how to calculate differences from bilateral and unilateral tests. Strength Cond J. 2018;40(4):1-6. https://doi.org/10.1519/SSC.0000000000000371
 - Bishop C, Lake J, Loturco I, Papadopoulos K, Turner A, Read P. Interlimb asymmetries: the need for an individual approach to data analysis. J Strength Cond Res. 2021;35(3):695-701. https://doi.org/10.1519/JSC.0000000000002729
@@ -2256,6 +2322,7 @@ This page cites these sources, as the reference files list them. Eight sources h
 - Dos'Santos T, Jones PA, Comfort P, Thomas C. Effect of different onset thresholds on isometric midthigh pull force-time variables. J Strength Cond Res. 2017;31(12):3463-3473. https://doi.org/10.1519/JSC.0000000000001765
 - Ebben WP, Petushek EJ. Using the reactive strength index modified to evaluate plyometric performance. J Strength Cond Res. 2010;24(8):1983-1987. https://doi.org/10.1519/JSC.0b013e3181e72466
 - Edwards S. The Heart Rate Monitor Book. Sacramento (CA): Fleet Feet Press; Port Washington (NY): Polar CIC; 1993. Third printing, October 1993. The Library of Congress catalogs the book (ISBN 0963463306, LCCN 92062064) as c1992. Book, not peer reviewed, no DOI. The five zones are listed on p. 56 of the third printing. A text search of that printing found Chapter 12 on pp. 113-123, but no zone weights on those pages. The search covered text only, so a figure could still hold them. The zone weights come from Paulson et al. (2015) and Hourcade et al. (2018).
+- Epp-Stobbe A, Tsai M-C, Klimstra MD. Comparison of imputation methods for missing rate of perceived exertion data in rugby. Mach Learn Knowl Extr. 2022;4(4):827-838. https://doi.org/10.3390/make4040041
 - Exell TA, Irwin G, Gittoes MJR, Kerwin DG. Implications of intra-limb variability on asymmetry analyses. J Sports Sci. 2012;30(4):403-409. https://doi.org/10.1080/02640414.2011.647047
 - Fanchini M, Ferraresi I, Modena R, Schena F, Coutts AJ, Impellizzeri FM. Use of the CR100 scale for session rating of perceived exertion in soccer and its interchangeability with the CR10. Int J Sports Physiol Perform. 2016;11(3):388-392. https://doi.org/10.1123/ijspp.2015-0273
 - Fereday K, Hills SP, Russell M, Smith J, Cunningham DJ, Shearer D, McNarry M, Kilduff LP. A comparison of rolling averages versus discrete time epochs for assessing the worst-case scenario locomotor demands of professional soccer match-play. J Sci Med Sport. 2020;23(8):764-769. https://doi.org/10.1016/j.jsams.2020.01.002
@@ -2271,6 +2338,7 @@ This page cites these sources, as the reference files list them. Eight sources h
 - González-Badillo JJ, Sánchez-Medina L. Movement velocity as a measure of loading intensity in resistance training. Int J Sports Med. 2010;31(5):347-352. https://doi.org/10.1055/s-0030-1248333
 - González-Badillo JJ, Yañez-García JM, Mora-Custodio R, Rodríguez-Rosell D. Velocity loss as a variable for monitoring resistance exercise. Int J Sports Med. 2017;38(3):217-225. https://doi.org/10.1055/s-0042-120324
 - Gregson W, Drust B, Atkinson G, Di Salvo V. Match-to-match variability of high-speed activities in premier league soccer. Int J Sports Med. 2010;31(4):237-242. https://doi.org/10.1055/s-0030-1247546
+- Griffin A, Kenny IC, Comyns TM, Purtill H, Tiernan C, O'Shaughnessy E, Lyons M. Training load monitoring in team sports: a practical approach to addressing missing data. J Sports Sci. 2021;39(19):2161-2171. https://doi.org/10.1080/02640414.2021.1923205
 - Haddad M, Stylianides G, Djaoui L, Dellal A, Chamari K. Session-RPE method for training load monitoring: validity, ecological usefulness, and influencing factors. Front Neurosci. 2017;11:612. https://doi.org/10.3389/fnins.2017.00612
 - Haff GG, Ruben RP, Lider J, Twine C, Cormie P. A comparison of methods for determining the rate of force development during isometric midthigh clean pulls. J Strength Cond Res. 2015;29(2):386-395. https://doi.org/10.1519/JSC.0000000000000705
 - Harman EA, Rosenstein MT, Frykman PN, Rosenstein RM. The effects of arms and countermovement on vertical jumping. Med Sci Sports Exerc. 1990;22(6):825-833. https://doi.org/10.1249/00005768-199012000-00015
@@ -2323,6 +2391,7 @@ This page cites these sources, as the reference files list them. Eight sources h
 - Polar Electro Oy. Polar Training Load Pro white paper. November 12, 2019; revised March 2025. https://www.polar.com/img/static/whitepapers/pdf/polar-training-load-pro-white-paper.pdf (accessed 2026-10-02). No DOI. Cited as Polar, 2025.
 - Polar Electro Oy. Polar Team Pro API reference, sport profile zone fields `lower_limit` (inclusive) and `higher_limit` (exclusive). https://www.polar.com/teampro-api/ (accessed 2026-10-02). No DOI.
 - Pustina AA, Sato K, Liu C, Kavanaugh AA, Sams ML, Liu J, Uptmore KD, Stone MH. Establishing a duration standard for the calculation of session rating of perceived exertion in NCAA Division I men's soccer. J Trainol. 2017;6(1):26-30. https://doi.org/10.17338/trainology.6.1_26
+- Rago V, Muschinsky A, Deylami K, Vigh-Larsen JF, Mohr M. Game demands of a professional ice hockey team with special emphasis on fatigue development and playing position. J Hum Kinet. 2022;84:195-205. https://doi.org/10.2478/hukin-2022-000078
 - Reardon C, Tobin DP, Delahunt E. Application of individualized speed thresholds to interpret position specific running demands in elite professional rugby union: a GPS study. PLoS One. 2015;10(7):e0133410. https://doi.org/10.1371/journal.pone.0133410
 - Robertson S, Bartlett JD, Gastin PB. Red, amber, or green? Athlete monitoring in team sport: the need for decision-support systems. Int J Sports Physiol Perform. 2017;12(Suppl 2):S2-73-S2-79. https://doi.org/10.1123/ijspp.2016-0541
 - Rodríguez-Marroyo JA, González B, Foster C, Carballo-Leyenda AB, Villa JG. Effect of the cooldown type on session rating of perceived exertion. Int J Sports Physiol Perform. 2021;16(4):573-577. https://doi.org/10.1123/ijspp.2020-0225
@@ -2342,8 +2411,10 @@ This page cites these sources, as the reference files list them. Eight sources h
 - Thornton HR, Nelson AR, Delaney JA, Serpiello FR, Duthie GM. Interunit reliability and effect of data-processing methods of global positioning systems. Int J Sports Physiol Perform. 2019;14(4):432-438. https://doi.org/10.1123/ijspp.2018-0273 Read as an abstract only, 2026-10-05. The full text is paywalled.
 - Timmins RG, Bourne MN, Shield AJ, Williams MD, Lorenzen C, Opar DA. Short biceps femoris fascicles and eccentric knee flexor weakness increase the risk of hamstring injury in elite football (soccer): a prospective cohort study. Br J Sports Med. 2016;50(24):1524-1535. https://doi.org/10.1136/bjsports-2015-095362
 - Tomoto T, Tarumi T, Sugawara J. Associations among dynamic cerebral autoregulation, baroreflex sensitivity, and carotid distensibility in young healthy adults: insight from endurance training. Eur J Appl Physiol. 2026;126(6):3201-3220. https://doi.org/10.1007/s00421-026-06155-3
+- Ulmer JG, Tomkinson GR, Short S, Short M, Fitzgerald JS. Test-retest reliability of TRIMP in collegiate ice hockey players. Biol Sport. 2019;36(2):191-194. https://doi.org/10.5114/biolsport.2019.84670
 - VALD. ForceDecks Technical Glossary V2.0. March 2024. https://support.vald.com/hc/en-au/article_attachments/31552911571353 (accessed 2026-10-02). No DOI.
 - van Dyk N, Bahr R, Burnett AF, Whiteley R, Bakken A, Mosler A, Farooq A, Witvrouw E. A comprehensive strength testing protocol offers no clinical value in predicting risk of hamstring injury: a prospective cohort study of 413 professional football players. Br J Sports Med. 2017;51(23):1695-1702. https://doi.org/10.1136/bjsports-2017-097754
+- Van Iterson EH, Fitzgerald JS, Dietz CC, Snyder EM, Peterson BJ. Reliability of triaxial accelerometry for measuring load in men's collegiate ice hockey. J Strength Cond Res. 2017;31(5):1305-1312. https://doi.org/10.1519/JSC.0000000000001611
 - Varley MC, Elias GP, Aughey RJ. Current match-analysis techniques' underestimation of intense periods of high-velocity running. Int J Sports Physiol Perform. 2012;7(2):183-185. https://doi.org/10.1123/ijspp.7.2.183 (cited as Varley et al., 2012a)
 - Varley MC, Fairweather IH, Aughey RJ. Validity and reliability of GPS for measuring instantaneous velocity during acceleration, deceleration, and constant motion. J Sports Sci. 2012;30(2):121-127. https://doi.org/10.1080/02640414.2011.627941 (cited as Varley et al., 2012b)
 - Varley MC, Gabbett T, Aughey RJ. Activity profiles of professional soccer, rugby league and Australian football match play. J Sports Sci. 2014;32(20):1858-1866. https://doi.org/10.1080/02640414.2013.823227

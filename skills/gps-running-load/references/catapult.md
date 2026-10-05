@@ -101,6 +101,12 @@ Follow these steps to turn Catapult data into the athlete, session, and measure 
 8. Build session totals from the session-level stats, or from periods that do not overlap. Check the result against the session total distance.
 9. For 10 Hz data, compute distance as the last odometer value minus the first, not as a sum of odometer values. Remove samples with poor position quality, and state the rule you used.
 
+## Ice hockey metrics
+
+Catapult's ice hockey metrics need a Vector Pro licence and the OpenField Ice Hockey module. The module uses inertial algorithms to detect hockey strides and hockey bouts. A bout is a period above an intensity threshold that lasts longer than a minimum time. The user sets the bout dwell time in seconds, the PlayerLoad threshold for a bout, and the stride force bands. Metrics that use body weight need the athlete's weight set in OpenField. The metrics are detected after the session, not live (Catapult support, "How to Detect Ice Hockey Metrics").
+
+The detailed definitions of each hockey parameter need a Catapult login to read. If an export holds a hockey metric that this file does not define, ask the user for Catapult's definition. Do not guess it.
+
 ## Common mistakes
 
 These are the mistakes most often made with Catapult data:
@@ -140,6 +146,7 @@ Do not assume these details. Ask the user, or read them from `GET /parameters` a
 - PlayerLoad formula and its variants in the literature: <https://pmc.ncbi.nlm.nih.gov/articles/PMC7052708>, accessed 2026-10-02.
 - Catapult, "Individualisation of GPS speed thresholds": <https://www.catapult.com/blog/individualisation-gps-speed-thresholds-challenges-complexities>, accessed 2026-10-02.
 - Catapult support, "Bands": <https://support.catapultsports.com/hc/en-us/articles/360000420615-Bands>, accessed 2026-10-02.
+- Catapult support, "How to Detect Ice Hockey Metrics": <https://support.catapultsports.com/hc/en-us/articles/360001465176-How-to-Detect-Ice-Hockey-Metrics>, accessed 2026-10-05.
 - Catapult Vector Core, "Bands": <https://core.catapultsports.com/hc/en-us/articles/7209599125263-Bands>, accessed 2026-10-02.
 - Catapult Vector Core, "Post-Activity Parameters": <https://core.catapultsports.com/hc/en-us/articles/7209919599375-Post-Activity-Parameters>, accessed 2026-10-02.
 - Catapult Vector Core, "Catapult Vector App - Parameter Definitions": <https://core.catapultsports.com/hc/en-us/articles/7209931599887-Catapult-Vector-App-Parameter-Definitions>, accessed 2026-10-02.
