@@ -534,7 +534,7 @@ These metrics describe internal load, how recent load compares with longer-term 
 | Daily and weekly session RPE load | Sum of session loads in a day; sum of daily loads in a week | AU | [session-rpe-load.md](../skills/load-and-wellness/references/session-rpe-load.md) |
 | %HRmax and %HRR | `%HRmax = HR ÷ HRmax × 100`, `%HRR = (HR − HRrest) ÷ (HRmax − HRrest) × 100` | % | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
 | Edwards TRIMP | `(min in zone 1 × 1) + (min in zone 2 × 2) + (min in zone 3 × 3) + (min in zone 4 × 4) + (min in zone 5 × 5)` | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
-| Banister TRIMP | `duration_min × x × 0.64 × e^(1.92 × x)` (male weighting) or `duration_min × x × 0.86 × e^(1.67 × x)` (female weighting) | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
+| Banister TRIMP | `Σ (t_i × x_i × 0.64 × e^(1.92 × x_i))` (male weighting) or `Σ (t_i × x_i × 0.86 × e^(1.67 × x_i))` (female weighting), summed over samples. Session mean fallback: `duration_min × x × 0.64 × e^(1.92 × x)` (male weighting) or `duration_min × x × 0.86 × e^(1.67 × x)` (female weighting) | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
 | Lucia TRIMP | `(min below VT × 1) + (min from VT to RCP × 2) + (min above RCP × 3)` | AU | [heart-rate-load.md](../skills/load-and-wellness/references/heart-rate-load.md) |
 | ACWR, rolling coupled | Mean daily load, last 7 days ÷ mean daily load, last 28 days | No unit | [acwr.md](../skills/load-and-wellness/references/acwr.md) |
 | ACWR, rolling uncoupled | Mean daily load, last 7 days ÷ mean daily load, days 8 to 28 back | No unit | [acwr.md](../skills/load-and-wellness/references/acwr.md) |
@@ -594,7 +594,7 @@ For more than one session in a day, calculate each session's load, then add them
 
 **What changes the number.** These choices change the result when the athlete's effort does not change:
 
-- Duration definition: adding a 15-minute warm-up to Monday's practice changes it from 450 AU to 6 × 90 = 540 AU. No consensus says whether duration includes the warm-up or the cool-down. Use one rule for every session, and record it. If the user has no rule, the file offers this default, labeled as its own choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) used that rule for training. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played matched GPS distance more closely than loads from the whole match period: r = 0.81 against 0.57 (Pustina et al., 2017). The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
+- Duration definition: adding a 15-minute warm-up to Monday's practice changes it from 450 AU to 6 × 90 = 540 AU. No consensus says whether duration includes the warm-up or the cool-down. Use one rule for each session type, such as training and matches, and record it. If the user has no rule, the file offers this default, labeled as its own choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) defined training duration the same way: it includes the warm-up and recovery periods and excludes the cool-down. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played correlated with GPS distance more closely than loads from total match duration: r = 0.808 against 0.566 (Pustina et al., 2017). Under minutes played, an unused substitute's warm-up scores 0 AU. The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
 - Duration unit: entering Monday's practice as 1.25 hours gives 6 × 1.25 = 7.5 AU instead of 450 AU.
 - Rating timing: if an immediate rating changed Monday's 6 to a 7, the practice would read 7 × 75 = 525 AU (Foster et al., 2001).
 - Rating scale: a 6 to 20 rating or a CR100 rating is on a different range from a CR-10 rating. Name the scale with every load.
@@ -617,7 +617,7 @@ For more than one session in a day, calculate each session's load, then add them
 - Each athlete's maximal heart rate (HRmax), with how it was set: a maximal test, a peak from a maximal field test, or an age formula
 - Each athlete's resting heart rate (HRrest), with how it was measured
 - For Lucia TRIMP, the heart rate at the ventilatory threshold (VT) and the respiratory compensation point (RCP) from a lab ramp test
-- For Banister TRIMP, the weighting the user names for each athlete. Never infer it from a name or roster data.
+- For Banister TRIMP, the weighting (curve) the user chooses for each athlete. Never ask for the athlete's gender, and never infer the weighting from a name or roster data.
 
 **Calculation.** Express intensity as %HRmax or %HRR, then apply a TRIMP (training impulse) method. Name the method, the HRmax source, and the HRrest value with every result:
 
@@ -628,9 +628,14 @@ For more than one session in a day, calculate each session's load, then add them
 TRIMP_Edwards  = (min in zone 1 × 1) + (min in zone 2 × 2) + (min in zone 3 × 3)
                + (min in zone 4 × 4) + (min in zone 5 × 5)
 
-x = (HR_mean − HRrest) ÷ (HRmax − HRrest)
-Male weighting:    TRIMP_Banister = duration_min × x × 0.64 × e^(1.92 × x)
-Female weighting:  TRIMP_Banister = duration_min × x × 0.86 × e^(1.67 × x)
+x_i = (HR_i − HRrest) ÷ (HRmax − HRrest)
+Male weighting:    TRIMP_Banister = Σ ( t_i × x_i × 0.64 × e^(1.92 × x_i) )
+Female weighting:  TRIMP_Banister = Σ ( t_i × x_i × 0.86 × e^(1.67 × x_i) )
+
+Session mean fallback, only when nothing finer than the session mean and duration exists:
+x_mean = (HR_mean − HRrest) ÷ (HRmax − HRrest)
+Male weighting:    TRIMP_Banister_mean = duration_min × x_mean × 0.64 × e^(1.92 × x_mean)
+Female weighting:  TRIMP_Banister_mean = duration_min × x_mean × 0.86 × e^(1.67 × x_mean)
 
 TRIMP_Lucia = (min below VT × 1) + (min from VT to RCP × 2) + (min above RCP × 3)
 ```
@@ -650,10 +655,15 @@ The terms mean the following:
 
 - `HRmax`, `HRrest`: maximal and resting heart rate, in bpm. Heart rate reserve (HRR) is HRmax − HRrest.
 - Zone boundary rule: include the lower bound and exclude the upper bound, on the unrounded %HRmax. A value of exactly 60.0 % counts in zone 2. Values at or above 100 % HRmax count in zone 5. Use the same rule for Lucia zones. Neither Edwards nor Lucia et al. (2003) say which zone gets a value on a boundary. The rule matches the Polar Team Pro API. It is a practice convention, not a published part of either method.
-- `x`: the delta heart rate ratio, %HRR as a fraction, from 0 at rest to 1 at HRmax (Banister et al., 1992)
-- `HR_mean`: the mean heart rate of the session (Paulson et al., 2015; Hourcade et al., 2018)
+- `i`: one heart rate sample, or one phase of the session. `Σ` adds the terms for every sample or phase.
+- `HR_i`: the heart rate of sample `i`, or the mean heart rate of phase `i`, in bpm
+- `t_i`: the length of sample or phase `i`, in minutes. For 1 Hz data, each sample lasts 1 ÷ 60 min.
+- `x_i`, `x_mean`: the delta heart rate ratio, %HRR as a fraction, from 0 at rest to 1 at HRmax (Banister et al., 1992)
+- `HR_mean`: the mean heart rate of the whole session (Paulson et al., 2015; Hourcade et al., 2018)
 - `duration_min`: session length in minutes
 - `0.64 × e^(1.92 × x)` and `0.86 × e^(1.67 × x)`: weighting factors that give more credit to high-intensity time, based on the exponential rise of blood lactate with intensity (Banister et al., 1992). Banister (1991) prints both multiplier forms. The female form appears earlier, in Banister and Hamilton (1985). Use this multiplier form by default, and name it with every result.
+- Banister default: add one term for each sample whenever second-by-second heart rate exists, or one term for each phase when only phase means exist. Banister scored each phase from its length and heart rate, recorded periods at different intensities separately, and added the phase scores to give the session total (Banister, 1991, pp. 406-409). Polar also computes its Banister TRIMP each second and adds the results (Polar, 2025). Use the session mean only as a fallback, and label it "session mean". Paulson et al. (2015), Hourcade et al. (2018), and Tomoto et al. (2026) used the session mean. It cannot see intervals: Hourcade et al. (2018) found it did not separate two sessions with almost equal mean heart rate (p = 0.420). The weighting curves upward, so the per-sample sum is larger than the session mean whenever heart rate varies. Never mix the two in one athlete's history.
+- Spreadsheet guard: a plain `SUMPRODUCT` reads a blank sample as 0 bpm, which adds a negative term. The reference file's formula multiplies each term by `(B2:B1201<>"")`, so a blank sample adds nothing.
 - `e`: the base of natural logarithms, about 2.718
 - `VT`, `RCP`: the heart rates at the first and second breathing thresholds in a lab ramp test (Lucia et al., 2003). The multipliers 1, 2, and 3 are reported by Paulson et al. (2015).
 
@@ -662,9 +672,9 @@ Follow these steps from raw inputs:
 1. Find the sampling interval from the timestamps, in seconds.
 2. Find gaps, where timestamps jump or `hr_bpm` is 0 or blank. Remove those samples. Do not count them as 0 bpm.
 3. Find artifacts the user or device flags. Remove them only with the user's agreement, and report how many there were.
-4. Keep plausible values above HRmax. If HRmax is age-predicted, tell the user the setting is probably too low.
+4. Keep plausible values above HRmax. If HRmax is age-predicted, tell the user the setting is probably too low. If HRmax is a Yo-Yo intermittent recovery level 2 peak, label it "may be about 2 % below HRmax on average (Krustrup et al., 2006)", and apply no correction factor.
 5. Calculate time in each zone in minutes: count samples in the zone, multiply by the sampling interval, and divide by 60.
-6. Calculate the TRIMP the user asked for, in AU.
+6. Calculate the TRIMP the user asked for, in AU. For Banister TRIMP, use the per-sample sum, and use the session mean only when nothing finer exists.
 7. Report recorded minutes next to planned session minutes.
 8. Report the method, the zone boundaries and boundary rule, HRmax and its source, HRrest, and the weighting with each result.
 
@@ -695,35 +705,45 @@ The TRIMP methods give these results:
 - Edwards, measured HRmax: 5 × 1 + 3 × 2 + 6 × 3 + 6 × 4 = 53.0 AU.
 - Edwards, predicted HRmax 194 bpm: 3 × 1 + 2 × 2 + 9 × 3 + 0 × 4 + 6 × 5 = 64.0 AU.
 - Edwards, predicted HRmax 200 bpm: 120, 140, and 180 bpm sit exactly on boundaries. The result is 64.0 AU with boundaries in the higher zone and 53.0 AU with boundaries in the lower zone.
-- Banister, measured HRmax: x = (148.5 − 55) ÷ (205 − 55) = 0.6233. Male weighting 0.64 × e^(1.92 × 0.6233) = 2.1181, so TRIMP = 20 × 0.6233 × 2.1181 = 26.4 AU. Female weighting 2.4355, so TRIMP = 30.4 AU.
-- Banister, predicted HRmax 194 bpm: x = 0.6727, giving 31.3 AU male and 35.6 AU female. At 200 bpm, x = 0.6448, giving 28.5 AU and 32.6 AU.
+- Banister per-sample sum, measured HRmax: each block adds minutes × x × weighting. With the male weighting, the blocks at 110, 140, 180, 150, and 120 bpm add 1.42, 3.23, 15.85, 8.20, and 1.27 AU, so TRIMP = 30.0 AU from the unrounded terms. The female weighting gives 33.8 AU.
+- Banister per-sample sum, predicted HRmax: 36.1 AU male and 40.0 AU female at 194 bpm, and 32.5 AU and 36.4 AU at 200 bpm.
+- Banister session mean fallback, measured HRmax: x = (148.5 − 55) ÷ (205 − 55) = 0.6233. Male weighting 0.64 × e^(1.92 × 0.6233) = 2.1181, so TRIMP = 20 × 0.6233 × 2.1181 = 26.4 AU. Female weighting 2.4355, so TRIMP = 30.4 AU.
+- Banister session mean fallback, predicted HRmax 194 bpm: x = 0.6727, giving 31.3 AU male and 35.6 AU female. At 200 bpm, x = 0.6448, giving 28.5 AU and 32.6 AU.
 - Lucia: 14 min below VT and 6 min above RCP, so 14 × 1 + 0 × 2 + 6 × 3 = 32.0 AU. HRmax does not change it.
 
-Mean %HRmax is 72.4 % with the measured HRmax and 76.5 % with 194 bpm. An HRmax 11 bpm too low raises every HRmax-based result. A steady 20-minute session at the same mean of 148.5 bpm gives the same Banister TRIMP, 26.4 AU male and 30.4 AU female, but 60.0 AU Edwards and 20.0 AU Lucia. Banister TRIMP from the mean cannot tell the two sessions apart. Time in zone can.
+The per-sample sum is 13.5 % higher than the session mean with the male weighting and 11.2 % higher with the female weighting. Mean %HRmax is 72.4 % with the measured HRmax and 76.5 % with 194 bpm. An HRmax 11 bpm too low raises every HRmax-based result: the per-sample Banister sum rose from 30.0 to 36.1 AU male and from 33.8 to 40.0 AU female.
+
+A steady 20-minute session at the same mean of 148.5 bpm gives 26.4 AU male and 30.4 AU female by either Banister form, because heart rate is constant. It gives 60.0 AU Edwards and 20.0 AU Lucia. The session mean gives the interval session the same 26.4 AU, so it cannot tell the two sessions apart. The per-sample sum and time in zone can. These methods do not agree on which session was harder: the per-sample sum and Lucia TRIMP score the interval session higher, and Edwards TRIMP scores the steady session higher.
 
 **Variants.** Know these variants before you compare numbers:
 
 - %HRR, the Karvonen method (Karvonen et al., 1957): %HRR tracks the percentage of oxygen uptake reserve more closely than the percentage of maximal oxygen uptake (Swain et al., 1998). The same heart rate gives a different percentage under each method, so never mix them in one report. Edwards defined his zones on %HRmax.
-- HRmax source: use a measured HRmax when one exists. Without a maximal test, label the highest artifact-checked value from a maximal intermittent field test as HRpeak, with the test name and date. In the Yo-Yo intermittent recovery level 1 test, peak heart rate in 17 men was 187 ± 2 bpm, against 189 ± 2 bpm on a treadmill to exhaustion (Krustrup et al., 2003). In the level 2 test, heart rate at exhaustion was 98 ± 1 % of HRmax in 13 men (Krustrup et al., 2006). In 20 team sport players, heart rate at exhaustion did not differ between the 30-15 Intermittent Fitness Test and a continuous incremental test (Buchheit et al., 2009). Take HRpeak as the highest 5-second rolling average of artifact-checked samples, as Paulson et al. (2015) did in a lab test. This window is a practice default of the file, not a published rule. State it with the result.
+- HRmax source: use a measured HRmax when one exists. Without a maximal test, label the highest artifact-checked value from a maximal intermittent field test as HRpeak, with the test name and date. In the Yo-Yo intermittent recovery level 1 test, peak heart rate in 17 men was 187 ± 2 bpm, against 189 ± 2 bpm on a treadmill to exhaustion (Krustrup et al., 2003). In the level 2 test, heart rate at exhaustion was 98 ± 1 % of HRmax in 13 men (Krustrup et al., 2006). Accept a level 2 peak as HRpeak, labeled "may be about 2 % below HRmax on average (Krustrup et al., 2006)", with no correction factor. In 20 team sport players, heart rate at exhaustion did not differ between the 30-15 Intermittent Fitness Test and a continuous incremental test (Buchheit et al., 2009). Take HRpeak as the highest 5-second rolling average of artifact-checked samples, as Paulson et al. (2015) did in a lab test. This window is a practice default of the file, not a published rule. State it with the result. When a later session gives a higher artifact-checked 5-second average, raise HRpeak to that value.
 - Age-predicted HRmax: 220 − age underestimates HRmax in older adults (Tanaka et al., 2001). 208 − 0.7 × age comes from Tanaka et al. (2001). 211 − 0.64 × age had a standard error of the estimate (SEE) of 10.8 bpm in 3,320 healthy adults (Nes et al., 2013).
-- Banister exponent-only form: the appendix of Banister et al. (1992) prints e^(1.92 × x) and e^(1.67 × x) without the 0.64 and 0.86 multipliers. Banister's 1985 and 1991 texts include the multipliers. The exponent-only form gives larger numbers and reverses which sex scores higher. Ask which form a tool uses.
-- Banister phase-sum or per-sample form: Banister scored each phase of a session from its duration and mean heart rate, then added the phases (Banister & Hamilton, 1985; Banister, 1991). Applying the formula to each sample and adding the results is the same rule with one-sample phases. Polar computes its Banister TRIMP each second and adds the results (Polar, 2025). It gives a larger number than the mean form whenever heart rate varies. Use the session mean by default. It is the form used in the validation papers checked for the file (Paulson et al., 2015; Hourcade et al., 2018; Tomoto et al., 2026). The whole-session mean comes from these later papers, not from Banister. It treats the whole session as one phase, so it cannot see intervals. Offer the phase-sum or per-sample form as a labeled option. Never mix the two in one athlete's history.
+- Banister exponent-only form: the appendix of Banister et al. (1992) prints e^(1.92 × x) and e^(1.67 × x) without the 0.64 and 0.86 multipliers. Banister's 1985 and 1991 texts include the multipliers. The exponent-only form gives larger numbers and reverses which sex scores higher. Ask which form a tool uses, and whether it sums samples or uses the session mean.
+- Banister session mean: the fallback form, for files with only the session mean heart rate and duration. It is the form used in the validation papers checked for the file (Paulson et al., 2015; Hourcade et al., 2018; Tomoto et al., 2026). The whole-session mean comes from these later papers, not from Banister. It treats the whole session as one phase, so it cannot see intervals. Label it "session mean", and keep it as a separate series. Never mix it with the per-sample sum in one athlete's history.
 - Individualized TRIMP (iTRIMP): a weighting built from each athlete's own heart rate and blood lactate profile (Manzi et al., 2009). Use it only when each athlete has a lactate test.
-- Mean heart rate and mean %HRmax: simple summaries that hide how intensity was spread. Hourcade et al. (2018) found the summated zone load differed between two sessions with almost equal mean heart rate (p = 0.007), while Banister TRIMP did not (p = 0.420). Report time in zone next to any mean.
+- Mean heart rate and mean %HRmax: simple summaries that hide how intensity was spread. Hourcade et al. (2018) found the summated zone load differed between two sessions with almost equal mean heart rate (p = 0.007), while Banister TRIMP from the session mean did not (p = 0.420). Report time in zone next to any mean.
 
-The published Banister weightings are male and female only. They come from blood lactate curves in trained male and female subjects (Banister, 1991). No published guidance was found for athletes outside those categories. For those athletes, prefer Edwards, Lucia, or iTRIMP. At a delta heart rate ratio from 0.3 to 1.0, the female weighting gives 5 to 25 % more load than the male weighting.
+The published Banister weightings are labeled male and female. They come from blood lactate curves in trained men and women (Banister, 1991). They say nothing about an athlete's gender. No published guidance was found for athletes outside those categories. At a delta heart rate ratio from 0.3 to 1.0, the female weighting gives 5 to 25 % more load than the male weighting. Follow these steps to choose a weighting:
 
-**What changes the number.** These choices change the result when the athlete's effort does not change. Figures use the measured HRmax and the male weighting unless stated:
+1. Offer Edwards, Lucia, or iTRIMP first. Edwards TRIMP has no sex term.
+2. If the user wants Banister TRIMP, ask which curve to use for each athlete. Never ask for the athlete's gender, and never infer the weighting from a name or roster data. Use this wording: "Banister TRIMP has two published curves, labeled male and female, built from blood lactate in trained men and women. Which curve should I use for this athlete? If you are unsure, I can show both, or use Edwards TRIMP, which has no sex term."
+3. If the user does not choose, show both results, each labeled with its weighting.
+4. Store both results for every session.
+5. Record the chosen weighting, and never switch weightings within one athlete's history.
 
-- HRmax source: an age formula 11 bpm low raised Edwards TRIMP from 53.0 to 64.0 AU and Banister TRIMP from 26.4 to 31.3 AU.
-- HRrest: Banister TRIMP was 28.7 AU at 45 bpm, 26.4 AU at 55 bpm, and 24.0 AU at 65 bpm.
+**What changes the number.** These choices change the result when the athlete's effort does not change. Figures use the measured HRmax, the male weighting, and the per-sample Banister sum unless stated:
+
+- HRmax source: an age formula 11 bpm low raised Edwards TRIMP from 53.0 to 64.0 AU and Banister TRIMP from 30.0 to 36.1 AU.
+- HRrest: Banister TRIMP was 32.0 AU at 45 bpm, 30.0 AU at 55 bpm, and 27.8 AU at 65 bpm.
 - Boundary rule: at HRmax 200 bpm, the rule alone moved Edwards TRIMP from 53.0 to 64.0 AU, a 20.8 % swing.
-- Banister form: the exponent-only form scored 41.3 AU male and 35.3 AU female, so the sex ordering reverses.
-- Mean or per-sample: the per-sample form gave 30.0 AU male and 33.8 AU female.
-- Dropouts: a 60-second dropout at 180 bpm recorded as 0 bpm cut mean heart rate from 148.50 to 139.50 bpm and Banister TRIMP from 26.4 to 21.3 AU. Removing it instead gave 19 min, 146.84 bpm, and 24.1 AU. Edwards TRIMP fell to 49.0 AU either way. Lucia TRIMP fell to 30.0 AU with zeros and 29.0 AU with removal. A chest strap agreed best with an electrocardiogram (Gillinov et al., 2017).
-- Artifact spikes: a false 15-second spike to 230 bpm raised Edwards TRIMP from 53.0 to 53.5 AU and per-sample Banister TRIMP from 30.0 to 31.4 AU.
+- Banister form: the exponent-only form scored 46.8 AU male and 39.2 AU female, against 30.0 AU and 33.8 AU with the multipliers, so the sex ordering reverses.
+- Per-sample sum or session mean: the session mean fallback gave 26.4 AU male and 30.4 AU female, against 30.0 AU and 33.8 AU from the per-sample sum.
+- Dropouts: a 60-second dropout at 180 bpm recorded as 0 bpm cut mean heart rate from 148.50 to 139.50 bpm and Banister TRIMP from 30.0 to 27.2 AU. Each zero adds a small negative term. Removing it instead gave 19 min, 146.84 bpm, and 27.3 AU. With the session mean fallback, zeros gave 21.3 AU and removal gave 24.1 AU, against 26.4 AU. Edwards TRIMP fell to 49.0 AU either way. Lucia TRIMP fell to 30.0 AU with zeros and 29.0 AU with removal. A chest strap agreed best with an electrocardiogram (Gillinov et al., 2017).
+- Artifact spikes: a false 15-second spike to 230 bpm raised Edwards TRIMP from 53.0 to 53.5 AU and Banister TRIMP from 30.0 to 31.4 AU.
 - Sampling and averaging: with 30-second transitions, Edwards TRIMP was 53.4 AU at 1 s, 53.3 AU from 5 s averages, and 54.0 AU from 60 s averages. Lucia TRIMP was 31.2, 31.1, and 29.0 AU.
-- Cardiovascular drift: heart rate rises during prolonged exercise (Coyle & González-Alonso, 2001; Achten & Jeukendrup, 2003). An illustrative drift of 0.5 bpm per minute raised Edwards TRIMP from 53.0 to 59.0 AU and Banister TRIMP from 26.4 to 29.7 AU.
+- Cardiovascular drift: heart rate rises during prolonged exercise (Coyle & González-Alonso, 2001; Achten & Jeukendrup, 2003). An illustrative drift of 0.5 bpm per minute raised Edwards TRIMP from 53.0 to 59.0 AU and Banister TRIMP from 30.0 to 33.8 AU.
 - Heat and hydration: dehydration and air temperature can change the relationship between heart rate and oxygen uptake a great deal (Achten & Jeukendrup, 2003).
 - Caffeine: 3 to 6 mg per kg body mass did not change heart rate during submaximal exercise but lowered RPE (Glaister & Gissane, 2018).
 - Illness and fever: 24-hour heart rate rose by about 8.5 bpm for each 1 °C in 27 young men with an acute febrile infection (Karjalainen & Viitasalo, 1986). Do not infer illness from heart rate. Refer health questions to medical staff.
@@ -744,7 +764,7 @@ The file gives no typical error for session TRIMP. Do not call a change between 
 
 - Polar `heart_rate_zones` and Time in HR zone: five bands of the player's own HRmax, with defaults of 50 to 60, 60 to 70, 70 to 80, 80 to 90, and 90 to 100 percent. A band includes its lower limit and excludes its upper limit, as in the reference file. The coach can edit the bands. Polar does not state how it treats a value at or above 100 percent of HRmax.
 - Polar `heart_rate_avg_percent`, with max and min versions: heart rate relative to the player's HRmax, which defaults to 220 minus age. The API does not return HRmax, so name the HRmax source yourself.
-- Polar `cardio_load`: Banister TRIMP summed from per-second heart rate, using resting heart rate, maximum heart rate, and gender. A 60-minute session typically scores 70 to 130. The reference file's default Banister form uses the session mean heart rate. Polar sums per-second terms, which matches the reference file's labeled per-sample option. Polar does not publish the scaling of the sum.
+- Polar `cardio_load`: Banister TRIMP summed from per-second heart rate, using resting heart rate, maximum heart rate, and gender. A 60-minute session typically scores 70 to 130. Polar sums per-second terms, which matches the reference file's default per-sample sum. Polar does not publish the scaling of the sum.
 - Polar `training_load`: an older load score with unpublished method. Do not compare it with `cardio_load` or with any TRIMP.
 - Firstbeat `TRIMP`: Banister TRIMP, T x HRratio x 0.64 x e^(1.92 x HRratio), where HRratio = (HRex − HRrest) / (HRmax − HRrest). Firstbeat uses beat-to-beat heart rate and a lower intensity limit that is not published. A mean-heart-rate TRIMP from another system gives different numbers. The Firstbeat file maps it to no reference file.
 - Firstbeat `TRIMP/min`: TRIMP divided by session duration. The period used for laps and sessions is not published. The Firstbeat file maps it to no reference file.
@@ -2213,7 +2233,7 @@ This page cites these sources, as the reference files list them. Seven sources h
 - de Vet HC, Terwee CB, Ostelo RW, Beckerman H, Knol DL, Bouter LM. Minimal changes in health status questionnaires: distinction between minimally detectable change and minimally important change. Health Qual Life Outcomes. 2006;4:54. https://doi.org/10.1186/1477-7525-4-54
 - Dos'Santos T, Jones PA, Comfort P, Thomas C. Effect of different onset thresholds on isometric midthigh pull force-time variables. J Strength Cond Res. 2017;31(12):3463-3473. https://doi.org/10.1519/JSC.0000000000001765
 - Ebben WP, Petushek EJ. Using the reactive strength index modified to evaluate plyometric performance. J Strength Cond Res. 2010;24(8):1983-1987. https://doi.org/10.1519/JSC.0b013e3181e72466
-- Edwards S. High performance training and racing. In: The Heart Rate Monitor Book. Sacramento (CA): Fleet Feet Press; Port Washington (NY): Polar CIC; 1993:113-123. Third printing, October 1993. The Library of Congress catalogs the book (ISBN 0963463306, LCCN 92062064) as c1992. Book, not peer reviewed, no DOI. Zone weights are taken from Paulson et al. (2015) and Hourcade et al. (2018).
+- Edwards S. The Heart Rate Monitor Book. Sacramento (CA): Fleet Feet Press; Port Washington (NY): Polar CIC; 1993. Third printing, October 1993. The Library of Congress catalogs the book (ISBN 0963463306, LCCN 92062064) as c1992. Book, not peer reviewed, no DOI. The five zones are listed on p. 56 of the third printing. A text search of that printing found Chapter 12 on pp. 113-123, but no zone weights on those pages. The search covered text only, so a figure could still hold them. The zone weights come from Paulson et al. (2015) and Hourcade et al. (2018).
 - Exell TA, Irwin G, Gittoes MJR, Kerwin DG. Implications of intra-limb variability on asymmetry analyses. J Sports Sci. 2012;30(4):403-409. https://doi.org/10.1080/02640414.2011.647047
 - Fanchini M, Ferraresi I, Modena R, Schena F, Coutts AJ, Impellizzeri FM. Use of the CR100 scale for session rating of perceived exertion in soccer and its interchangeability with the CR10. Int J Sports Physiol Perform. 2016;11(3):388-392. https://doi.org/10.1123/ijspp.2015-0273
 - Fereday K, Hills SP, Russell M, Smith J, Cunningham DJ, Shearer D, McNarry M, Kilduff LP. A comparison of rolling averages versus discrete time epochs for assessing the worst-case scenario locomotor demands of professional soccer match-play. J Sci Med Sport. 2020;23(8):764-769. https://doi.org/10.1016/j.jsams.2020.01.002

@@ -125,7 +125,7 @@ Blanks behave this way in each tool:
 
 - Power BI: DAX multiplies a blank by a number to a blank, but the explicit `ISBLANK` test keeps the rule visible. `COUNT` skips blank loads, so a day with a blank session has `rated` below `sessions` and returns a blank.
 - Tableau: `COUNT` ignores nulls, so the daily test works the same way. A null rating makes the product null.
-- Both: a text rating becomes null on import. The spreadsheet gives `#VALUE!` for it.
+- Both: a text rating becomes null on import. In the spreadsheet, a rating that is not a number, such as "six", gives `#VALUE!`. A number stored as text, such as "6", is multiplied like a number.
 
 ## Calculate session load
 
@@ -165,7 +165,7 @@ The wrong method averages Monday's RPE and multiplies by Monday's total minutes:
 
 These choices change the result even when the athlete's performance does not:
 
-- Duration definition. Adding a 15-minute warm-up to Monday's practice changes it from 450 AU to 6 × 90 = 540 AU. Use one rule for every session.
+- Duration definition. Adding a 15-minute warm-up to Monday's practice changes it from 450 AU to 6 × 90 = 540 AU. Use one rule for each session type, such as training and matches.
 - Duration unit. Entering Monday's practice as 1.25 hours gives 6 × 1.25 = 7.5 AU instead of 450 AU.
 - Rating timing. The end of a session can dominate a rating taken straight away (Foster et al., 2001). If that changed Monday's rating from 6 to 7, the practice would read 7 × 75 = 525 AU. Collect the rating at the same delay every day.
 - Rating scale. A rating on the 6 to 20 scale is not a CR-10 rating. A CR100 rating is on a different range from a CR-10 rating. Name the scale with every load.
@@ -197,7 +197,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Using the 6 to 20 RPE scale. Borg (1982) described his category RPE scale and a separate category ratio scale. The session RPE method uses the 0 to 10 category ratio scale (Foster et al., 2001). Multiplying a 6 to 20 rating by minutes gives a different, non-comparable number. Ask which scale the form used.
 - Calling every rating above 10 an error. The form may use the Borg CR100 scale (Fanchini et al., 2016). Ask before you flag or drop the value.
 - Duration in hours or as text. A 90-minute session entered as `1.5` gives a load 60 times too small. A `1:30` text value may read as a time of day. Convert to minutes first.
-- Mixing what counts as duration. No consensus says whether duration includes the warm-up or the cool-down. Ask, keep one rule for every session, and record it. If the user has no rule, offer this default and label it as this skill's choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) used that rule for training. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played matched GPS distance more closely than loads from the whole match period: r = 0.81 against 0.57 (Pustina et al., 2017). The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
+- Mixing what counts as duration. No consensus says whether duration includes the warm-up or the cool-down. Ask, keep one rule for each session type, and record it. If the user has no rule, offer this default and label it as this skill's choice: training time from the start of the team warm-up to the end of the last drill, without a separate cool-down. Pustina et al. (2017) defined training duration the same way: it includes the warm-up and recovery periods and excludes the cool-down. For matches, ask whether to use minutes played. In one study of college soccer, match loads from minutes played correlated with GPS distance more closely than loads from total match duration: r = 0.808 against 0.566 (Pustina et al., 2017). Under minutes played, an unused substitute's warm-up scores 0 AU. The cool-down can change the rating itself, not only the minutes (Rodríguez-Marroyo et al., 2021).
 - Averaging RPE across sessions and multiplying by total minutes. This is not the same as adding each session's load. Multiply first, then add.
 - Treating a missing rating as zero. A zero load means no training. A missing rating means unknown. Keep it missing and report coverage. A spreadsheet `=C2*D2` makes this mistake on every blank row.
 - Hiding injured, ill, or modified-training days. A low load from an injury looks like a planned easy day. Mark these days.
