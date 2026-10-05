@@ -31,7 +31,7 @@ Use these variants when they fit:
 - **Rolling window of tests.** The previous k tests. Use it when tests are irregular, such as weekly jumps. This is the default.
 - **Rolling window of days.** The previous k calendar days. Use it only for daily measures. Missing days shrink the real number of values, so report n.
 - **Fixed baseline.** The mean and SD of a set period, such as the first weeks of preseason. Use it when you want a stable reference that does not drift. State the dates.
-- **Control limits.** Sands et al. (2019) show limits at 1.5 and 2.0 × the baseline SD around the baseline mean. These equal z = ±1.5 and z = ±2.0. They are examples from a published case, not validated thresholds. With an 8-value baseline and pure noise, |z| > 2 flags about 10.1% of tests and |z| > 1.5 flags about 20.0%. Let the practitioner choose, and cite the source of any cut point.
+- **Control limits.** Sands et al. (2019) show limits at 1.5 and 2.0 × the baseline SD around the baseline mean. These equal z = ±1.5 and z = ±2.0. They are examples from a published case, not validated thresholds. With a 10-value baseline and pure noise, |z| > 2 flags about 8.9% of tests and |z| > 1.5 flags about 18.6%. Let the practitioner choose, and cite the source of any cut point.
 
 A z-score says how unusual today is for this athlete. It does not say whether the change is larger than measurement error. For that, use the noise band with the test's typical error (TE):
 
@@ -110,23 +110,23 @@ Follow these steps to calculate a rolling z-score from raw inputs:
 10. Compute the noise band `1.96 × TE × √(1 + 1/n)` from the test's TE, and compare the change from the baseline mean with it.
 11. Report the z-score with the window k, the count n, the baseline mean, the baseline SD, and the units.
 
-Spreadsheet version, for one athlete with dates sorted in column A and values in column B, judging row 10 against the 8 rows before it. Put the minimum number of baseline values (2 or more) in cell `H1`:
+Spreadsheet version, for one athlete with dates sorted in column A and values in column B, judging row 12 against the 10 rows before it. Put the minimum number of baseline values (2 or more), such as 10, in cell `H1`:
 
 ```text
-Mean (C10): =AVERAGE(B2:B9)
-SD (D10):   =STDEV.S(B2:B9)
-n (E10):    =COUNT(B2:B9)
-z (F10):    =IF(OR(B10="",E10<$H$1),"",IF(D10=0,"",(B10-C10)/D10))
+Mean (C12): =AVERAGE(B2:B11)
+SD (D12):   =STDEV.S(B2:B11)
+n (E12):    =COUNT(B2:B11)
+z (F12):    =IF(OR(B12="",E12<$H$1),"",IF(D12=0,"",(B12-C12)/D12))
 ```
 
-The z-score is blank when today is blank, when the count is below `H1`, or when the SD is 0. A plain `=(B10-C10)/D10` turns a blank value today into a z-score.
+The z-score is blank when today is blank, when the count is below `H1`, or when the SD is 0. A plain `=(B12-C12)/D12` turns a blank value today into a z-score.
 
 Python version:
 
 ```python
 import pandas as pd
 
-WINDOW, MIN_N = 8, 5   # example settings: prior tests in baseline, minimum to report
+WINDOW, MIN_N = 10, 10   # prior tests in baseline, minimum to report: the offered default
 
 def add_z(d, col):
     prior = d[col].shift(1)                      # keep today out of its own baseline
@@ -141,7 +141,7 @@ df = df.sort_values(["athlete_id", "date"])
 out = pd.concat(add_z(d, "cmj_cm") for _, d in df.groupby("athlete_id"))
 ```
 
-The settings `WINDOW = 8` and `MIN_N = 5` are examples, not published standards. Both are below the 10 values suggested in the section on choosing a window, so z-scores from them are imprecise.
+The settings `WINDOW = 10` and `MIN_N = 10` follow this skill's offered default of at least 10 prior values, from the section on choosing a window. They are not published standards. Swinton et al. (2018) say more than 10 to 20 tests may be needed. Set both to the user's choice. Label any value below 10 as the user's choice.
 
 ### Calculate it in Power BI and Tableau
 
@@ -149,7 +149,7 @@ These versions follow steps 4 to 9 above. The baseline is the previous k tests f
 
 The window counts test dates that have a row for the measure, as the spreadsheet and Python versions count rows. A test date with only a reason-coded row takes a place in the window but adds no value, so n can be smaller than k.
 
-Both versions assume one row per athlete, date, measure, and trial in a `measures` table, with the test in `measure_name`, such as `cmj_jump_height`. They use the best trial each day. Use the same summary as the test's TE. Show the results with one athlete and one test date per row. The settings k = 8 and minimum 5 below are examples, not published standards.
+Both versions assume one row per athlete, date, measure, and trial in a `measures` table, with the test in `measure_name`, such as `cmj_jump_height`. They use the best trial each day. Use the same summary as the test's TE. Show the results with one athlete and one test date per row. The settings k = 10 and minimum 10 below follow this skill's offered default of at least 10 prior values. They are not published standards.
 
 In Power BI, use a marked date table `dates` related to `measures[measure_date]`. Use these DAX measures, not calculated columns. Tell the user why: the table has one row per trial, but each result is for one athlete and one test date in the visual. A measure is evaluated in the filter context of the visual. A calculated column is computed once per row at data refresh and does not change with filters or slicers (https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-calculations-options):
 
@@ -163,7 +163,7 @@ CALCULATE (
 )
 
 Baseline n =
-VAR k = 8
+VAR k = 10
 VAR today = MAX ( dates[date] )
 VAR priorDates =
     CALCULATETABLE (
@@ -181,7 +181,7 @@ VAR vals =
 RETURN COUNTROWS ( vals )
 
 Baseline mean (cm) =
-VAR k = 8
+VAR k = 10
 VAR today = MAX ( dates[date] )
 VAR priorDates =
     CALCULATETABLE (
@@ -199,7 +199,7 @@ VAR vals =
 RETURN AVERAGEX ( vals, [@v] )
 
 Baseline SD (cm) =
-VAR k = 8
+VAR k = 10
 VAR today = MAX ( dates[date] )
 VAR priorDates =
     CALCULATETABLE (
@@ -217,7 +217,7 @@ VAR vals =
 RETURN IF ( COUNTROWS ( vals ) >= 2, STDEVX.S ( vals, [@v] ) )
 
 z-score =
-VAR minN = 5
+VAR minN = 10
 VAR x = [Test value (cm)]
 VAR n = [Baseline n]
 VAR sd = [Baseline SD (cm)]
@@ -228,7 +228,7 @@ RETURN
     )
 
 z-score status =
-VAR minN = 5
+VAR minN = 10
 VAR rowsToday =
     CALCULATE ( COUNTROWS ( measures ), measures[measure_name] = "cmj_jump_height" )
 RETURN
@@ -256,13 +256,13 @@ Has value (aggregate):
 IIF(ISNULL([Test value (cm)]), 0, 1)
 
 Baseline n (table calculation):
-ZN(WINDOW_SUM([Has value], -8, -1))
+ZN(WINDOW_SUM([Has value], -10, -1))
 
 Baseline sum (table calculation):
-ZN(WINDOW_SUM(ZN([Test value (cm)]), -8, -1))
+ZN(WINDOW_SUM(ZN([Test value (cm)]), -10, -1))
 
 Baseline sum of squares (table calculation):
-ZN(WINDOW_SUM(ZN([Test value (cm)]) * ZN([Test value (cm)]), -8, -1))
+ZN(WINDOW_SUM(ZN([Test value (cm)]) * ZN([Test value (cm)]), -10, -1))
 
 Baseline mean (cm) (table calculation):
 IF [Baseline n] > 0 THEN [Baseline sum] / [Baseline n] END
@@ -273,13 +273,13 @@ THEN SQRT(MAX(0, ROUND(([Baseline sum of squares] - [Baseline sum] * [Baseline s
 END
 
 z-score (table calculation):
-IF ISNULL([Test value (cm)]) OR [Baseline n] < 5 THEN NULL
+IF ISNULL([Test value (cm)]) OR [Baseline n] < 10 THEN NULL
 ELSEIF [Baseline SD (cm)] > 0 THEN ([Test value (cm)] - [Baseline mean (cm)]) / [Baseline SD (cm)]
 END
 
 z-score status (table calculation):
 IF ISNULL([Test value (cm)]) THEN "no test today"
-ELSEIF [Baseline n] < 5 THEN "baseline too short"
+ELSEIF [Baseline n] < 10 THEN "baseline too short"
 ELSEIF ISNULL([Baseline SD (cm)]) OR [Baseline SD (cm)] <= 0 THEN "no variation in baseline"
 ELSE "ok"
 END
@@ -287,7 +287,7 @@ END
 
 For every table calculation, set **Compute Using** to **Specific Dimensions**, check `measure_date` only, and leave `athlete_id` unchecked. The window then moves along each athlete's tests and restarts for each athlete. Do not filter dates with a dimension filter, because it removes earlier tests from the window. Use a table calculation filter to show a shorter range.
 
-At an athlete's first tests, the window reaches back past the first mark and holds fewer than 8 tests. Check one early row by hand: n must equal the number of earlier tests with a value.
+At an athlete's first tests, the window reaches back past the first mark and holds fewer than 10 tests. Check one early row by hand: n must equal the number of earlier tests with a value.
 
 Blanks behave this way in each tool:
 
@@ -298,10 +298,12 @@ Blanks behave this way in each tool:
 
 ## Worked example
 
-One athlete did a CMJ every 3 days. Judge the test on 2026-09-28 against the 8 tests before it. These are made-up numbers for illustration.
+One athlete did a CMJ every 3 days. Judge the test on 2026-09-28 against the 10 tests before it. These are made-up numbers for illustration.
 
 | Date | CMJ (cm) |
 |---|---|
+| 2026-08-29 | 40.2 |
+| 2026-09-01 | 40.7 |
 | 2026-09-04 | 41.0 |
 | 2026-09-07 | 39.8 |
 | 2026-09-10 | 40.6 |
@@ -314,39 +316,41 @@ One athlete did a CMJ every 3 days. Judge the test on 2026-09-28 against the 8 t
 
 Work through the calculation:
 
-1. Sum of the 8 prior values = 323.30 cm, so the baseline mean = 323.30 / 8 = 40.4125 cm.
-2. Deviations from the mean: 0.5875, −0.6125, 0.1875, 0.4875, −0.9125, −0.1125, 0.7875, and −0.4125 cm.
-3. Sum of squared deviations = 2.6288 cm². Divide by 7 to get 0.3755 cm².
-4. Baseline SD = √0.3755 = 0.6128 cm.
-5. z = (37.6 − 40.4125) / 0.6128 = −4.59.
-6. Change from the baseline mean = 37.6 − 40.4125 = −2.8125 cm.
-7. Noise band with TE = 0.6284 cm from the typical error reference: 1.96 × 0.6284 × √(1 + 1/8) = 1.96 × 0.6284 × 1.0607 = 1.3064 cm.
-8. The drop of 2.8125 cm is beyond the band by 2.8125 − 1.3064 = 1.5061 cm. That margin is beyond the SWC of 0.6185 cm from the smallest worthwhile change reference.
-9. The TE came from 6 athletes, so t(5) = 2.57 applies. The band becomes 2.5706 × 0.6284 × 1.0607 = 1.7133 cm. The drop is beyond it by 1.0992 cm, so the conclusion does not change.
+1. Sum of the 10 prior values = 404.20 cm, so the baseline mean = 404.20 / 10 = 40.4200 cm.
+2. Deviations from the mean: −0.2200, 0.2800, 0.5800, −0.6200, 0.1800, 0.4800, −0.9200, −0.1200, 0.7800, and −0.4200 cm.
+3. Sum of squared deviations = 2.7560 cm². Divide by 9 to get 0.3062 cm².
+4. Baseline SD = √0.3062 = 0.5534 cm.
+5. z = (37.6 − 40.4200) / 0.5534 = −5.10.
+6. Change from the baseline mean = 37.6 − 40.4200 = −2.8200 cm.
+7. Noise band with TE = 0.6284 cm from the typical error reference: 1.96 × 0.6284 × √(1 + 1/10) = 1.96 × 0.6284 × 1.0488 = 1.2918 cm.
+8. The drop of 2.8200 cm is beyond the band by 2.8200 − 1.2918 = 1.5282 cm. That margin is beyond the SWC of 0.6185 cm from the smallest worthwhile change reference.
+9. The TE came from 6 athletes, so t(5) = 2.57 applies. The band becomes 2.5706 × 0.6284 × 1.0488 = 1.6942 cm. The drop is beyond it by 1.1258 cm, so the conclusion does not change.
 
-Result: today is 4.59 of the athlete's usual SDs below baseline (window 8 prior tests, n = 8, sample SD). The drop is larger than measurement error, and clearly larger than the SWC. Report it as a flag for the practitioner to review, not as a diagnosis.
+The Python version above, with `WINDOW = 10` and `MIN_N = 10`, gives the same row for 2026-09-28: `base_n` = 10, `base_mean` = 40.42, `base_sd` = 0.5534, and `z` = −5.10. It leaves `z` blank for the 10 earlier tests, because each has fewer than 10 prior values.
+
+Result: today is 5.10 of the athlete's usual SDs below baseline (window 10 prior tests, n = 10, sample SD). The drop is larger than measurement error, and clearly larger than the SWC. Report it as a flag for the practitioner to review, not as a diagnosis.
 
 ## What changes the number
 
 These choices change the z-score for the same athlete on the same day:
 
-- **Including today in the baseline.** Using the last 8 values, today included, gives a mean of 39.9875 cm, an SD of 1.1180 cm, and z = −2.14 instead of −4.59. Today's low value pulls the mean down and inflates the SD.
+- **Including today in the baseline.** Using the last 10 values, today included, gives a mean of 40.1600 cm, an SD of 1.0532 cm, and z = −2.43 instead of −5.10. Today's low value pulls the mean down and inflates the SD.
 - **Window length.** With the 4 prior tests, z = −3.71. With 3 prior tests, z = −4.64. Short windows give unstable SDs.
-- **Population SD.** `STDEV.P` gives an SD of 0.5732 cm and z = −4.91.
+- **Population SD.** `STDEV.P` gives an SD of 0.5250 cm and z = −5.37.
 - **Team SD instead of the athlete's SD.** Dividing by the between-athlete SD of 3.0927 cm from the smallest worthwhile change reference gives z = −0.91. That answers a different question.
 - **Small n.** An SD from few values is imprecise. Swinton et al. (2018) show that a 95% interval based on a TE from 5 individuals needs a multiplier of 2.78 instead of 1.96.
 - **Own SD in place of TE.** The baseline SD also holds biological variation, so a band built on it is never a measurement-error band. With at least 10 stable values, it gives the usual-variation band, `baseline_mean ± t(n − 1) × baseline_SD × √(1 + 1/n)`, with two states only. With fewer than 10 values, do not build that band.
 - **Trend in the baseline.** A baseline should be stable, with low variability and no clear trend (Sands et al., 2019). A rolling baseline that follows a slow decline can hide it. See the example below.
 - **Mixed conditions.** A baseline that spans preseason and in-season, or an illness period, changes both the mean and the SD.
 
-This example shows a slow decline that a rolling baseline never flags. One athlete tested 28 times.
+This example shows a slow decline that a rolling baseline never flags. One athlete tested 30 times.
 
-Tests 1 to 8 alternate 40.4 and 39.6 cm around 40.0 cm. Tests 9 to 28 fall 0.1 cm per test with the same ±0.4 cm variation, ending at 37.6 cm. These are made-up numbers for illustration:
+Tests 1 to 10 alternate 40.5 and 39.5 cm around 40.0 cm. Tests 11 to 30 fall 0.1 cm per test with the same ±0.5 cm variation, ending at 37.5 cm. These are made-up numbers for illustration:
 
-1. Rolling z against the prior 8 tests never reaches −2. The lowest value is −1.91.
-2. Before test 28, the rolling baseline mean has drifted to 38.4500 cm, with an SD of 0.4440 cm.
-3. Against the fixed baseline of tests 1 to 8 (mean 40.0000 cm), test 28 is 2.4000 cm lower.
-4. That drop is beyond the noise band of 1.3064 cm for n = 8.
+1. Rolling z against the prior 10 tests never reaches −2. The lowest value is −1.87.
+2. Before test 30, the rolling baseline mean has drifted to 38.5500 cm, with an SD of 0.5603 cm.
+3. Against the fixed baseline of tests 1 to 10 (mean 40.0000 cm), test 30 is 2.5000 cm lower.
+4. That drop is beyond the noise band of 1.2918 cm for n = 10.
 
 Pair a rolling baseline with a fixed reference period, or a trend line, so a slow decline shows up.
 
@@ -373,7 +377,7 @@ You need these data to compute an individual baseline:
 
 - Source: repeated values of one measure for one athlete, from the same protocol
 - Sampling: a regular testing schedule. Record the date of every test.
-- Minimum data: no published minimum exists in the sources for this file. Report n, and treat a baseline built from few values as imprecise.
+- Minimum data: no published minimum exists in the sources for this file. If the user has no minimum, offer at least 10 prior values, as set out in the section on choosing a window. Report n, and treat a baseline built from few values as imprecise.
 
 ## Common mistakes
 
@@ -387,17 +391,17 @@ These are the mistakes AI tools and spreadsheets make most often with baselines 
 - Treating a large z-score as a real change and not checking noise. A z-score uses day-to-day variation, which mixes biological variation and measurement error. Compare the change with the noise band from TE too.
 - Using the athlete's own baseline SD as the TE. It needs a t multiplier with few values, and it mixes biological variation with measurement error.
 - Computing an SD from few values. Report n, and use a t multiplier when you build a band from it.
-- Applying ±1.5 or ±2 as flag cut points without a source. Name the source, or label the cut point as the user's choice. With an 8-value baseline and pure noise, these flag about 20.0% and 10.1% of tests.
+- Applying ±1.5 or ±2 as flag cut points without a source. Name the source, or label the cut point as the user's choice. With a 10-value baseline and pure noise, these flag about 18.6% and 8.9% of tests.
 - Reporting squad flags without the number expected by chance. Show results × 5%, or × 2.5% for one direction, next to the flags found.
 - Relying only on a rolling baseline. It follows a slow decline and may never flag it. Add a fixed reference period or a trend line.
 - Quoting 5% as the false flag rate when only drops matter. With one direction of interest, the chance rate is 2.5%.
 - Ignoring direction. For some measures, such as soreness ratings, a higher value is worse. State which direction is a concern.
 - Comparing z-scores between athletes as if they share one scale. Each athlete's SD differs.
-- Treating ordinal 1 to 5 wellness items as continuous. Ratings are ordered categories, and many ties make the SD tiny and the z-score extreme. For a single item, lead with the raw rating and the change in points, and show any z-score second, labeled approximate. In a simulation run for this skill (stable athletes, 14-day baselines, independent days), the chance rate of z ≤ −2 on one item ranged from 3.3% to 5.6% depending on the athlete's usual answer, against 3.8% expected, and most flags were a one-point drop. A total of five items, or a 0 to 100 scale, came close to the expected rate.
+- Treating ordinal 1 to 5 wellness items as continuous. Ratings are ordered categories, and many ties make the SD tiny and the z-score extreme. For a single item, lead with the raw rating and the change in points, and show any z-score second, labeled approximate. In a simulation run for this skill (stable athletes, 14-day baselines, independent days), the chance rate of z ≤ −2 on one item ranged from 3.3% to 5.6% depending on the athlete's usual answer, against 3.8% expected, and most flags were a one-point drop. A total of five items, or a 0 to 100 scale, came close to the expected rate. Keep single-item z-scores out of squad flag lists. With 5 items and a 14-day baseline, about 17% to 20% of athletes get at least one item flagged on an ordinary day by chance, treating the items as independent: 4 or 5 of 25 athletes, against about 1 on the total. Flag the squad on the total or on the practitioner's own raw-answer rule, and show each item's raw answer and change in points beside each flagged athlete. Keep item z-scores, labeled approximate, in the athlete detail view.
 
 ## Example request
 
-> For each player, compare today's jump height with their own last 8 tests and flag anyone who is unusually low. Tell me what window you used.
+> For each player, compare today's jump height with their own last 10 tests and flag anyone who is unusually low. Tell me what window you used.
 
 ## Check the result
 
