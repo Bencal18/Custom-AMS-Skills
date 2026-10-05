@@ -125,7 +125,7 @@ Give each athlete and measure one of these states:
 
 ### Build the baseline
 
-Ask the user how to build the baseline: which period, and how many values. Do not invent a minimum count. The usual-variation band is the one exception, and it needs at least 10 values. Show `n` in the report. Mark a baseline built from few values as uncertain.
+Ask the user how to build the baseline: which period, and how many values. If the user has none, offer at least 10 values, labeled as a practice default. The usual-variation band always needs at least 10 values. Show `n` in the report. Mark a baseline built from few values as uncertain.
 
 Rebuild the baseline when the athlete's situation changes, such as after a long break, a new training phase, or a new device. Say when you did.
 

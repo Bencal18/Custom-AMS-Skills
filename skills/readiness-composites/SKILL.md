@@ -38,7 +38,7 @@ Follow these rules for any athlete in rehab:
 
 These tiers are safety referrals, not a training recommendation. Use these red-flag tiers:
 
-- Call emergency services: chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
+- Call emergency services: chest pain, coughing up blood, or shortness of breath that is sudden, unexplained, or out of proportion to the exercise. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
 - Stop the session and refer the same day for any of these signs:
   - Calf pain, or new swelling, warmth, or tenderness in one calf or leg, which is more urgent after surgery or immobilization
   - Wound redness or discharge

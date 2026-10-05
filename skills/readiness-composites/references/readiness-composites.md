@@ -24,7 +24,7 @@ For a rehab athlete, follow these rules:
 
 These tiers are safety referrals, not a training recommendation. Sort any report of a red-flag sign into one of three tiers. Tell the user what the tier says to do, whatever the other inputs show:
 
-- Call emergency services: chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
+- Call emergency services: chest pain, coughing up blood, or shortness of breath that is sudden, unexplained, or out of proportion to the exercise. Also severe or worsening weakness or numbness in both legs, with back or leg pain.
 - Stop the session and refer the same day for any of these signs:
   - Calf pain, or new swelling, warmth, or tenderness in one calf or leg, which is more urgent after surgery or immobilization
   - Wound redness or discharge
@@ -34,7 +34,7 @@ These tiers are safety referrals, not a training recommendation. Sort any report
 
 No sports-specific red-flag list was found. The tiers come from general clinical guidelines, and a clinician should confirm them. The qualifier "out of proportion to the exercise" is the authors' wording, not a guideline's. The authors added it because breathlessness is normal during training. The evidence for each item differs:
 
-- Chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood can signal a pulmonary embolism, a blood clot in the lungs (NICE, 2020, recommendation 1.1.15; Drobnic et al., 2015). Refer as an emergency.
+- Chest pain, shortness of breath that is sudden, unexplained, or out of proportion to the exercise, or coughing up blood can signal a pulmonary embolism, a blood clot in the lungs (NICE, 2020, recommendation 1.1.15; Drobnic et al., 2015). Refer as an emergency.
 - Severe or worsening weakness or numbness in both legs, with back or leg pain, needs emergency referral (GIRFT, 2023).
 - Calf pain, or new swelling, warmth, or tenderness in one calf or leg, can signal a deep vein thrombosis (DVT), a blood clot in a deep leg vein (NICE, 2020; Hillegass et al., 2016). Recent surgery or immobilization of the leg raises that risk (NICE, 2020). Refer the same day.
 - The numbness, wound, and fever items rest on general guidance, not on a sports source. New numbness or tingling in a limb can signal a nerve or blood-flow problem that needs prompt medical review (Royal Children's Hospital Melbourne, 2023). A surgical guideline asks clinicians to tell patients how to recognize a wound infection and whom to contact (NICE, 2019, recommendation 1.1.3).
@@ -266,7 +266,7 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Assuming subjective and objective inputs move together. They generally did not correlate in a systematic review, and subjective measures tracked training load more consistently (Saw et al., 2016). Disagreement between inputs is information. Show it.
 - Building a single composite for a rehab athlete by default. Show a table for each input instead, and calculate a composite only when the medical team asks.
 - Putting a red-flag sign, such as pain or swelling at the injured joint, calf pain, or new numbness or weakness, into a rehab composite. Other inputs can average it away. Show it raw, with its tier and what the tier says to do.
-- Treating every red-flag sign the same way. Chest pain, sudden or unexplained shortness of breath, out of proportion to the exercise, or coughing up blood calls for emergency services. Calf pain calls for a same-day referral. Use the three tiers.
+- Treating every red-flag sign the same way. Chest pain, shortness of breath that is sudden, unexplained, or out of proportion to the exercise, or coughing up blood calls for emergency services. Calf pain calls for a same-day referral. Use the three tiers.
 - Using a pre-injury baseline from another test, device, protocol, or arm condition. It is not a valid baseline. Record the baseline's date and season phase, and let the clinician decide whether it is too old.
 - Treating a return of the composite or an input to the pre-injury baseline as a return-to-sport criterion. Published criteria, such as those in Grindem et al. (2016), require passing every test in a battery. Name the baseline used.
 
