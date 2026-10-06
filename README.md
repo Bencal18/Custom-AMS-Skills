@@ -60,6 +60,7 @@ Use this table to go straight to what you need:
 | Check how a metric is calculated | [`docs/calculations.md`](docs/calculations.md) |
 | Look up what a vendor's metric means | [`docs/vendor-metrics/`](docs/vendor-metrics/README.md) |
 | Plan your own athlete management system | [`docs/build-an-ams.md`](docs/build-an-ams.md) |
+| Build AMS screens in Power BI or Tableau | [`skills/ams-dashboards/`](skills/ams-dashboards/SKILL.md) |
 | Write a new skill or reference file | [`templates/`](templates/README.md) |
 | Report a problem or suggest a change | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
 | Confirm the skills loaded in your AI tool | [Confirm the install works](#confirm-the-install-works) |
@@ -68,8 +69,9 @@ The repository is laid out like this:
 
 ```text
 Custom-AMS-Skills/
-├── skills/                      The 12 skills you install
+├── skills/                      The 13 skills you install
 │   ├── ams-architecture/
+│   ├── ams-dashboards/
 │   ├── ams-data-setup/
 │   ├── athlete-data-visualization/
 │   ├── check-ai-analysis/

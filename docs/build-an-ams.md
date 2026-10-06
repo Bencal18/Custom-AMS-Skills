@@ -129,7 +129,7 @@ Follow these steps in order. Each step names the section or reference file with 
 12. Write the handover document. See [backups-and-handover.md](../skills/ams-architecture/references/backups-and-handover.md).
 13. Run a trial of two weeks before the full build. See [Start small](#start-small).
 
-For the athlete, session, and measure tables inside the clean layer, see the [`ams-data-setup`](../skills/ams-data-setup/) skill.
+For the athlete, session, and measure tables inside the clean layer, see the [`ams-data-setup`](../skills/ams-data-setup/) skill. To build the screens in Power BI or Tableau, see the [`ams-dashboards`](../skills/ams-dashboards/) skill.
 
 ## Decide whether to buy or build
 
