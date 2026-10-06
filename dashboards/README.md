@@ -98,7 +98,7 @@ Never publish athlete data to Tableau Public or with Power BI **Publish to web**
 
 These checks ran on the files in this folder:
 
-- The metric layer passes 14 known-answer tests, including the ACWR and wellness z-score worked examples from [`docs/calculations.md`](../docs/calculations.md).
+- The metric layer passes 14 known-answer tests, including the ACWR and wellness z-score worked examples from [`docs/calculations.md`](../docs/calculations.md). GitHub runs these tests on every push and pull request.
 - Every Power BI JSON file passes Microsoft's published schemas, every field a visual uses exists in the model, and every DAX reference names a real column or measure. See [Check the template](docs/check-the-template.md).
 - Both Tableau workbooks pass the official Tableau workbook schemas for 2026.1 and 2026.2, and every field a sheet uses exists in its data source.
 

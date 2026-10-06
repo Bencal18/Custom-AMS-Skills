@@ -1,4 +1,5 @@
-# Checks links, skill frontmatter, and blocked terms on every push and pull request.
+# Checks links, skill frontmatter, and blocked terms on every push and pull request,
+# and runs the known-answer tests for the dashboards metric layer.
 # Set the repository secret BLOCKED_TERMS to a comma-separated list of terms
 # that must not appear in the repository. The check fails when the secret is
 # missing. GitHub does not pass secrets to pull requests from forks, so those
@@ -22,3 +23,15 @@ jobs:
           BLOCKED_TERMS: ${{ secrets.BLOCKED_TERMS }}
           FORK_PR: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
         run: python3 scripts/check_repo.py
+
+  metric-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the pinned test packages
+        run: pip install -r dashboards/requirements-dev.txt
+      - name: Run the dashboards metric tests
+        run: python -m pytest dashboards/pipeline/tests -q
