@@ -1,6 +1,6 @@
 ---
 name: gps-running-load
-description: Calculate total distance, metres per minute, high-speed running, and accelerations and decelerations from GPS or local positioning exports. Check thresholds, units, and settings.
+description: Calculate total distance, metres per minute, high-speed running, and accelerations and decelerations from GPS, local positioning, or ice hockey tracking data. Check thresholds, units, and settings.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
@@ -21,6 +21,7 @@ Use this skill when the user asks to:
 - Calculate high-speed running, sprint distance, or distance in speed zones.
 - Count accelerations and decelerations, or total their distance.
 - Compare running load across athletes, positions, sessions, seasons, or devices.
+- Read ice hockey skating data from league tracking, wearables, or local positioning, with time on ice from the official game reports.
 - Set up a running load log in a spreadsheet, R, Python, Power BI, or Tableau from GPS or local positioning exports.
 
 This skill covers these metrics:
@@ -37,28 +38,29 @@ Follow these steps in order:
 
 1. Ask which device and software produced the data, if the user has not said.
 2. For Catapult, Kinexon, or Polar Team Pro data, load the matching device file listed under References.
-3. Load the reference file for each metric the user asks about.
-4. Ask for the column names, the units, and one example row with names removed. Do not guess what a column means.
-5. Ask whether the file holds summary values per athlete per session, raw speed samples, or raw positions over time.
-6. For raw data, ask for the sampling rate in hertz (Hz), meaning samples per second.
-7. Check the sampling rate against the timestamps.
-8. Confirm the speed unit.
-9. Convert to metres per second (m/s) before you apply any threshold: km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048.
-10. Confirm the distance unit is metres.
-11. Convert kilometres × 1,000, yards × 0.9144, and yd/min × 0.9144 to get m/min.
-12. For high-speed running, ask for the speed threshold, its unit, and whether it is the same for every athlete (absolute) or set per athlete (individualized).
-13. For accelerations and decelerations, ask for the threshold in m/s², the minimum time beyond the threshold, and the software or filter that produced the counts.
-14. Ask for the vendor's boundary rule: does a value exactly on a threshold count?
-15. If the user does not know, use one rule for speed and acceleration: count a sample at or above the lower bound and below the upper bound.
-16. Say which boundary rule you used.
-17. For distance per minute, ask which duration to divide by: whole session, time on field, or drill time.
-18. Use one duration rule for every row.
-19. For a peak period, ask for the window length and whether it is rolling or fixed.
-20. Calculate each athlete and session separately. Do not pool athletes into one value unless the user asks for a group summary.
-21. Before you compare two values, confirm they share the device type, the same unit for that athlete, sampling rate, software version, settings, thresholds, session type, and session duration.
-22. If any of these differ or are unknown, say which, next to the comparison. A change of vendor changes the device type, software, and settings. A matching label such as `Practice` does not confirm the same session type. Ask whether the drills matched.
-23. Show the formula, the variant name, the threshold, and the units next to every result.
-24. Run the checks below before you answer.
+3. For ice hockey data, load [references/ice-hockey.md](references/ice-hockey.md).
+4. Load the reference file for each metric the user asks about.
+5. Ask for the column names, the units, and one example row with names removed. Do not guess what a column means.
+6. Ask whether the file holds summary values per athlete per session, raw speed samples, or raw positions over time.
+7. For raw data, ask for the sampling rate in hertz (Hz), meaning samples per second.
+8. Check the sampling rate against the timestamps.
+9. Confirm the speed unit.
+10. Convert to metres per second (m/s) before you apply any threshold: km/h ÷ 3.6, mph × 0.44704, or ft/s × 0.3048.
+11. Confirm the distance unit is metres.
+12. Convert kilometres × 1,000, yards × 0.9144, and yd/min × 0.9144 to get m/min.
+13. For high-speed running, ask for the speed threshold, its unit, and whether it is the same for every athlete (absolute) or set per athlete (individualized).
+14. For accelerations and decelerations, ask for the threshold in m/s², the minimum time beyond the threshold, and the software or filter that produced the counts.
+15. Ask for the vendor's boundary rule: does a value exactly on a threshold count?
+16. If the user does not know, use one rule for speed and acceleration: count a sample at or above the lower bound and below the upper bound.
+17. Say which boundary rule you used.
+18. For distance per minute, ask which duration to divide by: whole session, time on field, or drill time.
+19. Use one duration rule for every row.
+20. For a peak period, ask for the window length and whether it is rolling or fixed.
+21. Calculate each athlete and session separately. Do not pool athletes into one value unless the user asks for a group summary.
+22. Before you compare two values, confirm they share the device type, the same unit for that athlete, sampling rate, software version, settings, thresholds, session type, and session duration.
+23. If any of these differ or are unknown, say which, next to the comparison. A change of vendor changes the device type, software, and settings. A matching label such as `Practice` does not confirm the same session type. Ask whether the drills matched.
+24. Show the formula, the variant name, the threshold, and the units next to every result.
+25. Run the checks below before you answer.
 
 ## Checks before answering
 
@@ -102,6 +104,7 @@ Follow these limits:
 - Do not label any running load value as safe, risky, too high, or too low. Report the value, the comparison, and the uncertainty.
 - Do not invent a threshold or range. Use only the figures in the reference files, and name the source.
 - Do not pick a speed or acceleration threshold for the user. Show the options in the reference file and ask which one they use.
+- Do not apply running speed thresholds or running ranges to skating. For ice hockey, follow [references/ice-hockey.md](references/ice-hockey.md).
 - Do not compare acceleration or deceleration counts across devices, software versions, or settings as if they were the same measure.
 - Do not call a change real when it is inside the noise band.
 - Do not fill missing sessions with zero or an average unless the user asks. If the user asks, name the method and show results with and without the filled values.
@@ -118,3 +121,4 @@ Load these files when needed:
 - [references/catapult.md](references/catapult.md): how to read and transform Catapult API output and exports
 - [references/kinexon.md](references/kinexon.md): how to read and transform Kinexon API output and exports
 - [references/polar-team-pro.md](references/polar-team-pro.md): how to read and transform Polar Team Pro GPS and heart rate exports and API output
+- [references/ice-hockey.md](references/ice-hockey.md): what league tracking, wearables, local positioning, and time-on-ice reports give you in ice hockey, and how to keep them apart

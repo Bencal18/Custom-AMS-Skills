@@ -1,6 +1,6 @@
 ---
 name: ams-architecture
-description: Plan a whole athlete management system (AMS): spreadsheet or database, hosting, automatic device imports, who sees what, backups, handover, and buy vs build. Not table layouts.
+description: "Plan a whole athlete management system (AMS): spreadsheet or database, hosting, automatic device imports, who sees what, backups, handover, and buy vs build. Not table layouts."
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
   version: "1"
