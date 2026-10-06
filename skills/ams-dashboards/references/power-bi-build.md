@@ -70,7 +70,7 @@ Use these visuals for the core screens:
 
 | Screen | Visual | Fields |
 |---|---|---|
-| Squad board | Table, sorted by jump change divided by the noise band, ascending | Athlete, group, and the lookup measures for availability, form, wellness, load, and the latest jump |
+| Squad board | Table, sorted by jump change divided by the noise band, in the chosen direction, largest first | Athlete, group, and the lookup measures for availability, form, wellness, load, and the latest jump |
 | Squad board | Cards | Availability counts, forms received, jump results beyond the band next to the number expected by chance, last successful import |
 | Athlete profile | Line and clustered column chart | Date; daily load as columns; acute and chronic load as lines |
 | Athlete profile | Line chart | Date; jump height, noise band low, noise band high |

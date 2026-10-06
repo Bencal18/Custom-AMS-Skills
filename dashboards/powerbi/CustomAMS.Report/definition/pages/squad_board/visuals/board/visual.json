@@ -249,11 +249,11 @@
                       "Entity": "athlete_day"
                     }
                   },
-                  "Property": "Jump change vs band"
+                  "Property": "Jump change vs band, chosen direction"
                 }
               },
-              "queryRef": "athlete_day.Jump change vs band",
-              "nativeQueryRef": "Jump change vs band"
+              "queryRef": "athlete_day.Jump change vs band, chosen direction",
+              "nativeQueryRef": "Jump change vs band, chosen direction"
             }
           ]
         }
@@ -268,10 +268,10 @@
                     "Entity": "athlete_day"
                   }
                 },
-                "Property": "Jump change vs band"
+                "Property": "Jump change vs band, chosen direction"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ],
         "isDefaultSort": false
@@ -292,7 +292,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Athletes, largest jump drop against the noise band first'"
+                  "Value": "'Athletes, largest jump change in the chosen direction against the noise band first'"
                 }
               }
             }

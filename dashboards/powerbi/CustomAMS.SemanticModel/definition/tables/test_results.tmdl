@@ -49,12 +49,12 @@ table test_results
 			    CALCULATE ( SELECTEDVALUE ( test_results[wording] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
 		lineageTag: 1a3e63b5-f063-5c97-9ea9-9d30a08de3ae
 
-	measure 'Change vs band on test day' =
+	measure 'Change vs band on test day, chosen direction' =
 			VAR t = [Test day shown]
 			RETURN
-			    CALCULATE ( SELECTEDVALUE ( test_results[change_vs_band] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+			    CALCULATE ( SELECTEDVALUE ( test_results[change_vs_band_chosen] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
 		formatString: 0.00
-		lineageTag: 9f5e6b39-6e99-582f-9947-e464cbcf4091
+		lineageTag: c9414d52-fbaf-587f-9679-369e72b2be9a
 
 	measure 'Jump height, one athlete (cm)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( test_results[value] ) )
 		formatString: 0.0
@@ -248,6 +248,14 @@ table test_results
 
 		annotation SummarizationSetBy = User
 
+	column change_vs_band_chosen
+		dataType: double
+		lineageTag: ccdb7ef1-4809-50c6-87ff-502f6d7feec0
+		summarizeBy: none
+		sourceColumn: change_vs_band_chosen
+
+		annotation SummarizationSetBy = User
+
 	column athlete_sentence
 		dataType: string
 		lineageTag: 171c3192-93e0-5f26-aea1-72459d0ea2db
@@ -270,10 +278,10 @@ table test_results
 				let
 				    Source = Csv.Document(File.Contents(DataFolder & "test_results.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "trials_attempted", "value", "trials_ok", "measure_name", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "direction", "state", "wording", "change_low", "change_high", "change_vs_band", "athlete_sentence", "chosen_direction"}),
-				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "trials_attempted", "value", "trials_ok", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "change_low", "change_high", "change_vs_band"}),
-				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "trials_attempted", "value", "trials_ok", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "change_low", "change_high", "change_vs_band"}),
-				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"trials_attempted", Int64.Type}, {"value", type number}, {"trials_ok", Int64.Type}, {"measure_name", type text}, {"baseline_mean", type number}, {"baseline_n", Int64.Type}, {"change", type number}, {"te", type number}, {"multiplier", type number}, {"noise_band", type number}, {"swc", type number}, {"band_low_cm", type number}, {"band_high_cm", type number}, {"direction", type text}, {"state", type text}, {"wording", type text}, {"change_low", type number}, {"change_high", type number}, {"change_vs_band", type number}, {"athlete_sentence", type text}, {"chosen_direction", type text}}, "en-US")
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "trials_attempted", "value", "trials_ok", "measure_name", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "direction", "state", "wording", "change_low", "change_high", "change_vs_band", "change_vs_band_chosen", "athlete_sentence", "chosen_direction"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "trials_attempted", "value", "trials_ok", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "change_low", "change_high", "change_vs_band", "change_vs_band_chosen"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "trials_attempted", "value", "trials_ok", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "change_low", "change_high", "change_vs_band", "change_vs_band_chosen"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"trials_attempted", Int64.Type}, {"value", type number}, {"trials_ok", Int64.Type}, {"measure_name", type text}, {"baseline_mean", type number}, {"baseline_n", Int64.Type}, {"change", type number}, {"te", type number}, {"multiplier", type number}, {"noise_band", type number}, {"swc", type number}, {"band_low_cm", type number}, {"band_high_cm", type number}, {"direction", type text}, {"state", type text}, {"wording", type text}, {"change_low", type number}, {"change_high", type number}, {"change_vs_band", type number}, {"change_vs_band_chosen", type number}, {"athlete_sentence", type text}, {"chosen_direction", type text}}, "en-US")
 				in
 				    Typed
 

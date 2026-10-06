@@ -124,7 +124,7 @@ MEASURES = {
         ("Jump change (cm)", lookup_on_day("athlete_day", "cmj_change_cm"), "+0.0;-0.0;0.0"),
         ("Jump noise band (cm)", lookup_on_day("athlete_day", "cmj_noise_band_cm"), "0.0"),
         ("Jump state", lookup_on_day("athlete_day", "cmj_wording"), None),
-        ("Jump change vs band", lookup_on_day("athlete_day", "cmj_change_vs_band"), "0.00"),
+        ("Jump change vs band, chosen direction", lookup_on_day("athlete_day", "cmj_change_vs_band_chosen"), "0.00"),
         ("Athletes full", count_on_day("full"), "0"),
         ("Athletes modified", count_on_day("modified"), "0"),
         ("Athletes out", count_on_day("out"), "0"),
@@ -166,7 +166,7 @@ MEASURES = {
         ("Change on test day (cm)", on_test_day("change"), "+0.0;-0.0;0.0"),
         ("Noise band on test day (cm)", on_test_day("noise_band"), "0.0"),
         ("State on test day", on_test_day("wording"), None),
-        ("Change vs band on test day", on_test_day("change_vs_band"), "0.00"),
+        ("Change vs band on test day, chosen direction", on_test_day("change_vs_band_chosen"), "0.00"),
         ("Jump height, one athlete (cm)", one_athlete("test_results", "value"), "0.0"),
         ("Band low, one athlete (cm)", one_athlete("test_results", "band_low_cm"), "0.0"),
         ("Band high, one athlete (cm)", one_athlete("test_results", "band_high_cm"), "0.0"),
@@ -492,10 +492,10 @@ def build_pages():
             "Availability status", "Form submitted", "Wellness total (points)", "Wellness change (points)",
             "Wellness z", "Wellness status", "Wellness review", "Acute load (AU)", "Chronic load (AU)",
             "ACWR, rolling coupled 7:28", "Last jump date", "Jump change (cm)", "Jump noise band (cm)", "Jump state",
-            "Jump change vs band"]]
+            "Jump change vs band, chosen direction"]]
     p.add("board", 16, 152, 1248, 500, visual(
-        "tableEx", {"Values": board}, "Athletes, largest jump drop against the noise band first",
-        sort=[{"field": mea(A, "Jump change vs band"), "direction": "Ascending"}]))
+        "tableEx", {"Values": board}, "Athletes, largest jump change in the chosen direction against the noise band first",
+        sort=[{"field": mea(A, "Jump change vs band, chosen direction"), "direction": "Descending"}]))
     p.add("note", 16, 660, 1248, 52, textbox(
         ACWR_NOTE + " Wellness z compares today's total with the athlete's own last 28 days. "
         "Jump state compares the latest test with the athlete's baseline and the noise band. Show this board to staff only."))
@@ -565,14 +565,14 @@ def build_pages():
     p.add("bars", 16, 80, 560, 632, visual("clusteredBarChart", {
         "Category": [proj(col("athletes", "name"), "Athlete")],
         "Y": [proj(mea("test_results", "Change on test day (cm)"))],
-        "Tooltips": [proj(mea("test_results", "Change vs band on test day"))],
+        "Tooltips": [proj(mea("test_results", "Change vs band on test day, chosen direction"))],
     }, "Change in jump height from baseline (cm)",
-        sort=[{"field": mea("test_results", "Change vs band on test day"), "direction": "Ascending"}]))
+        sort=[{"field": mea("test_results", "Change vs band on test day, chosen direction"), "direction": "Descending"}]))
     p.add("table", 584, 80, 680, 560, visual("tableEx", {"Values": [
         proj(col("athletes", "name"), "Athlete")] + [proj(mea("test_results", m)) for m in [
             "Jump on test day (cm)", "Baseline mean (cm)", "Baseline tests", "Change on test day (cm)",
-            "Noise band on test day (cm)", "State on test day", "Change vs band on test day"]]}, "Change against measurement error",
-        sort=[{"field": mea("test_results", "Change vs band on test day"), "direction": "Ascending"}]))
+            "Noise band on test day (cm)", "State on test day", "Change vs band on test day, chosen direction"]]}, "Change against measurement error",
+        sort=[{"field": mea("test_results", "Change vs band on test day, chosen direction"), "direction": "Descending"}]))
     p.add("note", 584, 648, 680, 64, textbox(
         "Repeat a test before anyone acts on a single flag. The chance count assumes the noise band holds and counts only the direction the card above names."))
     pages.append(p)

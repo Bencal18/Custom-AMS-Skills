@@ -48,11 +48,11 @@ Use these sheets for the core screens:
 
 | Screen | Sheet | Shelves |
 |---|---|---|
-| Squad board | Text table, filtered to the latest day, sorted by jump change divided by the noise band | Rows: athlete, group, availability, form, wellness, load, latest jump and its state |
+| Squad board | Text table, filtered to the latest day, sorted by jump change divided by the noise band, in the chosen direction, largest first | Rows: athlete, group, availability, form, wellness, load, latest jump and its state |
 | Athlete profile | Three line charts from the long table, with the athlete parameter | Columns: date. Use a discrete day for load and wellness, with a row for every calendar day, so a missing day stays a gap. Use a continuous day for jump height, so the line joins test days. Rows: value. Color: series |
 | Load | Text table | Rows: athlete. Columns: week start. Text: a label such as `2,150 AU, 7 of 7 days` |
 | Wellness | Square marks, filtered to the last 28 days | Rows: athlete. Columns: date (discrete day). Color and Text: total z-score |
-| Testing | Bar chart, filtered to the latest test day | Rows: athlete, sorted by change divided by the noise band. Columns: change. Color: state wording |
+| Testing | Bar chart, filtered to the latest test day | Rows: athlete, sorted by change divided by the noise band, in the chosen direction, largest first. Columns: change. Color: state wording |
 | Availability | Stacked bars | Columns: date. Rows: count of athletes. Color: availability |
 | Data health | Line chart and text table | Form completion by day; the import log |
 | My data | Text and line charts | The athlete's latest jump sentence; jump height with the noise band; wellness total |
