@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Repeat a test before anyone acts on a single flag. The chance count assumes the noise band holds and looks for drops only."
+                    "value": "Repeat a test before anyone acts on a single flag. The chance count assumes the noise band holds and counts only the direction the card above names."
                   }
                 ]
               }
