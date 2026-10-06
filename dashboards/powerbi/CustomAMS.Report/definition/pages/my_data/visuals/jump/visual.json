@@ -1,0 +1,109 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "jump",
+  "position": {
+    "x": 16,
+    "y": 80,
+    "z": 2000,
+    "width": 1248,
+    "height": 300,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dates"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "dates.date",
+              "nativeQueryRef": "date"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Jump height, one athlete (cm)"
+                }
+              },
+              "queryRef": "test_results.Jump height, one athlete (cm)",
+              "nativeQueryRef": "Jump height, one athlete (cm)",
+              "displayName": "Your jump height (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Band low, one athlete (cm)"
+                }
+              },
+              "queryRef": "test_results.Band low, one athlete (cm)",
+              "nativeQueryRef": "Band low, one athlete (cm)",
+              "displayName": "Usual range, low"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Band high, one athlete (cm)"
+                }
+              },
+              "queryRef": "test_results.Band high, one athlete (cm)",
+              "nativeQueryRef": "Band high, one athlete (cm)",
+              "displayName": "Usual range, high"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Your jump height and your usual range'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

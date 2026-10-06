@@ -5,3 +5,4 @@ __pycache__/
 
 # Built skill zips
 dist/
+.pytest_cache/

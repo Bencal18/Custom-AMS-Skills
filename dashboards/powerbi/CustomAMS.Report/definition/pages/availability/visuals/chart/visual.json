@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "chart",
+  "position": {
+    "x": 16,
+    "y": 56,
+    "z": 1000,
+    "width": 1248,
+    "height": 360,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dates"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "dates.date",
+              "nativeQueryRef": "date"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Athletes full by day"
+                }
+              },
+              "queryRef": "athlete_day.Athletes full by day",
+              "nativeQueryRef": "Athletes full by day"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Athletes modified by day"
+                }
+              },
+              "queryRef": "athlete_day.Athletes modified by day",
+              "nativeQueryRef": "Athletes modified by day"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Athletes out by day"
+                }
+              },
+              "queryRef": "athlete_day.Athletes out by day",
+              "nativeQueryRef": "Athletes out by day"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Athletes by availability'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

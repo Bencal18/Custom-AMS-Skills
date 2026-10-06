@@ -1,0 +1,304 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "board",
+  "position": {
+    "x": 16,
+    "y": 152,
+    "z": 6000,
+    "width": 1248,
+    "height": 500,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athletes"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "athletes.name",
+              "nativeQueryRef": "name",
+              "displayName": "Athlete"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athletes"
+                    }
+                  },
+                  "Property": "group"
+                }
+              },
+              "queryRef": "athletes.group",
+              "nativeQueryRef": "group",
+              "displayName": "Group"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Availability status"
+                }
+              },
+              "queryRef": "athlete_day.Availability status",
+              "nativeQueryRef": "Availability status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Form submitted"
+                }
+              },
+              "queryRef": "athlete_day.Form submitted",
+              "nativeQueryRef": "Form submitted"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Wellness total (points)"
+                }
+              },
+              "queryRef": "athlete_day.Wellness total (points)",
+              "nativeQueryRef": "Wellness total (points)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Wellness change (points)"
+                }
+              },
+              "queryRef": "athlete_day.Wellness change (points)",
+              "nativeQueryRef": "Wellness change (points)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Wellness z"
+                }
+              },
+              "queryRef": "athlete_day.Wellness z",
+              "nativeQueryRef": "Wellness z"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Wellness status"
+                }
+              },
+              "queryRef": "athlete_day.Wellness status",
+              "nativeQueryRef": "Wellness status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Wellness review"
+                }
+              },
+              "queryRef": "athlete_day.Wellness review",
+              "nativeQueryRef": "Wellness review"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Acute load (AU)"
+                }
+              },
+              "queryRef": "athlete_day.Acute load (AU)",
+              "nativeQueryRef": "Acute load (AU)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Chronic load (AU)"
+                }
+              },
+              "queryRef": "athlete_day.Chronic load (AU)",
+              "nativeQueryRef": "Chronic load (AU)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "ACWR, rolling coupled 7:28"
+                }
+              },
+              "queryRef": "athlete_day.ACWR, rolling coupled 7:28",
+              "nativeQueryRef": "ACWR, rolling coupled 7:28"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Last jump date"
+                }
+              },
+              "queryRef": "athlete_day.Last jump date",
+              "nativeQueryRef": "Last jump date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Jump change (cm)"
+                }
+              },
+              "queryRef": "athlete_day.Jump change (cm)",
+              "nativeQueryRef": "Jump change (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Jump noise band (cm)"
+                }
+              },
+              "queryRef": "athlete_day.Jump noise band (cm)",
+              "nativeQueryRef": "Jump noise band (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Jump state"
+                }
+              },
+              "queryRef": "athlete_day.Jump state",
+              "nativeQueryRef": "Jump state"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Jump change vs band"
+                }
+              },
+              "queryRef": "athlete_day.Jump change vs band",
+              "nativeQueryRef": "Jump change vs band"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "athlete_day"
+                  }
+                },
+                "Property": "Jump change vs band"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Athletes, largest jump drop against the noise band first'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

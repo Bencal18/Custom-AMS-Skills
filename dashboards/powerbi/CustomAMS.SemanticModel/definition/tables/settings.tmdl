@@ -1,0 +1,42 @@
+table settings
+	lineageTag: f2baa5f5-0b63-5334-825e-fb20a19e2b54
+
+	measure 'Wellness review value' = "Staff review at a total wellness z-score of " & CALCULATE ( SELECTEDVALUE ( settings[value] ), settings[setting] = "wellness_review_z" ) & " or lower. " & CALCULATE ( SELECTEDVALUE ( settings[meaning] ), settings[setting] = "wellness_review_z" )
+		lineageTag: 0bbaf312-1a4b-5607-85d7-2d0c1bf6d7db
+
+	column setting
+		dataType: string
+		lineageTag: 8f362a55-6ffd-58d1-8208-ae3e00e156a0
+		summarizeBy: none
+		sourceColumn: setting
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: string
+		lineageTag: 1dcaddc7-8f65-5243-be5c-6e61f2b9cc26
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+	column meaning
+		dataType: string
+		lineageTag: 6750c00d-db7f-5f78-8fa5-1c2f15d64314
+		summarizeBy: none
+		sourceColumn: meaning
+
+		annotation SummarizationSetBy = User
+
+	partition settings = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "settings.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"setting", "value", "meaning"}),
+				    Typed = Table.TransformColumnTypes(Headers, {{"setting", type text}, {"value", type text}, {"meaning", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

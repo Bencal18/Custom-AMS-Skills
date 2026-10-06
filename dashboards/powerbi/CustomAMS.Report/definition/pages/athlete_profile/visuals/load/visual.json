@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "load",
+  "position": {
+    "x": 16,
+    "y": 80,
+    "z": 2000,
+    "width": 760,
+    "height": 300,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dates"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "dates.date",
+              "nativeQueryRef": "date"
+            }
+          ]
+        },
+        "ColumnY": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Daily load (AU)"
+                }
+              },
+              "queryRef": "athlete_day.Daily load (AU)",
+              "nativeQueryRef": "Daily load (AU)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Acute load, one athlete (AU)"
+                }
+              },
+              "queryRef": "athlete_day.Acute load, one athlete (AU)",
+              "nativeQueryRef": "Acute load, one athlete (AU)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athlete_day"
+                    }
+                  },
+                  "Property": "Chronic load, one athlete (AU)"
+                }
+              },
+              "queryRef": "athlete_day.Chronic load, one athlete (AU)",
+              "nativeQueryRef": "Chronic load, one athlete (AU)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Daily session RPE load, with 7-day and 28-day mean daily load'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

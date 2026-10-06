@@ -1,0 +1,148 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "log",
+  "position": {
+    "x": 16,
+    "y": 380,
+    "z": 4000,
+    "width": 1248,
+    "height": 332,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "import_log"
+                    }
+                  },
+                  "Property": "import_id"
+                }
+              },
+              "queryRef": "import_log.import_id",
+              "nativeQueryRef": "import_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "import_log"
+                    }
+                  },
+                  "Property": "import_date"
+                }
+              },
+              "queryRef": "import_log.import_date",
+              "nativeQueryRef": "import_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "import_log"
+                    }
+                  },
+                  "Property": "import_time_local"
+                }
+              },
+              "queryRef": "import_log.import_time_local",
+              "nativeQueryRef": "import_time_local"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "import_log"
+                    }
+                  },
+                  "Property": "source"
+                }
+              },
+              "queryRef": "import_log.source",
+              "nativeQueryRef": "source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "import_log"
+                    }
+                  },
+                  "Property": "rows_imported"
+                }
+              },
+              "queryRef": "import_log.rows_imported",
+              "nativeQueryRef": "rows_imported"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "import_log"
+                    }
+                  },
+                  "Property": "result"
+                }
+              },
+              "queryRef": "import_log.result",
+              "nativeQueryRef": "result"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "import_log"
+                  }
+                },
+                "Property": "import_id"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Import log, newest first'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

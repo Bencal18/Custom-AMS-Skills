@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "CustomAMS"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "aabda4db-49da-5687-a751-cd32aefa2770"
+  }
+}

@@ -1,0 +1,10 @@
+date,chosen_direction,results,flagged,beyond_band,beyond_band_other_direction,no_data,beyond_band_expected_by_chance,summary_label
+2026-08-04,drop,27,0,0,1,0,0.675,"0 drops beyond the noise band, 0.7 expected by chance. 1 rise beyond the band."
+2026-08-11,drop,25,0,0,1,3,0.625,"0 drops beyond the noise band, 0.6 expected by chance. 1 rise beyond the band."
+2026-08-18,drop,26,0,0,1,1,0.65,"0 drops beyond the noise band, 0.7 expected by chance. 1 rise beyond the band."
+2026-08-25,drop,26,0,3,1,2,0.65,"3 drops beyond the noise band, 0.7 expected by chance. 1 rise beyond the band."
+2026-09-01,drop,26,0,0,2,1,0.65,"0 drops beyond the noise band, 0.7 expected by chance. 2 rises beyond the band."
+2026-09-08,drop,26,0,0,1,1,0.65,"0 drops beyond the noise band, 0.7 expected by chance. 1 rise beyond the band."
+2026-09-15,drop,27,1,1,2,1,0.675,"1 drop beyond the noise band, 0.7 expected by chance. 2 rises beyond the band."
+2026-09-22,drop,27,1,2,1,1,0.675,"2 drops beyond the noise band, 0.7 expected by chance. 1 rise beyond the band."
+2026-09-29,drop,24,1,1,1,4,0.6,"1 drop beyond the noise band, 0.6 expected by chance. 1 rise beyond the band."

@@ -1,0 +1,414 @@
+table athlete_day
+	lineageTag: 5032d6ee-3167-5e9a-8f14-1651856468ac
+
+	measure 'As of date' =
+			IF (
+			    HASONEVALUE ( dates[date] ),
+			    VALUES ( dates[date] ),
+			    CALCULATE ( MAX ( athlete_day[date] ), REMOVEFILTERS () )
+			)
+		formatString: yyyy-mm-dd
+		lineageTag: 5ec7f789-bcb7-5134-833f-d97a77827eff
+
+	measure 'As of label' = "As of " & FORMAT ( [As of date], "yyyy-mm-dd" )
+		lineageTag: 8cb14d43-9bda-5832-a39e-1e8fccafbf54
+
+	measure 'Availability status' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[availability] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		lineageTag: 2bfe7114-1f40-5566-bfe0-231d364bb5ae
+
+	measure 'Form submitted' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[form_submitted] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		lineageTag: c8d7f109-0a96-5e82-8292-9273d407563d
+
+	measure 'Wellness total (points)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[wellness_total] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: 0
+		lineageTag: 622e88d0-1786-5115-9096-96e3044f2113
+
+	measure 'Wellness change (points)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[wellness_change_points] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 6e45e5bf-583c-5032-b0aa-8ebd02eaf70a
+
+	measure 'Wellness z' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[wellness_total_z] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: +0.00;-0.00;0.00
+		lineageTag: 6d34a2c1-cbc3-52c6-8419-31a702122b9f
+
+	measure 'Wellness status' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[wellness_status] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		lineageTag: db82127b-c3dd-5218-ab87-f0cdf25b76fa
+
+	measure 'Wellness review' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[wellness_review] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		lineageTag: 91e384e4-4c0e-5037-b02e-70943f4387a8
+
+	measure 'Acute load (AU)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[acute_load_au] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: #,0.00
+		lineageTag: 4f044155-357c-5176-af74-333d4f591cfa
+
+	measure 'Chronic load (AU)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[chronic_load_au] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: #,0.00
+		lineageTag: bb328e39-859d-53a5-bacb-f7ebe6082d6f
+
+	measure 'ACWR, rolling coupled 7:28' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[acwr_coupled] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: 0.00
+		lineageTag: ed7e60ce-2722-5897-a193-bb2fc3446c5a
+
+	measure 'Last jump date' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_date] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: yyyy-mm-dd
+		lineageTag: 2574b3a2-c43d-547d-b8fd-05116223cdcb
+
+	measure 'Last jump (cm)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_cm] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: 0.0
+		lineageTag: 066ef90a-1f73-5f6d-9dc3-1183fdca47ae
+
+	measure 'Jump change (cm)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_change_cm] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 0939606b-2dd1-5fcb-951a-fe7937d56db7
+
+	measure 'Jump noise band (cm)' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_noise_band_cm] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: 0.0
+		lineageTag: be7c78eb-c056-5157-933e-21b25b63b6c6
+
+	measure 'Jump state' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_wording] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		lineageTag: ebe1e76a-7eda-540c-ad88-fc2a4c19777c
+
+	measure 'Jump change vs band' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_change_vs_band] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+		formatString: 0.00
+		lineageTag: a53857db-2b16-53d1-8e3e-22ff4bd17f20
+
+	measure 'Athletes full' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( COUNTROWS ( athlete_day ), REMOVEFILTERS ( dates ), REMOVEFILTERS ( athletes ), athlete_day[date] = d, athlete_day[availability] = "full" ) + 0
+		formatString: 0
+		lineageTag: d2af82ed-d586-5b82-8b92-bac28a0d198c
+
+	measure 'Athletes modified' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( COUNTROWS ( athlete_day ), REMOVEFILTERS ( dates ), REMOVEFILTERS ( athletes ), athlete_day[date] = d, athlete_day[availability] = "modified" ) + 0
+		formatString: 0
+		lineageTag: 98a9ff51-53c8-514d-a90c-e80676aecfde
+
+	measure 'Athletes out' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( COUNTROWS ( athlete_day ), REMOVEFILTERS ( dates ), REMOVEFILTERS ( athletes ), athlete_day[date] = d, athlete_day[availability] = "out" ) + 0
+		formatString: 0
+		lineageTag: 7cacf702-0175-51af-9d51-c826e99777d2
+
+	measure 'Availability summary' = [Athletes full] & " full, " & [Athletes modified] & " modified, " & [Athletes out] & " out"
+		lineageTag: 09029715-89cd-5472-aa8a-9c33dbd3a2ad
+
+	measure 'Daily load (AU)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( athlete_day[srpe_load_au] ) )
+		formatString: #,0
+		lineageTag: ac1fcbe2-3ff5-514e-83a9-f9b2bbaa497c
+
+	measure 'Acute load, one athlete (AU)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( athlete_day[acute_load_au] ) )
+		formatString: #,0.00
+		lineageTag: 9da63c1d-f866-59ed-a200-d38f8046e4ec
+
+	measure 'Chronic load, one athlete (AU)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( athlete_day[chronic_load_au] ) )
+		formatString: #,0.00
+		lineageTag: 12ae715c-eb09-542d-8af6-a9b0f6fa114f
+
+	measure 'Wellness total, one athlete (points)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( athlete_day[wellness_total] ) )
+		formatString: 0
+		lineageTag: 0b59c05c-3b33-543e-9e14-1b3de781f3ad
+
+	measure 'Wellness z by day' = SELECTEDVALUE ( athlete_day[wellness_total_z] )
+		formatString: +0.0;-0.0;0.0
+		lineageTag: a5978906-c628-5fa8-bab3-ba85cb52dcb7
+
+	measure 'Athletes full by day' = CALCULATE ( COUNTROWS ( athlete_day ), athlete_day[availability] = "full" ) + 0
+		formatString: 0
+		lineageTag: ea527c0b-9503-5b1b-bcf9-e6c4ca61b390
+
+	measure 'Athletes modified by day' = CALCULATE ( COUNTROWS ( athlete_day ), athlete_day[availability] = "modified" ) + 0
+		formatString: 0
+		lineageTag: d39106b3-9a81-5a12-a4fb-3bd913db073c
+
+	measure 'Athletes out by day' = CALCULATE ( COUNTROWS ( athlete_day ), athlete_day[availability] = "out" ) + 0
+		formatString: 0
+		lineageTag: 9114086f-0b13-59f3-8115-9fe8b01b480e
+
+	column athlete_id
+		dataType: string
+		lineageTag: e7757afa-a003-5eff-97cc-5241e4ba3391
+		summarizeBy: none
+		sourceColumn: athlete_id
+
+		annotation SummarizationSetBy = User
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: e28e1093-af40-5668-84f9-17a859de881c
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column srpe_load_au
+		dataType: double
+		lineageTag: b691af8b-6969-5eeb-b30c-ab692e4fa756
+		summarizeBy: none
+		sourceColumn: srpe_load_au
+
+		annotation SummarizationSetBy = User
+
+	column sessions
+		dataType: int64
+		lineageTag: 7d0a1834-8890-5a91-a7ca-15fcc2ded75b
+		summarizeBy: none
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = User
+
+	column availability
+		dataType: string
+		lineageTag: 32955f42-2452-5dbf-9999-ffac0894b8eb
+		summarizeBy: none
+		sourceColumn: availability
+
+		annotation SummarizationSetBy = User
+
+	column acute_load_au
+		dataType: double
+		lineageTag: b0dc2927-7dc7-5adc-bbc6-a8d24e56b6a4
+		summarizeBy: none
+		sourceColumn: acute_load_au
+
+		annotation SummarizationSetBy = User
+
+	column chronic_load_au
+		dataType: double
+		lineageTag: 8f734d03-4880-5f60-978a-753e5e8a854a
+		summarizeBy: none
+		sourceColumn: chronic_load_au
+
+		annotation SummarizationSetBy = User
+
+	column acwr_coupled
+		dataType: double
+		lineageTag: 44ffdb48-c4b4-5f4a-92a7-176839a63a13
+		summarizeBy: none
+		sourceColumn: acwr_coupled
+
+		annotation SummarizationSetBy = User
+
+	column hsr_m
+		dataType: double
+		lineageTag: 7c0f5cae-13f3-522e-9f20-9af5f7305c06
+		summarizeBy: none
+		sourceColumn: hsr_m
+
+		annotation SummarizationSetBy = User
+
+	column distance_m
+		dataType: double
+		lineageTag: 53f6bdb6-c2b5-59a0-85a6-ec03c9e6f473
+		summarizeBy: none
+		sourceColumn: distance_m
+
+		annotation SummarizationSetBy = User
+
+	column wellness_total
+		dataType: double
+		lineageTag: 5b7ac9f5-5d0c-594b-b604-530533778d0a
+		summarizeBy: none
+		sourceColumn: wellness_total
+
+		annotation SummarizationSetBy = User
+
+	column wellness_total_z
+		dataType: double
+		lineageTag: cc8fd1a2-aa57-52e0-9190-a3ba86b2417c
+		summarizeBy: none
+		sourceColumn: wellness_total_z
+
+		annotation SummarizationSetBy = User
+
+	column wellness_status
+		dataType: string
+		lineageTag: db952c83-3515-5b7b-9ba0-5ba9d6484031
+		summarizeBy: none
+		sourceColumn: wellness_status
+
+		annotation SummarizationSetBy = User
+
+	column wellness_baseline_n
+		dataType: double
+		lineageTag: e854b7b7-f202-5945-9156-cbb8daa0183f
+		summarizeBy: none
+		sourceColumn: wellness_baseline_n
+
+		annotation SummarizationSetBy = User
+
+	column wellness_change_points
+		dataType: double
+		lineageTag: 6b81874e-29a0-5096-806e-fe78ac2d4341
+		summarizeBy: none
+		sourceColumn: wellness_change_points
+
+		annotation SummarizationSetBy = User
+
+	column form_submitted
+		dataType: string
+		lineageTag: 33dbbcd4-95ed-564c-bfa3-92e6764cc718
+		summarizeBy: none
+		sourceColumn: form_submitted
+
+		annotation SummarizationSetBy = User
+
+	column wellness_review
+		dataType: string
+		lineageTag: 5745b61c-c5a1-5661-a5e3-dc2c584f6e5f
+		summarizeBy: none
+		sourceColumn: wellness_review
+
+		annotation SummarizationSetBy = User
+
+	column cmj_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 49364e10-c41e-5b16-890f-9636bb0a11d3
+		summarizeBy: none
+		sourceColumn: cmj_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cmj_cm
+		dataType: double
+		lineageTag: 805d4204-00fd-5b3f-9cd5-8dd3b373ff40
+		summarizeBy: none
+		sourceColumn: cmj_cm
+
+		annotation SummarizationSetBy = User
+
+	column cmj_change_cm
+		dataType: double
+		lineageTag: 8fc39999-d01a-5359-9561-365cdeba7df8
+		summarizeBy: none
+		sourceColumn: cmj_change_cm
+
+		annotation SummarizationSetBy = User
+
+	column cmj_noise_band_cm
+		dataType: double
+		lineageTag: 5a0a9d6f-136c-565c-9e26-c09387cff966
+		summarizeBy: none
+		sourceColumn: cmj_noise_band_cm
+
+		annotation SummarizationSetBy = User
+
+	column cmj_state
+		dataType: string
+		lineageTag: 6a8e79cb-1cc5-555f-8d8e-534c1182c920
+		summarizeBy: none
+		sourceColumn: cmj_state
+
+		annotation SummarizationSetBy = User
+
+	column cmj_wording
+		dataType: string
+		lineageTag: 97e13942-6c8b-50f2-b495-f63fbc7ef7d6
+		summarizeBy: none
+		sourceColumn: cmj_wording
+
+		annotation SummarizationSetBy = User
+
+	column cmj_change_vs_band
+		dataType: double
+		lineageTag: acc13a68-7e0d-51bf-9b4a-28e5f461f857
+		summarizeBy: none
+		sourceColumn: cmj_change_vs_band
+
+		annotation SummarizationSetBy = User
+
+	column cmj_days_ago
+		dataType: double
+		lineageTag: 703cc89a-6ec0-51d8-ab00-e0ac1e3c2078
+		summarizeBy: none
+		sourceColumn: cmj_days_ago
+
+		annotation SummarizationSetBy = User
+
+	column acwr_note
+		dataType: string
+		lineageTag: 328721c2-accc-53bb-a2b3-0e24fac3fb2f
+		summarizeBy: none
+		sourceColumn: acwr_note
+
+		annotation SummarizationSetBy = User
+
+	column in_last_28_days
+		dataType: string
+		lineageTag: 3e7f670e-35af-5cfc-a84b-b8201b537aff
+		summarizeBy: none
+		sourceColumn: in_last_28_days
+
+		annotation SummarizationSetBy = User
+
+	partition athlete_day = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "athlete_day.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "srpe_load_au", "sessions", "availability", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_status", "wellness_baseline_n", "wellness_change_points", "form_submitted", "wellness_review", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_state", "cmj_wording", "cmj_change_vs_band", "cmj_days_ago", "acwr_note", "in_last_28_days"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "srpe_load_au", "sessions", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_baseline_n", "wellness_change_points", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_change_vs_band", "cmj_days_ago"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "srpe_load_au", "sessions", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_baseline_n", "wellness_change_points", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_change_vs_band", "cmj_days_ago"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"srpe_load_au", type number}, {"sessions", Int64.Type}, {"availability", type text}, {"acute_load_au", type number}, {"chronic_load_au", type number}, {"acwr_coupled", type number}, {"hsr_m", type number}, {"distance_m", type number}, {"wellness_total", type number}, {"wellness_total_z", type number}, {"wellness_status", type text}, {"wellness_baseline_n", type number}, {"wellness_change_points", type number}, {"form_submitted", type text}, {"wellness_review", type text}, {"cmj_date", type date}, {"cmj_cm", type number}, {"cmj_change_cm", type number}, {"cmj_noise_band_cm", type number}, {"cmj_state", type text}, {"cmj_wording", type text}, {"cmj_change_vs_band", type number}, {"cmj_days_ago", type number}, {"acwr_note", type text}, {"in_last_28_days", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

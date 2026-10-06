@@ -61,6 +61,7 @@ Use this table to go straight to what you need:
 | Look up what a vendor's metric means | [`docs/vendor-metrics/`](docs/vendor-metrics/README.md) |
 | Plan your own athlete management system | [`docs/build-an-ams.md`](docs/build-an-ams.md) |
 | Build AMS screens in Power BI or Tableau | [`skills/ams-dashboards/`](skills/ams-dashboards/SKILL.md) |
+| Open a ready-made Power BI and Tableau template | [`dashboards/`](dashboards/README.md) |
 | Write a new skill or reference file | [`templates/`](templates/README.md) |
 | Report a problem or suggest a change | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
 | Confirm the skills loaded in your AI tool | [Confirm the install works](#confirm-the-install-works) |
@@ -83,6 +84,7 @@ Custom-AMS-Skills/
 │   ├── monitoring-statistics/
 │   ├── readiness-composites/
 │   └── velocity-based-training/
+├── dashboards/                  Power BI and Tableau template for the core AMS screens
 ├── docs/                        Pages for people to read
 │   ├── calculations.md
 │   ├── build-an-ams.md
@@ -101,6 +103,8 @@ Each folder does this:
 <dl>
 <dt><a href="skills/README.md"><code>skills/</code></a></dt>
 <dd>The skills you install. Each skill folder holds a <code>SKILL.md</code> file that the AI follows, and a <code>references/</code> folder with one file for each metric, device, or topic.</dd>
+<dt><a href="dashboards/README.md"><code>dashboards/</code></a></dt>
+<dd>A template that builds the core AMS screens in Power BI and Tableau from your own data, with made-up sample data, the script that calculates every metric, and checks for the generated files.</dd>
 <dt><a href="docs/README.md"><code>docs/</code></a></dt>
 <dd>Pages for people to read: how every metric is calculated, what each vendor metric means, and how to plan an athlete management system.</dd>
 <dt><a href="templates/README.md"><code>templates/</code></a></dt>

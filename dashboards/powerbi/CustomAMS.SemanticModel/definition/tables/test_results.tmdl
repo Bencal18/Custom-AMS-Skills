@@ -1,0 +1,280 @@
+table test_results
+	lineageTag: ca31e7e4-8fa8-5d1e-9ccb-3b76ae1d8778
+
+	measure 'Test day shown' =
+			VAR picked = CALCULATE ( SELECTEDVALUE ( test_results[date] ), REMOVEFILTERS ( athletes ) )
+			RETURN
+			    IF ( ISBLANK ( picked ), CALCULATE ( MAX ( test_results[date] ), REMOVEFILTERS () ), picked )
+		formatString: yyyy-mm-dd
+		lineageTag: 65c98343-ce9f-56e4-8ee5-d736acf66693
+
+	measure 'Jump on test day (cm)' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[value] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		formatString: 0.0
+		lineageTag: ca4d723f-0cf2-5379-bc64-bbc7b691f611
+
+	measure 'Baseline mean (cm)' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[baseline_mean] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		formatString: 0.0
+		lineageTag: 1294af18-372e-571d-8911-68b18abdde82
+
+	measure 'Baseline tests' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[baseline_n] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		formatString: 0
+		lineageTag: 1b2ae830-dc44-5ee2-9e79-6cab3733b3a6
+
+	measure 'Change on test day (cm)' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[change] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 439debdc-663e-5f64-87e3-2e5998f6daf6
+
+	measure 'Noise band on test day (cm)' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[noise_band] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		formatString: 0.0
+		lineageTag: 5b1e8843-1150-50a5-adfd-1f649afc2682
+
+	measure 'State on test day' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[wording] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		lineageTag: 1a3e63b5-f063-5c97-9ea9-9d30a08de3ae
+
+	measure 'Change vs band on test day' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_results[change_vs_band] ), REMOVEFILTERS ( test_results[date] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+		formatString: 0.00
+		lineageTag: 9f5e6b39-6e99-582f-9947-e464cbcf4091
+
+	measure 'Jump height, one athlete (cm)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( test_results[value] ) )
+		formatString: 0.0
+		lineageTag: f5bfce7f-e837-5867-adc4-2fecb7b2c4ba
+
+	measure 'Band low, one athlete (cm)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( test_results[band_low_cm] ) )
+		formatString: 0.0
+		lineageTag: ac28a7eb-daa3-5362-8e95-a8b7a67b218e
+
+	measure 'Band high, one athlete (cm)' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( test_results[band_high_cm] ) )
+		formatString: 0.0
+		lineageTag: e1b508fa-2267-53ee-9d5e-b26ba175e682
+
+	measure 'Latest jump sentence' =
+			IF (
+			    HASONEVALUE ( athletes[athlete_id] ),
+			    VAR t = CALCULATE ( MAX ( test_results[date] ), REMOVEFILTERS ( dates ), REMOVEFILTERS ( test_results[date] ) )
+			    RETURN
+			        CALCULATE ( SELECTEDVALUE ( test_results[athlete_sentence] ), REMOVEFILTERS ( dates ), test_results[date] = t )
+			)
+		lineageTag: e0fd18f6-43af-53a2-b813-2a56a24f1afa
+
+	column athlete_id
+		dataType: string
+		lineageTag: e528d944-6659-5d89-b5b1-e3c9359b823b
+		summarizeBy: none
+		sourceColumn: athlete_id
+
+		annotation SummarizationSetBy = User
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 805f184a-2506-5b33-b9b5-c9269b076e41
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column trials_attempted
+		dataType: int64
+		lineageTag: 9793cbbf-0308-5ff9-affd-bfac2783891e
+		summarizeBy: none
+		sourceColumn: trials_attempted
+
+		annotation SummarizationSetBy = User
+
+	column value
+		dataType: double
+		lineageTag: 3792cd0e-2fd4-5298-a695-3f35d51be029
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = User
+
+	column trials_ok
+		dataType: int64
+		lineageTag: 9d415cbd-1c8f-530c-86c1-849a84b3ba66
+		summarizeBy: none
+		sourceColumn: trials_ok
+
+		annotation SummarizationSetBy = User
+
+	column measure_name
+		dataType: string
+		lineageTag: 007b0240-24bb-538b-bf1d-c2d2e22d7c51
+		summarizeBy: none
+		sourceColumn: measure_name
+
+		annotation SummarizationSetBy = User
+
+	column baseline_mean
+		dataType: double
+		lineageTag: 5bd6b035-67ef-5ab3-bd02-da9b3439ff02
+		summarizeBy: none
+		sourceColumn: baseline_mean
+
+		annotation SummarizationSetBy = User
+
+	column baseline_n
+		dataType: int64
+		lineageTag: 4d20fb70-86ec-5d23-883a-6a82c460e43f
+		summarizeBy: none
+		sourceColumn: baseline_n
+
+		annotation SummarizationSetBy = User
+
+	column change
+		dataType: double
+		lineageTag: 2f2f3d79-8e70-514d-a1b8-c978195ee2e5
+		summarizeBy: none
+		sourceColumn: change
+
+		annotation SummarizationSetBy = User
+
+	column te
+		dataType: double
+		lineageTag: 0dd90650-8cc5-524e-a96c-6de3d33e217d
+		summarizeBy: none
+		sourceColumn: te
+
+		annotation SummarizationSetBy = User
+
+	column multiplier
+		dataType: double
+		lineageTag: 09626180-6033-56a1-92ee-6f82dd5c50a9
+		summarizeBy: none
+		sourceColumn: multiplier
+
+		annotation SummarizationSetBy = User
+
+	column noise_band
+		dataType: double
+		lineageTag: b7e48be2-195d-5a95-ba7a-649a36040cd3
+		summarizeBy: none
+		sourceColumn: noise_band
+
+		annotation SummarizationSetBy = User
+
+	column swc
+		dataType: double
+		lineageTag: 0fb3838c-cb09-5b6d-bb82-6e03e3bfd671
+		summarizeBy: none
+		sourceColumn: swc
+
+		annotation SummarizationSetBy = User
+
+	column band_low_cm
+		dataType: double
+		lineageTag: 9409e49c-b211-58e2-8ceb-c66e14f3b4ca
+		summarizeBy: none
+		sourceColumn: band_low_cm
+
+		annotation SummarizationSetBy = User
+
+	column band_high_cm
+		dataType: double
+		lineageTag: e6f2e5b8-771f-5b08-9cfc-d42387b63a2e
+		summarizeBy: none
+		sourceColumn: band_high_cm
+
+		annotation SummarizationSetBy = User
+
+	column direction
+		dataType: string
+		lineageTag: a6e4b71a-813c-52af-a60e-010da3288154
+		summarizeBy: none
+		sourceColumn: direction
+
+		annotation SummarizationSetBy = User
+
+	column state
+		dataType: string
+		lineageTag: 5f731ea6-0e85-5f92-9ddf-3ee245bdf522
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = User
+
+	column wording
+		dataType: string
+		lineageTag: 1593b1b5-7b21-54e0-b637-c428a922e9fb
+		summarizeBy: none
+		sourceColumn: wording
+
+		annotation SummarizationSetBy = User
+
+	column change_low
+		dataType: double
+		lineageTag: 8bc9f990-634b-5ed4-b439-353931b804a9
+		summarizeBy: none
+		sourceColumn: change_low
+
+		annotation SummarizationSetBy = User
+
+	column change_high
+		dataType: double
+		lineageTag: 7e438e73-f9bc-5c1a-bd12-ced48f02bc57
+		summarizeBy: none
+		sourceColumn: change_high
+
+		annotation SummarizationSetBy = User
+
+	column change_vs_band
+		dataType: double
+		lineageTag: 65c22af0-258d-51cb-9e11-707f7aa2289d
+		summarizeBy: none
+		sourceColumn: change_vs_band
+
+		annotation SummarizationSetBy = User
+
+	column athlete_sentence
+		dataType: string
+		lineageTag: 171c3192-93e0-5f26-aea1-72459d0ea2db
+		summarizeBy: none
+		sourceColumn: athlete_sentence
+
+		annotation SummarizationSetBy = User
+
+	column chosen_direction
+		dataType: string
+		lineageTag: c6cf54b6-fb52-5ae5-9008-1d5add0439ed
+		summarizeBy: none
+		sourceColumn: chosen_direction
+
+		annotation SummarizationSetBy = User
+
+	partition test_results = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "test_results.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "trials_attempted", "value", "trials_ok", "measure_name", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "direction", "state", "wording", "change_low", "change_high", "change_vs_band", "athlete_sentence", "chosen_direction"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "trials_attempted", "value", "trials_ok", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "change_low", "change_high", "change_vs_band"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "trials_attempted", "value", "trials_ok", "baseline_mean", "baseline_n", "change", "te", "multiplier", "noise_band", "swc", "band_low_cm", "band_high_cm", "change_low", "change_high", "change_vs_band"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"trials_attempted", Int64.Type}, {"value", type number}, {"trials_ok", Int64.Type}, {"measure_name", type text}, {"baseline_mean", type number}, {"baseline_n", Int64.Type}, {"change", type number}, {"te", type number}, {"multiplier", type number}, {"noise_band", type number}, {"swc", type number}, {"band_low_cm", type number}, {"band_high_cm", type number}, {"direction", type text}, {"state", type text}, {"wording", type text}, {"change_low", type number}, {"change_high", type number}, {"change_vs_band", type number}, {"athlete_sentence", type text}, {"chosen_direction", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

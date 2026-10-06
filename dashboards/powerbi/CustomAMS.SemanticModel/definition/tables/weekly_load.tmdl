@@ -1,0 +1,127 @@
+table weekly_load
+	lineageTag: d3e286d8-3158-5c14-94b3-f649b59f8a85
+
+	measure 'Week load label' = SELECTEDVALUE ( weekly_load[week_label] )
+		lineageTag: 9c45a360-3f7f-5073-ab14-8cd90bdc083a
+
+	column athlete_id
+		dataType: string
+		lineageTag: 70863c0e-8c56-5617-bc9b-d302430136d8
+		summarizeBy: none
+		sourceColumn: athlete_id
+
+		annotation SummarizationSetBy = User
+
+	column week_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 83737018-5ede-5031-8a8f-5b8b91ea7a65
+		summarizeBy: none
+		sourceColumn: week_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_on_roster
+		dataType: int64
+		lineageTag: 91b02bd6-ab01-59f1-98ed-f25aff0e8a9c
+		summarizeBy: none
+		sourceColumn: days_on_roster
+
+		annotation SummarizationSetBy = User
+
+	column days_complete
+		dataType: int64
+		lineageTag: 154cdb1e-9b2f-55a1-892f-e84743fa4e4c
+		summarizeBy: none
+		sourceColumn: days_complete
+
+		annotation SummarizationSetBy = User
+
+	column srpe_week_au
+		dataType: double
+		lineageTag: 93660a3c-9b7d-5ddd-b96b-0c70db9c8df7
+		summarizeBy: none
+		sourceColumn: srpe_week_au
+
+		annotation SummarizationSetBy = User
+
+	column distance_week_m
+		dataType: double
+		lineageTag: ed8f6dc5-059e-5be4-940b-b3ebc9a54d83
+		summarizeBy: none
+		sourceColumn: distance_week_m
+
+		annotation SummarizationSetBy = User
+
+	column hsr_week_m
+		dataType: double
+		lineageTag: 24755d3e-e44a-55e8-8e60-20fbb45533e8
+		summarizeBy: none
+		sourceColumn: hsr_week_m
+
+		annotation SummarizationSetBy = User
+
+	column distance_days_missing
+		dataType: int64
+		lineageTag: fa94d704-a3d2-5185-9d50-ae60faa83b64
+		summarizeBy: none
+		sourceColumn: distance_days_missing
+
+		annotation SummarizationSetBy = User
+
+	column days_out
+		dataType: int64
+		lineageTag: d3b045f9-64bf-5d24-8523-bc617e45ca02
+		summarizeBy: none
+		sourceColumn: days_out
+
+		annotation SummarizationSetBy = User
+
+	column days_modified
+		dataType: int64
+		lineageTag: ee190812-049b-5be3-9083-4b5a611e29d8
+		summarizeBy: none
+		sourceColumn: days_modified
+
+		annotation SummarizationSetBy = User
+
+	column week_complete
+		dataType: string
+		lineageTag: 063fd283-cf63-52be-88ad-278945d305f5
+		summarizeBy: none
+		sourceColumn: week_complete
+
+		annotation SummarizationSetBy = User
+
+	column days_label
+		dataType: string
+		lineageTag: 1fcfb795-85ae-505b-abd1-6ee52e3e15c5
+		summarizeBy: none
+		sourceColumn: days_label
+
+		annotation SummarizationSetBy = User
+
+	column week_label
+		dataType: string
+		lineageTag: 99674089-56e8-5b8e-93f1-205954f5da23
+		summarizeBy: none
+		sourceColumn: week_label
+
+		annotation SummarizationSetBy = User
+
+	partition weekly_load = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "weekly_load.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "week_start", "days_on_roster", "days_complete", "srpe_week_au", "distance_week_m", "hsr_week_m", "distance_days_missing", "days_out", "days_modified", "week_complete", "days_label", "week_label"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"week_start", "days_on_roster", "days_complete", "srpe_week_au", "distance_week_m", "hsr_week_m", "distance_days_missing", "days_out", "days_modified"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"week_start", "days_on_roster", "days_complete", "srpe_week_au", "distance_week_m", "hsr_week_m", "distance_days_missing", "days_out", "days_modified"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"week_start", type date}, {"days_on_roster", Int64.Type}, {"days_complete", Int64.Type}, {"srpe_week_au", type number}, {"distance_week_m", type number}, {"hsr_week_m", type number}, {"distance_days_missing", Int64.Type}, {"days_out", Int64.Type}, {"days_modified", Int64.Type}, {"week_complete", type text}, {"days_label", type text}, {"week_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

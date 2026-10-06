@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "note",
+  "position": {
+    "x": 16,
+    "y": 660,
+    "z": 7000,
+    "width": 1248,
+    "height": 52,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ACWR describes how recent load compares with longer-term load. It does not predict injury. Wellness z compares today's total with the athlete's own last 28 days. Jump state compares the latest test with the athlete's baseline and the noise band. Show this board to staff only."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

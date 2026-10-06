@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "summary",
+  "position": {
+    "x": 344,
+    "y": 8,
+    "z": 1000,
+    "width": 440,
+    "height": 64,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_day_summary"
+                    }
+                  },
+                  "Property": "Jump flags, test day shown"
+                }
+              },
+              "queryRef": "test_day_summary.Jump flags, test day shown",
+              "nativeQueryRef": "Jump flags, test day shown"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Results beyond the noise band'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

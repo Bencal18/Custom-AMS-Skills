@@ -1,0 +1,2 @@
+measure_name,unit,trial_summary,te,te_df,multiplier,swc,te_athletes,te_source,swc_source
+cmj_jump_height,cm,mean_of_3,0.7239,25,2.0595,0.7611,26,"Preseason retest on 2026-07-07 and 2026-07-09, 26 athletes. Rough estimate: Hopkins (2000) asks for about 50 athletes and at least 3 trials.","0.2 x between-athlete SD of baseline means, from the 27 athletes with at least 3 baseline tests"

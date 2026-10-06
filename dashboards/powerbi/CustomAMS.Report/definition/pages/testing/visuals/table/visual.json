@@ -1,0 +1,177 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "table",
+  "position": {
+    "x": 584,
+    "y": 80,
+    "z": 4000,
+    "width": 680,
+    "height": 560,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athletes"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "athletes.name",
+              "nativeQueryRef": "name",
+              "displayName": "Athlete"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Jump on test day (cm)"
+                }
+              },
+              "queryRef": "test_results.Jump on test day (cm)",
+              "nativeQueryRef": "Jump on test day (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Baseline mean (cm)"
+                }
+              },
+              "queryRef": "test_results.Baseline mean (cm)",
+              "nativeQueryRef": "Baseline mean (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Baseline tests"
+                }
+              },
+              "queryRef": "test_results.Baseline tests",
+              "nativeQueryRef": "Baseline tests"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Change on test day (cm)"
+                }
+              },
+              "queryRef": "test_results.Change on test day (cm)",
+              "nativeQueryRef": "Change on test day (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Noise band on test day (cm)"
+                }
+              },
+              "queryRef": "test_results.Noise band on test day (cm)",
+              "nativeQueryRef": "Noise band on test day (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "State on test day"
+                }
+              },
+              "queryRef": "test_results.State on test day",
+              "nativeQueryRef": "State on test day"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Change vs band on test day"
+                }
+              },
+              "queryRef": "test_results.Change vs band on test day",
+              "nativeQueryRef": "Change vs band on test day"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "test_results"
+                  }
+                },
+                "Property": "Change vs band on test day"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Change against measurement error'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

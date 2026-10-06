@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<workbook original-version="26.1" source-build='0.0.0 (0000.0.0.0)' source-platform='mac' version="26.1" xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <ManifestByVersion />
+  </document-format-change-manifest>
+  <preferences />
+  <datasources>
+    <datasource caption="test_results" inline='true' name="federated.test_results" version="26.1">
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption="test_results" name="textscan.test_results">
+            <connection class='textscan' directory='../data/metrics' filename="test_results.csv" password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection="textscan.test_results" name="test_results.csv" table="[test_results#csv]" type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype="string" name="athlete_id" ordinal="0" />
+              <column datatype="date" name="date" ordinal="1" />
+              <column datatype="integer" name="trials_attempted" ordinal="2" />
+              <column datatype="real" name="value" ordinal="3" />
+              <column datatype="integer" name="trials_ok" ordinal="4" />
+              <column datatype="string" name="measure_name" ordinal="5" />
+              <column datatype="real" name="baseline_mean" ordinal="6" />
+              <column datatype="integer" name="baseline_n" ordinal="7" />
+              <column datatype="real" name="change" ordinal="8" />
+              <column datatype="real" name="te" ordinal="9" />
+              <column datatype="real" name="multiplier" ordinal="10" />
+              <column datatype="real" name="noise_band" ordinal="11" />
+              <column datatype="real" name="swc" ordinal="12" />
+              <column datatype="real" name="band_low_cm" ordinal="13" />
+              <column datatype="real" name="band_high_cm" ordinal="14" />
+              <column datatype="string" name="direction" ordinal="15" />
+              <column datatype="string" name="state" ordinal="16" />
+              <column datatype="string" name="wording" ordinal="17" />
+              <column datatype="real" name="change_low" ordinal="18" />
+              <column datatype="real" name="change_high" ordinal="19" />
+              <column datatype="real" name="change_vs_band" ordinal="20" />
+              <column datatype="string" name="athlete_sentence" ordinal="21" />
+              <column datatype="string" name="chosen_direction" ordinal="22" />
+              <column datatype="string" name="name" ordinal="23" />
+              <column datatype="string" name="group" ordinal="24" />
+              <column datatype="string" name="email" ordinal="25" />
+          </columns>
+        </relation>
+      </connection>
+      <column datatype="string" name="[athlete_id]" role="dimension" type="nominal" />
+      <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+      <column datatype="integer" name="[trials_attempted]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[value]" role="measure" type="quantitative" />
+      <column datatype="integer" name="[trials_ok]" role="measure" type="quantitative" />
+      <column datatype="string" name="[measure_name]" role="dimension" type="nominal" />
+      <column datatype="real" default-format='n#,##0.00' name="[baseline_mean]" role="measure" type="quantitative" />
+      <column datatype="integer" name="[baseline_n]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[change]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[te]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[multiplier]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[noise_band]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[swc]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[band_low_cm]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[band_high_cm]" role="measure" type="quantitative" />
+      <column datatype="string" name="[direction]" role="dimension" type="nominal" />
+      <column datatype="string" name="[state]" role="dimension" type="nominal" />
+      <column datatype="string" name="[wording]" role="dimension" type="nominal" />
+      <column datatype="real" default-format='n#,##0.00' name="[change_low]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[change_high]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[change_vs_band]" role="measure" type="quantitative" />
+      <column datatype="string" name="[athlete_sentence]" role="dimension" type="nominal" />
+      <column datatype="string" name="[chosen_direction]" role="dimension" type="nominal" />
+      <column datatype="string" name="[name]" role="dimension" type="nominal" />
+      <column datatype="string" name="[group]" role="dimension" type="nominal" />
+      <column datatype="string" name="[email]" role="dimension" type="nominal" />
+      <column caption="Row security" datatype="boolean" name="[secure_rows]" role="dimension" type="nominal">
+        <calculation class='tableau' formula='IFNULL(ISMEMBEROF("AMS staff"), TRUE) OR LOWER([email]) = LOWER(USERNAME())' />
+      </column>
+      <column caption="Latest test for athlete" datatype="boolean" name="[latest_own_test]" role="dimension" type="nominal">
+        <calculation class='tableau' formula="[date] = {FIXED [athlete_id] : MAX([date])}" />
+      </column>
+      <filter class='categorical' column='[secure_rows]' filter-group='2'>
+        <groupfilter function='member' level='[secure_rows]' member='true' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+    </datasource>
+    <datasource caption="profile_series" inline='true' name="federated.profile_series" version="26.1">
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption="profile_series" name="textscan.profile_series">
+            <connection class='textscan' directory='../data/metrics' filename="profile_series.csv" password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection="textscan.profile_series" name="profile_series.csv" table="[profile_series#csv]" type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype="string" name="athlete_id" ordinal="0" />
+              <column datatype="date" name="date" ordinal="1" />
+              <column datatype="string" name="chart" ordinal="2" />
+              <column datatype="string" name="series" ordinal="3" />
+              <column datatype="real" name="value" ordinal="4" />
+              <column datatype="string" name="name" ordinal="5" />
+              <column datatype="string" name="group" ordinal="6" />
+              <column datatype="string" name="email" ordinal="7" />
+          </columns>
+        </relation>
+      </connection>
+      <column datatype="string" name="[athlete_id]" role="dimension" type="nominal" />
+      <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+      <column datatype="string" name="[chart]" role="dimension" type="nominal" />
+      <column datatype="string" name="[series]" role="dimension" type="nominal" />
+      <column datatype="real" default-format='n#,##0.00' name="[value]" role="measure" type="quantitative" />
+      <column datatype="string" name="[name]" role="dimension" type="nominal" />
+      <column datatype="string" name="[group]" role="dimension" type="nominal" />
+      <column datatype="string" name="[email]" role="dimension" type="nominal" />
+      <column caption="Row security" datatype="boolean" name="[secure_rows]" role="dimension" type="nominal">
+        <calculation class='tableau' formula='IFNULL(ISMEMBEROF("AMS staff"), TRUE) OR LOWER([email]) = LOWER(USERNAME())' />
+      </column>
+      <filter class='categorical' column='[secure_rows]' filter-group='2'>
+        <groupfilter function='member' level='[secure_rows]' member='true' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name="My latest jump">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="test_results" name="federated.test_results" />
+          </datasources>
+          <datasource-dependencies datasource="federated.test_results">
+            <column datatype="string" name="[name]" role="dimension" type="nominal" />
+            <column datatype="string" name="[athlete_sentence]" role="dimension" type="nominal" />
+            <column caption="Latest test for athlete" datatype="boolean" name="[latest_own_test]" role="dimension" type="nominal">
+              <calculation class='tableau' formula="[date] = {FIXED [athlete_id] : MAX([date])}" />
+            </column>
+            <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+            <column datatype="string" name="[athlete_id]" role="dimension" type="nominal" />
+            <column-instance column="[name]" derivation="None" name="[none:name:nk]" pivot='key' type="nominal" />
+            <column-instance column="[athlete_sentence]" derivation="None" name="[none:athlete_sentence:nk]" pivot='key' type="nominal" />
+            <column-instance column="[latest_own_test]" derivation="None" name="[none:latest_own_test:nk]" pivot='key' type="nominal" />
+          </datasource-dependencies>
+          <filter class='categorical' column="[federated.test_results].[none:latest_own_test:nk]">
+            <groupfilter function='member' level="[none:latest_own_test:nk]" member="true" user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.test_results].[none:latest_own_test:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class="Text" />
+              <encodings>
+                <text column="[federated.test_results].[none:athlete_sentence:nk]" />
+              </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.test_results].[none:name:nk]</rows>
+        <cols></cols>
+      </table>
+      <simple-id uuid="{466A291B-42A6-5FBB-8888-A0512671C6BC}" />
+    </worksheet>
+    <worksheet name="My jump">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="profile_series" name="federated.profile_series" />
+          </datasources>
+          <datasource-dependencies datasource="federated.profile_series">
+            <column datatype="string" name="[name]" role="dimension" type="nominal" />
+            <column datatype="real" name="[value]" role="measure" type="quantitative" />
+            <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+            <column datatype="string" name="[series]" role="dimension" type="nominal" />
+            <column datatype="string" name="[chart]" role="dimension" type="nominal" />
+            <column-instance column="[name]" derivation="None" name="[none:name:nk]" pivot='key' type="nominal" />
+            <column-instance column="[value]" derivation="Avg" name="[avg:value:qk]" pivot='key' type="quantitative" />
+            <column-instance column="[date]" derivation="Day-Trunc" name="[tdy:date:qk]" pivot='key' type="quantitative" />
+            <column-instance column="[series]" derivation="None" name="[none:series:nk]" pivot='key' type="nominal" />
+            <column-instance column="[chart]" derivation="None" name="[none:chart:nk]" pivot='key' type="nominal" />
+          </datasource-dependencies>
+          <filter class='categorical' column="[federated.profile_series].[none:chart:nk]">
+            <groupfilter function='member' level="[none:chart:nk]" member='"jump"' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.profile_series].[none:chart:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class="Line" />
+              <encodings>
+                <color column="[federated.profile_series].[none:series:nk]" />
+              </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.profile_series].[none:name:nk] / [federated.profile_series].[avg:value:qk]</rows>
+        <cols>[federated.profile_series].[tdy:date:qk]</cols>
+      </table>
+      <simple-id uuid="{534D8973-FCAD-556C-AE4B-A33D5D554EAB}" />
+    </worksheet>
+    <worksheet name="My wellness">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="profile_series" name="federated.profile_series" />
+          </datasources>
+          <datasource-dependencies datasource="federated.profile_series">
+            <column datatype="string" name="[name]" role="dimension" type="nominal" />
+            <column datatype="real" name="[value]" role="measure" type="quantitative" />
+            <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+            <column datatype="string" name="[chart]" role="dimension" type="nominal" />
+            <column-instance column="[name]" derivation="None" name="[none:name:nk]" pivot='key' type="nominal" />
+            <column-instance column="[value]" derivation="Avg" name="[avg:value:qk]" pivot='key' type="quantitative" />
+            <column-instance column="[date]" derivation="Day-Trunc" name="[tdy:date:ok]" pivot='key' type="ordinal" />
+            <column-instance column="[chart]" derivation="None" name="[none:chart:nk]" pivot='key' type="nominal" />
+          </datasource-dependencies>
+          <filter class='categorical' column="[federated.profile_series].[none:chart:nk]">
+            <groupfilter function='member' level="[none:chart:nk]" member='"wellness"' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.profile_series].[none:chart:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class="Line" />
+          </pane>
+        </panes>
+        <rows>[federated.profile_series].[none:name:nk] / [federated.profile_series].[avg:value:qk]</rows>
+        <cols>[federated.profile_series].[tdy:date:ok]</cols>
+      </table>
+      <simple-id uuid="{1B8B62C9-986A-55BA-8879-946166A6F8DA}" />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name="My data">
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' />
+      <zones>
+        <zone h='100000' id='1' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h="8000" id="3" type-v2='text' w='100000' x='0' y="0">
+            <formatted-text>
+              <run>Your own jump height and morning wellness, against your own usual range.</run>
+            </formatted-text>
+          </zone>
+          <zone h="30666" id="4" name="My latest jump" w='100000' x='0' y="8000" />
+          <zone h="30666" id="5" name="My jump" w='100000' x='0' y="38666" />
+          <zone h="30666" id="6" name="My wellness" w='100000' x='0' y="69332" />
+        </zone>
+      </zones>
+      <simple-id uuid="{91FDD1CC-B871-5217-A17C-A749EEC4C757}" />
+    </dashboard>
+  </dashboards>
+  <windows>
+    <window class='worksheet' hidden='true' name="My latest jump">
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid="{B90F9433-7347-5F93-93C1-8FAA171780D9}" />
+    </window>
+    <window class='worksheet' hidden='true' name="My jump">
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid="{F065C55A-4268-55EA-8D7F-C6A2BF4D85BB}" />
+    </window>
+    <window class='worksheet' hidden='true' name="My wellness">
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid="{2AAE0140-406C-5576-B78A-19197912B26B}" />
+    </window>
+    <window class='dashboard' maximized="true" name="My data">
+      <viewpoints>
+        <viewpoint name="My latest jump" />
+        <viewpoint name="My jump" />
+        <viewpoint name="My wellness" />
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid="{2C8C14B4-3BE2-56E1-BA34-5C3E775D6B95}" />
+    </window>
+  </windows>
+  <explain-data enabled-for-viewer='false' extreme-values-enabled-for-all='false'>
+    <explanation-types />
+  </explain-data>
+</workbook>

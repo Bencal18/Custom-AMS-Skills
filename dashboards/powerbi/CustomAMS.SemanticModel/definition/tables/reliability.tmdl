@@ -1,0 +1,103 @@
+table reliability
+	lineageTag: 61db5b2f-9361-5dd8-a6c4-4fdd82030c4b
+
+	measure 'Typical error label' =
+			VAR r = SELECTEDVALUE ( reliability[te_source] )
+			RETURN
+			    "Typical error " & FORMAT ( SELECTEDVALUE ( reliability[te] ), "0.00" ) & " cm. Smallest worthwhile change " & FORMAT ( SELECTEDVALUE ( reliability[swc] ), "0.00" ) & " cm. " & r
+		lineageTag: 5ed9606a-1b9b-5245-93d0-b872819b3ad3
+
+	column measure_name
+		dataType: string
+		lineageTag: c1d1149d-8f21-50a3-a4e1-850eaf32baae
+		summarizeBy: none
+		sourceColumn: measure_name
+
+		annotation SummarizationSetBy = User
+
+	column unit
+		dataType: string
+		lineageTag: 6f34e388-fddb-5815-8871-7f5e2689734f
+		summarizeBy: none
+		sourceColumn: unit
+
+		annotation SummarizationSetBy = User
+
+	column trial_summary
+		dataType: string
+		lineageTag: 0e236d30-2315-5086-827b-29b04e2c85df
+		summarizeBy: none
+		sourceColumn: trial_summary
+
+		annotation SummarizationSetBy = User
+
+	column te
+		dataType: double
+		lineageTag: 4127f255-79ff-5c57-a6fe-8dd9b34f22aa
+		summarizeBy: none
+		sourceColumn: te
+
+		annotation SummarizationSetBy = User
+
+	column te_df
+		dataType: int64
+		lineageTag: 78c29cfa-5b71-5b53-baee-ed1a86e111e6
+		summarizeBy: none
+		sourceColumn: te_df
+
+		annotation SummarizationSetBy = User
+
+	column multiplier
+		dataType: double
+		lineageTag: 55ab415e-78ac-58e0-b9d9-a61f4d35d01a
+		summarizeBy: none
+		sourceColumn: multiplier
+
+		annotation SummarizationSetBy = User
+
+	column swc
+		dataType: double
+		lineageTag: 89b7d6d9-9c67-544e-98b4-bca29326f9e3
+		summarizeBy: none
+		sourceColumn: swc
+
+		annotation SummarizationSetBy = User
+
+	column te_athletes
+		dataType: int64
+		lineageTag: 8e02745a-2353-5f0d-bd2f-a993e15d969a
+		summarizeBy: none
+		sourceColumn: te_athletes
+
+		annotation SummarizationSetBy = User
+
+	column te_source
+		dataType: string
+		lineageTag: 891cdd15-738c-53cf-a078-42991c802903
+		summarizeBy: none
+		sourceColumn: te_source
+
+		annotation SummarizationSetBy = User
+
+	column swc_source
+		dataType: string
+		lineageTag: 0f0fca12-8bc7-5554-9b74-461ba820d53e
+		summarizeBy: none
+		sourceColumn: swc_source
+
+		annotation SummarizationSetBy = User
+
+	partition reliability = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "reliability.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"measure_name", "unit", "trial_summary", "te", "te_df", "multiplier", "swc", "te_athletes", "te_source", "swc_source"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"te", "te_df", "multiplier", "swc", "te_athletes"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"te", "te_df", "multiplier", "swc", "te_athletes"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"measure_name", type text}, {"unit", type text}, {"trial_summary", type text}, {"te", type number}, {"te_df", Int64.Type}, {"multiplier", type number}, {"swc", type number}, {"te_athletes", Int64.Type}, {"te_source", type text}, {"swc_source", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

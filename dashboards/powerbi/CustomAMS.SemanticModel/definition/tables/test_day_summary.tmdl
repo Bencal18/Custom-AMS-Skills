@@ -1,0 +1,108 @@
+table test_day_summary
+	lineageTag: ac6770c6-e6dc-5d27-96f7-e8b936fd7911
+
+	measure 'Jump flags, last test day' =
+			VAR d = [As of date]
+			VAR t = CALCULATE ( MAX ( test_day_summary[date] ), REMOVEFILTERS ( dates ), test_day_summary[date] <= d )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( t ),
+			        CALCULATE ( SELECTEDVALUE ( test_day_summary[summary_label] ), REMOVEFILTERS ( dates ), test_day_summary[date] = t ) & " (" & FORMAT ( t, "yyyy-mm-dd" ) & ")"
+			    )
+		lineageTag: 5c0866a2-5c45-500b-815f-c5fe84f753fc
+
+	measure 'Jump flags, test day shown' =
+			VAR t = [Test day shown]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( test_day_summary[summary_label] ), REMOVEFILTERS ( dates ), test_day_summary[date] = t )
+		lineageTag: 6be1ae85-e24a-55d7-b59b-1851cc64f4bd
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 3b0542ce-61ff-50c3-9291-f1987b7c81b8
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column chosen_direction
+		dataType: string
+		lineageTag: ba36c06c-616e-5b5b-b144-0aa669096c96
+		summarizeBy: none
+		sourceColumn: chosen_direction
+
+		annotation SummarizationSetBy = User
+
+	column results
+		dataType: int64
+		lineageTag: f1691caa-88d1-58d5-8a49-2e314e717b82
+		summarizeBy: none
+		sourceColumn: results
+
+		annotation SummarizationSetBy = User
+
+	column flagged
+		dataType: int64
+		lineageTag: a06dfd32-f519-50c7-8639-d094ef5e4a01
+		summarizeBy: none
+		sourceColumn: flagged
+
+		annotation SummarizationSetBy = User
+
+	column beyond_band
+		dataType: int64
+		lineageTag: bce2952f-ffbe-54d8-959d-48cb0a8e41ba
+		summarizeBy: none
+		sourceColumn: beyond_band
+
+		annotation SummarizationSetBy = User
+
+	column beyond_band_other_direction
+		dataType: int64
+		lineageTag: 3a411ea6-3c22-5617-9a86-175324c436cf
+		summarizeBy: none
+		sourceColumn: beyond_band_other_direction
+
+		annotation SummarizationSetBy = User
+
+	column no_data
+		dataType: int64
+		lineageTag: 3d3a2404-a656-510a-a7f7-35d3e2b5b655
+		summarizeBy: none
+		sourceColumn: no_data
+
+		annotation SummarizationSetBy = User
+
+	column beyond_band_expected_by_chance
+		dataType: double
+		lineageTag: d558bceb-4649-52de-a9d2-6feb4e86a8f7
+		summarizeBy: none
+		sourceColumn: beyond_band_expected_by_chance
+
+		annotation SummarizationSetBy = User
+
+	column summary_label
+		dataType: string
+		lineageTag: 06d2e777-0415-5c8c-b7e6-8f3628b8134f
+		summarizeBy: none
+		sourceColumn: summary_label
+
+		annotation SummarizationSetBy = User
+
+	partition test_day_summary = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "test_day_summary.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"date", "chosen_direction", "results", "flagged", "beyond_band", "beyond_band_other_direction", "no_data", "beyond_band_expected_by_chance", "summary_label"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "results", "flagged", "beyond_band", "beyond_band_other_direction", "no_data", "beyond_band_expected_by_chance"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "results", "flagged", "beyond_band", "beyond_band_other_direction", "no_data", "beyond_band_expected_by_chance"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"date", type date}, {"chosen_direction", type text}, {"results", Int64.Type}, {"flagged", Int64.Type}, {"beyond_band", Int64.Type}, {"beyond_band_other_direction", Int64.Type}, {"no_data", Int64.Type}, {"beyond_band_expected_by_chance", type number}, {"summary_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

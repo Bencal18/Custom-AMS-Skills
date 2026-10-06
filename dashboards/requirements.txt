@@ -1,0 +1,4 @@
+# Packages to run the metric layer. Versions the checks ran with on 2026-10-05.
+pandas==2.3.3
+numpy==2.0.2
+scipy==1.13.1
