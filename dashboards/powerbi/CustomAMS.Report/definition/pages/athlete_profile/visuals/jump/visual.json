@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "jump",
+  "position": {
+    "x": 784,
+    "y": 80,
+    "z": 3000,
+    "width": 480,
+    "height": 300,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dates"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "dates.date",
+              "nativeQueryRef": "date"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Jump height, one athlete (cm)"
+                }
+              },
+              "queryRef": "test_results.Jump height, one athlete (cm)",
+              "nativeQueryRef": "Jump height, one athlete (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Band low, one athlete (cm)"
+                }
+              },
+              "queryRef": "test_results.Band low, one athlete (cm)",
+              "nativeQueryRef": "Band low, one athlete (cm)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "Band high, one athlete (cm)"
+                }
+              },
+              "queryRef": "test_results.Band high, one athlete (cm)",
+              "nativeQueryRef": "Band high, one athlete (cm)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Jump height against the baseline noise band (cm)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

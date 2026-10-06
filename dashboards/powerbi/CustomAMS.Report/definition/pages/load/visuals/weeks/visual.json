@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "weeks",
+  "position": {
+    "x": 16,
+    "y": 72,
+    "z": 1000,
+    "width": 1248,
+    "height": 640,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athletes"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "athletes.name",
+              "nativeQueryRef": "name",
+              "displayName": "Athlete"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly_load"
+                    }
+                  },
+                  "Property": "week_start"
+                }
+              },
+              "queryRef": "weekly_load.week_start",
+              "nativeQueryRef": "week_start",
+              "displayName": "Week starting"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "weekly_load"
+                    }
+                  },
+                  "Property": "Week load label"
+                }
+              },
+              "queryRef": "weekly_load.Week load label",
+              "nativeQueryRef": "Week load label",
+              "displayName": "Load"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Weekly load (AU) and days complete'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

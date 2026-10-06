@@ -1,0 +1,11 @@
+/// Athletes see only their own rows. The email column must hold the value USERPRINCIPALNAME() returns.
+role Athlete
+	modelPermission: read
+
+	tablePermission athletes = [email] = USERPRINCIPALNAME()
+
+	tablePermission data_quality = FALSE()
+
+	tablePermission test_day_summary = FALSE()
+
+	tablePermission import_log = FALSE()

@@ -1,0 +1,4 @@
+expression DataFolder = "C:\Custom-AMS-Skills\dashboards\data\metrics\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: cf78bcf7-14bc-506e-a18a-120853a2ad7c
+
+	annotation PBI_ResultType = Text

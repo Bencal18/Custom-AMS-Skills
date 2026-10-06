@@ -1,0 +1,39 @@
+relationship d3bceb70-f7ea-5887-8346-82c944427c93
+	fromColumn: athlete_day.athlete_id
+	toColumn: athletes.athlete_id
+
+relationship d6bd948a-6112-5363-bf3e-c124b6c3f601
+	fromColumn: athlete_day.date
+	toColumn: dates.date
+
+relationship cddf8b7d-3494-597e-9ecd-b428e4166f2a
+	fromColumn: wellness_scores.athlete_id
+	toColumn: athletes.athlete_id
+
+relationship 0d0b45dc-84fc-5612-a20d-4fc43b7fc040
+	fromColumn: wellness_scores.date
+	toColumn: dates.date
+
+relationship 86b7cbff-abde-594a-bc2f-78e2c1679b8b
+	fromColumn: test_results.athlete_id
+	toColumn: athletes.athlete_id
+
+relationship 6b354ec3-735e-5624-b4c6-016257ce3179
+	fromColumn: test_results.date
+	toColumn: dates.date
+
+relationship e82a9201-591a-578d-acae-71e836a28153
+	fromColumn: weekly_load.athlete_id
+	toColumn: athletes.athlete_id
+
+relationship 57a42e56-2eb1-5e1f-9088-ce67daac4c2e
+	fromColumn: weekly_load.week_start
+	toColumn: dates.date
+
+relationship 71023ccf-45b1-5694-bc69-3c3fb27048ee
+	fromColumn: data_quality.date
+	toColumn: dates.date
+
+relationship 41e1de7f-1a56-5f19-86d4-20b71253cbb2
+	fromColumn: test_day_summary.date
+	toColumn: dates.date

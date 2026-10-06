@@ -1,0 +1,12 @@
+measure_name,unit,definition,formula_variant,source,measure_date_rule,status_codes
+sleep_quality,points,Morning answer: how well did you sleep? 1 very poorly to 5 very well. Higher is better.,"single item, 1 to 5",wellness_form,local date of the session or form,ok; device_failure; held
+fatigue,points,Morning answer: how fresh do you feel? 1 very tired to 5 very fresh. Higher is better.,"single item, 1 to 5",wellness_form,local date of the session or form,ok; device_failure; held
+soreness,points,Morning answer: how do your muscles feel? 1 very sore to 5 not sore. Higher is better. Routine soreness only. Report pain to the medical team.,"single item, 1 to 5",wellness_form,local date of the session or form,ok; device_failure; held
+stress,points,Morning answer: how relaxed do you feel? 1 very stressed to 5 very relaxed. Higher is better.,"single item, 1 to 5",wellness_form,local date of the session or form,ok; device_failure; held
+mood,points,Morning answer: how is your mood? 1 very low to 5 very good. Higher is better.,"single item, 1 to 5",wellness_form,local date of the session or form,ok; device_failure; held
+session_rpe_cr10,au,"Rating of the whole session on the CR-10 scale, about 30 minutes after it ends.",Foster session RPE,rpe_form,local date of the session or form,ok; device_failure; held
+session_duration,min,Minutes the athlete took part in the session.,session log,session_log,local date of the session or form,ok; device_failure; held
+total_distance,m,Distance covered in the session.,vendor export,gps,local date of the session or form,ok; device_failure; held
+hsr_distance,m,Distance above the high-speed threshold set in the device software.,"vendor export, threshold set by user",gps,local date of the session or form,ok; device_failure; held
+accelerations,count,Accelerations above the threshold set in the device software.,"vendor export, threshold set by user",gps,local date of the session or form,ok; device_failure; held
+cmj_jump_height,cm,"Countermovement jump height, hands on hips, one value for each trial.",takeoff velocity method,force_plate,local date of the session or form,ok; device_failure; held

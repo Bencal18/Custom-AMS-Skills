@@ -1,0 +1,104 @@
+table wellness_scores
+	lineageTag: 54ad483b-445c-5e50-887b-e876d4da805b
+
+	measure 'Wellness answer, one athlete' = IF ( HASONEVALUE ( athletes[athlete_id] ), SELECTEDVALUE ( wellness_scores[answer] ) )
+		formatString: 0
+		lineageTag: 0e61128b-9dc3-5872-b9a0-41cb5f77d075
+
+	column athlete_id
+		dataType: string
+		lineageTag: 1e316f61-e0ec-56ed-b0d6-0119ef63caa8
+		summarizeBy: none
+		sourceColumn: athlete_id
+
+		annotation SummarizationSetBy = User
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: dfc045f5-e558-54a9-b10f-3aa01c81b1a7
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column item
+		dataType: string
+		lineageTag: 5552404d-ee96-5422-94e3-f8221767c89c
+		summarizeBy: none
+		sourceColumn: item
+
+		annotation SummarizationSetBy = User
+
+	column answer
+		dataType: int64
+		lineageTag: 198cddeb-60d2-5c10-a927-5795356850f5
+		summarizeBy: none
+		sourceColumn: answer
+
+		annotation SummarizationSetBy = User
+
+	column baseline_n
+		dataType: int64
+		lineageTag: c9b35bef-3edb-5cdf-b551-e05709f7398d
+		summarizeBy: none
+		sourceColumn: baseline_n
+
+		annotation SummarizationSetBy = User
+
+	column baseline_mean
+		dataType: double
+		lineageTag: 2d85e0c6-7bfc-52b0-9845-e4d8426761c2
+		summarizeBy: none
+		sourceColumn: baseline_mean
+
+		annotation SummarizationSetBy = User
+
+	column baseline_sd
+		dataType: double
+		lineageTag: fd8eb444-0205-553a-b9b9-39467129ffe0
+		summarizeBy: none
+		sourceColumn: baseline_sd
+
+		annotation SummarizationSetBy = User
+
+	column change_points
+		dataType: double
+		lineageTag: cd7fd890-91d4-592f-896d-70fd5ff6efc5
+		summarizeBy: none
+		sourceColumn: change_points
+
+		annotation SummarizationSetBy = User
+
+	column z
+		dataType: double
+		lineageTag: 50db32e9-e746-5364-b3c7-9a0f5580073b
+		summarizeBy: none
+		sourceColumn: z
+
+		annotation SummarizationSetBy = User
+
+	column status
+		dataType: string
+		lineageTag: 3c71e190-09eb-56db-beeb-9a3afe9bd498
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = User
+
+	partition wellness_scores = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "wellness_scores.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "item", "answer", "baseline_n", "baseline_mean", "baseline_sd", "change_points", "z", "status"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "answer", "baseline_n", "baseline_mean", "baseline_sd", "change_points", "z"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "answer", "baseline_n", "baseline_mean", "baseline_sd", "change_points", "z"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"item", type text}, {"answer", Int64.Type}, {"baseline_n", Int64.Type}, {"baseline_mean", type number}, {"baseline_sd", type number}, {"change_points", type number}, {"z", type number}, {"status", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

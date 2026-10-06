@@ -1,0 +1,15 @@
+setting,value,meaning
+load_measure,srpe_load_au,Daily load measure for acute and chronic load.
+acute_window_days,7,"Acute window in days. A convention, not a validated value."
+chronic_window_days,28,"Chronic window in days. A convention, not a validated value."
+acwr_variant,rolling_coupled,ACWR variant. ACWR does not predict injury.
+wellness_baseline_window_days,28,Days before today that the wellness baseline looks back.
+wellness_min_baseline_answers,14,Fewest answers in the window before a z-score is shown.
+wellness_review_z,-2.0,Example only. The total wellness z-score at or below which staff review the athlete. Set your own value. No published cut point exists.
+cmj_trial_summary,mean_of_3,One value for each test day: the mean of the ok trials.
+cmj_baseline_start,2026-07-07,First day of the fixed baseline period for jump height.
+cmj_baseline_end,2026-07-28,Last day of the fixed baseline period for jump height.
+cmj_min_baseline_tests,3,Fewest baseline test days before a change state is shown.
+cmj_direction,drop,Direction of change that matters for jump height.
+retest_day_1,2026-07-07,First day of the preseason retest used for typical error.
+retest_day_2,2026-07-09,Second day of the preseason retest used for typical error.

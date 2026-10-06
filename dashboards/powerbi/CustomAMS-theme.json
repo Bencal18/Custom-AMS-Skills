@@ -1,0 +1,16 @@
+{
+  "name": "Custom AMS",
+  "dataColors": [
+    "#0072B2",
+    "#E69F00",
+    "#009E73",
+    "#CC79A7",
+    "#56B4E9",
+    "#D55E00",
+    "#F0E442",
+    "#000000"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1F1F1F",
+  "tableAccent": "#0072B2"
+}

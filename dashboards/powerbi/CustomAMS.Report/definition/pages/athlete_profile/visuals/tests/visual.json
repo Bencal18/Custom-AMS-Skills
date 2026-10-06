@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "tests",
+  "position": {
+    "x": 784,
+    "y": 388,
+    "z": 5000,
+    "width": 480,
+    "height": 324,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "athletes"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "athletes.name",
+              "nativeQueryRef": "name",
+              "displayName": "Athlete"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "date"
+                }
+              },
+              "queryRef": "test_results.date",
+              "nativeQueryRef": "date",
+              "displayName": "Test day"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "value"
+                }
+              },
+              "queryRef": "test_results.value",
+              "nativeQueryRef": "value",
+              "displayName": "Jump (cm)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "change"
+                }
+              },
+              "queryRef": "test_results.change",
+              "nativeQueryRef": "change",
+              "displayName": "Change (cm)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "noise_band"
+                }
+              },
+              "queryRef": "test_results.noise_band",
+              "nativeQueryRef": "noise_band",
+              "displayName": "Noise band (cm)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "test_results"
+                    }
+                  },
+                  "Property": "wording"
+                }
+              },
+              "queryRef": "test_results.wording",
+              "nativeQueryRef": "wording",
+              "displayName": "State"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Jump tests'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

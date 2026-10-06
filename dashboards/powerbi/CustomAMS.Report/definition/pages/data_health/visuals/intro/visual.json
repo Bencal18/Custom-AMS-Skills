@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "intro",
+  "position": {
+    "x": 16,
+    "y": 8,
+    "z": 0,
+    "width": 800,
+    "height": 56,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Check this page first. A complete-looking board built on a failed import is wrong without any error message."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

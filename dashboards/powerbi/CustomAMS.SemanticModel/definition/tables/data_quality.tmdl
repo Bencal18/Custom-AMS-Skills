@@ -1,0 +1,132 @@
+table data_quality
+	lineageTag: ecb70f2d-3bdc-5004-89cf-1254ffc2e0c9
+
+	measure 'Forms received' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( data_quality[forms_label] ), REMOVEFILTERS ( dates ), data_quality[date] = d )
+		lineageTag: 1afd3ef3-ef7c-5236-ad20-567d98cfeeb5
+
+	measure 'Last successful import' =
+			VAR d = [As of date]
+			RETURN
+			    CALCULATE ( SELECTEDVALUE ( data_quality[last_ok_import] ), REMOVEFILTERS ( dates ), data_quality[date] = d )
+		lineageTag: 0f235694-4006-58c3-b414-08286a2a24e2
+
+	measure 'Form completion (%)' = SELECTEDVALUE ( data_quality[form_completion_pct] )
+		formatString: 0
+		lineageTag: 9927a4a8-84e6-55be-b0c6-0171a0277fa2
+
+	measure 'Rating completion (%)' = SELECTEDVALUE ( data_quality[rating_completion_pct] )
+		formatString: 0
+		lineageTag: 44367c7a-6c01-5322-8b99-510470529c0d
+
+	measure 'Device failure rows' = SELECTEDVALUE ( data_quality[device_failure_rows] )
+		formatString: 0
+		lineageTag: fb5a36ea-8dc5-50d7-a4b1-7b15d90b9e14
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 9dc7a2be-86c2-513c-8f43-0ef16c222e4c
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column athletes_on_roster
+		dataType: int64
+		lineageTag: d4803a57-8488-576f-9ef3-6f13191f9fad
+		summarizeBy: none
+		sourceColumn: athletes_on_roster
+
+		annotation SummarizationSetBy = User
+
+	column forms_expected
+		dataType: int64
+		lineageTag: c7f2438e-aac2-52b3-8a33-003a7b91436d
+		summarizeBy: none
+		sourceColumn: forms_expected
+
+		annotation SummarizationSetBy = User
+
+	column forms_received
+		dataType: int64
+		lineageTag: f2d5133b-a68b-5a02-8cef-3238f38d46f6
+		summarizeBy: none
+		sourceColumn: forms_received
+
+		annotation SummarizationSetBy = User
+
+	column ratings_expected
+		dataType: int64
+		lineageTag: 4eb9e615-910b-519b-a8cc-560f1b43c7bf
+		summarizeBy: none
+		sourceColumn: ratings_expected
+
+		annotation SummarizationSetBy = User
+
+	column ratings_received
+		dataType: int64
+		lineageTag: 96c0c6b0-cde3-5ef8-a360-c9675a19716a
+		summarizeBy: none
+		sourceColumn: ratings_received
+
+		annotation SummarizationSetBy = User
+
+	column device_failure_rows
+		dataType: int64
+		lineageTag: 5515a7c7-715d-525d-974b-d89bde4653a1
+		summarizeBy: none
+		sourceColumn: device_failure_rows
+
+		annotation SummarizationSetBy = User
+
+	column form_completion_pct
+		dataType: double
+		lineageTag: e2cc8dbf-6b65-5a01-9801-55b8f0dc8891
+		summarizeBy: none
+		sourceColumn: form_completion_pct
+
+		annotation SummarizationSetBy = User
+
+	column rating_completion_pct
+		dataType: double
+		lineageTag: ed5467e6-8728-5a5c-bd2b-96784797fd58
+		summarizeBy: none
+		sourceColumn: rating_completion_pct
+
+		annotation SummarizationSetBy = User
+
+	column last_ok_import
+		dataType: string
+		lineageTag: 3021ae71-2a8e-5501-95e1-874b1e045582
+		summarizeBy: none
+		sourceColumn: last_ok_import
+
+		annotation SummarizationSetBy = User
+
+	column forms_label
+		dataType: string
+		lineageTag: 5123f59d-fba1-5133-bca3-c3f62c1fc4a8
+		summarizeBy: none
+		sourceColumn: forms_label
+
+		annotation SummarizationSetBy = User
+
+	partition data_quality = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "data_quality.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"date", "athletes_on_roster", "forms_expected", "forms_received", "ratings_expected", "ratings_received", "device_failure_rows", "form_completion_pct", "rating_completion_pct", "last_ok_import", "forms_label"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "athletes_on_roster", "forms_expected", "forms_received", "ratings_expected", "ratings_received", "device_failure_rows", "form_completion_pct", "rating_completion_pct"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "athletes_on_roster", "forms_expected", "forms_received", "ratings_expected", "ratings_received", "device_failure_rows", "form_completion_pct", "rating_completion_pct"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"date", type date}, {"athletes_on_roster", Int64.Type}, {"forms_expected", Int64.Type}, {"forms_received", Int64.Type}, {"ratings_expected", Int64.Type}, {"ratings_received", Int64.Type}, {"device_failure_rows", Int64.Type}, {"form_completion_pct", type number}, {"rating_completion_pct", type number}, {"last_ok_import", type text}, {"forms_label", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

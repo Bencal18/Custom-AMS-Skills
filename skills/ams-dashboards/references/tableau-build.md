@@ -6,6 +6,8 @@ Last checked: 2026-10-05
 
 This file shows how to build the core AMS screens in Tableau: the data sources, the lookup fields, each dashboard, row-level security for the athlete view, publishing, and refresh. It builds on the Tableau data model reference in the `ams-data-setup` skill, which covers import, types, nulls, and the calendar scaffold.
 
+The [`dashboards`](https://github.com/Bencal18/Custom-AMS-Skills/tree/main/dashboards) folder of the Custom AMS Skills repository builds the core screens from [core-screens.md](core-screens.md) as Tableau workbooks. It reads the same tables as this file.
+
 ## Method
 
 ### Know what Tableau needs

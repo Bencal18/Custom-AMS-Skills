@@ -1,0 +1,56 @@
+table dates
+	lineageTag: c32f79aa-ea8e-5665-b387-57ed68cddb98
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		isKey
+		lineageTag: 4327c8af-4887-501f-bd22-948a5bafca92
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column week_start
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 1167759f-f263-5881-b2fa-8b4fd619f0b5
+		summarizeBy: none
+		sourceColumn: week_start
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_before_latest
+		dataType: int64
+		lineageTag: 133bf4e5-e07b-5b7f-894a-57b4ea520d06
+		summarizeBy: none
+		sourceColumn: days_before_latest
+
+		annotation SummarizationSetBy = User
+
+	column in_last_28_days
+		dataType: string
+		lineageTag: aca980e5-b551-5ce2-9ccb-5f849e231763
+		summarizeBy: none
+		sourceColumn: in_last_28_days
+
+		annotation SummarizationSetBy = User
+
+	partition dates = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dates.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"date", "week_start", "days_before_latest", "in_last_28_days"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "week_start", "days_before_latest"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "week_start", "days_before_latest"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"date", type date}, {"week_start", type date}, {"days_before_latest", Int64.Type}, {"in_last_28_days", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,4 @@
+# Packages to run the tests and the Power BI check. Needs Python 3.10 or later.
+-r requirements.txt
+pytest==9.0.3
+jsonschema==4.25.1

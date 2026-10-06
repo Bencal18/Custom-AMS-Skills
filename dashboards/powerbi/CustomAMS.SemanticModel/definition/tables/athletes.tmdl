@@ -1,0 +1,80 @@
+table athletes
+	lineageTag: c58095c8-6944-5596-9bb8-f327042cdac1
+
+	column athlete_id
+		dataType: string
+		isKey
+		lineageTag: 3e71ad79-3a64-57e3-9754-aed920db2a50
+		summarizeBy: none
+		sourceColumn: athlete_id
+
+		annotation SummarizationSetBy = User
+
+	column name
+		dataType: string
+		lineageTag: debfe5f8-2397-571b-bd97-7691f3c5495f
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = User
+
+	column group
+		dataType: string
+		lineageTag: cbb08dbe-0c6c-54e9-85f6-56f5c24cede5
+		summarizeBy: none
+		sourceColumn: group
+
+		annotation SummarizationSetBy = User
+
+	column email
+		dataType: string
+		lineageTag: 0836868b-eb39-572a-a51b-1a3066cb34d1
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = User
+
+	column start_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 5431bc73-da29-5c27-8d4c-e4d35475de01
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: cc82c0d2-3fbb-5256-bc88-8eee49f2e75b
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status
+		dataType: string
+		lineageTag: 0c299c85-2880-5178-ae85-6358a43122f5
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = User
+
+	partition athletes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "athletes.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "name", "group", "email", "start_date", "end_date", "status"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"start_date", "end_date"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"start_date", "end_date"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"name", type text}, {"group", type text}, {"email", type text}, {"start_date", type date}, {"end_date", type date}, {"status", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

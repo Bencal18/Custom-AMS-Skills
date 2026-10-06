@@ -1,0 +1,68 @@
+table import_log
+	lineageTag: fb138c66-ec5d-5f5e-b0d9-39449d08ae88
+
+	column import_id
+		dataType: string
+		lineageTag: 7cacd4b7-7b9c-5d49-9f37-042fc00e6f34
+		summarizeBy: none
+		sourceColumn: import_id
+
+		annotation SummarizationSetBy = User
+
+	column source
+		dataType: string
+		lineageTag: 8a4fa6df-0927-52af-a94a-843e293cb1dd
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = User
+
+	column import_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 3a476cbd-170e-5f25-9be9-d486e0c30cc9
+		summarizeBy: none
+		sourceColumn: import_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column import_time_local
+		dataType: string
+		lineageTag: cd0ad26f-4fc1-5e73-928a-3281c849ca70
+		summarizeBy: none
+		sourceColumn: import_time_local
+
+		annotation SummarizationSetBy = User
+
+	column rows_imported
+		dataType: int64
+		lineageTag: 9bea3407-cf02-588a-afa2-6c9a52988279
+		summarizeBy: none
+		sourceColumn: rows_imported
+
+		annotation SummarizationSetBy = User
+
+	column result
+		dataType: string
+		lineageTag: 6d0f7eb7-1656-59ee-9f76-d3254b2e1c51
+		summarizeBy: none
+		sourceColumn: result
+
+		annotation SummarizationSetBy = User
+
+	partition import_log = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "import_log.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Headers = Table.SelectColumns(Promoted, {"import_id", "source", "import_date", "import_time_local", "rows_imported", "result"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"import_date", "rows_imported"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"import_date", "rows_imported"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"import_id", type text}, {"source", type text}, {"import_date", type date}, {"import_time_local", type text}, {"rows_imported", Int64.Type}, {"result", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

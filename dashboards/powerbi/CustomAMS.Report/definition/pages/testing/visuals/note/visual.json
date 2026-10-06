@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "note",
+  "position": {
+    "x": 584,
+    "y": 648,
+    "z": 5000,
+    "width": 680,
+    "height": 64,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Repeat a test before anyone acts on a single flag. The chance count assumes the noise band holds and looks for drops only."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
