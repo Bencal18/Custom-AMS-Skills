@@ -574,7 +574,7 @@ def build_pages():
             "Noise band on test day (cm)", "State on test day", "Change vs band on test day"]]}, "Change against measurement error",
         sort=[{"field": mea("test_results", "Change vs band on test day"), "direction": "Ascending"}]))
     p.add("note", 584, 648, 680, 64, textbox(
-        "Repeat a test before anyone acts on a single flag. The chance count assumes the noise band holds and looks for drops only."))
+        "Repeat a test before anyone acts on a single flag. The chance count assumes the noise band holds and counts only the direction the card above names."))
     pages.append(p)
 
     # 6. Availability
