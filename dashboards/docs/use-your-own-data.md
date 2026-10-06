@@ -8,9 +8,9 @@ Keep athlete data inside storage your organization owns and approves. Never comm
 
 The metric layer is a Python script. Install it once on the computer that runs it:
 
-1. Install Python 3.9 or later from your organization's software catalog or from python.org.
+1. Install Python 3.9, 3.10, 3.11, or 3.12 from your organization's software catalog or from python.org.
 2. Open a terminal in the `dashboards` folder.
-3. Create an environment and install the packages:
+3. Create an environment and install the packages. If `python3 --version` shows 3.13 or later, use `python3.12` in place of `python3`.
 
 ```bash
 python3 -m venv .venv
@@ -56,8 +56,10 @@ The metric layer reads every choice from `settings.csv`. Copy the sample file an
 | `wellness_baseline_window_days` | `28` | Days the wellness baseline looks back |
 | `wellness_min_baseline_answers` | `14` | Fewest answers before a z-score shows |
 | `wellness_review_z` | `-2.0` | An example only. The total z-score at or below which staff review an athlete. No published cut point exists. Set your own. |
+| `cmj_trial_summary` | `mean_of_3` | How trials become one value for each test day. `mean_of_N` takes the mean of the ok trials. A day with fewer than N ok trials gets no value. |
 | `cmj_baseline_start`, `cmj_baseline_end` | Preseason dates | The fixed baseline period for jump height |
 | `cmj_min_baseline_tests` | `3` | Fewest baseline test days before a change state shows |
+| `cmj_direction` | `drop` | The direction of change that gets flagged: `drop` or `rise` |
 | `retest_day_1`, `retest_day_2` | Two preseason days | The retest that gives the typical error. Test the same athletes twice, a short time apart, when no true change is expected. |
 
 ## Run the metric layer

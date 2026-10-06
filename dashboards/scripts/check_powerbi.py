@@ -15,7 +15,7 @@ Runs three checks:
 This does not prove that Power BI Desktop opens the project. It catches the
 structural mistakes that stop it from opening.
 
-Run it from the repository root:
+Run it from the dashboards folder:
 
     python3 scripts/check_powerbi.py --schemas /path/to/json-schemas-main
 

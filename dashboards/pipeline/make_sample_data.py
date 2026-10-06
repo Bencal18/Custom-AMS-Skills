@@ -5,7 +5,7 @@ Every athlete, name, and value in the output is made up. The data follows the
 athlete, session, and measure tables from the `ams-data-setup` skill in the
 Custom AMS Skills repository.
 
-Run it from the repository root:
+Run it from the dashboards folder:
 
     python3 pipeline/make_sample_data.py
 

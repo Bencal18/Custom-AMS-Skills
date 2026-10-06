@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the Tableau workbook for the Custom AMS dashboards.
+"""Generate the Tableau workbooks for the Custom AMS dashboards.
 
 Writes two plain XML workbooks for Tableau 2026.1 or later:
 
@@ -11,7 +11,7 @@ The athlete workbook holds no athlete list and no squad sheet.
 Each data source reads one CSV from data/metrics. Every calculated field only
 filters or looks values up. No metric is calculated in Tableau.
 
-Run it from the repository root after the metric layer is built:
+Run it from the dashboards folder after the metric layer is built:
 
     python3 pipeline/build_metrics.py
     python3 scripts/build_tableau.py

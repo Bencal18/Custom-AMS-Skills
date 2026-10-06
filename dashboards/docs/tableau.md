@@ -31,7 +31,7 @@ If Tableau shows an error when it opens a workbook, note the message, and [open 
 
 ## Find your way around the workbooks
 
-The staff workbook has one data source for each metric file:
+The staff workbook has six data sources, each reading one metric file:
 
 | Data source | One row for each | Used by |
 |---|---|---|

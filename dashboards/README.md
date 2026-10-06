@@ -23,7 +23,7 @@ The `dashboards` folder is laid out like this:
 ```text
 dashboards/
 ├── data/
-│   ├── sample/          Made-up clean tables: athletes, sessions, measures, availability, settings, import log
+│   ├── sample/          Made-up clean tables: athletes, sessions, measures, measure dictionary, availability, settings, import log
 │   └── metrics/         The metric layer the dashboards read, built from data/sample
 ├── pipeline/
 │   ├── make_sample_data.py   Makes the sample data
@@ -37,7 +37,7 @@ dashboards/
 
 ## The screens
 
-Both tools show these screens:
+The Power BI report shows these screens:
 
 | Screen | What it shows | Who reads it |
 |---|---|---|
@@ -49,6 +49,15 @@ Both tools show these screens:
 | Availability | Athletes who are full, modified, or out each day | Coaches |
 | Data health | The import log, form and rating completion, and device failures | The person who runs the AMS |
 | My data | The athlete's own jump height and wellness against their own usual range, in plain words | Athletes |
+
+The Tableau workbooks show the same screens, with these differences:
+
+- The squad board has no cards above the table and no wellness review column.
+- The athlete profile shows the wellness total over every day, not the last 28 days of answers. It has no table of jump tests.
+- The wellness screen is called **Wellness**. It has no review value card.
+- The testing screen shows the latest test day only, as change bars. It has no measurement error card, no chance count, and no table.
+- The availability screen has no list of days modified or out.
+- The data health screen shows form completion and the import log only.
 
 The Power BI version has a date slicer on the squad board. The Tableau version shows the latest day. In Tableau, the **My data** screen is a separate workbook, so athletes never open a staff workbook or its athlete list.
 

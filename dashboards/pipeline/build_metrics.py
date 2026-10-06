@@ -4,13 +4,13 @@
 This is the one place where every metric is calculated. Power BI and Tableau
 read the files it writes and only display them.
 
-Run it from the repository root:
+Run it from the dashboards folder:
 
     python3 pipeline/build_metrics.py
     python3 pipeline/build_metrics.py --input data/sample --output data/metrics
 
-Inputs (in --input): athletes.csv, sessions.csv, measures.csv,
-availability.csv, settings.csv, import_log.csv.
+Inputs (in --input): athletes.csv, measures.csv, availability.csv,
+settings.csv, import_log.csv.
 
 Outputs (in --output):
 
@@ -21,6 +21,11 @@ Outputs (in --output):
     reliability.csv       Typical error and smallest worthwhile change for each tested measure
     test_day_summary.csv  Flags found and flags expected by chance for each test day
     data_quality.csv      Forms, ratings, and device failures for each day
+    profile_series.csv    One row for each athlete, day, and chart line, for the profile charts
+    dates.csv             One row for each calendar day
+
+It also copies athletes.csv, settings.csv, and import_log.csv unchanged, so
+the dashboards read one folder.
 
 The formulas follow the Custom AMS Skills repository: session RPE load,
 rolling coupled ACWR, wellness z-score, and the change-versus-noise states.

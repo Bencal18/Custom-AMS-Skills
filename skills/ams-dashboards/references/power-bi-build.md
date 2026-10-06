@@ -6,7 +6,7 @@ Last checked: 2026-10-05
 
 This file shows how to build the core AMS screens in Power BI: the model, the lookup measures, each page, row-level security for the athlete view, publishing, licensing, and refresh. It builds on the Power BI data model reference in the `ams-data-setup` skill, which covers import, types, blanks, and the date table.
 
-The [`dashboards`](https://github.com/Bencal18/Custom-AMS-Skills/tree/main/dashboards) folder of the Custom AMS Skills repository builds the core screens from [core-screens.md](core-screens.md) as a Power BI project. It reads the same tables as this file.
+The [`dashboards`](https://github.com/Bencal18/Custom-AMS-Skills/tree/main/dashboards) folder of the Custom AMS Skills repository builds a starting version of the core screens from [core-screens.md](core-screens.md) as a Power BI project. It reads the same tables as this file. It leaves out some parts of core-screens.md, such as the availability strip on the profile and the list of athletes at or below the review value.
 
 ## Method
 

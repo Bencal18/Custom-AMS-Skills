@@ -4,7 +4,15 @@ This guide is for maintainers. It shows how to rebuild every generated file and 
 
 ## Install the developer packages
 
-The tests and the Power BI check need Python 3.10 or later. Install the developer packages once:
+The tests and the Power BI check need Python 3.10, 3.11, or 3.12. The pinned packages publish no prebuilt packages for later versions. Run these commands from the `dashboards` folder.
+
+Create the environment once:
+
+```bash
+python3.12 -m venv .venv
+```
+
+Install the developer packages:
 
 ```bash
 .venv/bin/pip install -r requirements-dev.txt
