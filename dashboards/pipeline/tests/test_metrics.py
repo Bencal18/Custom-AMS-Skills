@@ -1,7 +1,7 @@
 """Known-answer tests for the metric layer.
 
 The expected values come from the worked examples in docs/calculations.md of
-the Custom AMS Skills repository. Run from the repository root:
+the Custom AMS Skills repository. Run from the dashboards folder:
 
     python3 -m pytest pipeline/tests
 """

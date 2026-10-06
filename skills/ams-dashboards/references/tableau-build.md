@@ -6,7 +6,7 @@ Last checked: 2026-10-05
 
 This file shows how to build the core AMS screens in Tableau: the data sources, the lookup fields, each dashboard, row-level security for the athlete view, publishing, and refresh. It builds on the Tableau data model reference in the `ams-data-setup` skill, which covers import, types, nulls, and the calendar scaffold.
 
-The [`dashboards`](https://github.com/Bencal18/Custom-AMS-Skills/tree/main/dashboards) folder of the Custom AMS Skills repository builds the core screens from [core-screens.md](core-screens.md) as Tableau workbooks. It reads the same tables as this file.
+The [`dashboards`](https://github.com/Bencal18/Custom-AMS-Skills/tree/main/dashboards) folder of the Custom AMS Skills repository builds a starting version of the core screens from [core-screens.md](core-screens.md) as Tableau workbooks. It reads the same tables as this file. Its Tableau screens are simpler than its Power BI pages. The folder's README lists the differences.
 
 ## Method
 
@@ -49,7 +49,7 @@ Use these sheets for the core screens:
 | Screen | Sheet | Shelves |
 |---|---|---|
 | Squad board | Text table, filtered to the latest day, sorted by jump change divided by the noise band | Rows: athlete, group, availability, form, wellness, load, latest jump and its state |
-| Athlete profile | Three line charts from the long table, with the athlete parameter | Columns: date (discrete day), with a row for every calendar day, so a missing day stays a gap. Rows: value. Color: series |
+| Athlete profile | Three line charts from the long table, with the athlete parameter | Columns: date. Use a discrete day for load and wellness, with a row for every calendar day, so a missing day stays a gap. Use a continuous day for jump height, so the line joins test days. Rows: value. Color: series |
 | Load | Text table | Rows: athlete. Columns: week start. Text: a label such as `2,150 AU, 7 of 7 days` |
 | Wellness | Square marks, filtered to the last 28 days | Rows: athlete. Columns: date (discrete day). Color and Text: total z-score |
 | Testing | Bar chart, filtered to the latest test day | Rows: athlete, sorted by change divided by the noise band. Columns: change. Color: state wording |
@@ -67,7 +67,7 @@ Follow these rules:
 
 Use a data source filter built on user functions. A quick filter is not security, because the viewer can change it.
 
-1. Create a calculated field: `IFNULL(ISMEMBEROF("AMS staff"), TRUE) OR [email] = USERNAME()`.
+1. Create a calculated field: `IFNULL(ISMEMBEROF("AMS staff"), TRUE) OR LOWER([email]) = LOWER(USERNAME())`.
 2. Add it as a data source filter set to `True`, on every data source that holds athlete rows.
 3. Create a group called `AMS staff` on Tableau Server or Tableau Cloud, and add the staff.
 4. Store each athlete's sign-in name in `email`, exactly as `USERNAME()` returns it on your site.

@@ -14,7 +14,7 @@ Runs three checks:
 This does not prove that Tableau opens the workbook. It catches the
 structural mistakes that stop it from opening.
 
-Run it from the repository root:
+Run it from the dashboards folder:
 
     python3 scripts/check_tableau.py --xsd /path/to/twb_2026.1.0.xsd
 

@@ -32,7 +32,7 @@ The model has these tables:
 |---|---|---|
 | `athletes` | Athlete | Every page, and the athlete security role |
 | `dates` | Calendar day | Date slicers and axes |
-| `athlete_day` | Athlete and day on the roster | Squad board, profile, wellness grid, availability |
+| `athlete_day` | Athlete and day on the roster | Squad board, profile, wellness grid, availability, my data |
 | `wellness_scores` | Athlete, day, and wellness item | Profile |
 | `test_results` | Athlete and jump test day | Profile, testing, my data |
 | `weekly_load` | Athlete and week | Load |

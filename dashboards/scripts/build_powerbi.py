@@ -4,12 +4,12 @@
 The project is plain text: a semantic model in TMDL and a report in PBIR JSON.
 Power BI Desktop opens `powerbi/CustomAMS.pbip`.
 
-Run it from the repository root after the metric layer is built:
+Run it from the dashboards folder after the metric layer is built:
 
     python3 pipeline/build_metrics.py
     python3 scripts/build_powerbi.py
 
-The model reads the CSV headers in data/sample and data/metrics, so it always
+The model reads the CSV headers in data/metrics, so it always
 matches the files. Every measure only looks values up for the chosen athlete
 and date. No metric is calculated in Power BI.
 """

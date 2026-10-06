@@ -45,6 +45,8 @@ Give the dashboard these tables:
 | `wellness_scores` | Athlete, day, and item, plus the total | Answer, baseline count, baseline mean, change in points, z-score, status |
 | `test_results` | Athlete and test day | Value, baseline mean and count, change, noise band, band edges, state, wording |
 | `weekly_load` | Athlete and week | Weekly total, days complete, days out, days modified |
+| `test_day_summary` | Test day | Results, results beyond the noise band in the chosen direction, and the number expected by chance |
+| `reliability` | Tested measure | Typical error, its degrees of freedom, the band multiplier, and the smallest worthwhile change |
 | `data_quality` | Day | Forms expected and received, ratings expected and received, device failures |
 | `import_log` | Import | Source, date, time, rows, result |
 | `profile_series` | Athlete, day, and chart line | `athlete_id`, `date`, `chart`, `series`, `value`, for tools that draw one value column |
