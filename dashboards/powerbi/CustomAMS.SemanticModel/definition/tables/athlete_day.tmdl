@@ -113,12 +113,12 @@ table athlete_day
 			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_wording] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
 		lineageTag: ebe1e76a-7eda-540c-ad88-fc2a4c19777c
 
-	measure 'Jump change vs band' =
+	measure 'Jump change vs band, chosen direction' =
 			VAR d = [As of date]
 			RETURN
-			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_change_vs_band] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
+			    CALCULATE ( SELECTEDVALUE ( athlete_day[cmj_change_vs_band_chosen] ), REMOVEFILTERS ( dates ), athlete_day[date] = d )
 		formatString: 0.00
-		lineageTag: a53857db-2b16-53d1-8e3e-22ff4bd17f20
+		lineageTag: f5e44d6e-6780-52b7-96f3-575cecd957ed
 
 	measure 'Athletes full' =
 			VAR d = [As of date]
@@ -374,6 +374,14 @@ table athlete_day
 
 		annotation SummarizationSetBy = User
 
+	column cmj_change_vs_band_chosen
+		dataType: double
+		lineageTag: bc991da1-4975-59b4-a217-344bd2237187
+		summarizeBy: none
+		sourceColumn: cmj_change_vs_band_chosen
+
+		annotation SummarizationSetBy = User
+
 	column cmj_days_ago
 		dataType: double
 		lineageTag: 703cc89a-6ec0-51d8-ab00-e0ac1e3c2078
@@ -404,10 +412,10 @@ table athlete_day
 				let
 				    Source = Csv.Document(File.Contents(DataFolder & "athlete_day.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
 				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "srpe_load_au", "sessions", "availability", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_status", "wellness_baseline_n", "wellness_change_points", "form_submitted", "wellness_review", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_state", "cmj_wording", "cmj_change_vs_band", "cmj_days_ago", "acwr_note", "in_last_28_days"}),
-				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "srpe_load_au", "sessions", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_baseline_n", "wellness_change_points", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_change_vs_band", "cmj_days_ago"}),
-				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "srpe_load_au", "sessions", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_baseline_n", "wellness_change_points", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_change_vs_band", "cmj_days_ago"}),
-				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"srpe_load_au", type number}, {"sessions", Int64.Type}, {"availability", type text}, {"acute_load_au", type number}, {"chronic_load_au", type number}, {"acwr_coupled", type number}, {"hsr_m", type number}, {"distance_m", type number}, {"wellness_total", type number}, {"wellness_total_z", type number}, {"wellness_status", type text}, {"wellness_baseline_n", type number}, {"wellness_change_points", type number}, {"form_submitted", type text}, {"wellness_review", type text}, {"cmj_date", type date}, {"cmj_cm", type number}, {"cmj_change_cm", type number}, {"cmj_noise_band_cm", type number}, {"cmj_state", type text}, {"cmj_wording", type text}, {"cmj_change_vs_band", type number}, {"cmj_days_ago", type number}, {"acwr_note", type text}, {"in_last_28_days", type text}}, "en-US")
+				    Headers = Table.SelectColumns(Promoted, {"athlete_id", "date", "srpe_load_au", "sessions", "availability", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_status", "wellness_baseline_n", "wellness_change_points", "form_submitted", "wellness_review", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_state", "cmj_wording", "cmj_change_vs_band", "cmj_change_vs_band_chosen", "cmj_days_ago", "acwr_note", "in_last_28_days"}),
+				    NoEmpty = Table.ReplaceValue(Headers, "", null, Replacer.ReplaceValue, {"date", "srpe_load_au", "sessions", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_baseline_n", "wellness_change_points", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_change_vs_band", "cmj_change_vs_band_chosen", "cmj_days_ago"}),
+				    NoNA = Table.ReplaceValue(NoEmpty, "NA", null, Replacer.ReplaceValue, {"date", "srpe_load_au", "sessions", "acute_load_au", "chronic_load_au", "acwr_coupled", "hsr_m", "distance_m", "wellness_total", "wellness_total_z", "wellness_baseline_n", "wellness_change_points", "cmj_date", "cmj_cm", "cmj_change_cm", "cmj_noise_band_cm", "cmj_change_vs_band", "cmj_change_vs_band_chosen", "cmj_days_ago"}),
+				    Typed = Table.TransformColumnTypes(NoNA, {{"athlete_id", type text}, {"date", type date}, {"srpe_load_au", type number}, {"sessions", Int64.Type}, {"availability", type text}, {"acute_load_au", type number}, {"chronic_load_au", type number}, {"acwr_coupled", type number}, {"hsr_m", type number}, {"distance_m", type number}, {"wellness_total", type number}, {"wellness_total_z", type number}, {"wellness_status", type text}, {"wellness_baseline_n", type number}, {"wellness_change_points", type number}, {"form_submitted", type text}, {"wellness_review", type text}, {"cmj_date", type date}, {"cmj_cm", type number}, {"cmj_change_cm", type number}, {"cmj_noise_band_cm", type number}, {"cmj_state", type text}, {"cmj_wording", type text}, {"cmj_change_vs_band", type number}, {"cmj_change_vs_band_chosen", type number}, {"cmj_days_ago", type number}, {"acwr_note", type text}, {"in_last_28_days", type text}}, "en-US")
 				in
 				    Typed
 

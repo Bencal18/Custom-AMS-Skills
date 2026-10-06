@@ -74,7 +74,7 @@ Add these cards above the table:
 
 Follow these rules:
 
-- Put athletes who need a conversation first, then the rest by name. Sort by the change relative to the noise band, not by a color or a combined score. See the `coach-reports` skill.
+- Sort athletes by the change relative to the noise band in the direction the staff chose, such as a drop in jump height, largest first. Do not sort by a color or a combined score. See the `coach-reports` skill.
 - Show missing data as missing. An athlete with no form today shows `no`, not a blank row and not a 0.
 - Use the state wording from the change-versus-noise reference in the `coach-reports` skill: `Within measurement error`, `Larger than measurement error; may or may not be worthwhile`, `Larger than measurement error; likely range beyond the smallest worthwhile change; worth a conversation`, and `Not enough data`. Without a typical error, use `Within usual variation` and `Outside usual variation` instead.
 - If you add color, use a color-blind-safe pair, such as blue and orange, and keep the words beside each color. See the traffic-light reference in the `coach-reports` skill.

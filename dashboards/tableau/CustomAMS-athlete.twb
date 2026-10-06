@@ -35,11 +35,12 @@
               <column datatype="real" name="change_low" ordinal="18" />
               <column datatype="real" name="change_high" ordinal="19" />
               <column datatype="real" name="change_vs_band" ordinal="20" />
-              <column datatype="string" name="athlete_sentence" ordinal="21" />
-              <column datatype="string" name="chosen_direction" ordinal="22" />
-              <column datatype="string" name="name" ordinal="23" />
-              <column datatype="string" name="group" ordinal="24" />
-              <column datatype="string" name="email" ordinal="25" />
+              <column datatype="real" name="change_vs_band_chosen" ordinal="21" />
+              <column datatype="string" name="athlete_sentence" ordinal="22" />
+              <column datatype="string" name="chosen_direction" ordinal="23" />
+              <column datatype="string" name="name" ordinal="24" />
+              <column datatype="string" name="group" ordinal="25" />
+              <column datatype="string" name="email" ordinal="26" />
           </columns>
         </relation>
       </connection>
@@ -64,6 +65,7 @@
       <column datatype="real" default-format='n#,##0.00' name="[change_low]" role="measure" type="quantitative" />
       <column datatype="real" default-format='n#,##0.00' name="[change_high]" role="measure" type="quantitative" />
       <column datatype="real" default-format='n#,##0.00' name="[change_vs_band]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[change_vs_band_chosen]" role="measure" type="quantitative" />
       <column datatype="string" name="[athlete_sentence]" role="dimension" type="nominal" />
       <column datatype="string" name="[chosen_direction]" role="dimension" type="nominal" />
       <column datatype="string" name="[name]" role="dimension" type="nominal" />

@@ -336,6 +336,8 @@ def test_results(values, settings):
     out["change_low"] = out.change - out.noise_band
     out["change_high"] = out.change + out.noise_band
     out["change_vs_band"] = out.change / out.noise_band
+    # Positive means a change in the chosen direction, so the dashboards sort it largest first.
+    out["change_vs_band_chosen"] = out.change_vs_band * (-1 if direction == "drop" else 1)
     out["athlete_sentence"] = [athlete_sentence(st, c) for st, c in zip(out.state, out.change)]
     out["chosen_direction"] = direction
 
@@ -429,8 +431,10 @@ def athlete_day(daily, wellness, results, settings):
     out["wellness_review"] = np.where(out.wellness_total_z <= review_z, "review", "")
 
     # Latest jump test on or before each day.
-    r = results[["athlete_id", "date", "value", "change", "noise_band", "state", "wording", "change_vs_band"]].rename(
+    r = results[["athlete_id", "date", "value", "change", "noise_band", "state", "wording", "change_vs_band",
+                 "change_vs_band_chosen"]].rename(
         columns={"date": "cmj_date", "value": "cmj_cm", "change": "cmj_change_cm", "change_vs_band": "cmj_change_vs_band",
+                 "change_vs_band_chosen": "cmj_change_vs_band_chosen",
                  "noise_band": "cmj_noise_band_cm", "state": "cmj_state", "wording": "cmj_wording"})
     out = out.sort_values("date")
     r = r.sort_values("cmj_date")

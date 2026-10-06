@@ -60,11 +60,11 @@
                       "Entity": "test_results"
                     }
                   },
-                  "Property": "Change vs band on test day"
+                  "Property": "Change vs band on test day, chosen direction"
                 }
               },
-              "queryRef": "test_results.Change vs band on test day",
-              "nativeQueryRef": "Change vs band on test day"
+              "queryRef": "test_results.Change vs band on test day, chosen direction",
+              "nativeQueryRef": "Change vs band on test day, chosen direction"
             }
           ]
         }
@@ -79,10 +79,10 @@
                     "Entity": "test_results"
                   }
                 },
-                "Property": "Change vs band on test day"
+                "Property": "Change vs band on test day, chosen direction"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ],
         "isDefaultSort": false

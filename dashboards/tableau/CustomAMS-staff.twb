@@ -74,12 +74,13 @@
               <column datatype="string" name="cmj_state" ordinal="21" />
               <column datatype="string" name="cmj_wording" ordinal="22" />
               <column datatype="real" name="cmj_change_vs_band" ordinal="23" />
-              <column datatype="real" name="cmj_days_ago" ordinal="24" />
-              <column datatype="string" name="acwr_note" ordinal="25" />
-              <column datatype="string" name="in_last_28_days" ordinal="26" />
-              <column datatype="string" name="name" ordinal="27" />
-              <column datatype="string" name="group" ordinal="28" />
-              <column datatype="string" name="email" ordinal="29" />
+              <column datatype="real" name="cmj_change_vs_band_chosen" ordinal="24" />
+              <column datatype="real" name="cmj_days_ago" ordinal="25" />
+              <column datatype="string" name="acwr_note" ordinal="26" />
+              <column datatype="string" name="in_last_28_days" ordinal="27" />
+              <column datatype="string" name="name" ordinal="28" />
+              <column datatype="string" name="group" ordinal="29" />
+              <column datatype="string" name="email" ordinal="30" />
           </columns>
         </relation>
       </connection>
@@ -107,6 +108,7 @@
       <column datatype="string" name="[cmj_state]" role="dimension" type="nominal" />
       <column datatype="string" name="[cmj_wording]" role="dimension" type="nominal" />
       <column datatype="real" default-format='n#,##0.00' name="[cmj_change_vs_band]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[cmj_change_vs_band_chosen]" role="measure" type="quantitative" />
       <column datatype="real" default-format='n#,##0.00' name="[cmj_days_ago]" role="measure" type="quantitative" />
       <column datatype="string" name="[acwr_note]" role="dimension" type="nominal" />
       <column datatype="string" name="[in_last_28_days]" role="dimension" type="nominal" />
@@ -153,11 +155,12 @@
               <column datatype="real" name="change_low" ordinal="18" />
               <column datatype="real" name="change_high" ordinal="19" />
               <column datatype="real" name="change_vs_band" ordinal="20" />
-              <column datatype="string" name="athlete_sentence" ordinal="21" />
-              <column datatype="string" name="chosen_direction" ordinal="22" />
-              <column datatype="string" name="name" ordinal="23" />
-              <column datatype="string" name="group" ordinal="24" />
-              <column datatype="string" name="email" ordinal="25" />
+              <column datatype="real" name="change_vs_band_chosen" ordinal="21" />
+              <column datatype="string" name="athlete_sentence" ordinal="22" />
+              <column datatype="string" name="chosen_direction" ordinal="23" />
+              <column datatype="string" name="name" ordinal="24" />
+              <column datatype="string" name="group" ordinal="25" />
+              <column datatype="string" name="email" ordinal="26" />
           </columns>
         </relation>
       </connection>
@@ -182,6 +185,7 @@
       <column datatype="real" default-format='n#,##0.00' name="[change_low]" role="measure" type="quantitative" />
       <column datatype="real" default-format='n#,##0.00' name="[change_high]" role="measure" type="quantitative" />
       <column datatype="real" default-format='n#,##0.00' name="[change_vs_band]" role="measure" type="quantitative" />
+      <column datatype="real" default-format='n#,##0.00' name="[change_vs_band_chosen]" role="measure" type="quantitative" />
       <column datatype="string" name="[athlete_sentence]" role="dimension" type="nominal" />
       <column datatype="string" name="[chosen_direction]" role="dimension" type="nominal" />
       <column datatype="string" name="[name]" role="dimension" type="nominal" />
@@ -408,7 +412,7 @@
             <column caption="Latest day" datatype="boolean" name="[latest_day]" role="dimension" type="nominal">
               <calculation class='tableau' formula="[date] = {FIXED : MAX([date])}" />
             </column>
-            <column datatype="real" name="[cmj_change_vs_band]" role="measure" type="quantitative" />
+            <column datatype="real" name="[cmj_change_vs_band_chosen]" role="measure" type="quantitative" />
             <column datatype="date" name="[date]" role="dimension" type="ordinal" />
             <column-instance column="[name]" derivation="None" name="[none:name:nk]" pivot='key' type="nominal" />
             <column-instance column="[group]" derivation="None" name="[none:group:nk]" pivot='key' type="nominal" />
@@ -426,12 +430,12 @@
             <column-instance column="[cmj_noise_band_cm]" derivation="None" name="[none:cmj_noise_band_cm:ok]" pivot='key' type="ordinal" />
             <column-instance column="[cmj_wording]" derivation="None" name="[none:cmj_wording:nk]" pivot='key' type="nominal" />
             <column-instance column="[latest_day]" derivation="None" name="[none:latest_day:nk]" pivot='key' type="nominal" />
-            <column-instance column="[cmj_change_vs_band]" derivation="Avg" name="[avg:cmj_change_vs_band:qk]" pivot='key' type="quantitative" />
+            <column-instance column="[cmj_change_vs_band_chosen]" derivation="Avg" name="[avg:cmj_change_vs_band_chosen:qk]" pivot='key' type="quantitative" />
           </datasource-dependencies>
           <filter class='categorical' column="[federated.athlete_day].[none:latest_day:nk]">
             <groupfilter function='member' level="[none:latest_day:nk]" member="true" user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
-          <computed-sort column="[federated.athlete_day].[none:name:nk]" direction="ASC" using="[federated.athlete_day].[avg:cmj_change_vs_band:qk]" />
+          <computed-sort column="[federated.athlete_day].[none:name:nk]" direction="DESC" using="[federated.athlete_day].[avg:cmj_change_vs_band_chosen:qk]" />
           <slices>
             <column>[federated.athlete_day].[none:latest_day:nk]</column>
           </slices>
@@ -790,18 +794,18 @@
             <column caption="Latest test day" datatype="boolean" name="[latest_test_day]" role="dimension" type="nominal">
               <calculation class='tableau' formula="[date] = {FIXED : MAX([date])}" />
             </column>
-            <column datatype="real" name="[change_vs_band]" role="measure" type="quantitative" />
+            <column datatype="real" name="[change_vs_band_chosen]" role="measure" type="quantitative" />
             <column datatype="date" name="[date]" role="dimension" type="ordinal" />
             <column-instance column="[name]" derivation="None" name="[none:name:nk]" pivot='key' type="nominal" />
             <column-instance column="[change]" derivation="Avg" name="[avg:change:qk]" pivot='key' type="quantitative" />
             <column-instance column="[wording]" derivation="None" name="[none:wording:nk]" pivot='key' type="nominal" />
             <column-instance column="[latest_test_day]" derivation="None" name="[none:latest_test_day:nk]" pivot='key' type="nominal" />
-            <column-instance column="[change_vs_band]" derivation="Avg" name="[avg:change_vs_band:qk]" pivot='key' type="quantitative" />
+            <column-instance column="[change_vs_band_chosen]" derivation="Avg" name="[avg:change_vs_band_chosen:qk]" pivot='key' type="quantitative" />
           </datasource-dependencies>
           <filter class='categorical' column="[federated.test_results].[none:latest_test_day:nk]">
             <groupfilter function='member' level="[none:latest_test_day:nk]" member="true" user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
           </filter>
-          <computed-sort column="[federated.test_results].[none:name:nk]" direction="ASC" using="[federated.test_results].[avg:change_vs_band:qk]" />
+          <computed-sort column="[federated.test_results].[none:name:nk]" direction="DESC" using="[federated.test_results].[avg:change_vs_band_chosen:qk]" />
           <slices>
             <column>[federated.test_results].[none:latest_test_day:nk]</column>
           </slices>

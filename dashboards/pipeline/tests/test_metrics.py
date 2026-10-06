@@ -213,6 +213,15 @@ def test_results_states_band_and_swc():
     assert out[out.state == "Baseline"].change.isna().all()  # A baseline test gets no change
 
 
+def test_sort_column_puts_the_chosen_direction_first():
+    values = make_tests()
+    for direction, first in [("drop", "A1"), ("fall", "A1"), ("rise", "A2")]:
+        out, _ = bm.test_results(values, {**SETTINGS, "cmj_direction": direction})
+        after = out[out.date == pd.Timestamp("2026-08-04")].set_index("athlete_id")
+        assert after.change_vs_band_chosen.idxmax() == first
+        assert after.loc[first, "change_vs_band_chosen"] == pytest.approx(abs(after.loc[first, "change_vs_band"]))
+
+
 def test_day_summary_counts_only_the_chosen_direction():
     results = pd.DataFrame({
         "date": pd.to_datetime(["2026-08-04"] * 4),
