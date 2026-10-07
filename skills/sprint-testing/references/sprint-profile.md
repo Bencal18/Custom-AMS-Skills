@@ -367,7 +367,7 @@ Other choices change the result too:
 - RF start time. RF after 0.3 s gives RFmax 48.13% at 0.4 s. Starting at 0.5 s gives 44.94% and DRF −8.03 %·s/m. Haugen et al. (2019) took RFmax at 0.5 s.
 - Fit method. Fitting distance (Samozino et al., 2016) and fitting time (Jovanović and Vescovi, 2022) give slightly different MSS and τ. Use one method.
 - Surface and footwear. Test on the same surface in the same footwear. This is good practice, not a published rule.
-- Number of splits. A fit needs more splits than parameters: at least 3 for MSS and τ, and at least 4 with an estimated time correction (Jovanović and Vescovi, 2022). Samozino et al. (2016) suggest about 5.
+- Number of splits. A fit needs more splits than parameters: at least 3 for MSS and τ, and at least 4 with an estimated time correction (Jovanović and Vescovi, 2022).
 - Sprint length. The athlete must get close to top speed before the last split. Otherwise MSS is a guess beyond the data.
 
 ## Units and typical range
@@ -395,7 +395,7 @@ Collect this data:
 - Start: the start stance, the distance from the front foot to the first gate, and the trigger method.
 - Athlete: body mass in kg and height in m from the test day, for the force-velocity layer.
 - Conditions: indoor or outdoor, surface, footwear, temperature, pressure, and wind.
-- Minimum data: one maximal sprint long enough to near top speed. Samozino et al. (2016) suggest two or three sprints, keeping the best.
+- Minimum data: one maximal sprint long enough to near top speed.
 
 ## Common mistakes
 
