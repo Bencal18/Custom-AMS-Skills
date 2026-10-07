@@ -3,7 +3,7 @@ name: ams-data-setup
 description: Set up a home-built athlete management system in a spreadsheet, tables, Power BI, or Tableau. Covers athlete IDs, long measure tables, joining devices by athlete and date, units, and missing data.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "1"
+  version: "2"
 ---
 
 # Set up data for an athlete management system
@@ -18,6 +18,7 @@ Use this skill when the user asks to:
 - Combine exports from several devices, forms, or files into one dataset.
 - Clean messy athlete data, fix duplicate rows, or fix dates that look wrong.
 - Decide how to store missing values, units, or athlete names.
+- Audit an existing monitoring workbook for broken formulas, or roll it over to a new season.
 
 This skill covers these topics:
 
@@ -28,6 +29,7 @@ This skill covers these topics:
 | Missing data, coverage, and zeros | [references/missing-data.md](references/missing-data.md) |
 | Power BI: import, date table, relationships, units, refresh, and traps | [references/power-bi.md](references/power-bi.md) |
 | Tableau: import, calendar scaffold, relationships and joins, units, refresh, and traps | [references/tableau.md](references/tableau.md) |
+| Auditing an Excel or Google Sheets workbook; season rollover | [references/workbook-audit.md](references/workbook-audit.md) |
 
 ## Steps
 
@@ -37,20 +39,21 @@ Follow these steps in order:
 2. For each source, ask for the file type, the column headings, the units, and one example row with names removed. Do not guess what a column means.
 3. Ask where the user keeps the data: a spreadsheet app, a database, Power BI, Tableau, or code.
 4. Write all formulas and code for that tool. For Power BI, load [references/power-bi.md](references/power-bi.md). For Tableau, load [references/tableau.md](references/tableau.md).
-5. Load [references/table-layout.md](references/table-layout.md).
-6. Design the tables before you import any data.
-7. Give each athlete a stable `athlete_id`. Never use a name as a key.
-8. Keep a list that maps each source's athlete ID or name to your `athlete_id`.
-9. Store results in a long storage format: one row per athlete, date, session, measure, side, and trial.
-10. Put the unit in a `unit` column on every row.
-11. Pivot to one column for each measure before you analyze.
-12. When the user combines two or more sources, load [references/joining-sources.md](references/joining-sources.md).
-13. Join on `athlete_id` and the local session date.
-14. Confirm the row counts before and after the join.
-15. Load [references/missing-data.md](references/missing-data.md).
-16. Mark a missing value as missing. Never fill it with zero.
-17. Report coverage with every summary: how many athletes have a value, out of how many expected. Count athletes, not rows.
-18. Show the join key, the dedupe rule, and the units next to each result.
+5. If the user already has a workbook, or asks to start a new season, load [references/workbook-audit.md](references/workbook-audit.md) and audit a copy first.
+6. Load [references/table-layout.md](references/table-layout.md).
+7. Design the tables before you import any data.
+8. Give each athlete a stable `athlete_id`. Never use a name as a key.
+9. Keep a list that maps each source's athlete ID or name to your `athlete_id`.
+10. Store results in a long storage format: one row per athlete, date, session, measure, side, and trial.
+11. Put the unit in a `unit` column on every row.
+12. Pivot to one column for each measure before you analyze.
+13. When the user combines two or more sources, load [references/joining-sources.md](references/joining-sources.md).
+14. Join on `athlete_id` and the local session date.
+15. Confirm the row counts before and after the join.
+16. Load [references/missing-data.md](references/missing-data.md).
+17. Mark a missing value as missing. Never fill it with zero.
+18. Report coverage with every summary: how many athletes have a value, out of how many expected. Count athletes, not rows.
+19. Show the join key, the dedupe rule, and the units next to each result.
 
 ## Core rules
 
@@ -105,5 +108,6 @@ Load these files when needed:
 - [references/missing-data.md](references/missing-data.md): marking, counting, and reporting missing data.
 - [references/power-bi.md](references/power-bi.md): setting up the tables in Power BI, with the date table, relationships, units, refresh, and the traps that give a wrong number.
 - [references/tableau.md](references/tableau.md): setting up the tables in Tableau, with the calendar scaffold, relationships and joins, units, refresh, and the traps that give a wrong number.
+- [references/workbook-audit.md](references/workbook-audit.md): auditing an Excel or Google Sheets workbook for errors that give a wrong number, rolling it over to a new season, and deciding when to rebuild it as long tables.
 
 Device references are optional. Ask the user for the device and the export format, and use what they give you. A metric skill that covers that device may hold a device reference if it is installed. Do not rely on one being present.

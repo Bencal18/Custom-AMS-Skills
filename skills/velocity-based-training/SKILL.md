@@ -3,7 +3,7 @@ name: velocity-based-training
 description: Calculate mean concentric velocity, velocity loss in a set, and load-velocity profiles from data recorded by a bar speed device. Check the velocity type, units, and reference rep.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "1"
+  version: "2"
 ---
 
 # Velocity-based training
@@ -33,7 +33,7 @@ Follow these steps in order:
 
 1. Ask which device and app produced the data, if the user has not said.
 2. Ask whether it is a linear position transducer (a tether attached to the bar), an accelerometer, a camera, or another device.
-3. For GymAware or Perch data, load the matching device file listed under References.
+3. For GymAware, Perch, or EliteForm data, load the matching device file listed under References.
 4. Load the reference file for each metric the user asks about.
 5. Ask for the column names, the units, and one example row with names removed. Do not guess what a column means.
 6. Confirm which velocity each column holds: mean concentric velocity, mean propulsive velocity, or peak velocity. These are different numbers for the same rep. Stop and ask if the column name does not say.
@@ -53,7 +53,7 @@ Follow these steps in order:
 20. Name the equipment behind that velocity.
 21. Say the estimate changes with that choice.
 22. Calculate each athlete, exercise, and session separately.
-23. Show the formula, the velocity measure, the reference rep, and the units next to every result. Name the measure as mean, mean propulsive, or peak velocity, not only the column name. For GymAware Conc Mean Velocity, write "mean velocity, not mean propulsive velocity".
+23. Show the formula, the velocity measure, the reference rep, and the units next to every result. Name the measure as mean, mean propulsive, or peak velocity, not only the column name. For GymAware Conc Mean Velocity, write "mean velocity, not mean propulsive velocity". For EliteForm `avgVelocity`, write "average velocity, not mean propulsive velocity".
 24. Run the checks below before you answer.
 
 ## Checks before answering
@@ -111,3 +111,4 @@ Load these files when needed:
 - [references/velocity-loss.md](references/velocity-loss.md): velocity loss within a set, first versus fastest rep, and its link to repetitions in reserve and fatigue
 - [references/gymaware.md](references/gymaware.md): how to read and transform GymAware RS and FLEX data (owned by VALD)
 - [references/perch.md](references/perch.md): how to read and transform Perch camera-based velocity data (owned by Catapult)
+- [references/eliteform.md](references/eliteform.md): how to read and transform EliteForm camera-based velocity data and its set and rep logs

@@ -15,8 +15,12 @@ Each vendor has one page, or one folder with an overview page and one page for e
 | Hawkin Dynamics | Force plates and TruStrength | Force plate tests and isometric strength | [Hawkin Dynamics](hawkin-dynamics/README.md) |
 | Catapult | Vector, Catapult One, and Perch | GPS and local positioning, accelerometer load, heart rate, and bar velocity | [Catapult](catapult.md) |
 | Kinexon | Kinexon | Local positioning, GNSS, accelerations, jumps, and heart rate | [Kinexon](kinexon.md) |
+| STATSports | Apex, Sonra, and Sonra Lite | GNSS speed and distance, accelerations, metabolic power, accelerometer load, and heart rate | [STATSports](statsports.md) |
 | Polar | Polar Team Pro | Heart rate, speed, distance, acceleration, and load | [Polar Team Pro](polar-team-pro.md) |
 | Firstbeat | Firstbeat Sports | Heart rate, heart rate variability, internal load, and recovery | [Firstbeat Sports](firstbeat-sports.md) |
+| WHOOP | WHOOP strap | Overnight heart rate variability, resting heart rate, sleep, Strain, and Recovery | [WHOOP](whoop.md) |
+| Oura | Oura Ring | Overnight heart rate variability, sleep heart rate, sleep, and Readiness | [Oura](oura.md) |
+| EliteForm | PowerTracker, Strength Planner, and Lift Tracker | Camera-based bar velocity, power, and work, set and rep training logs, and maxes | [EliteForm](eliteform.md) |
 
 ## Pages for each group of tests
 

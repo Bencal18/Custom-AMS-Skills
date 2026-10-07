@@ -4,7 +4,7 @@ Free, open skills that help AI tools analyze athlete monitoring data correctly.
 
 You use ChatGPT, Claude, Gemini, Grok, or Copilot to write spreadsheet formulas, Power BI or Tableau calculations, or code for your athlete data. The AI usually produces something that looks right. These skills make it more likely to be right. Each skill tells the AI which formula to use, what a plausible result looks like, and how to check its own work before it answers.
 
-The skills work with data from any vendor. Reference files for VALD, Hawkin Dynamics, Catapult, Kinexon, Polar, Firstbeat, GymAware, and Perch show the AI how to read those exports.
+The skills work with data from any vendor. Reference files for VALD, Hawkin Dynamics, Catapult, Kinexon, STATSports, Polar, Firstbeat, WHOOP, Oura, GymAware, EliteForm, and Perch show the AI how to read those exports.
 
 ## Who it's for
 
@@ -70,19 +70,26 @@ The repository is laid out like this:
 
 ```text
 Custom-AMS-Skills/
-├── skills/                      The 13 skills you install
+├── skills/                      The 20 skills you install
 │   ├── ams-architecture/
 │   ├── ams-dashboards/
 │   ├── ams-data-setup/
 │   ├── athlete-data-visualization/
 │   ├── check-ai-analysis/
 │   ├── coach-reports/
+│   ├── conditioning-speeds/
 │   ├── force-plate/
 │   ├── gps-running-load/
+│   ├── heart-rate-and-sleep/
 │   ├── limb-symmetry/
 │   ├── load-and-wellness/
 │   ├── monitoring-statistics/
 │   ├── readiness-composites/
+│   ├── sport-specific-counts/
+│   ├── sprint-testing/
+│   ├── squad-questions/
+│   ├── strength-training-load/
+│   ├── testing-profiles/
 │   └── velocity-based-training/
 ├── dashboards/                  Power BI and Tableau template for the core AMS screens
 ├── docs/                        Pages for people to read

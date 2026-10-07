@@ -1,9 +1,9 @@
 ---
 name: force-plate
-description: Calculate and check results from force plate and Nordic tests, including CMJ jump height, RSI-modified, IMTP peak force, and eccentric hamstring force. Use for jump, pull, or Nordic data.
+description: Check jump, pull, and Nordic hamstring results from a force plate, such as jump height, reactive strength, peak force, and strength ratios. Use for jump, pull, or Nordic data.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "1"
+  version: "3"
 ---
 
 # Force plate
@@ -16,8 +16,11 @@ Use this skill when the user asks to:
 
 - Calculate jump height from a countermovement jump, or explain why two jump heights differ.
 - Add RSI-modified to a jump export.
+- Track CMJ strategy metrics: flight time to contraction time ratio (FT:CT), time to takeoff, braking and propulsive impulse, and countermovement depth.
+- Decide between the mean of trials and the best trial for monitoring.
 - Calculate or compare isometric mid-thigh pull peak force, relative force, or rate of force development.
 - Summarize Nordic hamstring test results per leg, per kilogram, or left versus right.
+- Calculate the dynamic strength index (jump peak force divided by isometric mid-thigh pull peak force) or the eccentric utilization ratio (CMJ divided by squat jump).
 - Write a spreadsheet formula, Python or R code, or a Power BI or Tableau calculation for any of these metrics.
 - Check whether a force plate number looks right.
 
@@ -27,8 +30,10 @@ This skill covers these metrics:
 |---|---|
 | Countermovement jump (CMJ) height | [references/cmj-jump-height.md](references/cmj-jump-height.md) |
 | Reactive strength index-modified (RSImod) | [references/rsi-modified.md](references/rsi-modified.md) |
+| CMJ strategy metrics: FT:CT, time to takeoff, braking and propulsive net impulse, countermovement depth, and mean of trials versus best trial | [references/cmj-strategy-metrics.md](references/cmj-strategy-metrics.md) |
 | Isometric mid-thigh pull (IMTP) peak force | [references/imtp-peak-force.md](references/imtp-peak-force.md) |
 | Eccentric hamstring force (Nordic hamstring exercise) | [references/eccentric-hamstring-force.md](references/eccentric-hamstring-force.md) |
+| Dynamic strength index (DSI) and eccentric utilization ratio (EUR) | [references/strength-ratios.md](references/strength-ratios.md) |
 
 ## Steps
 
@@ -40,9 +45,9 @@ Follow these steps in order:
 4. Ask whether the user has the raw force trace or only a summary export, if it is not clear from the data.
 5. List each input column with its unit.
 6. Convert to SI units before any calculation: N, kg, m, and s.
-7. Name the method or variant behind each value. Examples: takeoff velocity or flight time for jump height, net or gross for peak force, and the formula for left versus right imbalance. When the device file lists a vendor metric that matches the value, name that metric too.
+7. Name the method or variant behind each value. Examples: takeoff velocity or flight time for jump height, net or gross for peak force or impulse, the jump type and peak force definition for the dynamic strength index, the onset rule and phase window for time and impulse metrics, and the formula for left versus right imbalance. When the device file lists a vendor metric that matches the value, name that metric too.
 8. Use one method per metric for all athletes and sessions. If the data mix methods, stop and tell the user before you calculate.
-9. Ask whether to report the best trial or the mean of trials, if the user has not said. Use the same choice for every session.
+9. Ask whether to report the best trial or the mean of trials, if the user has not said. Use the same choice for every session. For monitoring, offer the mean of trials as the default, and give the reason in `references/cmj-strategy-metrics.md`.
 10. Ask which trials the athlete or tester excluded, and why.
 11. Do not drop or restore a trial without saying so. Use the same exclusion rule at every session.
 12. Report how many trials you excluded per athlete.
@@ -71,10 +76,12 @@ Run these checks on your own result before you show it:
 - Population check: a youth or untrained athlete can fall outside a published range for real reasons. Do not label such a value a data error or abnormal for that reason alone.
 - Unit check: confirm jump height is in m or cm and not mixed, time is in s, force is in N, and relative force is in N/kg.
 - Method check: confirm every value in one column uses the same method, such as all takeoff velocity or all flight time.
+- Phase check: for time, impulse, and depth metrics, confirm every value in one column uses the same onset rule, takeoff rule, and phase window. Confirm each impulse is net or gross, as labeled.
 - Recompute check: recompute one athlete by hand and confirm it matches your code or formula.
 - Formula check: every result has its formula, variant, and units beside it, including any left-right band.
 - Count check: confirm the number of athletes, sessions, trials, and legs matches the input.
 - Side check: confirm left and right labels were not swapped between the export and your table.
+- Ratio check: for the dynamic strength index or the eccentric utilization ratio, confirm both tests use the same trial rule and the same peak force or jump height definition. For the eccentric utilization ratio, confirm both jumps come from the same session. Confirm the export labels each trial's jump type, and that no squat jump trial with a dip was kept without a flag. Report both test values beside the ratio.
 - Change check: compare the change with the noise band, as described below. Do not use the trial-to-trial coefficient of variation from one session as the noise.
 
 If a check fails, say which check failed and why. Do not hide the result.
@@ -100,13 +107,14 @@ Follow these limits:
 - Frame every result as decision support. Do not make clearance, return-to-sport, injury-risk, or training decisions. Leave those to the practitioner.
 - Do not diagnose an injury or predict injury from any force plate or Nordic value, imbalance, or change.
 - Do not label an athlete ready, cleared, recovered, safe, injured, or at risk.
-- Use published ranges only to check that data are plausible, not to rate or rank athletes. Do not apply any range or threshold as a pass or fail.
+- Use published ranges to check that data are plausible. Use a published norm as a reference point for one athlete only when its population, protocol, and device match the athlete's test. If the `testing-profiles` skill is installed, follow the rules of that skill for that comparison. Never use a range or norm to rate, rank, pass, or fail an athlete.
 - Do not invent a threshold or range. Use only the figures in the reference files, and name the source and population.
 - Do not compare values across methods, devices, postures, or arm-swing conditions without saying so.
 - Do not calculate Nordic knee torque or muscle force from ankle force. If the export gives a torque, report it as given, labeled as the device's value, and say that it depends on how the knee position is set.
 - Do not call a change real when it is inside the noise band.
 - These skills cover monitoring of healthy athletes. If an athlete is injured or in rehab, or reports pain or another symptom, do not analyze it here. Tell the user to involve the medical team.
 - Do not quote injury-study cut-offs as targets or flags.
+- Show published dynamic strength index bands only as study settings, never as a training recommendation. Put the agreement finding from `references/strength-ratios.md` beside every dynamic strength index.
 
 ## References
 
@@ -114,8 +122,10 @@ Load these files when needed:
 
 - [references/cmj-jump-height.md](references/cmj-jump-height.md): CMJ jump height, takeoff velocity and flight time methods, body weight, and onset detection
 - [references/rsi-modified.md](references/rsi-modified.md): RSI-modified, and how it differs from drop-jump RSI
+- [references/cmj-strategy-metrics.md](references/cmj-strategy-metrics.md): FT:CT, time to takeoff, braking and propulsive net impulse, countermovement depth, phase definitions, and the mean of trials versus the best trial
 - [references/imtp-peak-force.md](references/imtp-peak-force.md): IMTP peak force, net and gross force, scaling, and rate of force development
 - [references/eccentric-hamstring-force.md](references/eccentric-hamstring-force.md): eccentric hamstring force per leg, relative force, and between-limb imbalance
+- [references/strength-ratios.md](references/strength-ratios.md): dynamic strength index, eccentric utilization ratio, matching peak force definitions across tests, squat jump checks, and the noise in a ratio
 - [references/vald-forcedecks.md](references/vald-forcedecks.md): how to read and transform VALD ForceDecks API output and exports
 - [references/vald-nordbord.md](references/vald-nordbord.md): how to read and transform VALD NordBord API output and exports
 - [references/hawkin-dynamics.md](references/hawkin-dynamics.md): how to read and transform Hawkin Dynamics API output and exports, and which Hawkin metrics share a name with VALD metrics but differ

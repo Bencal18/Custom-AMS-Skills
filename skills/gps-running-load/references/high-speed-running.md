@@ -1,6 +1,6 @@
 # High-speed running distance
 
-Last checked: 2026-10-02
+Last checked: 2026-10-07
 
 ## What it measures
 
@@ -184,6 +184,233 @@ Run the same 30 samples with other settings to get these results:
 
 The athlete did not change. The distance more than doubled when the threshold dropped from 19.8 to 14.4 km/h. The effort count doubled when the minimum duration dropped from 0.5 to 0.3 s. With a 0.3 s minimum, the run length rule alone changes the count from 2 to 1.
 
+## Build speed zones from test results
+
+Individualized zones can come from a running test instead of a speed record. This section shows how to build zone edges from maximal aerobic speed. For how to calculate it from a field test, use the `conditioning-speeds` skill, if it is installed. A threshold as a percent of maximum speed is covered above, under the threshold variants.
+
+Maximal aerobic speed (MAS) is the lowest running speed at which the athlete reaches their maximal oxygen uptake, in m/s. It comes from a running test. Build each zone edge as a fraction of MAS:
+
+```text
+edge_m_s = f × mas_m_s
+```
+
+Define every term in the formula:
+
+- `mas_m_s`: maximal aerobic speed in m/s. Convert km/h ÷ 3.6.
+- `f`: the fraction of MAS, such as 0.80 for "80% MAS" or 1.00 for MAS itself
+- `edge_m_s`: one zone edge in m/s
+
+This zone scheme appears in a published study. It is a study setting, not a recommendation:
+
+- Moderate-speed running from 80% to 99.9% of MAS, with high-speed running starting at 100% of MAS. MAS was estimated from the distance in the Yo-Yo intermittent recovery test level 1 (Rago et al., 2019).
+
+Some studies and vendors also set edges above MAS from the anaerobic speed reserve (ASR), the difference between maximal sprint speed and MAS (Rago et al., 2019; Gualtieri et al., 2023). The sources cited here do not write out how those edges are calculated, so this file gives no ASR-based edge. If the user follows such a scheme, ask for the exact formula, and show it next to every result.
+
+Gualtieri et al. (2023) note that thresholds built from continuous running tests do not reflect the repeated accelerations of soccer. Treat zones from test results as one option. Ask the user which one they use.
+
+Use this spreadsheet method. Put each athlete's test results on a sheet named `athletes`: `athlete_id` in column `A`, MAS in m/s in column `B`, and the test date in column `C`. Put `f` for the lower edge in cell `H1`. Then add these columns:
+
+```text
+D2 (lower edge, m/s):   =IF(ISNUMBER(B2),$H$1*B2,"")
+E2 (MAS edge, m/s):     =IF(ISNUMBER(B2),B2,"")
+```
+
+Look up each athlete's edges next to their speed samples with `XLOOKUP` or `VLOOKUP`. Then use the band formula in this file with the athlete's own lower and upper edges. A blank test result gives a blank edge, and the band formula then returns a blank.
+
+Use this Python code, after the HSR code above. `athletes` has `athlete_id` and `mas_m_s`:
+
+```python
+f = 0.80                                              # ask the user
+athletes["edge_f"] = f * athletes["mas_m_s"]
+athletes["edge_mas"] = athletes["mas_m_s"]
+df = df.merge(athletes[["athlete_id", "edge_f", "edge_mas"]], on="athlete_id", how="left")
+v = (df["speed_kmh"] / 3.6).round(6)
+lf, lo = df["edge_f"].round(6), df["edge_mas"].round(6)
+df["band_f_mas_m"] = (v / hz).where((v >= lf) & (v < lo), 0).where(lf.notna())
+df["band_above_mas_m"] = (v / hz).where(v >= lo, 0).where(lo.notna())
+zones = df.groupby(g)[["band_f_mas_m", "band_above_mas_m"]].sum(min_count=1)
+```
+
+`min_count=1` keeps a blank result for an athlete with no test, instead of 0 m.
+
+In Power BI, add the edges as calculated columns in the `athletes` table, from column `mas_m_s`. Then point the threshold in the HSR distance measure above at the edge. Use these columns:
+
+```text
+Edge MAS (km/h) =
+IF ( NOT ISBLANK ( athletes[mas_m_s] ), athletes[mas_m_s] * 3.6 )
+
+Edge 80% MAS (km/h) =
+VAR f = 0.80
+RETURN IF ( NOT ISBLANK ( athletes[mas_m_s] ), f * athletes[mas_m_s] * 3.6 )
+```
+
+Use `SELECTEDVALUE ( athletes[Edge MAS (km/h)] )` as `[HSR threshold (km/h)]`. For a band, use the lower edge as the threshold and add the test `< upper edge` to the `FILTER`. The edges are columns, not measures, because they change only when a new test result arrives.
+
+In Tableau, with `athletes` joined to `gps_samples` as above, use these calculations, and use `[Edge MAS (km/h)]` in place of `[hsr_threshold_kmh]`:
+
+```text
+Edge MAS (km/h):
+IF ISNULL([mas_m_s]) THEN NULL ELSE [mas_m_s] * 3.6 END
+
+Edge MAS fraction (km/h):
+IF ISNULL([mas_m_s]) THEN NULL ELSE [MAS f] * [mas_m_s] * 3.6 END
+```
+
+`[MAS f]` is a parameter set to 0.80. A null MAS gives a null edge, and the distance calculation returns null.
+
+This example applies MAS zones to the 30 samples in the worked example above. Every value below came from running the calculation in Python.
+
+| Athlete | MAS | 80% MAS edge | MAS edge |
+|---|---|---|---|
+| A | 4.5 m/s | 3.600 m/s (12.96 km/h) | 4.500 m/s (16.20 km/h) |
+| B | 4.0 m/s | 3.200 m/s (11.52 km/h) | 4.000 m/s (14.40 km/h) |
+
+For athlete A: the lower edge = 0.80 × 4.5 = 3.6 m/s.
+
+The same 30 samples give these band distances:
+
+| Athlete | 80% to 100% MAS | At or above MAS |
+|---|---|---|
+| A | 7 samples, 2.78 m | 21 samples, 11.22 m |
+| B | 6 samples, 2.19 m | 24 samples, 12.48 m |
+
+The running did not change. Athlete B's lower MAS moves 3 more samples above MAS.
+
+## Count top-speed exposure
+
+Top-speed exposure is how often, and how far, an athlete runs close to their own maximal sprint speed. Count it per session and per week. It describes the running done. It does not predict any outcome.
+
+Count efforts and distance at or above a percent of each athlete's MSS:
+
+```text
+threshold_m_s      = pct ÷ 100 × mss_m_s
+top_speed_efforts  = runs of samples with speed_m_s ≥ threshold_m_s
+                     lasting at least min_duration_s
+top_speed_dist_m   = Σ (speed_m_s × dt_s) for samples where speed_m_s ≥ threshold_m_s
+weekly_efforts     = Σ top_speed_efforts over the sessions in the week
+```
+
+Define every term in the formula:
+
+- `pct`: the percent of MSS, such as 85, 90, or 95
+- `mss_m_s`: the athlete's maximal sprint speed in m/s, from the source and date the user chose
+- `min_duration_s`: the minimum effort duration in seconds. Measure a run as samples × `dt_s`, as above.
+- `top_speed_dist_m`: distance at or above the threshold, from every sample at or above it, as for high-speed running distance above. Distance inside counted efforts only is a different number. Name which one you report.
+- Week: the 7 days or the microcycle the user chose. State which.
+
+These settings appear in published studies. They are study settings, not recommendations:
+
+- Weekly counts at or above 80%, 85%, 90%, and 95% of each player's maximum, at 10 Hz (Dillon et al., 2024).
+- Weekly efforts above 90% and above 95% of each player's maximum velocity, at 10 Hz, with a minimum effort duration (dwell time) of 0.6 s (Shah et al., 2022). Cite this study for its counting method only.
+- Sprint entry at 80% to 85% of peak velocity from a sprint test, or above 80%, 85%, or 90% of the highest velocity from training or matches, as summarized by Gualtieri et al. (2023).
+
+Shah et al. (2022) wrote their thresholds as strictly above (`>`). Dillon et al. (2024) wrote them as at or above (`≥`). Use the vendor's rule when known, and state it.
+
+### Choose the maximal sprint speed
+
+The MSS source changes the counts. Practitioners derive MSS from tests, training, and matches, in combination (Kyprianou et al., 2019). Choose one of these sources:
+
+- A sprint test. Gualtieri et al. (2023) describe an all-out 30 to 40 m sprint after a standardized warm-up, measured with GPS, as a time-efficient method. Record the test date, distance, and device.
+- The highest valid GPS value from training and matches. Players do not always reach their maximum in matches, because of the game and their position (Gualtieri et al., 2023). Rago et al. (2019) used the highest GPS speed over the study period.
+
+In one study of 47 professional Australian football players, weekly counts were lower with MSS from in-season GPS monitoring than with MSS from a pre-season 3 × 50 m sprint test. The mean differences were 1.26 efforts per week at 80%, 0.78 at 85%, 0.42 at 90%, and 0.09 at 95%. The authors judged the effect meaningful at 80% and 85%, and somewhat trivial at 90% and 95% (Dillon et al., 2024). The direction of the difference depends on which MSS is higher. A lower MSS gives a lower threshold and more counts, as in the example below.
+
+Follow these rules for the MSS value:
+
+- Check a GPS maximum before you use it. Look at the speed trace around it, and reject a single-sample spike. Ask the user for their validity rule.
+- Store the MSS value, its source, and its date with every count. A new maximum lowers every later count at the same percent.
+- Do not recalculate old counts with a new MSS unless the user asks. If they do, show both versions.
+- Use the same device type for MSS and for the sessions you count. In 12 elite youth soccer players, 10 Hz GPS gave a mean maximal sprinting speed of 8.75 m/s against 8.79 m/s from a laser, a mean difference of 0.04 m/s (Kyprianou et al., 2019).
+
+Use this spreadsheet method on one session's samples, with speed in m/s in column `B`, the athlete's MSS in m/s in cell `K1`, the percent in `K2`, the sampling rate in `K3`, and the minimum duration in seconds in `K4`. Columns `C` to `F` mark the samples, count each run's length, mark counted efforts, and hold each sample's distance:
+
+```text
+K5 (threshold, m/s):  =IF(COUNT(K1,K2)<2,"",ROUND(K2/100*K1,6))
+C2 (at or above):     =IF(OR($K$5="",NOT(ISNUMBER(B2))),0,IF(ROUND(B2,6)>=$K$5,1,0))
+D2 (run length):      =IF(C2=1,N(D1)+1,0)
+E2 (effort ends):     =IF(AND(C2=1,N(C3)=0,D2/$K$3>=$K$4-0.000000001),1,0)
+F2 (distance, m):     =IF(C2=1,B2/$K$3,0)
+K6 (efforts):         =IF($K$5="","",SUM(E:E))
+K7 (distance, m):     =IF($K$5="","",SUM(F:F))
+```
+
+`D2` counts the samples in the current run. `N(D1)` treats the header as 0. `E2` marks the last sample of a run long enough to count. Fill `C2` to `F2` down to the last sample. A dropped sample ends a run. Add each session's count into a weekly total by athlete and week.
+
+Use this Python code, after the HSR code above. `mss` has `athlete_id`, `mss_m_s`, `mss_source`, and `mss_date`. Use the same session rows as the HSR code:
+
+```python
+import pandas as pd
+
+pcts, min_s = [85, 90, 95], 0.6                        # ask the user
+df = df.merge(mss[["athlete_id", "mss_m_s"]], on="athlete_id", how="left")
+v = (df["speed_kmh"] / 3.6).round(6)
+out = []
+for pct in pcts:
+    thr = (pct / 100 * df["mss_m_s"]).round(6)
+    above = (v >= thr) & thr.notna()
+    run = (above != above.groupby([df[c] for c in g]).shift()).cumsum()
+    runs = above[above].groupby([df[c] for c in g] + [run[above]]).size() / hz
+    eff = (runs >= min_s - 1e-9).groupby(level=g).sum()
+    dist = (v / hz).where(above, 0).groupby([df[c] for c in g]).sum()
+    res = pd.DataFrame({"efforts": eff.reindex(dist.index, fill_value=0), "dist_m": dist})
+    res.loc[df.groupby(g)["mss_m_s"].first().isna(), ["efforts", "dist_m"]] = None
+    out.append(res.assign(pct=pct))
+top = pd.concat(out).reset_index()
+```
+
+An athlete with no MSS gets a blank result, not 0. Join a week label to `top`, and add `efforts` and `dist_m` by athlete, week, and `pct`.
+
+In Power BI, add `mss_m_s` to the `athletes` table. Make the threshold a measure from a what-if parameter `[Top speed %]`, and use it in the HSR distance measure above:
+
+```text
+Top speed threshold (km/h) =
+VAR mss = SELECTEDVALUE ( athletes[mss_m_s] )
+RETURN IF ( NOT ISBLANK ( mss ), [Top speed %] / 100 * mss * 3.6 )
+```
+
+Use `[Top speed threshold (km/h)]` as `[HSR threshold (km/h)]` to get distance at or above the threshold. For effort counts, use the Power Query `efforts` method in [accelerations-decelerations.md](accelerations-decelerations.md), with speed in place of acceleration: mark a sample when `speed_kmh ÷ 3.6` is at or above the athlete's threshold, group runs with `GroupKind.Local`, and keep runs that last at least the minimum duration. Store the percent and the MSS used with each row.
+
+In Tableau, add `mss_m_s` to `athletes`, and make a parameter `Top speed %` set to 90. Use this calculation in place of `[hsr_threshold_kmh]` for distance:
+
+```text
+Top speed threshold (km/h):
+IF ISNULL([mss_m_s]) THEN NULL ELSE [Top speed %] / 100 * [mss_m_s] * 3.6 END
+```
+
+For effort counts in Tableau, use the table calculations for `Accel sample`, `Accel run samples`, and `Accel effort ends here` in [accelerations-decelerations.md](accelerations-decelerations.md). Replace the acceleration test with `ROUND(MIN([speed_kmh]) / 3.6, 6) >= ROUND([Top speed %] / 100 * MIN([mss_m_s]), 6)`.
+
+This example uses four seconds of one athlete's speed at 10 Hz (40 samples), with two sprints. Every value below came from running the calculation in Python.
+
+| Input | Value |
+|---|---|
+| Speed, m/s, samples 1 to 10 | 6.80, 7.20, 7.60, 7.90, 8.10, 8.30, 8.45, 8.55, 8.60, 8.60 |
+| Speed, m/s, samples 11 to 20 | 8.55, 8.45, 8.30, 8.10, 7.80, 7.40, 7.00, 6.50, 6.00, 5.50 |
+| Speed, m/s, samples 21 to 30 | 5.60, 6.20, 6.80, 7.30, 7.70, 7.95, 8.05, 8.10, 8.05, 7.90 |
+| Speed, m/s, samples 31 to 40 | 7.60, 7.20, 6.80, 6.30, 5.80, 5.40, 5.00, 4.80, 4.60, 4.50 |
+| MSS from a sprint test | 9.20 m/s |
+| MSS from the highest valid GPS value | 8.90 m/s |
+| Minimum effort duration | 0.6 s |
+
+Follow these steps for 90% of the sprint test MSS:
+
+1. Threshold: 0.90 × 9.20 = 8.28 m/s.
+2. Samples 6 to 13 are at or above 8.28 m/s. The run lasts 8 × 0.1 = 0.8 s, so it counts as 1 effort.
+3. No sample in the second sprint reaches 8.28 m/s. Its top speed is 8.10 m/s.
+4. Distance at or above the threshold: the 8 speeds × 0.1 s, added, give 6.78 m.
+
+The same 40 samples give these results:
+
+| Percent of MSS | MSS from the sprint test | MSS from GPS |
+|---|---|---|
+| 80% | 7.360 m/s: 2 efforts, 17.005 m | 7.120 m/s: 2 efforts, 19.175 m |
+| 85% | 7.820 m/s: 1 effort, 13.195 m | 7.565 m/s: 2 efforts, 16.265 m |
+| 90% | 8.280 m/s: 1 effort, 6.780 m | 8.010 m/s: 1 effort, 10.820 m |
+| 95% | 8.740 m/s: 0 efforts, 0.000 m | 8.455 m/s: 0 efforts, 3.430 m |
+
+Distances are given to 3 decimals because several fall exactly halfway between 2-decimal values. The athlete did not change. At 85%, the MSS source alone changes the count from 1 to 2. At 95% with the GPS MSS, samples 8 to 11 reach the threshold for 0.4 s. That is too short for the 0.6 s minimum, so it adds 3.43 m but no effort. The example shows how the settings act. It does not show the size of the difference in a squad.
+
+If the athlete's six sessions in a week give 0, 3, 2, 0, 1, and 4 efforts at 90%, the weekly count is 10. Report it with the percent, the MSS value and source, the minimum duration, and the week definition.
+
 ## What changes the number
 
 These choices change the result even when the athlete's performance does not:
@@ -200,6 +427,10 @@ These choices change the result even when the athlete's performance does not:
 - Software reprocessing. Reprocessing old files with new software or new bands can change stored values. Record the software version and processing date.
 - Boundary rule. A sample exactly on the threshold counts with `≥` and does not count with `>`. Use the vendor's rule when it is known. Otherwise use at or above the lower bound and below the upper bound, and state it.
 - Match-to-match variation. The athlete's own running changes from match to match, apart from any device error. In English Premier League players tracked by a camera system, match-to-match CV was 16.2% for high-speed running and 30.8% for sprint distance (Gregson et al., 2010).
+- Test results for MAS zones. A new test moves every edge. In the MAS example, a lower MAS puts 3 more samples above MAS for the same running.
+- MSS source for top-speed exposure. In the top-speed example, the sprint test MSS gives 1 effort at 85% and the GPS MSS gives 2. Weekly counts differed most at 80% and 85% and least at 90% and 95% (Dillon et al., 2024).
+- A new MSS. A higher maximum lowers every later count at the same percent. Record the MSS and its date with every count.
+- Minimum effort duration for top-speed efforts. Near the top of an athlete's speed, runs are short. In the top-speed example, a 0.4 s run at 95% adds distance but no effort under a 0.6 s minimum.
 
 ## Units and typical range
 
@@ -213,6 +444,9 @@ High-speed running varies with sport, position, session, and threshold. Report a
 | English Premier League, camera tracking, match-to-match variation | CV 16.2% for high-speed running, 30.8% for sprint distance | Gregson et al., 2010 |
 | Measurement error, high-speed distance, any tracking technology | Above 40% deviation from a reference system | Linke et al., 2018 |
 | Measurement error, 10 Hz and 15 Hz units, as speed rises | Typical error 0.8% to 19.9% | Johnston et al., 2014 |
+| Italian Serie B soccer, 13 players, test results used for zones | MAS 17.7 ± 0.6 km/h from Yo-Yo intermittent recovery test level 1. MSS 31.1 ± 0.9 km/h, the highest GPS speed. | Rago et al., 2019 |
+| Professional Australian football, 47 players, 10 Hz GPS, MSS from in-season monitoring against a pre-season sprint test | Weekly counts lower by 1.26 at 80%, 0.78 at 85%, 0.42 at 90%, and 0.09 at 95% of MSS | Dillon et al., 2024 |
+| Elite youth soccer, 12 players, 40 m sprints, MSS from 10 Hz GPS against a 100 Hz laser | 8.75 ± 0.32 m/s against 8.79 ± 0.33 m/s. Mean difference 0.04 m/s (90% confidence interval −0.03 to 0.11). | Kyprianou et al., 2019 |
 
 Typical error is the measurement noise between two devices or two trials, expressed here as a percentage of the mean. The error rows compare units or systems. They are not the test-retest error of one athlete on one unit. Judge any change with the rules in SKILL.md.
 
@@ -224,6 +458,9 @@ Collect this data:
 - Sampling: 10 Hz or faster for GPS. 15 Hz gave no added benefit over 10 Hz (Scott et al., 2016).
 - Minimum data: one session gives one value. A trend needs several sessions of the same type for that athlete, on the same device type, settings, and threshold.
 - Threshold record: the threshold value, unit, type, and the date it was set. For individualized thresholds, the test that set them.
+- Test record for MAS zones: each athlete's MAS, the test that gave it, and its date.
+- MSS record for top-speed exposure: the value, its source (sprint test or GPS), its date, and the validity check used for a GPS value.
+- Week definition: calendar week or microcycle, for weekly top-speed counts.
 
 ## Common mistakes
 
@@ -239,6 +476,10 @@ These are the mistakes AI tools and spreadsheets make most often with this metri
 - Mixing mph, km/h, and m/s. A threshold of 12.3 mph is 19.8 km/h and 5.5 m/s. Convert everything to m/s first.
 - Reading a match-to-match change as a change in the athlete. High-speed running varies widely between matches for reasons other than fitness (Gregson et al., 2010). Use the noise band rules in SKILL.md, with a typical error from the same session type.
 - Calling high-speed running distance "sprint distance". Sprint thresholds are higher. Use the user's labels and state the threshold.
+- Using an MSS from a single-sample GPS spike. Check the speed trace before you use a GPS maximum.
+- Updating MSS without marking the date. Every later top-speed count shifts. Store the MSS and its date with each count.
+- Comparing top-speed counts at different percents, or with MSS from different sources, as one trend.
+- Describing top-speed exposure as a risk or a safe level. Report the count, the percent, and the MSS. The coach decides what it means.
 
 ## Example request
 
@@ -251,6 +492,8 @@ Run these checks:
 - Confirm high-speed running distance is no more than total distance for every athlete and session.
 - Confirm distance above a higher threshold is no more than distance above a lower threshold for the same session.
 - Recalculate one short run of samples by hand: speed in m/s × 0.1 s at 10 Hz, added over the samples at or above the threshold.
+- For MAS zones, recalculate one athlete's edges by hand: f × MAS. Confirm the edges rise from band to band.
+- For top-speed exposure, confirm the count at 95% is no more than the count at 90%, and so on down. Confirm the MSS value, source, and date appear with the result.
 
 ## Sources
 
@@ -266,3 +509,9 @@ These sources support the figures and methods in this file:
 - Linke D, Link D, Lames M. Validation of electronic performance and tracking systems EPTS under field conditions. PLoS One. 2018;13(7):e0199519. https://doi.org/10.1371/journal.pone.0199519
 - Reardon C, Tobin DP, Delahunt E. Application of individualized speed thresholds to interpret position specific running demands in elite professional rugby union: a GPS study. PLoS One. 2015;10(7):e0133410. https://doi.org/10.1371/journal.pone.0133410
 - Gregson W, Drust B, Atkinson G, Di Salvo V. Match-to-match variability of high-speed activities in premier league soccer. Int J Sports Med. 2010;31(4):237-242. https://doi.org/10.1055/s-0030-1247546
+- Rago V, Brito J, Figueiredo P, Krustrup P, Rebelo A. Relationship between external load and perceptual responses to training in professional football: effects of quantification method. Sports. 2019;7(3):68. https://doi.org/10.3390/sports7030068 (accessed 2026-10-07)
+- Gualtieri A, Rampinini E, Dello Iacono A, Beato M. High-speed running and sprinting in professional adult soccer: current thresholds definition, match demands and training strategies. A systematic review. Front Sports Act Living. 2023;5:1116293. https://doi.org/10.3389/fspor.2023.1116293 (accessed 2026-10-07)
+- Dillon P, Lovell R, Joyce D, Norris D. Maximum speed exposures in Australian rules football: do methods matter? Sci Med Footb. 2024;8(3):287-290. https://doi.org/10.1080/24733938.2023.2211048 Read as an abstract only. The full text is paywalled. (accessed 2026-10-07)
+- Shah S, Collins K, Macgregor LJ. The influence of weekly sprint volume and maximal velocity exposures on eccentric hamstring strength in professional football players. Sports. 2022;10(8):125. https://doi.org/10.3390/sports10080125 Cited for its counting method only. (accessed 2026-10-07)
+- Kyprianou E, Lolli L, Al Haddad H, Di Salvo V, Varley MC, Mendez-Villanueva A, Gregson W, Weston M. A novel approach to assessing validity in sports performance research: integrating expert practitioner opinion into the statistical analysis. Sci Med Footb. 2019;3(4):333-338. https://doi.org/10.1080/24733938.2019.1617433 Read as an abstract only. (accessed 2026-10-07)
+

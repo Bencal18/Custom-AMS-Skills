@@ -1,9 +1,9 @@
 ---
 name: gps-running-load
-description: Calculate total distance, metres per minute, high-speed running, and accelerations and decelerations from GPS, local positioning, or ice hockey tracking data. Check thresholds, units, and settings.
+description: Calculate distance, high-speed running, top speed, and accelerations from GPS, local positioning, or ice hockey tracking data, plus peak periods and match-day load. Check thresholds and units.
 license: CC-BY-4.0. Scripts are MIT.
 metadata:
-  version: "1"
+  version: "2"
 ---
 
 # GPS running load
@@ -20,6 +20,10 @@ Use this skill when the user asks to:
 - Calculate metres per minute, also called relative distance.
 - Calculate high-speed running, sprint distance, or distance in speed zones.
 - Count accelerations and decelerations, or total their distance.
+- Find peak periods, the most demanding 1, 3, 5, or 10 minutes, and show a drill as a percent of each player's match peak.
+- Label sessions by days to the match (MD-4 to MD-1, MD+1), and show training load as a percent of each player's match value.
+- Build speed zones from maximal aerobic speed test results.
+- Count top-speed exposure: efforts and distance at or above a percent of each athlete's maximal sprint speed, per session and per week.
 - Compare running load across athletes, positions, sessions, seasons, or devices.
 - Read ice hockey skating data from league tracking, wearables, or local positioning, with time on ice from the official game reports.
 - Set up a running load log in a spreadsheet, R, Python, Power BI, or Tableau from GPS or local positioning exports.
@@ -31,13 +35,16 @@ This skill covers these metrics:
 | Total distance and distance per minute | [references/total-distance.md](references/total-distance.md) |
 | High-speed running distance | [references/high-speed-running.md](references/high-speed-running.md) |
 | Accelerations and decelerations | [references/accelerations-decelerations.md](references/accelerations-decelerations.md) |
+| Peak demands for distance, high-speed running, and accelerations | [references/peak-demands.md](references/peak-demands.md) |
+| Match-day load as a percent of match | [references/match-day-load.md](references/match-day-load.md) |
+| Speed zones from test results, and top-speed exposure | [references/high-speed-running.md](references/high-speed-running.md#build-speed-zones-from-test-results) |
 
 ## Steps
 
 Follow these steps in order:
 
 1. Ask which device and software produced the data, if the user has not said.
-2. For Catapult, Kinexon, or Polar Team Pro data, load the matching device file listed under References.
+2. For Catapult, Kinexon, Polar Team Pro, or STATSports data, load the matching device file listed under References.
 3. For ice hockey data, load [references/ice-hockey.md](references/ice-hockey.md).
 4. Load the reference file for each metric the user asks about.
 5. Ask for the column names, the units, and one example row with names removed. Do not guess what a column means.
@@ -56,11 +63,14 @@ Follow these steps in order:
 18. For distance per minute, ask which duration to divide by: whole session, time on field, or drill time.
 19. Use one duration rule for every row.
 20. For a peak period, ask for the window length and whether it is rolling or fixed.
-21. Calculate each athlete and session separately. Do not pool athletes into one value unless the user asks for a group summary.
-22. Before you compare two values, confirm they share the device type, the same unit for that athlete, sampling rate, software version, settings, thresholds, session type, and session duration.
-23. If any of these differ or are unknown, say which, next to the comparison. A change of vendor changes the device type, software, and settings. A matching label such as `Practice` does not confirm the same session type. Ask whether the drills matched.
-24. Show the formula, the variant name, the threshold, and the units next to every result.
-25. Run the checks below before you answer.
+21. For a drill as a percent of match peak, ask which match reference and window to use. Load [references/peak-demands.md](references/peak-demands.md).
+22. For match-day load, ask for the fixture list, the number of post-match days, and the match reference rule. Load [references/match-day-load.md](references/match-day-load.md).
+23. For speed zones from test results or top-speed exposure, ask for each athlete's test results, the maximal sprint speed source and date, the percents, and the minimum effort duration.
+24. Calculate each athlete and session separately. Do not pool athletes into one value unless the user asks for a group summary.
+25. Before you compare two values, confirm they share the device type, the same unit for that athlete, sampling rate, software version, settings, thresholds, session type, and session duration.
+26. If any of these differ or are unknown, say which, next to the comparison. A change of vendor changes the device type, software, and settings. A matching label such as `Practice` does not confirm the same session type. Ask whether the drills matched.
+27. Show the formula, the variant name, the threshold, and the units next to every result.
+28. Run the checks below before you answer.
 
 ## Checks before answering
 
@@ -70,7 +80,10 @@ Run these checks on your own result before you show it:
 - Threshold check: the threshold in the answer matches the one the user gave. Name it and the boundary rule next to the result.
 - Order check: for each athlete and session, high-speed running distance is no more than total distance, and sprint distance is no more than high-speed running distance.
 - Duration check: distance per minute uses the duration rule the user chose, and the duration is in minutes.
-- Method check: no trend mixes distance from vendor totals, speed × time, odometer differences, or summed positions. No comparison mixes rolling and fixed peak periods. Each distance result names its method.
+- Method check: no trend mixes distance from vendor totals, speed × time, odometer differences, or summed positions. No comparison mixes rolling and fixed peak periods, for any measure. Each distance result names its method.
+- Reference check: every percent of match names its match reference rule, the number of matches in it, the measure, and for peaks the window. Goalkeepers are reported on their own.
+- Label check: every match date is MD, and congested weeks are compared only with weeks of the same shape.
+- Top-speed check: every top-speed count names the percent, the maximal sprint speed value, its source, and its date. Counts fall as the percent rises.
 - Range check: compare each value with the athlete's own history on the same device and settings. For distance per minute, and for high-speed running with a matching threshold, also compare with the published figures in the reference file. Do not compare acceleration counts with published figures. Flag values far outside the comparison.
 - Setting check: values compared across devices, units, software versions, or seasons share the same thresholds and settings. If they do not, or a setting is unknown, say which, next to the comparison.
 - Vendor check: if a device reference file says no source supports a cross-vendor comparison of a metric, such as Kinexon `Max. Speed` or Accumulated Acceleration Load, do not show a difference column for it and do not read the direction of the difference. Show each system's values in its own column or table, and quote the reason from the reference file.
@@ -102,6 +115,7 @@ Follow these limits:
 
 - Frame every result as decision support. Do not make clearance, return-to-sport, injury-risk, or training decisions. Leave those to the practitioner.
 - Do not label any running load value as safe, risky, too high, or too low. Report the value, the comparison, and the uncertainty.
+- Show published percents of match, zone edges, and top-speed percents as study settings or findings, never as targets. The coach sets every percent and plan.
 - Do not invent a threshold or range. Use only the figures in the reference files, and name the source.
 - Do not pick a speed or acceleration threshold for the user. Show the options in the reference file and ask which one they use.
 - Do not apply running speed thresholds or running ranges to skating. For ice hockey, follow [references/ice-hockey.md](references/ice-hockey.md).
@@ -116,9 +130,12 @@ Follow these limits:
 Load these files when needed:
 
 - [references/total-distance.md](references/total-distance.md): total distance, distance per minute, peak periods, distance from positions, and how sampling rate and device type change them
-- [references/high-speed-running.md](references/high-speed-running.md): high-speed running distance, absolute and individualized thresholds, efforts, and speed units
+- [references/high-speed-running.md](references/high-speed-running.md): high-speed running distance, absolute and individualized thresholds, efforts, speed units, speed zones from maximal aerobic speed, and top-speed exposure
 - [references/accelerations-decelerations.md](references/accelerations-decelerations.md): acceleration and deceleration counts and distance, thresholds, minimum time beyond threshold, and reliability limits
+- [references/peak-demands.md](references/peak-demands.md): rolling 1, 3, 5, and 10 minute peaks for distance, high-speed running, and accelerations, drills as a percent of each player's match peak, and position comparisons
+- [references/match-day-load.md](references/match-day-load.md): match-day labels, training load as a percent of each player's match value, congested weeks, partial matches, and goalkeepers
 - [references/catapult.md](references/catapult.md): how to read and transform Catapult API output and exports
 - [references/kinexon.md](references/kinexon.md): how to read and transform Kinexon API output and exports
 - [references/polar-team-pro.md](references/polar-team-pro.md): how to read and transform Polar Team Pro GPS and heart rate exports and API output
+- [references/statsports.md](references/statsports.md): how to read and transform STATSports Sonra exports, event exports, and zone settings
 - [references/ice-hockey.md](references/ice-hockey.md): what league tracking, wearables, local positioning, and time-on-ice reports give you in ice hockey, and how to keep them apart
